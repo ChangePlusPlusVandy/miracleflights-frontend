@@ -5,6 +5,7 @@ import PersonalInfo from "../pages/PersonalInfo/PersonalInfo";
 import RequestFlight from "../pages/RequestFlight/RequestFlight";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
+import ExampleComponent from "../components/ExampleComponent/ExampleComponent";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/personal-info",
     element: <PersonalInfo />,
+  },
+  {
+    path: "/example",
+    element: <ExampleComponent incrementAmount={2} />,
   },
 ]);
 
