@@ -51,7 +51,7 @@
 
 ## Project Structure
 
-This project is structured using the [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) methodology. The project is split into the following folders:
+The project is split into the following folders:
 
 ```
 📁 src
