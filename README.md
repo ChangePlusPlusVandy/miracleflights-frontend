@@ -64,6 +64,11 @@ The project is split into the following folders:
 
 ```
 
+## Current Project Flow Diagram:
+
+![AppFlowSmall](https://github.com/ChangePlusPlusVandy/miracleflights-frontend/assets/19592236/f34d5816-b772-4f98-98ef-c228f698ad98)
+
+
 ---
 
 ## Tech Stack and Details
