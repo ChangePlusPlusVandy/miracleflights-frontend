@@ -3,15 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
   font-family: "Roboto", sans-serif;
-}
-
-.exampleTitle {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #000;
-  margin-bottom: 1rem;
 }
 
 .exampleSubtitle {
@@ -48,4 +40,5 @@
   border: 1px solid #000;
   border-radius: 0.25rem;
   background-color: #db757f;
+  margin-left: 20px;
 }

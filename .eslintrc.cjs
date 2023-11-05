@@ -23,7 +23,7 @@ module.exports = {
   rules: {
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",
-    "arrow-body-style": ["error", "as-needed"],
+    "arrow-body-style": "off",
     "react/self-closing-comp": [
       "warn",
       {

@@ -10,10 +10,6 @@ describe("ExampleComponent Tests", () => {
     // Check that the component renders
     expect(component).toBeTruthy();
 
-    // Check that component has the correct title
-    const title = component.getByText("Example component");
-    expect(title).toBeTruthy();
-
     // Check that component has the correct subtitle
     const subtitle = component.getByText(
       "Hit the button to increment the number by 1",
@@ -43,10 +39,6 @@ describe("ExampleComponent Tests", () => {
 
     // Check that the component renders
     expect(component).toBeTruthy();
-
-    // Check that component has the correct title
-    const title = component.getByText("Example component");
-    expect(title).toBeTruthy();
 
     // Check that component has the correct subtitle
     const subtitle = component.getByText(

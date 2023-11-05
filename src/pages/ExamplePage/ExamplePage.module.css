@@ -1,0 +1,15 @@
+.exampleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.exampleTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 1rem;
+  font-family: "Roboto", sans-serif;
+}

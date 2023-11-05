@@ -95,15 +95,23 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -127,17 +135,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import styles from "./ExampleComponent.module.css";
 import { useState } from "react";
 import type { ExampleComponentProps } from "./ExampleComponent.definitions";
 &nbsp;
+/**
+ * Example component - a simple component that increments a number by a specified amount
+ *
+ * @prop {number} incrementAmount - the amount to increment the number by, defaults to 1 if not specified
+ */
 const ExampleComponent = ({ incrementAmount = 1 }: ExampleComponentProps) =&gt; {
   const [number, setNumber] = useState&lt;number&gt;(0);
 &nbsp;
   return (
     &lt;div className={styles.exampleContainer}&gt;
-      &lt;h1 className={styles.exampleTitle}&gt;Example component&lt;/h1&gt;
       &lt;div className={styles.exampleSubtitle}&gt;
         Hit the button to increment the number by {incrementAmount}
       &lt;/div&gt;
@@ -175,7 +187,7 @@ export default ExampleComponent;
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2023-11-04T16:30:47.888Z
+      at 2023-11-05T16:06:45.712Z
     </div>
     <script src="../../prettify.js"></script>
     <script>
