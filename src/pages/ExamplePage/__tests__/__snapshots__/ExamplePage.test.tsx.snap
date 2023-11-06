@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExamplePage Tests Renders the ExamplePage component correctly 1`] = `
+exports[`ExamplePage Tests Renders the ExamplePage snapshot correctly 1`] = `
 <div>
   <div
     class="exampleContainer"
