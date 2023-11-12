@@ -6,6 +6,7 @@ import RequestFlight from "../pages/RequestFlight/RequestFlight";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import ExamplePage from "../pages/ExamplePage/ExamplePage";
+import OnboardingForm from "../pages/OnboardingForm/OnboardingForm";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: "/example",
     element: <ExamplePage />,
+  },
+  {
+    path: "/onboarding-form",
+    element: <OnboardingForm />,
   },
 ]);
 

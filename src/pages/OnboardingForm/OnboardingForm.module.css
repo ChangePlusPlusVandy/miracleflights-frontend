@@ -1,0 +1,100 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.formContainer {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.1);
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.questionsContainer {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.logoContainer {
+  margin-bottom: 10px;
+  background-size: contain;
+}
+
+.formDivider {
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  width: 95%;
+  margin-bottom: 20px;
+}
+
+.formTitle {
+  font-size: 1.8rem;
+  text-align: center;
+  font-weight: bold;
+  color: rgb(45 51, 68);
+  margin-bottom: 1rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.introText {
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: bold;
+  color: rgb(45 51, 68);
+  margin-bottom: 0px;
+  font-family: "Roboto", sans-serif;
+}
+
+.bodyText {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  text-align: left;
+  color: rgb(45 51, 68);
+  font-family: "Roboto", sans-serif;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: left;
+  align-self: center;
+}
+
+.radioContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 60%;
+}
+
+.labelText {
+  font-size: 1.1rem;
+  color: rgb(45 51, 68);
+  text-align: left;
+  margin-bottom: 1rem;
+  font-family: "Roboto", sans-serif;
+}
