@@ -1,0 +1,14 @@
+.button {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .compact {
+    padding: 8px;
+  }
+  
+  .blue {
+    background-color: blue;
+    color: white;
+  }
+  
+ /* TODO: Need to add responsiveness and other styles */
