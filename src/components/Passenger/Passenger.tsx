@@ -15,13 +15,23 @@ const Passenger = (Passengers: PassengerProps) => {
   const [number, setNumber] = useState<number>(0);
 
   return (
-    <div className={styles.exampleContainer}>
-      <div className={styles.exampleSubtitle}>Patient {}</div>
-      <div className={styles.dob}>DOB: {Passengers.dateOfBirth}</div>
-      <div className={styles.relationship}>DOB: {Passengers.relationship}</div>
+    <div className={styles.passengerCard}>
+      <div className={styles.title}>Passenger {}</div>
+      <div className={styles.name}>
+        {" "}
+        {Passengers.firstName} {Passengers.lastName}{" "}
+      </div>
+      <div className={styles.dob}>
+        <span className={styles.boldText}>DOB: </span>
+        {Passengers.dateOfBirth} {"(21)"}
+      </div>
+      <div className={styles.relationship}>
+        <span className={styles.boldText}>Relationship: </span>{" "}
+        {Passengers.relationship}
+      </div>
       <div>
-        <button onClick={() => setNumber(number)} className={styles.seeDetails}>
-          See Details
+        <button onClick={() => setNumber(number)} className={styles.viewAllInfo}>
+          View All Information
         </button>
       </div>
     </div>

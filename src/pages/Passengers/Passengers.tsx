@@ -6,12 +6,12 @@ const Passengers = () => {
 
   return (
     <Passenger
-      firstName="Jake"
+      firstName="Debra"
       lastName="Lurie"
-      email="jake.lurie@vanderbilt.edu"
-      relationship="child"
-      userType="patient"
-      dateOfBirth="12/06/2001"
+      email="debralurie@gmail.com"
+      relationship="Mother"
+      userType="Parent"
+      dateOfBirth="01/01/1970"
     />
   );
 };
