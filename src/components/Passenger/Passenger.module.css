@@ -1,0 +1,44 @@
+.exampleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  padding: 0.5rem 1rem;
+  border: 1px solid #0da054;
+  border-radius: 0.25rem;
+}
+
+.exampleSubtitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #0da054;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #0da054;
+  border-radius: 0.25rem;
+}
+
+.dob {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.relationship {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.seeDetails {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #000;
+  border-radius: 0.25rem;
+}
