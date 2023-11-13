@@ -30,7 +30,10 @@ const Passenger = (Passengers: PassengerProps) => {
         {Passengers.relationship}
       </div>
       <div>
-        <button onClick={() => setNumber(number)} className={styles.viewAllInfo}>
+        <button
+          onClick={() => setNumber(number)}
+          className={styles.viewAllInfo}
+        >
           View All Information
         </button>
       </div>
