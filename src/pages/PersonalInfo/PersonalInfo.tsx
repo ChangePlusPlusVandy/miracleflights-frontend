@@ -1,5 +1,5 @@
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
 const PersonalInfo = () => {
   // Personal info tab
@@ -18,7 +18,7 @@ const PersonalInfo = () => {
         </TabList>
 
         <TabPanel>
-          <h2>Fuck u jake</h2>
+          <h2>Info 1</h2>
         </TabPanel>
         <TabPanel>
           <h2>Any content 2</h2>
