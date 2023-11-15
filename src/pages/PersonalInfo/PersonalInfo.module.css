@@ -1,0 +1,44 @@
+.tabs {
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  font-family: 'Inter', serif;
+}
+
+.tabList { /*applies to the entire box of tabs */
+  border-bottom: 1px solid gray;
+  margin: 0 0 10px; /*top right/left bottom-applies to separate the text for each tab from the tablist */
+  padding: 0;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  display: flex;
+}
+
+.tab {
+  /*applies to each individual tab */
+  border: none;
+  color: gray;
+  background: transparent;
+  margin: 10px 20px;
+  font-size: 90%;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.tabSelected {
+  border: none;
+  border-bottom: 2px solid #cf2e2e;
+  color: black;
+  background: transparent;
+  margin: 0 20px;
+  font-size: 90%;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tabPanel {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
