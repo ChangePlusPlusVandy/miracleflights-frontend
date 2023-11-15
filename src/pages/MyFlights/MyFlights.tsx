@@ -1,5 +1,8 @@
 import FlightTicket from "../../components/FlightTicket/FlightTicket";
-import { LegType } from "../../components/FlightTicket/FlightTicket.definitions";
+import {
+  ColorType,
+  LegType,
+} from "../../components/FlightTicket/FlightTicket.definitions";
 
 const MyFlights = () => {
   // MyFlights tab
@@ -12,6 +15,7 @@ const MyFlights = () => {
       departingAirport="BNA"
       arrivingAirport="JFK"
       airline="Southwest"
+      colorVariant={ColorType.BLUE}
     />
   );
 };

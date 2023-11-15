@@ -1,5 +1,5 @@
 import styles from "./FlightTicket.module.css";
-import { LegType } from "./FlightTicket.definitions";
+import { ColorType, LegType } from "./FlightTicket.definitions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleArrowRight,
@@ -15,9 +15,18 @@ const FlightTicket = ({
   arrivingAirport,
   airline,
   legType,
+  colorVariant,
 }: FlightTicketProps) => {
   return (
-    <div className={styles.ticket}>
+    <div
+      className={
+        colorVariant == ColorType.RED
+          ? styles.ticketRed
+          : colorVariant == ColorType.BLUE
+          ? styles.ticketBlue
+          : styles.ticketBlue
+      }
+    >
       <div className={styles.row1}>
         <div className={styles.date}>{date}</div>
       </div>

@@ -1,4 +1,4 @@
-.ticket {
+.ticketRed {
   display: flex;
   flex-direction: column;
   background-color: lightgrey;
@@ -9,6 +9,19 @@
   padding-right: 1rem;
   background-color: #ffdada;
   border: 3px solid #f7baba;
+}
+
+.ticketBlue {
+  display: flex;
+  flex-direction: column;
+  background-color: lightgrey;
+  width: 270px;
+  height: fit-content;
+  font-family: "Roboto", sans-serif;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #d9e4ff;
+  border: 3px solid #b3c3ec;
 }
 
 .row1 {
