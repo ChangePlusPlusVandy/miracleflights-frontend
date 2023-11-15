@@ -1,0 +1,59 @@
+.ticket {
+  display: flex;
+  flex-direction: column;
+  background-color: lightgrey;
+  width: 270px;
+  height: fit-content;
+  font-family: "Roboto", sans-serif;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #ffdada;
+  border: 3px solid #f7baba;
+}
+
+.row1 {
+  /* background-color: rgb(237, 42, 42); */
+  font-size: 0.8rem;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.row2 {
+  /* background-color: rgb(211, 56, 189); */
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.row3 {
+  /* background-color: rgb(211, 123, 200); */
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  font-weight: 900;
+}
+
+.legTypeWithImage {
+  display: flex;
+}
+
+.legType {
+  padding-right: 5px;
+  padding-left: 3px;
+}
+
+.row4 {
+  display: flex;
+  justify-content: center;
+  font-size: 0.6rem;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  color: #acacac;
+}
+
+.arrowIcon {
+  height: 37px;
+  width: 37px;
+}
