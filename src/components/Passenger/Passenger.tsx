@@ -1,6 +1,16 @@
 import styles from "./Passenger.module.css";
-import { useState } from "react";
 import type { PassengerProps } from "./Passenger.definitions";
+
+function getAge(dateOfBirth: string) {
+  const today = new Date();
+  const birthDate = new Date(dateOfBirth);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}
 
 /**
  * Passenger component - a simple component that holds passenger details
@@ -12,30 +22,26 @@ import type { PassengerProps } from "./Passenger.definitions";
  * @property {string} dateOfBirth
  */
 const Passenger = (Passengers: PassengerProps) => {
-  const [number, setNumber] = useState<number>(0);
-
   return (
     <div className={styles.passengerCard}>
       <div className={styles.title}>Passenger {}</div>
       <div className={styles.name}>
-        {" "}
-        {Passengers.firstName} {Passengers.lastName}{" "}
+        {Passengers.firstName} {Passengers.lastName}
       </div>
       <div className={styles.dob}>
         <span className={styles.boldText}>DOB: </span>
-        {Passengers.dateOfBirth} {"(21)"}
+        {Passengers.dateOfBirth} {"("}
+        <span className={styles.boldText}>
+          {getAge(Passengers.dateOfBirth)}
+        </span>
+        {")"}
       </div>
       <div className={styles.relationship}>
-        <span className={styles.boldText}>Relationship: </span>{" "}
+        <span className={styles.boldText}>Relationship: </span>
         {Passengers.relationship}
       </div>
       <div>
-        <button
-          onClick={() => setNumber(number)}
-          className={styles.viewAllInfo}
-        >
-          View All Information
-        </button>
+        <button className={styles.viewAllInfo}>View All Information</button>
       </div>
     </div>
   );
