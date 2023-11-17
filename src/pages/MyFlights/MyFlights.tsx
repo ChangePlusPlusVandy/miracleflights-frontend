@@ -16,7 +16,7 @@ const MyFlights = () => {
       arrivingAirport="JFK"
       airline="Southwest"
       colorVariant={FlightTicketColorVariant.BLUE}
-      isLastElement={true}
+      isLastElement={false}
     />
   );
 };

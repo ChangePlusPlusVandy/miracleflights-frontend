@@ -6,7 +6,7 @@ describe("FlightTicket Tests", () => {
   /**************************FIRST TEST*******************************/
   // test color variance, test different flight types
 
-  test("Test example component with connecting flight and red color", () => {
+  test("Test example component with border and blue color", () => {
     const component = render(
       <FlightTicket
         date={"11/23/2023"}
@@ -41,7 +41,7 @@ describe("FlightTicket Tests", () => {
   });
 
   /**************************SECOND TEST*******************************/
-  test("Test example component with connecting flight and red color", () => {
+  test("Test example component with no border and red color", () => {
     const component = render(
       <FlightTicket
         date={"11/23/2023"}
@@ -76,7 +76,7 @@ describe("FlightTicket Tests", () => {
   });
 
   /**************************THIRD TEST*******************************/
-  test("Test example component with connecting flight and red color", () => {
+  test("Test example component with no border and blue color", () => {
     const component = render(
       <FlightTicket
         date={"11/23/2023"}
@@ -111,7 +111,7 @@ describe("FlightTicket Tests", () => {
   });
 
   /**************************Fourth TEST*******************************/
-  test("Test example component with connecting flight and red color", () => {
+  test("Test example component with no border and red color", () => {
     const component = render(
       <FlightTicket
         date={"11/23/2023"}
