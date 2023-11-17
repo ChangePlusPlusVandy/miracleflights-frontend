@@ -86,9 +86,32 @@
 
 .radioContainer {
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
   width: 60%;
+  flex-direction: row;
+}
+
+.multiSelectContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  flex-direction: column;
+}
+
+.numberSelectContainer {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.numberInput {
+  margin-bottom: 5px;
+  height: 25px;
+  width: 40%;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
 }
 
 .labelText {
@@ -96,5 +119,18 @@
   color: rgb(45 51, 68);
   text-align: left;
   margin-bottom: 1rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.questionContainer {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.helperText {
+  font-size: 0.9rem;
+  color: rgb(45 51, 68);
+  text-align: left;
   font-family: "Roboto", sans-serif;
 }

@@ -1,19 +1,16 @@
 import styles from "./OnboardingForm.module.css";
 
-interface MultipleChoiceSelectorProps {
+interface MultipleSelectProps {
   promptText: string;
   options: string[];
   backgroundColor?: string;
-  multiple?: boolean;
 }
 
-const MultipleChoiceSelector = ({
+const MultipleSelect = ({
   promptText,
   options,
   backgroundColor = "#fff",
-  multiple = false,
-}: MultipleChoiceSelectorProps) => {
-  const flexDir = multiple ? "column" : "row";
+}: MultipleSelectProps) => {
   return (
     <div
       className={styles.inputContainer}
@@ -22,11 +19,12 @@ const MultipleChoiceSelector = ({
       <div className={styles.questionContainer}>
         <label className={styles.labelText}>{promptText}</label>
       </div>
-      <div className={styles.radioContainer} style={{ flexDirection: flexDir }}>
+      <br></br>
+      <div className={styles.multiSelectContainer}>
         {options.map(function (answer, idx) {
           return (
             <label key={idx} className={styles.labelText}>
-              <input type="radio" value={answer} required multiple={multiple} />
+              <input type="checkbox" value={answer} required multiple />
               {answer}
             </label>
           );
@@ -36,4 +34,4 @@ const MultipleChoiceSelector = ({
   );
 };
 
-export default MultipleChoiceSelector;
+export default MultipleSelect;

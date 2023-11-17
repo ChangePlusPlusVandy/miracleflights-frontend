@@ -1,6 +1,8 @@
 import styles from "./OnboardingForm.module.css";
 import MultipleChoiceSelector from "./MultipleChoiceSelector";
 import miracleFlightsLogo from "../../assets/MiracleFlightsLogo.png";
+import MultipleSelect from "./MultipleSelect";
+import NumberInput from "./NumberInput";
 
 const OnboardingForm = () => {
   // Passengers tab
@@ -53,6 +55,30 @@ const OnboardingForm = () => {
             <MultipleChoiceSelector
               options={["Yes", "No"]}
               promptText="Is your requested departure flight date at least 14 days away?"
+              backgroundColor="#fafbfc"
+            />
+            <MultipleSelect
+              options={[
+                "SNAP (Supplemental Nutritional Assistance Program)",
+                "TANF (Temporary Aid for Needy Families)",
+                "Medicaid (This refers exclusively to the official Medicaid program and does not include the receipt of government subsidies through the Affordable Care Act)",
+                "SSI (Supplemental Security Income): Note: Only check this box if you and/or a member of your household receive SSI and not any other type or form of benefits through the Social Security Administration.",
+                "Housing Choice Voucher Program (Section 8)",
+                "Headstart/Early Head Start",
+                "WIC (Women, Infants, and Children)",
+                "Unemployment (Note: Only check this box if unemployment is your household's ONLY form of income earned or unearned.)",
+                "None",
+              ]}
+              promptText="What type(s) of government assistance are you currently receiving? Please select all that apply. You will need to upload proof of government assistance at the end of this application. If you are not currently receiving government assistance, please check “None”."
+            />
+            <MultipleChoiceSelector
+              options={["Yes", "No"]}
+              promptText="Do you have your IRS 1040 documents from last year to upload on this application as proof of household income and household size?"
+              backgroundColor="#fafbfc"
+            />
+            <NumberInput promptText="How many people are in your household? Include yourself, your spouse, and any dependents. Must be verified with submitted IRS tax documentation." />
+            <NumberInput
+              promptText="What is your approximate gross household income? Total revenue earned by all income earners in the household. Will be verified with submitted IRS tax documentation."
               backgroundColor="#fafbfc"
             />
           </form>
