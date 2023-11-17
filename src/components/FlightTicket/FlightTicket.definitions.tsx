@@ -6,7 +6,7 @@ export interface FlightTicketProps {
   arrivingAirport: string;
   airline: string;
   legType: LegType;
-  colorVariant: ColorType;
+  colorVariant: FlightTicketColorVariant;
   isLastElement: boolean;
 }
 
@@ -16,7 +16,7 @@ export enum LegType {
   RETURN = "Return",
 }
 
-export enum ColorType {
+export enum FlightTicketColorVariant {
   RED = "red",
   BLUE = "blue",
 }

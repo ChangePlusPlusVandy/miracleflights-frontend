@@ -1,5 +1,5 @@
 import FlightTicket from "../FlightTicket";
-import { LegType, ColorType } from "../FlightTicket.definitions";
+import { LegType, FlightTicketColorVariant } from "../FlightTicket.definitions";
 import { render } from "@testing-library/react";
 
 describe("FlightTicket Tests", () => {
@@ -14,7 +14,7 @@ describe("FlightTicket Tests", () => {
         arrivingAirport={"BNA"}
         airline={"SOUTHWEST"}
         legType={LegType.CONNECTING}
-        colorVariant={ColorType.BLUE}
+        colorVariant={FlightTicketColorVariant.BLUE}
         isLastElement={false}
       />,
     );
@@ -49,7 +49,7 @@ describe("FlightTicket Tests", () => {
         arrivingAirport={"BNA"}
         airline={"SOUTHWEST"}
         legType={LegType.DEPARTURE}
-        colorVariant={ColorType.RED}
+        colorVariant={FlightTicketColorVariant.RED}
         isLastElement={true}
       />,
     );
@@ -84,7 +84,7 @@ describe("FlightTicket Tests", () => {
         arrivingAirport={"BNA"}
         airline={"SOUTHWEST"}
         legType={LegType.RETURN}
-        colorVariant={ColorType.BLUE}
+        colorVariant={FlightTicketColorVariant.BLUE}
         isLastElement={false}
       />,
     );

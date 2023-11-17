@@ -1,5 +1,5 @@
 import styles from "./FlightTicket.module.css";
-import { ColorType, LegType } from "./FlightTicket.definitions";
+import { FlightTicketColorVariant, LegType } from "./FlightTicket.definitions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleArrowRight,
@@ -18,19 +18,32 @@ const FlightTicket = ({
   colorVariant,
   isLastElement,
 }: FlightTicketProps) => {
+  const renderLegTypeIcon = (legType: LegType) => {
+    if (legType === LegType.DEPARTURE) {
+      return <FontAwesomeIcon icon={faPlaneDeparture} />;
+    } else if (legType === LegType.CONNECTING) {
+      return <FontAwesomeIcon icon={faPlane} />;
+    } else {
+      return <FontAwesomeIcon icon={faPlaneArrival} />;
+    }
+  };
+
   return (
     <div className={styles.ticketBase}>
       <div
         className={
-          colorVariant == ColorType.RED && isLastElement == false
-            ? styles.row1Red
-            : colorVariant == ColorType.RED && isLastElement == true
-            ? styles.row1RedNoBorder
-            : colorVariant == ColorType.BLUE && isLastElement == false
-            ? styles.row1Blue
-            : colorVariant == ColorType.BLUE && isLastElement == true
-            ? styles.row1BlueNoBorder
-            : styles.row1BlueNoBorder
+          colorVariant == FlightTicketColorVariant.RED && isLastElement == false
+            ? styles.dateRowRed
+            : colorVariant == FlightTicketColorVariant.RED &&
+              isLastElement == true
+            ? styles.dateRowRedNoBorder
+            : colorVariant == FlightTicketColorVariant.BLUE &&
+              isLastElement == false
+            ? styles.dateRowBlue
+            : colorVariant == FlightTicketColorVariant.BLUE &&
+              isLastElement == true
+            ? styles.dateRowBlueNoBorder
+            : styles.dateRowBlueNoBorder
         }
       >
         <div className={styles.date}>{date}</div>
@@ -40,7 +53,7 @@ const FlightTicket = ({
           isLastElement == false ? styles.ticketBorder : styles.ticketNoBorder
         }
       >
-        <div className={styles.row2}>
+        <div className={styles.airportsRow}>
           <div className={styles.departingAirport}>{departingAirport}</div>
           <FontAwesomeIcon
             icon={faCircleArrowRight}
@@ -49,31 +62,23 @@ const FlightTicket = ({
           <div className={styles.arrivingAirport}>{arrivingAirport}</div>
         </div>
 
-        <div className={styles.row3}>
+        <div className={styles.detailsRow}>
           <div className={styles.legTypeWithImage}>
             <div className={styles.legType}>{legType.toLocaleUpperCase()}</div>
-            {legTypeImage(legType)}
+            {renderLegTypeIcon(legType)}
           </div>
           <div className={styles.airline}>{airline.toLocaleUpperCase()}</div>
         </div>
       </div>
       <div
-        className={isLastElement == false ? styles.row4 : styles.row4NoBorder}
+        className={
+          isLastElement == false ? styles.seeMoreRow : styles.seeMoreRowNoBorder
+        }
       >
         <div>click to see more details</div>
       </div>
     </div>
   );
-};
-
-const legTypeImage = (legType: LegType) => {
-  if (legType === LegType.DEPARTURE) {
-    return <FontAwesomeIcon icon={faPlaneDeparture} />;
-  } else if (legType === LegType.CONNECTING) {
-    return <FontAwesomeIcon icon={faPlane} />;
-  } else if (legType === LegType.RETURN) {
-    return <FontAwesomeIcon icon={faPlaneArrival} />;
-  }
 };
 
 export default FlightTicket;

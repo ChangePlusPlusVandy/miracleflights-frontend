@@ -1,6 +1,6 @@
 import FlightTicket from "../../components/FlightTicket/FlightTicket";
 import {
-  ColorType,
+  FlightTicketColorVariant,
   LegType,
 } from "../../components/FlightTicket/FlightTicket.definitions";
 
@@ -10,13 +10,13 @@ const MyFlights = () => {
 
   return (
     <FlightTicket
-      legType={LegType.DEPARTURE}
+      legType={LegType.CONNECTING}
       date="11/14/2023"
       departingAirport="BNA "
       arrivingAirport="JFK"
       airline="Southwest"
-      colorVariant={ColorType.BLUE}
-      isLastElement={false}
+      colorVariant={FlightTicketColorVariant.BLUE}
+      isLastElement={true}
     />
   );
 };

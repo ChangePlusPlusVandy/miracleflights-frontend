@@ -29,7 +29,7 @@
   position: relative;
 }
 
-.row1Red {
+.dateRowRed {
   display: flex;
   background-color: #e48c8c;
   font-size: 0.8rem;
@@ -42,7 +42,7 @@
   justify-content: flex-end;
 }
 
-.row1RedNoBorder {
+.dateRowRedNoBorder {
   display: flex;
   background-color: #e48c8c;
   font-size: 0.8rem;
@@ -55,7 +55,7 @@
   justify-content: flex-end;
 }
 
-.row1Blue {
+.dateRowBlue {
   display: flex;
   background-color: #8aa6ed;
   font-size: 0.8rem;
@@ -68,7 +68,7 @@
   justify-content: flex-end;
 }
 
-.row1BlueNoBorder {
+.dateRowBlueNoBorder {
   display: flex;
   background-color: #8aa6ed;
   font-size: 0.8rem;
@@ -88,7 +88,7 @@
   color: white;
 }
 
-.row2 {
+.airportsRow {
   justify-content: space-between;
   align-items: center;
   display: flex;
@@ -99,7 +99,7 @@
   padding-top: 5px;
 }
 
-.row3 {
+.detailsRow {
   display: flex;
   justify-content: space-between;
   font-size: 0.6rem;
@@ -118,7 +118,7 @@
   padding-left: 3px;
 }
 
-.row4 {
+.seeMoreRow {
   display: flex;
   justify-content: center;
   font-size: 0.6rem;
@@ -131,7 +131,7 @@
   padding-bottom: 5px;
 }
 
-.row4NoBorder {
+.seeMoreRowNoBorder {
   display: flex;
   justify-content: center;
   font-size: 0.6rem;
