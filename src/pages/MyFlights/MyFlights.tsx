@@ -12,10 +12,11 @@ const MyFlights = () => {
     <FlightTicket
       legType={LegType.DEPARTURE}
       date="11/14/2023"
-      departingAirport="BNA"
+      departingAirport="BNA "
       arrivingAirport="JFK"
       airline="Southwest"
       colorVariant={ColorType.BLUE}
+      isLastElement={false}
     />
   );
 };

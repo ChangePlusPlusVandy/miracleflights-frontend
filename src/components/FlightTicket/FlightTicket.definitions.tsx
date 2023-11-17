@@ -7,6 +7,7 @@ export interface FlightTicketProps {
   airline: string;
   legType: LegType;
   colorVariant: ColorType;
+  isLastElement: boolean;
 }
 
 export enum LegType {

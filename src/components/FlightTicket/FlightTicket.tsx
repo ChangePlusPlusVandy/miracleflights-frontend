@@ -16,39 +16,50 @@ const FlightTicket = ({
   airline,
   legType,
   colorVariant,
+  isLastElement,
 }: FlightTicketProps) => {
   return (
-    <div
-      className={
-        colorVariant == ColorType.RED
-          ? styles.ticketRed
-          : colorVariant == ColorType.BLUE
-          ? styles.ticketBlue
-          : styles.ticketBlue
-      }
-    >
-      <div className={styles.row1}>
+    <div className={styles.ticketBase}>
+      <div
+        className={
+          colorVariant == ColorType.RED && isLastElement == false
+            ? styles.row1Red
+            : colorVariant == ColorType.RED && isLastElement == true
+            ? styles.row1RedNoBorder
+            : colorVariant == ColorType.BLUE && isLastElement == false
+            ? styles.row1Blue
+            : colorVariant == ColorType.BLUE && isLastElement == true
+            ? styles.row1BlueNoBorder
+            : styles.row1BlueNoBorder
+        }
+      >
         <div className={styles.date}>{date}</div>
       </div>
-
-      <div className={styles.row2}>
-        <div className={styles.departingAirport}>{departingAirport}</div>
-        <FontAwesomeIcon
-          icon={faCircleArrowRight}
-          className={styles.arrowIcon}
-        />
-        <div className={styles.arrivingAirport}>{arrivingAirport}</div>
-      </div>
-
-      <div className={styles.row3}>
-        <div className={styles.legTypeWithImage}>
-          <div className={styles.legType}>{legType.toLocaleUpperCase()}</div>
-          {legTypeImage(legType)}
+      <div
+        className={
+          isLastElement == false ? styles.ticketBorder : styles.ticketNoBorder
+        }
+      >
+        <div className={styles.row2}>
+          <div className={styles.departingAirport}>{departingAirport}</div>
+          <FontAwesomeIcon
+            icon={faCircleArrowRight}
+            className={styles.arrowIcon}
+          />
+          <div className={styles.arrivingAirport}>{arrivingAirport}</div>
         </div>
-        <div className={styles.airline}>{airline.toLocaleUpperCase()}</div>
-      </div>
 
-      <div className={styles.row4}>
+        <div className={styles.row3}>
+          <div className={styles.legTypeWithImage}>
+            <div className={styles.legType}>{legType.toLocaleUpperCase()}</div>
+            {legTypeImage(legType)}
+          </div>
+          <div className={styles.airline}>{airline.toLocaleUpperCase()}</div>
+        </div>
+      </div>
+      <div
+        className={isLastElement == false ? styles.row4 : styles.row4NoBorder}
+      >
         <div>click to see more details</div>
       </div>
     </div>
