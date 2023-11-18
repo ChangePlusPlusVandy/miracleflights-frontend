@@ -1,13 +1,62 @@
+/* Base style for all buttons */
 .button {
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  .compact {
-    padding: 8px;
-  }
-  
-  .blue {
-    background-color: blue;
-    color: white;
-  }
-  
+  font-family: 'Roboto', sans-serif;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Variant styles */
+.Compact {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.Regular {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.Large {
+  padding: 15px 30px;
+  font-size: 16px;
+}
+
+/* Color styles using enum names */
+.Blue {
+  background-color: blue;
+  color: white;
+}
+
+.Yellow {
+  background-color: yellow;
+  color: black;
+}
+
+.Green {
+  background-color: green;
+  color: white;
+}
+
+.Grey {
+  background-color: grey;
+  color: white;
+}
+
+.Red {
+  background-color: red;
+  color: white;
+}
+
+.Black {
+  background-color: black;
+  color: white;
+}
+
+.button:disabled,
+.button.loading {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
