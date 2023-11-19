@@ -1,6 +1,7 @@
 // src/components/Button/Button.tsx
 import styles from './ButtonComponent.module.css';
 // import React from 'react';
+import { MoonLoader } from 'react-spinners';
 import type { ButtonProps } from './ButtonComponent.definitions';
 
 const Button = ({ variant, color, onClick, text, loading }: ButtonProps) => {
@@ -8,7 +9,7 @@ const Button = ({ variant, color, onClick, text, loading }: ButtonProps) => {
 
     return (
         <button className={buttonClassName} onClick={onClick} disabled={loading}>
-            {loading ? 'Loading...' : text}
+            {loading ? <MoonLoader size={30} color="#FFFFFF" /> : text}
         </button>
     );
 };
