@@ -3,6 +3,12 @@ import { faker } from "@faker-js/faker";
 import type { PassengerData } from "../interfaces/passenger.interface";
 import type { FlightLegData } from "../interfaces/flight-leg.interface";
 
+/**
+ * Creates a test passenger data object with random data
+ *
+ * @param manualData - Optional data to override the random data
+ * @returns A test passenger data object
+ */
 export const createTestPassengerData = (
   manualData: Partial<PassengerData> = {},
 ): PassengerData => {
@@ -189,6 +195,12 @@ export const createTestPassengerData = (
   };
 };
 
+/**
+ * Creates a test flight leg data object with random data
+ *
+ * @param manualData - Optional data to override the random data
+ * @returns A test flight leg data object
+ */
 export const createTestFlightLegData = (
   manualData: Partial<FlightLegData> = {},
 ) => {
