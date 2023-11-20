@@ -59,3 +59,24 @@
 .loading {
   position: relative;
 }
+
+.Grey {
+  background-color: grey;
+  color: white;
+}
+
+.Red {
+  background-color: red;
+  color: white;
+}
+
+.Black {
+  background-color: black;
+  color: white;
+}
+
+.button:disabled,
+.button.loading {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
