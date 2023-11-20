@@ -1,6 +1,4 @@
-// src/components/Button/Button.tsx
 import styles from "./ButtonComponent.module.css";
-// import React from 'react';
 import { MoonLoader } from "react-spinners";
 import type { ButtonProps } from "./ButtonComponent.definitions";
 
