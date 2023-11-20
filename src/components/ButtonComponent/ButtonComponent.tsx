@@ -2,6 +2,7 @@ import styles from './ButtonComponent.module.css';
 import { MoonLoader } from 'react-spinners';
 import type { ButtonProps } from './ButtonComponent.definitions';
 
+
 const Button = ({ variant, color, onClick, text, loading, disabled }: ButtonProps) => {
   const buttonClassName = `${styles.button} ${styles[variant]} ${styles[color]} ${loading ? styles.loading : ''} ${disabled ? styles.disabled : ''}`;
 

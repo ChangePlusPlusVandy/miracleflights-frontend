@@ -8,15 +8,7 @@ export enum ButtonColors {
 }
 
 export enum ButtonVariant {
-<<<<<<< Updated upstream
-  Compact = 'Compact',
   Regular = 'Regular',
+  Compact = 'Compact',
   Large = 'Large',
-  ExtraLarge = 'ExtraLarge',
-
-=======
-  Regular = "Regular",
-  Compact = "Compact",
-  Large = "Large",
->>>>>>> Stashed changes
 }
