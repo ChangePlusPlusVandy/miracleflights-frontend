@@ -9,9 +9,14 @@
   transition: background-color 0.3s ease;
   font-size: 16px;
   color: white; 
+<<<<<<< Updated upstream
   min-width: 150px; 
   width: auto; 
   height: 50px;
+=======
+  width: auto; 
+  min-width: 150px;
+>>>>>>> Stashed changes
   position: relative;
 }
 
@@ -20,9 +25,14 @@
   margin-right: 10px; 
 }
 
+<<<<<<< Updated upstream
 /* Hides the text when loading */
 .button.loading .buttonText {
   visibility: visible;
+=======
+.button.loading .buttonText {
+  visibility: visible; /* Choose to show or hide the text when spinning*/
+>>>>>>> Stashed changes
 }
 
 /* Spinner container to control the spinner positioning */
@@ -31,8 +41,13 @@
   justify-content: center;
   align-items: center;
   position: absolute; 
+<<<<<<< Updated upstream
   width: 30px;
   top: 15%;
+=======
+  height: 100%; 
+  width: 30px;
+>>>>>>> Stashed changes
   right: 10px;
 }
 
@@ -60,23 +75,6 @@
   position: relative;
 }
 
-.Grey {
-  background-color: grey;
-  color: white;
-}
-
-.Red {
-  background-color: red;
-  color: white;
-}
-
-.Black {
-  background-color: black;
-  color: white;
-}
-
-.button:disabled,
-.button.loading {
-  background-color: #cccccc;
-  cursor: not-allowed;
+.moonLoader {
+  position: absolute; 
 }
