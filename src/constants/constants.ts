@@ -6,3 +6,11 @@ export enum ButtonColors {
   Red = 'Red',
   Black = 'Black',
 }
+
+export enum ButtonVariant {
+  Compact = 'Compact',
+  Regular = 'Regular',
+  Large = 'Large',
+  ExtraLarge = 'ExtraLarge',
+
+}

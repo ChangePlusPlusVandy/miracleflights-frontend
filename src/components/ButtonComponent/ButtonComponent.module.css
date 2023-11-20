@@ -1,62 +1,61 @@
-/* Base style for all buttons */
 .button {
-  font-family: 'Roboto', sans-serif;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius:10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 16px;
+  color: white; 
+  min-width: 150px; 
+  width: auto; 
+  height: 50px;
+  position: relative;
 }
 
-/* Variant styles */
+.buttonText {
+  visibility: visible; 
+  margin-right: 10px; 
+}
+
+/* Hides the text when loading */
+.button.loading .buttonText {
+  visibility: visible;
+}
+
+/* Spinner container to control the spinner positioning */
+.spinnerContainer {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  position: absolute; 
+  width: 30px;
+  top: 15%;
+  right: 10px;
+}
+
+
 .Compact {
   padding: 5px 10px;
   font-size: 12px;
 }
 
-.Regular {
-  padding: 10px 20px;
-  font-size: 14px;
-}
-
 .Large {
   padding: 15px 30px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
-/* Color styles using enum names */
 .Blue {
   background-color: blue;
-  color: white;
 }
 
-.Yellow {
-  background-color: yellow;
-  color: black;
+.disabled {
+  background-color: #cccccc; 
+  color: #767676;
 }
 
-.Green {
-  background-color: green;
-  color: white;
-}
-
-.Grey {
-  background-color: grey;
-  color: white;
-}
-
-.Red {
-  background-color: red;
-  color: white;
-}
-
-.Black {
-  background-color: black;
-  color: white;
-}
-
-.button:disabled,
-.button.loading {
-  background-color: #cccccc;
-  cursor: not-allowed;
+.loading {
+  position: relative;
 }
