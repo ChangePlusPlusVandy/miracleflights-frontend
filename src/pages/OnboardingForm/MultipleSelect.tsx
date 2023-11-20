@@ -19,7 +19,7 @@ const MultipleSelect = ({
       <div className={styles.questionContainer}>
         <label className={styles.labelText}>{promptText}</label>
       </div>
-      <br></br>
+      <br />
       <div className={styles.multiSelectContainer}>
         {options.map(function (answer, idx) {
           return (

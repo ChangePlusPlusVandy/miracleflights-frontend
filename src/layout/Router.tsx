@@ -7,6 +7,7 @@ import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import ExamplePage from "../pages/ExamplePage/ExamplePage";
 import OnboardingForm from "../pages/OnboardingForm/OnboardingForm";
+import Passengers from "../pages/Passengers/Passengers";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/onboarding-form",
     element: <OnboardingForm />,
+  },
+  {
+    path: "/passengers",
+    element: <Passengers />,
   },
 ]);
 

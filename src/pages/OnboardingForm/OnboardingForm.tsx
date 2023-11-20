@@ -1,8 +1,8 @@
 import styles from "./OnboardingForm.module.css";
 import MultipleChoiceSelector from "./MultipleChoiceSelector";
-import miracleFlightsLogo from "../../assets/MiracleFlightsLogo.png";
 import MultipleSelect from "./MultipleSelect";
 import NumberInput from "./NumberInput";
+import miracleFlightsLogo from "../../assets/MiracleFlightsLogo.png";
 
 const OnboardingForm = () => {
   // Passengers tab
