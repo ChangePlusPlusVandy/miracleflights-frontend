@@ -1,23 +1,27 @@
 .button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   padding: 10px 20px;
   border: none;
-  border-radius:10px;
-  border-radius:10px;
+  border-radius: 10px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 16px;
-  color: white; 
-  width: auto; 
-  min-width: 150px;
-  position: relative;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  transition: 0.3s ease-in-out;
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.3);
 }
 
 .buttonText {
-  visibility: visible; 
-  margin-right: 10px; 
+  visibility: visible;
+  margin-right: 10px;
 }
 
 /* Hides the text when loading */
@@ -27,39 +31,68 @@
 
 /* Spinner container to control the spinner positioning */
 .spinnerContainer {
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute; 
-  height: 100%; 
+  position: absolute;
+  height: 100%;
   width: 30px;
   right: 10px;
 }
 
-
 .Compact {
   padding: 5px 10px;
-  font-size: 12px;
-}
-
-.Large {
-  padding: 15px 30px;
   font-size: 18px;
 }
 
+.Regular {
+  padding: 10px 20px;
+  font-size: 20px;
+}
+
+.Large {
+  padding: 15px 20px;
+  font-size: 26px;
+}
+
 .Blue {
-  background-color: blue;
+  background-color: rgb(68, 131, 198);
+  color: white;
 }
 
-.disabled {
-  background-color: #cccccc; 
-  color: #767676;
+.Yellow {
+  background-color: rgb(255, 255, 105);
+  color: black;
 }
 
-.loading {
-  position: relative;
+.Green {
+  background-color: rgb(119, 237, 119);
+  color: white;
 }
 
-.moonLoader {
-  position: absolute; 
+.Grey {
+  background-color: rgb(98, 98, 98);
+  color: white;
+}
+
+.Red {
+  background-color: rgb(250, 117, 117);
+  color: white;
+}
+
+.Black {
+  background-color: black;
+  color: white;
+}
+
+.button:disabled,
+.button.loading {
+  cursor: not-allowed;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
 }
