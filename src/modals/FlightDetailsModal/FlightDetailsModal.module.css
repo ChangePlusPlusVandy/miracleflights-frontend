@@ -25,6 +25,10 @@
   height: 30px;
 }
 
+.exitIcon:hover {
+  cursor: pointer;
+}
+
 .modalContent {
   padding-top: 10px;
   padding-left: 30px;
