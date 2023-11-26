@@ -1,11 +1,12 @@
-import ReusableInput from "./inputComponent";
 import { useForm } from "react-hook-form";
+import type { SubmitHandler, FieldValues } from "react-hook-form";
+import CustomInput from "./CustomInput";
 
 const Dashboard = () => {
   // Dashboard tab
   console.log("Dashboard");
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
   };
 
@@ -18,12 +19,13 @@ const Dashboard = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <ReusableInput
+        <CustomInput
           name="Email"
           register={register}
           errors={errors}
           isRequired={true}
           label="Email"
+          type="email"
           placeholder="Email"
           defaultValue=""
           errorText="(Required)"
