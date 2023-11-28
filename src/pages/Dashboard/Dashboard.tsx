@@ -1,4 +1,4 @@
-import CustomInput from "./CustomInput";
+import CustomInput from "../../components/InputComponent/InputComponent";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
 

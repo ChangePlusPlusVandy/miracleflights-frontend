@@ -1,5 +1,5 @@
-import styles from "./CustomInput.module.css";
-import type { ReusableInputProps } from "./CustomInput.definitions";
+import styles from "./InputComponent.module.css";
+import type { ReusableInputProps } from "./InputComponent.definitions";
 
 const CustomInput = ({
   name,
