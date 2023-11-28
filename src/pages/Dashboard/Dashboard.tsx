@@ -3,9 +3,6 @@ import { useForm } from "react-hook-form";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
 
 const Dashboard = () => {
-  // Dashboard tab
-  console.log("Dashboard");
-
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
   };
