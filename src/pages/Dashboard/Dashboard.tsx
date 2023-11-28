@@ -1,6 +1,6 @@
+import CustomInput from "./CustomInput";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
-import CustomInput from "./CustomInput";
 
 const Dashboard = () => {
   // Dashboard tab
@@ -10,11 +10,29 @@ const Dashboard = () => {
     console.log(data);
   };
 
+  interface FormValues {
+    email: string;
+    password: string;
+  }
+
+  // eslint-disable-next-line autofix/no-unused-vars
+  enum FormValueNames {
+    // eslint-disable-next-line autofix/no-unused-vars
+    email = "email",
+    // eslint-disable-next-line autofix/no-unused-vars
+    password = "password",
+  }
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>({
+    defaultValues: {
+      [FormValueNames.email]: "",
+      [FormValueNames.password]: "",
+    },
+  });
 
   return (
     <>
@@ -22,13 +40,18 @@ const Dashboard = () => {
         <CustomInput
           name="Email"
           register={register}
-          errors={errors}
-          isRequired={true}
+          error={errors[FormValueNames.email]?.message}
           label="Email"
-          type="email"
+          type="text"
           placeholder="Email"
-          defaultValue=""
-          errorText="(Required)"
+        />
+        <CustomInput
+          name="Password"
+          register={register}
+          error={errors[FormValueNames.email]?.message}
+          label="Password"
+          type="password"
+          placeholder="Password"
         />
         <button type="submit">Submit</button>
       </form>

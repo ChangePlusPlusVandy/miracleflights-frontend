@@ -1,37 +1,21 @@
+import styles from "./CustomInput.module.css";
 import type { ReusableInputProps } from "./CustomInput.definitions";
-import "./CustomInput.css";
-import type { FieldError } from "react-hook-form";
 
 const CustomInput = ({
   name,
   register,
-  errors,
-  isRequired,
+  error,
   label,
   type,
   placeholder,
-  defaultValue,
-  errorText,
 }: ReusableInputProps) => {
-  const error = errors[name] as FieldError | undefined;
-
   return (
-    <div className="form-field">
-      <div className="label-and-error">
-        <p className="label">{label}</p>
-        {error && <p className="error-text">{error.message}</p>}
+    <div className={styles["form-field"]}>
+      <div className={styles["label-and-error"]}>
+        <p className={styles["label"]}>{label}</p>
+        {error && <p className={styles["error-text"]}>{"(" + error + ")"}</p>}
       </div>
-      <input
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-        type={type}
-        {...register(name, {
-          required: {
-            value: isRequired,
-            message: errorText,
-          },
-        })}
-      />
+      <input placeholder={placeholder} type={type} {...register(name)} />
     </div>
   );
 };
