@@ -1,17 +1,31 @@
 import styles from "./OnboardingForm.module.css";
-import MultipleChoiceSelector from "./MultipleChoiceSelector";
-import MultipleSelect from "./MultipleSelect";
-import NumberInput from "./NumberInput";
-import miracleFlightsLogo from "../../assets/MiracleFlightsLogo.png";
+
+import { questions } from "./OnboardingFormQuestions";
+import QuestionContainer from "./QuestionContainer";
 
 const OnboardingForm = () => {
   // Passengers tab
-  console.log("OnboardingFrom");
+  // have a state that manages the current question on the screen
 
   return (
     <div className={styles.pageContainer}>
       <div className={styles.formContainer}>
-        <div className={styles.headerContainer}>
+        <div className={styles.scrollableContainer}>
+          {questions.map((q, idx) => {
+            return (
+              <QuestionContainer
+                number={idx}
+                promptText={q.promptText}
+                key={idx}
+                backgroundColor={idx % 2 === 0 ? "" : "#f0f0f0"}
+              />
+            );
+          })}
+        </div>
+        <hr className={styles.formDivider} />
+        <div className={styles.currentQuestionContainer} />
+
+        {/* <div className={styles.headerContainer}>
           <h1 className={styles.formTitle}>
             Child Medical Flight Request Application
           </h1>
@@ -29,9 +43,9 @@ const OnboardingForm = () => {
             purpose. Before completing our application, please answer the
             questions below to see if you qualify for our program services.
           </p>
-        </div>
-        <hr className={styles.formDivider} />
-        <div className={styles.questionsContainer}>
+        </div> */}
+        {/* <hr className={styles.formDivider} /> */}
+        {/* <div className={styles.questionsContainer}>
           <form>
             <MultipleChoiceSelector
               options={["Yes", "No"]}
@@ -82,7 +96,7 @@ const OnboardingForm = () => {
               backgroundColor="#fafbfc"
             />
           </form>
-        </div>
+        </div> */}
       </div>
     </div>
   );
