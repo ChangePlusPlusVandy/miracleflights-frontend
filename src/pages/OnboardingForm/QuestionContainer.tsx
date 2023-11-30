@@ -1,10 +1,11 @@
-import styles from "./QuestionContainer.module.css";
+import styles from "./styles/QuestionContainer.module.css";
 
 interface QuestionContainerProps {
   number: number;
   promptText: string;
   backgroundColor?: string;
   answer?: string;
+  setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const QuestionContainer = ({
@@ -12,6 +13,7 @@ const QuestionContainer = ({
   promptText,
   backgroundColor = "#fff",
   answer = "",
+  setCurrentQuestion,
 }: QuestionContainerProps) => {
   let answerComp;
   if (answer) {
@@ -23,6 +25,7 @@ const QuestionContainer = ({
     <div
       className={styles.questionContainer}
       style={{ backgroundColor: backgroundColor }}
+      onClick={() => setCurrentQuestion(number)}
     >
       <div className={styles.questionHeaderContainer}>
         {/* {answer ? (

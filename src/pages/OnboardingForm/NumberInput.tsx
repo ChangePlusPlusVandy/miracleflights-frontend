@@ -1,4 +1,4 @@
-import styles from "./OnboardingForm.module.css";
+import styles from "./styles/OnboardingForm.module.css";
 
 interface NumberInputProps {
   promptText: string;

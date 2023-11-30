@@ -6,6 +6,7 @@ export enum QuestionType {
   DateQuestion = "dateQuestion",
   TextResponseQuestion = "textResponseQuestion",
   IntroToForm = "introToForm",
+  NumberInput = "numberInput",
 }
 
 export interface Question {
@@ -38,7 +39,7 @@ export const questions: Question[] = [
     id: 3,
     type: QuestionType.YesNoQuestion,
     promptText:
-      "Can the patient/applicant and all accompanying passengers safely travel on a commercial airplane?",
+      "Does the patient/applicant and all accompanying passengers have the required identification and/or documentation to get through TSA and travel on a commercial airplane?",
   },
   {
     id: 4,

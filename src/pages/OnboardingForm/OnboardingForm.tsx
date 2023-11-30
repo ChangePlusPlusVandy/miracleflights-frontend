@@ -1,11 +1,13 @@
-import styles from "./OnboardingForm.module.css";
-
-import { questions } from "./OnboardingFormQuestions";
+import styles from "./styles/OnboardingForm.module.css";
+import { questions } from "./FormQuestionsList";
 import QuestionContainer from "./QuestionContainer";
+import CurrentQuestion from "./CurrentQuestion";
+import React from "react";
 
 const OnboardingForm = () => {
   // Passengers tab
   // have a state that manages the current question on the screen
+  const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
 
   return (
     <div className={styles.pageContainer}>
@@ -17,13 +19,21 @@ const OnboardingForm = () => {
                 number={idx}
                 promptText={q.promptText}
                 key={idx}
-                backgroundColor={idx % 2 === 0 ? "" : "#f0f0f0"}
+                backgroundColor={idx % 2 === 0 ? "#fafbfc" : "#f0f0f0"}
+                setCurrentQuestion={setCurrentQuestion}
               />
             );
           })}
         </div>
         <hr className={styles.formDivider} />
-        <div className={styles.currentQuestionContainer} />
+        <div className={styles.currentQuestionContainer}>
+          <CurrentQuestion
+            number={currentQuestion}
+            promptText={questions[currentQuestion].promptText}
+            type={questions[currentQuestion].type}
+            setCurrentQuestion={setCurrentQuestion}
+          />
+        </div>
 
         {/* <div className={styles.headerContainer}>
           <h1 className={styles.formTitle}>

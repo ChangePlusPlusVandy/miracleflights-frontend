@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 7px;
+  padding: 15px;
   width: 90%;
   margin-bottom: 10px;
   border-radius: 15px;
+  cursor: pointer;
 }
 
 .questionPromptContainer {
@@ -38,7 +39,8 @@
 
 .titleText {
   text-align: left;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   font-family: "Roboto", sans-serif;
   color: rgb(45 51, 68);
   font-weight: bold;
