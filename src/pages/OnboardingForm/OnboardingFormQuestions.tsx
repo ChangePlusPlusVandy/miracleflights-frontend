@@ -1,3 +1,4 @@
+/* eslint-disable autofix/no-unused-vars */
 export enum QuestionType {
   YesNoQuestion = "yesNoQuestion",
   MultipleChoiceQuestion = "multipleChoiceQuestion",

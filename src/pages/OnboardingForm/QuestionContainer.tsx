@@ -1,7 +1,5 @@
 import styles from "./QuestionContainer.module.css";
 
-
-
 interface QuestionContainerProps {
   number: number;
   promptText: string;
