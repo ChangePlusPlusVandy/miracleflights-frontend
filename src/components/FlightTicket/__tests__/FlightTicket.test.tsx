@@ -1,5 +1,6 @@
+import { createTestFlightLegData } from "../../../util/test-data.util";
 import FlightTicket from "../FlightTicket";
-import { LegType, FlightTicketColorVariant } from "../FlightTicket.definitions";
+import { FlightTicketColorVariant } from "../FlightTicket.definitions";
 import { render } from "@testing-library/react";
 
 describe("FlightTicket Tests", () => {
@@ -9,11 +10,7 @@ describe("FlightTicket Tests", () => {
   test("Test example component with border and blue color", () => {
     const component = render(
       <FlightTicket
-        date={"11/23/2023"}
-        departingAirport={"LAX"}
-        arrivingAirport={"BNA"}
-        airline={"SOUTHWEST"}
-        legType={LegType.CONNECTING}
+        flight={createTestFlightLegData()}
         colorVariant={FlightTicketColorVariant.BLUE}
         isLastElement={false}
       />,
@@ -44,11 +41,7 @@ describe("FlightTicket Tests", () => {
   test("Test example component with no border and red color", () => {
     const component = render(
       <FlightTicket
-        date={"11/23/2023"}
-        departingAirport={"LAX"}
-        arrivingAirport={"BNA"}
-        airline={"SOUTHWEST"}
-        legType={LegType.DEPARTURE}
+        flight={createTestFlightLegData()}
         colorVariant={FlightTicketColorVariant.RED}
         isLastElement={true}
       />,
@@ -79,11 +72,7 @@ describe("FlightTicket Tests", () => {
   test("Test example component with no border and blue color", () => {
     const component = render(
       <FlightTicket
-        date={"11/23/2023"}
-        departingAirport={"LAX"}
-        arrivingAirport={"BNA"}
-        airline={"SOUTHWEST"}
-        legType={LegType.RETURN}
+        flight={createTestFlightLegData()}
         colorVariant={FlightTicketColorVariant.BLUE}
         isLastElement={true}
       />,
@@ -114,11 +103,7 @@ describe("FlightTicket Tests", () => {
   test("Test example component with no border and red color", () => {
     const component = render(
       <FlightTicket
-        date={"11/23/2023"}
-        departingAirport={"LAX"}
-        arrivingAirport={"BNA"}
-        airline={"SOUTHWEST"}
-        legType={LegType.RETURN}
+        flight={createTestFlightLegData()}
         colorVariant={FlightTicketColorVariant.RED}
         isLastElement={true}
       />,

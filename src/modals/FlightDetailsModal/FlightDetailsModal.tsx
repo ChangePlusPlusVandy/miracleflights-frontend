@@ -3,14 +3,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { FlightDetailsModalProps } from "./FlightDetailsModal.definitions";
 
-const FlightDetailsModal = ({
-  onClose,
-  date,
-  departingAirport,
-  arrivingAirport,
-  airline,
-  legType,
-}: FlightDetailsModalProps) => {
+const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.modal}>
@@ -20,7 +13,13 @@ const FlightDetailsModal = ({
           onClick={onClose}
         />
         <div className={styles.modalContent}>
-          {[date, departingAirport, arrivingAirport, airline, legType]}
+          {[
+            flight.fields["Departure Date/Time"].substring(0, 9),
+            flight.fields["Departure Airport"],
+            flight.fields["Arrival Airport"],
+            flight.fields.Airline,
+            flight.fields["Leg Type"],
+          ]}
         </div>
       </div>
     </div>

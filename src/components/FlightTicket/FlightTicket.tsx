@@ -12,15 +12,11 @@ import { useState } from "react";
 import type { FlightTicketProps } from "./FlightTicket.definitions";
 
 const FlightTicket = ({
-  date,
-  departingAirport,
-  arrivingAirport,
-  airline,
-  legType,
+  flight,
   colorVariant,
   isLastElement,
 }: FlightTicketProps) => {
-  const renderLegTypeIcon = (legType: LegType) => {
+  const renderLegTypeIcon = (legType: string) => {
     if (legType === LegType.DEPARTURE) {
       return <FontAwesomeIcon icon={faPlaneDeparture} />;
     } else if (legType === LegType.CONNECTING) {
@@ -60,7 +56,9 @@ const FlightTicket = ({
               : styles.dateRowBlueNoBorder
           }
         >
-          <div className={styles.date}>{date}</div>
+          <div className={styles.date}>
+            {flight.fields["Departure Date/Time"].substring(0, 9)}
+          </div>
         </div>
         <div
           className={
@@ -68,22 +66,28 @@ const FlightTicket = ({
           }
         >
           <div className={styles.airportsRow}>
-            <div className={styles.departingAirport}>{departingAirport}</div>
+            <div className={styles.departingAirport}>
+              {flight.fields["Departure Airport"]}
+            </div>
             <FontAwesomeIcon
               icon={faCircleArrowRight}
               className={styles.arrowIcon}
             />
-            <div className={styles.arrivingAirport}>{arrivingAirport}</div>
+            <div className={styles.arrivingAirport}>
+              {flight.fields["Arrival Airport"]}
+            </div>
           </div>
 
           <div className={styles.detailsRow}>
             <div className={styles.legTypeWithImage}>
               <div className={styles.legType}>
-                {legType.toLocaleUpperCase()}
+                {flight.fields["Leg Type"].toLocaleUpperCase()}
               </div>
-              {renderLegTypeIcon(legType)}
+              {renderLegTypeIcon(flight.fields["Leg Type"])}
             </div>
-            <div className={styles.airline}>{airline.toLocaleUpperCase()}</div>
+            <div className={styles.airline}>
+              {flight.fields.Airline.toLocaleUpperCase()}
+            </div>
           </div>
         </div>
         <div
@@ -97,14 +101,7 @@ const FlightTicket = ({
         </div>
       </div>
       {isModalOpen && (
-        <FlightDetailsModal
-          onClose={closeModal}
-          legType={legType}
-          date={date}
-          departingAirport={departingAirport}
-          arrivingAirport={arrivingAirport}
-          airline={airline}
-        />
+        <FlightDetailsModal onClose={closeModal} flight={flight} />
       )}
     </div>
   );
