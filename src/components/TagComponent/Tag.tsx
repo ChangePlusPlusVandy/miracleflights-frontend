@@ -1,4 +1,4 @@
-import styles from "./Tag.modules.css";
+import styles from "./Tag.module.css";
 import { TagProps } from "./Tag.definitions";
 
 const Tag = ({
