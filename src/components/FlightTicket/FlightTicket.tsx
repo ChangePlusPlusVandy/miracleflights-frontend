@@ -96,15 +96,16 @@ const FlightTicket = ({
           <div>click to see more details</div>
         </div>
       </div>
-      <FlightDetailsModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        legType={legType}
-        date={date}
-        departingAirport={departingAirport}
-        arrivingAirport={arrivingAirport}
-        airline={airline}
-      />
+      {isModalOpen && (
+        <FlightDetailsModal
+          onClose={closeModal}
+          legType={legType}
+          date={date}
+          departingAirport={departingAirport}
+          arrivingAirport={arrivingAirport}
+          airline={airline}
+        />
+      )}
     </div>
   );
 };

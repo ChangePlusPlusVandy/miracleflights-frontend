@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { FlightDetailsModalProps } from "./FlightDetailsModal.definitions";
 
 const FlightDetailsModal = ({
-  isOpen,
   onClose,
   date,
   departingAirport,
@@ -12,10 +11,6 @@ const FlightDetailsModal = ({
   airline,
   legType,
 }: FlightDetailsModalProps) => {
-  if (!isOpen) {
-    return null;
-  }
-
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.modal}>

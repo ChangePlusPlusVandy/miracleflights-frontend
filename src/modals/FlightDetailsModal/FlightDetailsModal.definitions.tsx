@@ -1,7 +1,7 @@
 import type { LegType } from "../../components/FlightTicket/FlightTicket.definitions";
 
 export interface FlightDetailsModalProps {
-  isOpen: boolean;
+  //isOpen: boolean;
   onClose: () => void;
   date: string;
   departingAirport: string;
