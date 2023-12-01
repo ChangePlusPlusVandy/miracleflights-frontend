@@ -1,0 +1,35 @@
+/* TagComponent.module.css */
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; /* Choose between 11px and 16px as per your design requirements */
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    margin: 2px; /* Optional: adds spacing around the tag */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Color variants */
+  .success {
+    background-color: #28a745;
+  }
+  
+  .warning {
+    background-color: #ffc107;
+  }
+  
+  .error {
+    background-color: #dc3545;
+  }
+  
+  .info {
+    background-color: #17a2b8;
+  }
+  
+.neutral {
+    background-color: #6c757d;
+}
