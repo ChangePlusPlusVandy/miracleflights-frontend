@@ -1,35 +1,49 @@
-/* TagComponent.module.css */
 .tag {
     display: inline-block;
-    padding: 4px 8px;
     font-family: 'Inter', sans-serif;
-    font-size: 14px; /* Choose between 11px and 16px as per your design requirements */
     border-radius: 12px;
     text-align: center;
     color: white;
-    margin: 2px; /* Optional: adds spacing around the tag */
+    margin: 2px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   
-  /* Color variants */
-  .success {
+  /* Size variants */
+  .small {
+    padding: 2px 6px;
+    font-size: 11px;
+  }
+  
+  .normal {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+  
+  .large {
+    padding: 6px 10px;
+    font-size: 16px;
+  }
+  
+  /* Color classes */
+  .green {
     background-color: #28a745;
   }
   
-  .warning {
+  .yellow {
     background-color: #ffc107;
   }
   
-  .error {
+  .red {
     background-color: #dc3545;
   }
   
-  .info {
+  .blue {
     background-color: #17a2b8;
   }
   
-.neutral {
+  .gray {
     background-color: #6c757d;
-}
+  }
+  

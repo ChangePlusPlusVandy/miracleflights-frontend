@@ -1,6 +1,6 @@
 export interface TagProps {
-    variant: 'success' | 'warning' | 'error' | 'info' | 'neutral';
-    color: ''
+    variant: 'small' | 'normal' | 'large';
+    color: 'green' | 'yellow' | 'red' | 'blue' | 'gray';
     text: string;
   }
   
