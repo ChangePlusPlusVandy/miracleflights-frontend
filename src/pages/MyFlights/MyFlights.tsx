@@ -4,7 +4,6 @@ import { createTestFlightLegData } from "../../util/test-data.util";
 
 const MyFlights = () => {
   // MyFlights tab
-  console.log("MyFlights");
 
   return (
     <div>
