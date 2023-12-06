@@ -58,7 +58,19 @@ const MyFlights = () => {
         {upcomingFlights.map((flight: FlightLegData, index: number) => (
           <FlightTicket
             legType={LegType.CONNECTING}
-            date={flight.fields["Departure Date/Time"].toString()}
+            date={
+              new Date(flight.fields["Departure Date/Time"])
+                .getMonth()
+                .toString() +
+              "/" +
+              new Date(flight.fields["Departure Date/Time"])
+                .getDay()
+                .toString() +
+              "/" +
+              new Date(flight.fields["Departure Date/Time"])
+                .getFullYear()
+                .toString()
+            }
             departingAirport="BNA "
             arrivingAirport="JFK"
             airline={flight.fields.Airline}
@@ -74,7 +86,19 @@ const MyFlights = () => {
           {pastFlights.map((flight: FlightLegData, index: number) => (
             <FlightTicket
               legType={LegType.CONNECTING}
-              date={flight.fields["Departure Date/Time"].toString()}
+              date={
+                new Date(flight.fields["Departure Date/Time"])
+                  .getMonth()
+                  .toString() +
+                "/" +
+                new Date(flight.fields["Departure Date/Time"])
+                  .getDay()
+                  .toString() +
+                "/" +
+                new Date(flight.fields["Departure Date/Time"])
+                  .getFullYear()
+                  .toString()
+              }
               departingAirport="BNA "
               arrivingAirport="JFK"
               airline={flight.fields.Airline}
