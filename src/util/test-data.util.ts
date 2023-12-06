@@ -218,7 +218,7 @@ export const createTestFlightLegData = (
       ]),
       Airline: faker.helpers.arrayElement(AIRLINES),
       "BL - Departure Airport": faker.location.city(),
-      "Departure Date/Time": faker.date.recent().toISOString(),
+      "Departure Date/Time": faker.date.anytime().toString(),
       "BL - Arrival Airport": faker.location.city(),
       "Arrival Date/Time": faker.date.recent().toISOString(),
       "Nautical Miles": faker.number.int({

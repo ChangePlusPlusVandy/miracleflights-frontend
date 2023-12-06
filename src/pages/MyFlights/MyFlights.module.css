@@ -1,0 +1,39 @@
+.pageContainer {
+  width: 100vw;
+  height: 100vh;
+  font-family: "Inter";
+}
+.upcomingFlights {
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.current {
+  width: 100%;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0b0c0c;
+  border-radius: 1rem;
+  font-weight: bold;
+  padding: 1rem 1rem;
+}
+
+.historical {
+  width: 100%;
+  font-weight: bold;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0b0c0c;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  padding: 1rem 0.5rem;
+  border-radius: 1rem;
+}
+
+.pastFlights {
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+}
