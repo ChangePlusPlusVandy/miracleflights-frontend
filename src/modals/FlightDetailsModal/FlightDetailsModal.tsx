@@ -11,6 +11,7 @@ const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
           icon={faXmark}
           className={styles.exitIcon}
           onClick={onClose}
+          id="closeIcon"
         />
         <div className={styles.modalContent}>
           {[
