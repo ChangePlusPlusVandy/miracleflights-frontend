@@ -8,6 +8,7 @@
   flex-wrap: wrap;
   display: flex;
   justify-content: flex-start;
+  flex-direction: column;
 }
 
 .current {
@@ -18,6 +19,13 @@
   border-radius: 1rem;
   font-weight: bold;
   padding: 1rem 1rem;
+}
+
+.tripContainer {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 20px;
 }
 
 .historical {

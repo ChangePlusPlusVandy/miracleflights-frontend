@@ -42,24 +42,57 @@ const MyFlights = () => {
     );
   });
 
-  console.log(upcomingFlights);
-  console.log(pastFlights);
+  /*
+   go look for the first element of flights."Request AirTable Record IDs"
+   if this element hasnt been seen yet, make a new array containing just that one element
+   if the element has been seen, add it to the array of that element
+    [ 
+    [flight1, flight2, flight3],
+    [flight4, flight5, flight6],
+    [flight7, flight8, flight9],
+  ]
+   */
 
-  //take it, filter it, sort it, map
+  // go through the array and look at each value's first element of Request AirTable Record IDs
+  // if that value has a key, add it to the array corresponding to that key
+  // if that value does not have a key, make a new array containing that value and make the key the first element of Request AirTable Record IDs
+
+  const groupedUpcomingFlights: Record<string, FlightLegData[]> =
+    upcomingFlights.reduce(
+      (acc: Record<string, FlightLegData[]>, flight: FlightLegData) => {
+        const firstElementRequestAirTableRecordID =
+          flight.fields["Request AirTable Record ID"][0];
+        if (acc[firstElementRequestAirTableRecordID]) {
+          acc[firstElementRequestAirTableRecordID].push(flight);
+        } else {
+          acc[firstElementRequestAirTableRecordID] = [flight];
+        }
+        return acc;
+      },
+      {},
+    );
+
+  console.log(groupedUpcomingFlights);
 
   return (
     <div className={styles.pageContainer}>
       <div className={styles.current}>Current {}</div>
       <div className={styles.upcomingFlights}>
-        {upcomingFlights.map((flight: FlightLegData, index: number) => (
-          <FlightTicket
-            flight={flight}
-            //TODO: ask jake how to make this its own div so i can do styles. on it
-            colorVariant={FlightTicketColorVariant.RED}
-            isLastElement={false}
-            key={index}
-          />
-        ))}
+        {Object.values(groupedUpcomingFlights).map(
+          (flightArray: FlightLegData[], index: number) => (
+            <div className={styles.tripContainer} key={index}>
+              {flightArray.map((flight: FlightLegData) => (
+                <FlightTicket
+                  key={flight.id}
+                  flight={flight}
+                  colorVariant={FlightTicketColorVariant.BLUE}
+                  isLastElement={false}
+                />
+              ))}
+            </div>
+          ),
+        )}
+        ;
       </div>
       <div className={styles.historical}>Historical {}</div>
       {
