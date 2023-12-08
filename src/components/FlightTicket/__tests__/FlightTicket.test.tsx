@@ -8,125 +8,163 @@ describe("FlightTicket Tests", () => {
   // test color variance, test different flight types
 
   test("Test example component with border and blue color", () => {
-    const component = render(
-      <FlightTicket
-        flight={createTestFlightLegData()}
-        colorVariant={FlightTicketColorVariant.BLUE}
-        isLastElement={false}
-      />,
-    );
+    const mockProps = {
+      flight: createTestFlightLegData(),
+      colorVariant: FlightTicketColorVariant.BLUE,
+      isLastElement: false,
+    };
+
+    const component = render(<FlightTicket {...mockProps} />);
 
     // Check that the component renders
     expect(component).toBeTruthy();
 
     //check that date is the same
-    const date = component.getByText("11/23/2023");
+    const date = component.getByText(
+      mockProps.flight.fields["Departure Date/Time"].split("T")[0],
+    );
     expect(date).toBeTruthy();
 
     //check that the departing airport is the same
-    const departingAirport = component.getByText("LAX");
+    const departingAirport = component.getByText(
+      mockProps.flight.fields["Departure Airport"],
+    );
     expect(departingAirport).toBeTruthy();
 
-    const arrivingAirport = component.getByText("BNA");
+    const arrivingAirport = component.getByText(
+      mockProps.flight.fields["Arrival Airport"],
+    );
     expect(arrivingAirport).toBeTruthy();
 
-    const airline = component.getByText("SOUTHWEST");
+    const airline = component.getByText(
+      mockProps.flight.fields.Airline.toLocaleUpperCase(),
+    );
     expect(airline).toBeTruthy();
 
-    const legType = component.getByText("CONNECTING");
+    const legType = component.getByText(
+      mockProps.flight.fields["Leg Type"].toLocaleUpperCase(),
+    );
     expect(legType).toBeTruthy();
   });
 
   /**************************SECOND TEST*******************************/
   test("Test example component with no border and red color", () => {
-    const component = render(
-      <FlightTicket
-        flight={createTestFlightLegData()}
-        colorVariant={FlightTicketColorVariant.RED}
-        isLastElement={true}
-      />,
-    );
+    const mockProps = {
+      flight: createTestFlightLegData(),
+      colorVariant: FlightTicketColorVariant.RED,
+      isLastElement: true,
+    };
+
+    const component = render(<FlightTicket {...mockProps} />);
 
     // Check that the component renders
     expect(component).toBeTruthy();
 
     //check that date is the same
-    const date = component.getByText("11/23/2023");
+    const date = component.getByText(
+      mockProps.flight.fields["Departure Date/Time"].split("T")[0],
+    );
     expect(date).toBeTruthy();
 
     //check that the departing airport is the same
-    const departingAirport = component.getByText("LAX");
+    const departingAirport = component.getByText(
+      mockProps.flight.fields["Departure Airport"],
+    );
     expect(departingAirport).toBeTruthy();
 
-    const arrivingAirport = component.getByText("BNA");
+    const arrivingAirport = component.getByText(
+      mockProps.flight.fields["Arrival Airport"],
+    );
     expect(arrivingAirport).toBeTruthy();
 
-    const airline = component.getByText("SOUTHWEST");
+    const airline = component.getByText(
+      mockProps.flight.fields.Airline.toLocaleUpperCase(),
+    );
     expect(airline).toBeTruthy();
 
-    const legType = component.getByText("DEPARTURE");
+    const legType = component.getByText(
+      mockProps.flight.fields["Leg Type"].toLocaleUpperCase(),
+    );
     expect(legType).toBeTruthy();
   });
 
   /**************************THIRD TEST*******************************/
   test("Test example component with no border and blue color", () => {
-    const component = render(
-      <FlightTicket
-        flight={createTestFlightLegData()}
-        colorVariant={FlightTicketColorVariant.BLUE}
-        isLastElement={true}
-      />,
-    );
+    const mockProps = {
+      flight: createTestFlightLegData(),
+      colorVariant: FlightTicketColorVariant.BLUE,
+      isLastElement: true,
+    };
 
+    const component = render(<FlightTicket {...mockProps} />);
     // Check that the component renders
     expect(component).toBeTruthy();
 
     //check that date is the same
-    const date = component.getByText("11/23/2023");
+    const date = component.getByText(
+      mockProps.flight.fields["Departure Date/Time"].split("T")[0],
+    );
     expect(date).toBeTruthy();
 
     //check that the departing airport is the same
-    const departingAirport = component.getByText("LAX");
+    const departingAirport = component.getByText(
+      mockProps.flight.fields["Departure Airport"],
+    );
     expect(departingAirport).toBeTruthy();
 
-    const arrivingAirport = component.getByText("BNA");
+    const arrivingAirport = component.getByText(
+      mockProps.flight.fields["Arrival Airport"],
+    );
     expect(arrivingAirport).toBeTruthy();
 
-    const airline = component.getByText("SOUTHWEST");
+    const airline = component.getByText(
+      mockProps.flight.fields.Airline.toLocaleUpperCase(),
+    );
     expect(airline).toBeTruthy();
 
-    const legType = component.getByText("RETURN");
+    const legType = component.getByText(
+      mockProps.flight.fields["Leg Type"].toLocaleUpperCase(),
+    );
     expect(legType).toBeTruthy();
   });
 
   /**************************Fourth TEST*******************************/
   test("Test example component with no border and red color", () => {
-    const component = render(
-      <FlightTicket
-        flight={createTestFlightLegData()}
-        colorVariant={FlightTicketColorVariant.RED}
-        isLastElement={true}
-      />,
-    );
+    const mockProps = {
+      flight: createTestFlightLegData(),
+      colorVariant: FlightTicketColorVariant.RED,
+      isLastElement: true,
+    };
+    const component = render(<FlightTicket {...mockProps} />);
 
     // Check that the component renders
     expect(component).toBeTruthy();
 
     //check that date is the same
-    const date = component.getByText("11/23/2023");
+    const date = component.getByText(
+      mockProps.flight.fields["Departure Date/Time"].split("T")[0],
+    );
     expect(date).toBeTruthy();
 
     //check that the departing airport is the same
-    const departingAirport = component.getByText("LAX");
+    const departingAirport = component.getByText(
+      mockProps.flight.fields["Departure Airport"],
+    );
     expect(departingAirport).toBeTruthy();
 
-    const arrivingAirport = component.getByText("BNA");
+    const arrivingAirport = component.getByText(
+      mockProps.flight.fields["Arrival Airport"],
+    );
     expect(arrivingAirport).toBeTruthy();
 
-    const airline = component.getByText("SOUTHWEST");
+    const airline = component.getByText(
+      mockProps.flight.fields.Airline.toLocaleUpperCase(),
+    );
     expect(airline).toBeTruthy();
 
-    const legType = component.getByText("RETURN");
+    const legType = component.getByText(
+      mockProps.flight.fields["Leg Type"].toLocaleUpperCase(),
+    );
     expect(legType).toBeTruthy();
   });
 });

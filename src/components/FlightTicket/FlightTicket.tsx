@@ -57,7 +57,7 @@ const FlightTicket = ({
           }
         >
           <div className={styles.date}>
-            {flight.fields["Departure Date/Time"].substring(0, 9)}
+            {flight.fields["Departure Date/Time"].split("T")[0]}
           </div>
         </div>
         <div
