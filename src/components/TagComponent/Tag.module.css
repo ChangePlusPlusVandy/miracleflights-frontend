@@ -8,6 +8,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 50px;
   }
   
   .small {
@@ -39,7 +40,7 @@
   }
   
   .blue {
-    background-color: #17a2b8;
+    background-color: rgb(52, 93, 179);
   }
   
   .gray {

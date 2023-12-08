@@ -1,6 +1,6 @@
 import Tag from "../Tag";
+import styles from "../Tag.module.css";
 import { render } from "@testing-library/react";
-import styles from "../Tag.modules.css";
 
 /**************************TAG COMPONENT TESTING SUITE*******************************/
 describe("Tag Component Tests", () => {
