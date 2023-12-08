@@ -1,11 +1,9 @@
 /* eslint-disable autofix/no-unused-vars */
 
+import type { FlightLegData } from "../../interfaces/flight-leg.interface";
+
 export interface FlightTicketProps {
-  date: string;
-  departingAirport: string;
-  arrivingAirport: string;
-  airline: string;
-  legType: LegType;
+  flight: FlightLegData;
   colorVariant: FlightTicketColorVariant;
   isLastElement: boolean;
 }

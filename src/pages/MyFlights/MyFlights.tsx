@@ -1,23 +1,23 @@
 import FlightTicket from "../../components/FlightTicket/FlightTicket";
-import {
-  FlightTicketColorVariant,
-  LegType,
-} from "../../components/FlightTicket/FlightTicket.definitions";
+import { FlightTicketColorVariant } from "../../components/FlightTicket/FlightTicket.definitions";
+import { createTestFlightLegData } from "../../util/test-data.util";
 
 const MyFlights = () => {
   // MyFlights tab
-  console.log("MyFlights");
 
   return (
-    <FlightTicket
-      legType={LegType.CONNECTING}
-      date="11/14/2023"
-      departingAirport="BNA "
-      arrivingAirport="JFK"
-      airline="Southwest"
-      colorVariant={FlightTicketColorVariant.BLUE}
-      isLastElement={false}
-    />
+    <div>
+      <FlightTicket
+        flight={createTestFlightLegData()}
+        colorVariant={FlightTicketColorVariant.BLUE}
+        isLastElement={false}
+      />
+      <FlightTicket
+        flight={createTestFlightLegData()}
+        colorVariant={FlightTicketColorVariant.RED}
+        isLastElement={true}
+      />
+    </div>
   );
 };
 
