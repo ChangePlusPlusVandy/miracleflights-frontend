@@ -1,15 +1,11 @@
 import styles from "./MyFlights.module.css";
 import FlightTicket from "../../components/FlightTicket/FlightTicket";
-import {
-  FlightTicketColorVariant,
-  LegType,
-} from "../../components/FlightTicket/FlightTicket.definitions";
+import { FlightTicketColorVariant } from "../../components/FlightTicket/FlightTicket.definitions";
 import { createTestFlightLegData } from "../../util/test-data.util";
 import type { FlightLegData } from "../../interfaces/flight-leg.interface";
 
 const MyFlights = () => {
   // MyFlights tab
-  console.log("MyFlights");
 
   const array = [] as FlightLegData[];
   for (let i = 0; i < 20; ++i) {
@@ -57,24 +53,9 @@ const MyFlights = () => {
       <div className={styles.upcomingFlights}>
         {upcomingFlights.map((flight: FlightLegData, index: number) => (
           <FlightTicket
-            legType={LegType.CONNECTING}
-            date={
-              new Date(flight.fields["Departure Date/Time"])
-                .getMonth()
-                .toString() +
-              "/" +
-              new Date(flight.fields["Departure Date/Time"])
-                .getDay()
-                .toString() +
-              "/" +
-              new Date(flight.fields["Departure Date/Time"])
-                .getFullYear()
-                .toString()
-            }
-            departingAirport="BNA "
-            arrivingAirport="JFK"
-            airline={flight.fields.Airline}
-            colorVariant={FlightTicketColorVariant.BLUE}
+            flight={flight}
+            //TODO: ask jake how to make this its own div so i can do styles. on it
+            colorVariant={FlightTicketColorVariant.RED}
             isLastElement={false}
             key={index}
           />
@@ -85,23 +66,7 @@ const MyFlights = () => {
         <div className={styles.pastFlights}>
           {pastFlights.map((flight: FlightLegData, index: number) => (
             <FlightTicket
-              legType={LegType.CONNECTING}
-              date={
-                new Date(flight.fields["Departure Date/Time"])
-                  .getMonth()
-                  .toString() +
-                "/" +
-                new Date(flight.fields["Departure Date/Time"])
-                  .getDay()
-                  .toString() +
-                "/" +
-                new Date(flight.fields["Departure Date/Time"])
-                  .getFullYear()
-                  .toString()
-              }
-              departingAirport="BNA "
-              arrivingAirport="JFK"
-              airline={flight.fields.Airline}
+              flight={flight}
               colorVariant={FlightTicketColorVariant.BLUE}
               isLastElement={false}
               key={index}

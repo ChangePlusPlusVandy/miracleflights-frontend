@@ -27,3 +27,7 @@ export const getAge = (dateOfBirth: string) => {
 
   return age;
 };
+
+export const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString();
+};
