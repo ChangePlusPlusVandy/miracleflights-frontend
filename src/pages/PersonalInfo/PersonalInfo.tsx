@@ -9,7 +9,7 @@ const PersonalInfo = () => {
   const data: PassengerData = createTestPassengerData();
 
   // Memoize the flight info so that it doesn't have to be recalculated every time the component re-renders
-  const flightInfo = useMemo(() => {
+  const allInfo = useMemo(() => {
     const generalInfo = {
       "Full Name": data.fields["Full Name"],
       Street: data.fields.Street,
@@ -49,7 +49,7 @@ const PersonalInfo = () => {
     };
   }, [data]);
 
-  const { generalInfo, medicalInfo, financialInfo } = flightInfo;
+  const { generalInfo, medicalInfo, financialInfo, flightInfo } = allInfo;
 
   return (
     <div className={styles.tabs}>

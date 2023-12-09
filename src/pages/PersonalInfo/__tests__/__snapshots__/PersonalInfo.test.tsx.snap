@@ -40,65 +40,47 @@ exports[`Tabs Tests Test snapshots 1`] = `
         <div
           class="InfoBox"
         >
-          Full Name
-          : 
-          John Doe
+          Full Name: John Doe
         </div>
         <div
           class="InfoBox"
         >
-          Street
-          : 
-          123 Main St
+          Street: 123 Main St
         </div>
         <div
           class="InfoBox"
         >
-          Country
-          : 
-          USA
+          Country: USA
         </div>
         <div
           class="InfoBox"
         >
-          Email Address
-          : 
-          test@test.com
+          Email Address: test@test.com
         </div>
         <div
           class="InfoBox"
         >
-          Type of Passenger
-          : 
-          Patient
+          Type of Passenger: Patient
         </div>
         <div
           class="InfoBox"
         >
-          Military Service Status
-          : 
-          Yes
+          Military Service Status: Yes
         </div>
         <div
           class="InfoBox"
         >
-          Military Member Status
-          : 
-          Yes
+          Military Member Status: Yes
         </div>
         <div
           class="InfoBox"
         >
-          Date Created
-          : 
-          2021-09-13
+          Date Created: 2021-09-13
         </div>
         <div
           class="InfoBox"
         >
-          How did you hear about us?
-          : 
-          Internet
+          How did you hear about us?: Internet
         </div>
       </div>
     </div>
