@@ -14,7 +14,7 @@ import type { PassengerProps } from "./Passenger.definitions";
 const Passenger = (Passengers: PassengerProps) => {
   return (
     <div className={styles.passengerCard}>
-      <div className={styles.title}>Passenger {}</div>
+      <div className={styles.title}>Passenger</div>
       <div className={styles.name}>
         {Passengers.firstName} {Passengers.lastName}
       </div>
