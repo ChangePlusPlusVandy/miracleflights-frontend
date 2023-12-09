@@ -1,5 +1,7 @@
 import styles from "./FlightTicket.module.css";
 import { FlightTicketColorVariant, LegType } from "./FlightTicket.definitions";
+import Tag from "../TagComponent/Tag";
+import { TagColor } from "../TagComponent/Tag.definitions";
 import FlightDetailsModal from "../../modals/FlightDetailsModal/FlightDetailsModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,6 +18,8 @@ const FlightTicket = ({
   colorVariant,
   isLastElement,
 }: FlightTicketProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const renderLegTypeIcon = (legType: string) => {
     if (legType === LegType.DEPARTURE) {
       return <FontAwesomeIcon icon={faPlaneDeparture} />;
@@ -25,8 +29,6 @@ const FlightTicket = ({
       return <FontAwesomeIcon icon={faPlaneArrival} />;
     }
   };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -81,28 +83,33 @@ const FlightTicket = ({
           <div className={styles.detailsRow}>
             <div className={styles.legTypeWithImage}>
               <div className={styles.legType}>
-                {flight.fields["Leg Type"].toLocaleUpperCase()}
+                <div className={styles.legTypeText}>
+                  <Tag
+                    color={TagColor.GREY}
+                    text={flight.fields["Leg Type"].toLocaleUpperCase()}
+                  />
+                </div>
+                <div>{renderLegTypeIcon(flight.fields["Leg Type"])}</div>
               </div>
-              {renderLegTypeIcon(flight.fields["Leg Type"])}
-            </div>
-            <div className={styles.airline}>
-              {flight.fields.Airline.toLocaleUpperCase()}
+              <div className={styles.airline}>
+                {flight.fields.Airline.toLocaleUpperCase()}
+              </div>
             </div>
           </div>
+          <div
+            className={
+              isLastElement == false
+                ? styles.seeMoreRow
+                : styles.seeMoreRowNoBorder
+            }
+          >
+            <div>click to see more details</div>
+          </div>
         </div>
-        <div
-          className={
-            isLastElement == false
-              ? styles.seeMoreRow
-              : styles.seeMoreRowNoBorder
-          }
-        >
-          <div>click to see more details</div>
-        </div>
+        {isModalOpen && (
+          <FlightDetailsModal onClose={closeModal} flight={flight} />
+        )}
       </div>
-      {isModalOpen && (
-        <FlightDetailsModal onClose={closeModal} flight={flight} />
-      )}
     </div>
   );
 };
