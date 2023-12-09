@@ -1,24 +1,37 @@
+.title {
+  width: 100%;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #282828;
+  border-radius: 1rem;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-bottom: 8px;
+  font-family: "Inter", sans-serif;
+}
+
+.timeFrame {
+  width: 100%;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #686868;
+  font-weight: 600;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  font-family: "Inter", sans-serif;
+}
+
 .pageContainer {
   width: 100vw;
   height: 100vh;
   font-family: "Inter";
 }
-.upcomingFlights {
+.flightsGroup {
   width: 100%;
   flex-wrap: wrap;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-}
-
-.current {
-  width: 100%;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #0b0c0c;
-  border-radius: 1rem;
-  font-weight: bold;
-  padding: 1rem 1rem;
 }
 
 .tripContainer {
@@ -28,20 +41,11 @@
   padding-bottom: 20px;
 }
 
-.historical {
+.divider {
   width: 100%;
-  font-weight: bold;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #0b0c0c;
-  margin-bottom: 1rem;
-  margin-top: 0.5rem;
-  padding: 1rem 0.5rem;
-  border-radius: 1rem;
-}
-
-.pastFlights {
-  width: 100%;
-  flex-wrap: wrap;
-  display: flex;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin: 0px 10px;
 }

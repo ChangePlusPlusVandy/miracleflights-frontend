@@ -13,11 +13,7 @@ import {
 import { useState } from "react";
 import type { FlightTicketProps } from "./FlightTicket.definitions";
 
-const FlightTicket = ({
-  flight,
-  colorVariant,
-  isLastElement,
-}: FlightTicketProps) => {
+const FlightTicket = ({ flight, colorVariant }: FlightTicketProps) => {
   const renderLegTypeIcon = (legType: string) => {
     if (legType === LegType.DEPARTURE) {
       return <FontAwesomeIcon icon={faPlaneDeparture} />;
@@ -43,62 +39,41 @@ const FlightTicket = ({
       <div className={styles.ticketBase} onClick={openModal}>
         <div
           className={
-            colorVariant == FlightTicketColorVariant.RED &&
-            isLastElement == false
+            colorVariant == FlightTicketColorVariant.RED
               ? styles.dateRowRed
-              : colorVariant == FlightTicketColorVariant.RED &&
-                isLastElement == true
-              ? styles.dateRowRedNoBorder
-              : colorVariant == FlightTicketColorVariant.BLUE &&
-                isLastElement == false
-              ? styles.dateRowBlue
-              : colorVariant == FlightTicketColorVariant.BLUE &&
-                isLastElement == true
-              ? styles.dateRowBlueNoBorder
-              : styles.dateRowBlueNoBorder
+              : styles.dateRowBlue
           }
         >
           <div className={styles.date}>
             {formatDate(flight.fields["Departure Date/Time"])}
           </div>
         </div>
-        <div
-          className={
-            isLastElement == false ? styles.ticketBorder : styles.ticketNoBorder
-          }
-        >
-          <div className={styles.airportsRow}>
-            <div className={styles.departingAirport}>
-              {flight.fields["Departure Airport"]}
-            </div>
-            <FontAwesomeIcon
-              icon={faCircleArrowRight}
-              className={styles.arrowIcon}
-            />
-            <div className={styles.arrivingAirport}>
-              {flight.fields["Arrival Airport"]}
-            </div>
-          </div>
 
-          <div className={styles.detailsRow}>
-            <div className={styles.legTypeWithImage}>
-              <div className={styles.legType}>
-                {flight.fields["Leg Type"].toLocaleUpperCase()}
-              </div>
-              {renderLegTypeIcon(flight.fields["Leg Type"])}
-            </div>
-            <div className={styles.airline}>
-              {formatAirlineString(flight.fields.Airline.toLocaleUpperCase())}
-            </div>
+        <div className={styles.airportsRow}>
+          <div className={styles.departingAirport}>
+            {flight.fields["Departure Airport"]}
+          </div>
+          <FontAwesomeIcon
+            icon={faCircleArrowRight}
+            className={styles.arrowIcon}
+          />
+          <div className={styles.arrivingAirport}>
+            {flight.fields["Arrival Airport"]}
           </div>
         </div>
-        <div
-          className={
-            isLastElement == false
-              ? styles.seeMoreRow
-              : styles.seeMoreRowNoBorder
-          }
-        >
+
+        <div className={styles.detailsRow}>
+          <div className={styles.legTypeWithImage}>
+            <div className={styles.legType}>
+              {flight.fields["Leg Type"].toLocaleUpperCase()}
+            </div>
+            {renderLegTypeIcon(flight.fields["Leg Type"])}
+          </div>
+          <div className={styles.airline}>
+            {formatAirlineString(flight.fields.Airline.toLocaleUpperCase())}
+          </div>
+        </div>
+        <div className={styles.seeMoreRow}>
           <div>click to see more details</div>
         </div>
       </div>

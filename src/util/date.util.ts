@@ -1,3 +1,10 @@
+import type { FlightLegData } from "../interfaces/flight-leg.interface";
+
+/**
+ * Given a date of birth, returns the age of the person
+ * @param dateOfBirth the date of birth to calculate age from
+ * @returns the age of the person
+ */
 export const getAge = (dateOfBirth: string) => {
   const today = new Date();
 
@@ -28,6 +35,25 @@ export const getAge = (dateOfBirth: string) => {
   return age;
 };
 
+/**
+ * Formats a date string to MM/DD/YYYY
+ * @param date the date to format
+ * @returns a string in the format MM/DD/YYYY
+ */
 export const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString();
+};
+
+/**
+ * Given an array of flight legs, returns a string in the format MM/DD/YYYY - MM/DD/YYYY representing the time frame of the trip
+ * @param trip the array of flight legs
+ * @returns a string in the format MM/DD/YYYY - MM/DD/YYYY
+ */
+export const formatTimeFrame = (trip: FlightLegData[]) => {
+  // return the earliest and latest start dates for flights concatenated
+  return (
+    formatDate(trip[0].fields["Departure Date/Time"]) +
+    " - " +
+    formatDate(trip[trip.length - 1].fields["Departure Date/Time"])
+  );
 };
