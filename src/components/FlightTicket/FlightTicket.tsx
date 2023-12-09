@@ -1,5 +1,7 @@
 import styles from "./FlightTicket.module.css";
 import { FlightTicketColorVariant, LegType } from "./FlightTicket.definitions";
+import Tag from "../TagComponent/Tag";
+import { TagColor } from "../TagComponent/Tag.definitions";
 import FlightDetailsModal from "../../modals/FlightDetailsModal/FlightDetailsModal";
 import { formatDate } from "../../util/date.util";
 import { formatAirlineString } from "../../util/flight.util";
@@ -24,10 +26,6 @@ const FlightTicket = ({ flight }: FlightTicketProps) => {
     }
   };
 
-  // const colorVariant =
-  //   flight.fields["Leg Type"] === LegType.DEPARTURE
-  //     ? FlightTicketColorVariant.RED
-  //     : FlightTicketColorVariant.BLUE;
   const colorVariant = FlightTicketColorVariant.RED;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -54,7 +52,6 @@ const FlightTicket = ({ flight }: FlightTicketProps) => {
             {formatDate(flight.fields["Departure Date/Time"])}
           </div>
         </div>
-
         <div className={styles.airportsRow}>
           <div className={styles.departingAirport}>
             {flight.fields["Departure Airport"]}
@@ -67,16 +64,22 @@ const FlightTicket = ({ flight }: FlightTicketProps) => {
             {flight.fields["Arrival Airport"]}
           </div>
         </div>
-
         <div className={styles.detailsRow}>
           <div className={styles.legTypeWithImage}>
             <div className={styles.legType}>
-              {flight.fields["Leg Type"].toLocaleUpperCase()}
+              <div className={styles.legTypeText}>
+                <Tag
+                  color={TagColor.GREY}
+                  text={flight.fields["Leg Type"].toLocaleUpperCase()}
+                />
+              </div>
+              <div>{renderLegTypeIcon(flight.fields["Leg Type"])}</div>
             </div>
-            {renderLegTypeIcon(flight.fields["Leg Type"])}
-          </div>
-          <div className={styles.airline}>
-            {formatAirlineString(flight.fields.Airline.toLocaleUpperCase())}
+            <div className={styles.airline}>
+              {formatAirlineString(
+                flight.fields["Airline"].toLocaleUpperCase(),
+              )}
+            </div>
           </div>
         </div>
         <div className={styles.seeMoreRow}>
