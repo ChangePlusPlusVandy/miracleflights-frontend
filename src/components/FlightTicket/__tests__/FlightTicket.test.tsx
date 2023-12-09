@@ -1,3 +1,5 @@
+import { formatDate } from "../../../util/date.util";
+import { formatAirlineString } from "../../../util/flight.util";
 import { createTestFlightLegData } from "../../../util/test-data.util";
 import FlightTicket from "../FlightTicket";
 import { FlightTicketColorVariant } from "../FlightTicket.definitions";
@@ -10,8 +12,6 @@ describe("FlightTicket Tests", () => {
   test("Test example component with border and blue color", () => {
     const mockProps = {
       flight: createTestFlightLegData(),
-      colorVariant: FlightTicketColorVariant.BLUE,
-      isLastElement: false,
     };
 
     const component = render(<FlightTicket {...mockProps} />);
@@ -21,7 +21,7 @@ describe("FlightTicket Tests", () => {
 
     //check that date is the same
     const date = component.getByText(
-      mockProps.flight.fields["Departure Date/Time"].split("T")[0],
+      formatDate(mockProps.flight.fields["Departure Date/Time"]),
     );
     expect(date).toBeTruthy();
 
@@ -37,7 +37,9 @@ describe("FlightTicket Tests", () => {
     expect(arrivingAirport).toBeTruthy();
 
     const airline = component.getByText(
-      mockProps.flight.fields.Airline.toLocaleUpperCase(),
+      formatAirlineString(
+        mockProps.flight.fields.Airline.toLocaleUpperCase(),
+      ).trim(),
     );
     expect(airline).toBeTruthy();
 
@@ -51,8 +53,6 @@ describe("FlightTicket Tests", () => {
   test("Test example component with no border and red color", () => {
     const mockProps = {
       flight: createTestFlightLegData(),
-      colorVariant: FlightTicketColorVariant.RED,
-      isLastElement: true,
     };
 
     const component = render(<FlightTicket {...mockProps} />);
@@ -62,7 +62,7 @@ describe("FlightTicket Tests", () => {
 
     //check that date is the same
     const date = component.getByText(
-      mockProps.flight.fields["Departure Date/Time"].split("T")[0],
+      formatDate(mockProps.flight.fields["Departure Date/Time"]),
     );
     expect(date).toBeTruthy();
 
@@ -78,7 +78,9 @@ describe("FlightTicket Tests", () => {
     expect(arrivingAirport).toBeTruthy();
 
     const airline = component.getByText(
-      mockProps.flight.fields.Airline.toLocaleUpperCase(),
+      formatAirlineString(
+        mockProps.flight.fields.Airline.toLocaleUpperCase(),
+      ).trim(),
     );
     expect(airline).toBeTruthy();
 
@@ -102,7 +104,7 @@ describe("FlightTicket Tests", () => {
 
     //check that date is the same
     const date = component.getByText(
-      mockProps.flight.fields["Departure Date/Time"].split("T")[0],
+      formatDate(mockProps.flight.fields["Departure Date/Time"]),
     );
     expect(date).toBeTruthy();
 
@@ -118,7 +120,9 @@ describe("FlightTicket Tests", () => {
     expect(arrivingAirport).toBeTruthy();
 
     const airline = component.getByText(
-      mockProps.flight.fields.Airline.toLocaleUpperCase(),
+      formatAirlineString(
+        mockProps.flight.fields.Airline.toLocaleUpperCase(),
+      ).trim(),
     );
     expect(airline).toBeTruthy();
 
@@ -142,7 +146,7 @@ describe("FlightTicket Tests", () => {
 
     //check that date is the same
     const date = component.getByText(
-      mockProps.flight.fields["Departure Date/Time"].split("T")[0],
+      formatDate(mockProps.flight.fields["Departure Date/Time"]),
     );
     expect(date).toBeTruthy();
 
@@ -158,7 +162,9 @@ describe("FlightTicket Tests", () => {
     expect(arrivingAirport).toBeTruthy();
 
     const airline = component.getByText(
-      mockProps.flight.fields.Airline.toLocaleUpperCase(),
+      formatAirlineString(
+        mockProps.flight.fields.Airline.toLocaleUpperCase(),
+      ).trim(),
     );
     expect(airline).toBeTruthy();
 

@@ -218,7 +218,7 @@ export const createTestFlightLegData = (
       ]),
       Airline: faker.helpers.arrayElement(AIRLINES),
       "BL - Departure Airport": faker.location.city(),
-      "Departure Date/Time": faker.date.recent().toISOString(),
+      "Departure Date/Time": faker.date.anytime().toString(),
       "BL - Arrival Airport": faker.location.city(),
       "Arrival Date/Time": faker.date.recent().toISOString(),
       "Nautical Miles": faker.number.int({
@@ -295,6 +295,13 @@ export const createTestFlightLegData = (
         max: 10000,
       }),
       "AirTable Record ID": faker.string.uuid(),
+      "Request AirTable Record ID": faker.helpers.arrayElements(
+        ["request1", "request2", "request3", "request4", "request5"],
+        faker.number.int({
+          min: 1,
+          max: 1,
+        }),
+      ),
       "Passenger AirTable Record IDs": faker.helpers.arrayElements(
         [faker.string.uuid(), faker.string.uuid(), faker.string.uuid()],
         faker.number.int({

@@ -26,6 +26,7 @@ export interface FlightLegData {
     "Total Cost": number;
     "Cost per PAX": number;
     "AirTable Record ID": string;
+    "Request AirTable Record ID": string[];
     "Passenger AirTable Record IDs": string | string[];
     "Log Airline Credit": {
       label: string;
