@@ -1,0 +1,41 @@
+.Sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+.TabNotSelected, .PlaneIcon {
+    display: inline-block;
+}
+
+
+
+.TabNotSelected {
+    display: flex;
+    flex-direction: column;
+    font-family: 'arial';
+    color: rgb(103, 99, 99);
+    background-color: white;
+    text-align: left;
+    border: none;
+    width: auto;
+    height: auto;
+    padding: 20px;
+}
+
+.TabSelected {
+    background-color: rgb(80, 76, 76)(23, 21, 21);
+    color:rgb(255, 255, 255);
+}
+
+@media (max-width: 700px) {
+    .Sidebar {
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+    .TabNotSelected {
+        flex-direction: row;
+        padding: auto;
+    }
+}
+

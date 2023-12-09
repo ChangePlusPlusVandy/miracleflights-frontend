@@ -1,7 +1,9 @@
 .appContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 10%;
   min-height: 100vh;
+  min-width: 100vw;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   color: #333;
@@ -12,4 +14,27 @@
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.sideBarContainer {
+  width: 20%;
+  height: auto;
+  align-self: center;
+}
+
+@media (max-width: 700px) {
+  .appContainer {
+    flex-direction: column; /* Change to column layout for small screens */
+    align-items: center; /* Center items horizontally */
+    justify-content: flex-start; /* Align items to the bottom */
+  }
+
+  .sideBarContainer {
+    width: 100%; /* Take full width */
+    height: auto; /* Adjust height automatically */
+    justify-self: flex-end;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-self: flex-end;
+  }
 }
