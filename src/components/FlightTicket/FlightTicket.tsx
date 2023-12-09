@@ -30,8 +30,6 @@ const FlightTicket = ({
     }
   };
 
-
-
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -83,33 +81,36 @@ const FlightTicket = ({
           </div>
 
           <div className={styles.detailsRow}>
-          <div className={styles.legTypeWithImage}>
-            <div className={styles.legType}>
-              <div className={styles.legTypeText}>
-                <Tag color={TagColor.GREY} text={flight.fields["Leg Type"].toLocaleUpperCase()} />
+            <div className={styles.legTypeWithImage}>
+              <div className={styles.legType}>
+                <div className={styles.legTypeText}>
+                  <Tag
+                    color={TagColor.GREY}
+                    text={flight.fields["Leg Type"].toLocaleUpperCase()}
+                  />
+                </div>
+                <div>{renderLegTypeIcon(flight.fields["Leg Type"])}</div>
               </div>
-              <div>{renderLegTypeIcon(flight.fields["Leg Type"])}</div>
-            </div>
-            <div className={styles.airline}>
-              {flight.fields.Airline.toLocaleUpperCase()}
+              <div className={styles.airline}>
+                {flight.fields.Airline.toLocaleUpperCase()}
+              </div>
             </div>
           </div>
+          <div
+            className={
+              isLastElement == false
+                ? styles.seeMoreRow
+                : styles.seeMoreRowNoBorder
+            }
+          >
+            <div>click to see more details</div>
+          </div>
         </div>
-        <div
-          className={
-            isLastElement == false
-              ? styles.seeMoreRow
-              : styles.seeMoreRowNoBorder
-          }
-        >
-          <div>click to see more details</div>
-        </div>
+        {isModalOpen && (
+          <FlightDetailsModal onClose={closeModal} flight={flight} />
+        )}
       </div>
-      {isModalOpen && (
-        <FlightDetailsModal onClose={closeModal} flight={flight} />
-      )}
     </div>
-    </div>  
   );
 };
 
