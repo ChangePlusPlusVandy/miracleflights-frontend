@@ -20,8 +20,8 @@ const Button = ({
       : variant === ButtonVariants.Regular
       ? 20
       : 25;
-            
-return (
+
+  return (
     <button
       className={buttonClassName}
       onClick={onClick}

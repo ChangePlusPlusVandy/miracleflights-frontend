@@ -1,16 +1,16 @@
 import styles from "./Tag.module.css";
-import { TagProps } from "./Tag.definitions";
+import { TagVariant, type TagProps, TagColor } from "./Tag.definitions";
 
 const Tag = ({
-    variant, // 'small', 'normal', 'large'
-    color, // 'green', 'yellow', 'red', 'blue', 'gray'
-    text,
+  variant = TagVariant.NORMAL,
+  color = TagColor.GREY,
+  text,
 }: TagProps) => {
-    return (
-        <div className={`${styles.tag} ${styles[variant]} ${styles[color]}`}>
-            {text}
-        </div>
-    );
+  return (
+    <div className={`${styles.tag} ${styles[variant]} ${styles[color]}`}>
+      {text}
+    </div>
+  );
 };
 
 export default Tag;

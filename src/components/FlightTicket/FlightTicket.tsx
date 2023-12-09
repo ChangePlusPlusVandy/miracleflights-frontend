@@ -1,5 +1,7 @@
 import styles from "./FlightTicket.module.css";
 import { FlightTicketColorVariant, LegType } from "./FlightTicket.definitions";
+import Tag from "../TagComponent/Tag";
+import { TagColor } from "../TagComponent/Tag.definitions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleArrowRight,
@@ -64,8 +66,12 @@ const FlightTicket = ({
 
         <div className={styles.detailsRow}>
           <div className={styles.legTypeWithImage}>
-            <div className={styles.legType}>{legType.toLocaleUpperCase()}</div>
-            {renderLegTypeIcon(legType)}
+            <div className={styles.legType}>
+              <div className={styles.legTypeText}>
+                <Tag color={TagColor.GREY} text={legType.toLocaleUpperCase()} />
+              </div>
+              <div>{renderLegTypeIcon(legType)}</div>
+            </div>
           </div>
           <div className={styles.airline}>{airline.toLocaleUpperCase()}</div>
         </div>

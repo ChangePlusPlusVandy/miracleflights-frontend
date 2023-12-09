@@ -116,6 +116,13 @@
 .legType {
   padding-right: 5px;
   padding-left: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.legTypeText {
+  padding-right: 5px;
 }
 
 .seeMoreRow {
