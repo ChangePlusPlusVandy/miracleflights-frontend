@@ -4,7 +4,6 @@ import type { FlightLegData } from "../../interfaces/flight-leg.interface";
 
 export interface FlightTicketProps {
   flight: FlightLegData;
-  colorVariant: FlightTicketColorVariant;
 }
 
 export enum LegType {

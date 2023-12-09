@@ -13,7 +13,7 @@ import {
 import { useState } from "react";
 import type { FlightTicketProps } from "./FlightTicket.definitions";
 
-const FlightTicket = ({ flight, colorVariant }: FlightTicketProps) => {
+const FlightTicket = ({ flight }: FlightTicketProps) => {
   const renderLegTypeIcon = (legType: string) => {
     if (legType === LegType.DEPARTURE) {
       return <FontAwesomeIcon icon={faPlaneDeparture} />;
@@ -23,6 +23,12 @@ const FlightTicket = ({ flight, colorVariant }: FlightTicketProps) => {
       return <FontAwesomeIcon icon={faPlaneArrival} />;
     }
   };
+
+  // const colorVariant =
+  //   flight.fields["Leg Type"] === LegType.DEPARTURE
+  //     ? FlightTicketColorVariant.RED
+  //     : FlightTicketColorVariant.BLUE;
+  const colorVariant = FlightTicketColorVariant.RED;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

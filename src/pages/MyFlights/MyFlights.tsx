@@ -1,6 +1,5 @@
 import styles from "./MyFlights.module.css";
 import FlightTicket from "../../components/FlightTicket/FlightTicket";
-import { FlightTicketColorVariant } from "../../components/FlightTicket/FlightTicket.definitions";
 import { createTestFlightLegData } from "../../util/test-data.util";
 import { formatTimeFrame } from "../../util/date.util";
 import type { FlightLegData } from "../../interfaces/flight-leg.interface";
@@ -87,11 +86,7 @@ const MyFlights = () => {
               </div>
               <div className={styles.tripContainer}>
                 {flightArray.map((flight: FlightLegData) => (
-                  <FlightTicket
-                    key={flight.id}
-                    flight={flight}
-                    colorVariant={FlightTicketColorVariant.RED}
-                  />
+                  <FlightTicket key={flight.id} flight={flight} />
                 ))}
               </div>
             </div>
@@ -110,11 +105,7 @@ const MyFlights = () => {
                 </div>
                 <div className={styles.tripContainer}>
                   {flightArray.map((flight: FlightLegData) => (
-                    <FlightTicket
-                      key={flight.id}
-                      flight={flight}
-                      colorVariant={FlightTicketColorVariant.BLUE}
-                    />
+                    <FlightTicket key={flight.id} flight={flight} />
                   ))}
                 </div>
               </div>
