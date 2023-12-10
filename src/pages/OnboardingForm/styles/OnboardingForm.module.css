@@ -32,13 +32,6 @@
   max-height: 75vh;
 }
 
-.currentQuestionContainer {
-  display: flex;
-  flex-direction: column;
-  width: 65%;
-  padding: 20px;
-}
-
 .questionsContainer {
   padding-left: 20px;
   padding-right: 20px;
@@ -50,26 +43,6 @@
   margin-bottom: 20px;
 }
 
-.inputContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  margin-bottom: 20px;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: left;
-  align-self: center;
-}
-
-.radioContainer {
-  display: flex;
-  justify-content: space-evenly;
-  width: 60%;
-  flex-direction: row;
-}
-
 .multiSelectContainer {
   display: flex;
   justify-content: space-evenly;
@@ -77,39 +50,10 @@
   flex-direction: column;
 }
 
-.numberSelectContainer {
-  display: flex;
-  width: 90%;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-}
-
-.numberInput {
-  margin-bottom: 5px;
-  height: 25px;
-  width: 40%;
-  font-family: "Roboto", sans-serif;
-  font-size: 1rem;
-}
-
 .labelText {
   font-size: 1.1rem;
   color: rgb(45 51, 68);
   text-align: left;
   margin-bottom: 1rem;
-  font-family: "Roboto", sans-serif;
-}
-
-.questionContainer {
-  width: 100%;
-  text-align: left;
-  margin-bottom: 15px;
-}
-
-.helperText {
-  font-size: 0.9rem;
-  color: rgb(45 51, 68);
-  text-align: left;
   font-family: "Roboto", sans-serif;
 }

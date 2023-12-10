@@ -1,7 +1,5 @@
-import styles from "./styles/IntroductionComponent.module.css";
-import miracleFlightsLogo from "../../assets/MiracleFlightsLogo.png";
-
-// interface IntroductionComponentProps {}
+import styles from "./IntroductionComponent.module.css";
+import miracleFlightsLogo from "../../../../src/assets/MiracleFlightsLogo.png";
 
 const IntroductionComponent = () => {
   return (

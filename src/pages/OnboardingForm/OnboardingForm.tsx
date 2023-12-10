@@ -21,19 +21,18 @@ const OnboardingForm = () => {
                 key={idx}
                 backgroundColor={idx % 2 === 0 ? "#fafbfc" : "#f0f0f0"}
                 setCurrentQuestion={setCurrentQuestion}
+                currentQuestion={currentQuestion}
               />
             );
           })}
         </div>
         <hr className={styles.formDivider} />
-        <div className={styles.currentQuestionContainer}>
-          <CurrentQuestion
-            number={currentQuestion}
-            promptText={questions[currentQuestion].promptText}
-            type={questions[currentQuestion].type}
-            setCurrentQuestion={setCurrentQuestion}
-          />
-        </div>
+        <CurrentQuestion
+          number={currentQuestion}
+          promptText={questions[currentQuestion]?.promptText}
+          type={questions[currentQuestion]?.type}
+          setCurrentQuestion={setCurrentQuestion}
+        />
 
         {/* <div className={styles.headerContainer}>
           <h1 className={styles.formTitle}>

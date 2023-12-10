@@ -1,6 +1,10 @@
 import styles from "./styles/QuestionContainer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faCheck,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface QuestionContainerProps {
   number: number;
@@ -8,6 +12,7 @@ interface QuestionContainerProps {
   backgroundColor?: string;
   answer?: string;
   setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
+  currentQuestion: number;
 }
 
 const QuestionContainer = ({
@@ -16,6 +21,7 @@ const QuestionContainer = ({
   backgroundColor = "#fff",
   answer = "",
   setCurrentQuestion,
+  currentQuestion,
 }: QuestionContainerProps) => {
   let answerComp;
   if (answer) {
@@ -23,6 +29,24 @@ const QuestionContainer = ({
   } else {
     answerComp = <div>{answer}</div>;
   }
+  let symbol;
+  if (
+    (answer && number !== currentQuestion) ||
+    (number !== currentQuestion && number === 0)
+  ) {
+    symbol = (
+      <FontAwesomeIcon icon={faCheck} size="lg" style={{ color: "#478f00" }} />
+    );
+  } else if (number === currentQuestion) {
+    // currently answering this question
+    symbol = <FontAwesomeIcon icon={faArrowRight} />;
+  } else {
+    // no answer has been selected & not current question
+    symbol = (
+      <FontAwesomeIcon icon={faXmark} size="lg" style={{ color: "#cf0707" }} />
+    );
+  }
+
   return (
     <div
       className={styles.questionContainer}
@@ -30,23 +54,7 @@ const QuestionContainer = ({
       onClick={() => setCurrentQuestion(number)}
     >
       <div className={styles.questionHeaderContainer}>
-        {answer ? (
-          <div className={styles.symbolContainer}>
-            <FontAwesomeIcon
-              icon={faCheck}
-              size="lg"
-              style={{ color: "#478f00" }}
-            />
-          </div>
-        ) : (
-          <div className={styles.symbolContainer}>
-            <FontAwesomeIcon
-              icon={faXmark}
-              size="lg"
-              style={{ color: "#cf0707" }}
-            />
-          </div>
-        )}
+        <div className={styles.symbolContainer}>{symbol}</div>
         <div className={styles.titleText}>
           {number === 0 ? "Introduction" : `Question ${number}`}
         </div>

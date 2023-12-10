@@ -1,8 +1,12 @@
-import { QuestionType } from "./FormQuestionsList";
-import IntroductionComponent from "./IntroductionComponent";
-import MultipleChoiceSelector from "./MultipleChoiceSelector";
-import MultipleSelect from "./MultipleSelect";
-import NumberInput from "./NumberInput";
+import { QuestionType, questions } from "./FormQuestionsList";
+import styles from "./styles/CurrentQuestion.module.css";
+import IntroductionComponent from "../../components/OnboardingFormComponents/IntroductionComponent/IntroductionComponent";
+import MultipleChoiceSelector from "../../components/OnboardingFormComponents/MultipleChoiceSelector/MultipleChoiceSelector";
+import MultipleSelect from "../../components/OnboardingFormComponents/MultipleSelect/MultipleSelect";
+import NumberInput from "../../components/OnboardingFormComponents/NumberInput/NumberInput";
+import NextPreviousButton, {
+  ButtonType,
+} from "../../components/OnboardingFormComponents/NextPreviousButton/NextPreviousButton";
 
 interface CurrentQuestionProps {
   number: number;
@@ -11,30 +15,48 @@ interface CurrentQuestionProps {
   setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
   options?: string[];
 }
+
 const CurrentQuestion = ({
   number,
   promptText,
   type,
+  setCurrentQuestion,
   options = [],
 }: CurrentQuestionProps) => {
-  console.log({ number, promptText, type, options });
+  if(number !== 0){
+    promptText = number + ". " + promptText
+  }
   return (
-    <div>
-      {number !== 0 && number}
-      {type === QuestionType.IntroToForm && <IntroductionComponent />}
-      {type === QuestionType.YesNoQuestion && (
-        <MultipleChoiceSelector
-          options={["Yes", "No"]}
-          promptText={promptText}
+    <div className={styles.currentQuestionContainer}>
+      <div className={styles.columnContainer}>
+        {type === QuestionType.IntroToForm && <IntroductionComponent />}
+        {type === QuestionType.YesNoQuestion && (
+          <MultipleChoiceSelector
+            options={["Yes", "No"]}
+            promptText={promptText}
+          />
+        )}
+        {type === QuestionType.MultiSelectQuestion && (
+          <MultipleSelect options={options} promptText={promptText} />
+        )}
+        {type === QuestionType.NumberInput && (
+          <NumberInput promptText={promptText} />
+        )}
+      </div>
+      <div className={styles.buttonsContainer}>
+        <NextPreviousButton
+          type={ButtonType.Previous}
+          currentQuestionIdx={number}
+          setCurrentQuestion={setCurrentQuestion}
+          disabled={type === QuestionType.IntroToForm}
         />
-      )}
-      {type === QuestionType.MultiSelectQuestion && (
-        <MultipleSelect options={options} promptText={promptText} />
-      )}
-      {type === QuestionType.NumberInput && (
-        <NumberInput promptText={promptText} />
-      )}
-      {/** Would perform some logic that depending on the type of question, imports/uses that type of component */}
+        <NextPreviousButton
+          type={ButtonType.Next}
+          currentQuestionIdx={number}
+          setCurrentQuestion={setCurrentQuestion}
+          disabled={number === questions.length - 1}
+        />
+      </div>
     </div>
   );
 };

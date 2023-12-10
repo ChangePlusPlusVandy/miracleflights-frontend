@@ -1,4 +1,4 @@
-import styles from "./styles/OnboardingForm.module.css";
+import styles from "../OnboardingFormInputStyles.module.css";
 
 interface MultipleChoiceSelectorProps {
   promptText: string;

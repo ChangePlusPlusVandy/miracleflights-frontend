@@ -1,0 +1,56 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: left;
+  align-self: center;
+}
+
+.questionContainer {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.labelText {
+  font-size: 1.3rem;
+  color: rgb(45 51, 68);
+  text-align: left;
+  margin-bottom: 1rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.radioContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 60%;
+  flex-direction: row;
+}
+
+.numberSelectContainer {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.numberInput {
+  margin-bottom: 5px;
+  height: 25px;
+  width: 40%;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+.helperText {
+  font-size: 0.9rem;
+  color: rgb(45 51, 68);
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+}
