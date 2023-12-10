@@ -8,7 +8,6 @@ const OnboardingForm = () => {
   // Passengers tab
   // have a state that manages the current question on the screen
   const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
-
   return (
     <div className={styles.pageContainer}>
       <div className={styles.formContainer}>
@@ -32,6 +31,7 @@ const OnboardingForm = () => {
           promptText={questions[currentQuestion]?.promptText}
           type={questions[currentQuestion]?.type}
           setCurrentQuestion={setCurrentQuestion}
+          options={questions[currentQuestion].options}
         />
 
         {/* <div className={styles.headerContainer}>

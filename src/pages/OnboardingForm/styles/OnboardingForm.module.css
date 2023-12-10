@@ -43,13 +43,6 @@
   margin-bottom: 20px;
 }
 
-.multiSelectContainer {
-  display: flex;
-  justify-content: space-evenly;
-  width: 90%;
-  flex-direction: column;
-}
-
 .labelText {
   font-size: 1.1rem;
   color: rgb(45 51, 68);

@@ -14,6 +14,7 @@ export interface Question {
   type: QuestionType;
   promptText: string;
   answer?: string;
+  options?: string[];
 }
 
 export const questions: Question[] = [
@@ -58,6 +59,17 @@ export const questions: Question[] = [
     type: QuestionType.MultiSelectQuestion,
     promptText:
       "What type(s) of government assistance are you currently receiving? Please select all that apply. You will need to upload proof of government assistance at the end of this application. If you are not currently receiving government assistance, please check “None”.",
+    options: [
+      "SNAP (Supplemental Nutritional Assistance Program)",
+      "TANF (Temporary Aid for Needy Families)",
+      "Medicaid (This refers exclusively to the official Medicaid program and does not include the receipt of government subsidies through the Affordable Care Act)",
+      "SSI (Supplemental Security Income): Note: Only check this box if you and/or a member of your household receive SSI and not any other type or form of benefits through the Social Security Administration.",
+      "Housing Choice Voucher Program (Section 8)",
+      "Headstart/Early Head Start",
+      "WIC (Women, Infants, and Children)",
+      "Unemployment (Note: Only check this box if unemployment is your household's ONLY form of income earned or unearned.)",
+      "None",
+    ],
   },
   {
     id: 7,
@@ -67,7 +79,7 @@ export const questions: Question[] = [
   },
   {
     id: 8,
-    type: QuestionType.TextResponseQuestion,
+    type: QuestionType.NumberInput,
     promptText: "How many people are in your household?",
   },
   {

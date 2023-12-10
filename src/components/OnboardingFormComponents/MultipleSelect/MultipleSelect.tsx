@@ -23,7 +23,7 @@ const MultipleSelect = ({
       <div className={styles.multiSelectContainer}>
         {options.map(function (answer, idx) {
           return (
-            <label key={idx} className={styles.labelText}>
+            <label key={idx} className={styles.multiSelectOptionText}>
               <input type="checkbox" value={answer} required multiple />
               {answer}
             </label>
