@@ -55,11 +55,11 @@ const Dashboard = () => {
       </form>
 
       <Select
+        name="select"
+        register={register}
+        label="Select"
         options={["option1", "option2"]}
         placeholder="Choose your option"
-        action={(selectedOption: string) => {
-          console.log(selectedOption);
-        }}
       />
     </>
   );

@@ -1,22 +1,19 @@
-import styles from "./SelectComponent.module.css";
-import { type SelectProps } from "./SelectComponent.definitions.tsx";
-// import { useForm, Controller } from "react-hook-form"
-import type { ChangeEvent, ReactElement } from "react";
+import style from "./SelectComponent.module.css";
+import type { ReactElement } from "react";
+import type { SelectProps } from "./SelectComponent.definitions.tsx";
 
 const Select = ({
-  options,
+  name,
+  register,
+  label,
   placeholder,
-  action,
+  options,
 }: SelectProps): ReactElement => {
-  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const selectedOption = event.target.value;
-    action(selectedOption);
-  };
-
   return (
-    <>
-      <div className={styles.selectWrapper}>
-        <select onChange={handleSelectChange}>
+    <form>
+      <div className={style.selectWrapper}>
+        {label && <label>{label}</label>}
+        <select {...register(name)}>
           {placeholder && <option value="">{placeholder}</option>}
           {options.map((option, index) => (
             <option key={index} value={option}>
@@ -25,7 +22,7 @@ const Select = ({
           ))}
         </select>
       </div>
-    </>
+    </form>
   );
 };
 
