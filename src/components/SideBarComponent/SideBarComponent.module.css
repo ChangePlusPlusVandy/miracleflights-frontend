@@ -1,41 +1,48 @@
-.Sidebar {
-    display: flex;
-    flex-direction: column;
-}
-
-.TabNotSelected, .PlaneIcon {
-    display: inline-block;
-}
-
-
-
 .TabNotSelected {
-    display: flex;
-    flex-direction: column;
-    font-family: 'arial';
-    color: rgb(103, 99, 99);
-    background-color: white;
-    text-align: left;
-    border: none;
-    width: auto;
-    height: auto;
-    padding: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  color: rgb(103, 99, 99);
+  border: none;
+  width: 100%;
+  height: fit-content;
+  padding-left: 20px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: none;
 }
 
 .TabSelected {
-    background-color: rgb(80, 76, 76)(23, 21, 21);
-    color:rgb(255, 255, 255);
+  width: 100%;
+  font-size: 24px;
+  color: rgb(255, 255, 255);
+  height: fit-content;
+  border: none;
+  padding-left: 20px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: none;
 }
 
-@media (max-width: 700px) {
-    .Sidebar {
-        flex-direction: row;
-        justify-content: flex-end;
-        align-items: flex-end;
-    }
-    .TabNotSelected {
-        flex-direction: row;
-        padding: auto;
-    }
+.SideBar {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 }
 
+.SideBarTitle {
+  font-family: "Inter", sans-serif;
+  color: rgb(103, 99, 99);
+  font-size: 18px;
+  font-weight: 400;
+  margin: 10px 10px;
+}
+
+.SidebarIcon {
+  height: 16px;
+  width: 16px;
+}

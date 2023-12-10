@@ -1,8 +1,8 @@
+/* eslint-disable autofix/no-unused-vars */
 import styles from "./SideBarComponent.module.css";
-import { PropsWithChildren, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faPlane } from "@fortawesome/free-solid-svg-icons";
 
 interface Tab {
@@ -21,15 +21,17 @@ enum Tabs {
 const renderTab = (
   tab: Tab,
   isSelected: boolean,
-  handleClick: (_: Tab) => void
+  handleClick: (_: Tab) => void,
+  index: number,
 ) => {
   return (
     <button
       className={isSelected ? styles.TabSelected : styles.TabNotSelected}
       onClick={() => handleClick(tab)}
+      key={index}
     >
-      <FontAwesomeIcon icon={faPlane as unknown as IconProp} />
-      {tab.title}
+      <FontAwesomeIcon icon={faPlane} className={styles.SidebarIcon} />
+      <div className={styles.SideBarTitle}>{tab.title}</div>
     </button>
   );
 };
@@ -72,7 +74,9 @@ const SideBar = () => {
 
   return (
     <div className={styles.SideBar}>
-      {allTabs.map((tab) => renderTab(tab, currentTab === tab, handleClick))}
+      {allTabs.map((tab, index) =>
+        renderTab(tab, currentTab.title === tab.title, handleClick, index),
+      )}
     </div>
   );
 };

@@ -12,7 +12,7 @@ const App = () => {
       <div className={styles.sideBarContainer}>
         <SideBar />
       </div>
-      <div>
+      <div className={styles.contentContainer}>
         <Outlet />
       </div>
     </div>
