@@ -1,0 +1,39 @@
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 200px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  top: 10%;
+}
+
+.exitIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.exitIcon:hover {
+  cursor: pointer;
+}
+
+.modalContent {
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}

@@ -14,18 +14,20 @@ export interface FlightLegData {
     "BL - Treatment Type": string;
     "BL - Site 1": string;
     Passengers: string[];
-    "Departure Airport": string[];
-    "Arrival Airport": string[];
+    "Departure Airport": string;
+    "Arrival Airport": string;
     "BL - Site 1 Links": string[];
     "Leg ID": string;
+    "Leg Type": string;
     "# of Linked PAX": number;
     "# of PAX": number;
     "Total Miles": number;
-    "Passenger Names": string;
+    "Passenger Names": string | string[];
     "Total Cost": number;
     "Cost per PAX": number;
     "AirTable Record ID": string;
-    "Passenger AirTable Record IDs": string;
+    "Request AirTable Record ID": string[];
+    "Passenger AirTable Record IDs": string | string[];
     "Log Airline Credit": {
       label: string;
       url: string;
