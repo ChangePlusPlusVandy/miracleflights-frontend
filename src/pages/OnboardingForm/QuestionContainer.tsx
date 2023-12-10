@@ -1,4 +1,6 @@
 import styles from "./styles/QuestionContainer.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 interface QuestionContainerProps {
   number: number;
@@ -28,15 +30,23 @@ const QuestionContainer = ({
       onClick={() => setCurrentQuestion(number)}
     >
       <div className={styles.questionHeaderContainer}>
-        {/* {answer ? (
+        {answer ? (
           <div className={styles.symbolContainer}>
-            <img src={checkMarkSymbol} alt="logo" className={styles.symbol} />
+            <FontAwesomeIcon
+              icon={faCheck}
+              size="lg"
+              style={{ color: "#478f00" }}
+            />
           </div>
         ) : (
           <div className={styles.symbolContainer}>
-            <img src={redXSymbol} alt="logo" sizes="small" />
+            <FontAwesomeIcon
+              icon={faXmark}
+              size="lg"
+              style={{ color: "#cf0707" }}
+            />
           </div>
-        )} */}
+        )}
         <div className={styles.titleText}>
           {number === 0 ? "Introduction" : `Question ${number}`}
         </div>

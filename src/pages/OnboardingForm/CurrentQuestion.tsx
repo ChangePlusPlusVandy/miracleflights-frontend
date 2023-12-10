@@ -1,4 +1,5 @@
 import { QuestionType } from "./FormQuestionsList";
+import IntroductionComponent from "./IntroductionComponent";
 import MultipleChoiceSelector from "./MultipleChoiceSelector";
 import MultipleSelect from "./MultipleSelect";
 import NumberInput from "./NumberInput";
@@ -19,8 +20,8 @@ const CurrentQuestion = ({
   console.log({ number, promptText, type, options });
   return (
     <div>
-      {number}
-      {type === QuestionType.IntroToForm && <div>INTRO</div>}
+      {number !== 0 && number}
+      {type === QuestionType.IntroToForm && <IntroductionComponent />}
       {type === QuestionType.YesNoQuestion && (
         <MultipleChoiceSelector
           options={["Yes", "No"]}
