@@ -1,17 +1,21 @@
+import styles from "./PassengerDetailsModal.module.css";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { PassengerDetailsModalProps } from "./PassengerDetailsModal.definitions";
-import "./PassengerDetailsModal.css";
 
 const PassengerDetailsModal = ({
   passenger,
   onClose,
 }: PassengerDetailsModalProps) => {
   return (
-    <div className="modal-bg">
-      <div className="modal-container">
-        <FontAwesomeIcon icon={faXmark} onClick={onClose} className="btn" />
-        <div className="passenger-details">
+    <div className={styles["modal-bg"]}>
+      <div className={styles["modal-container"]}>
+        <FontAwesomeIcon
+          icon={faXmark}
+          onClick={onClose}
+          className={styles["btn"]}
+        />
+        <div className={styles["passenger-details"]}>
           <p>
             <span>First Name:</span> {passenger.fields["First Name"]}
           </p>
