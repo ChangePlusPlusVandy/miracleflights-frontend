@@ -1,7 +1,9 @@
 import styles from "./NextPreviousButton.module.css";
 
 export enum ButtonType {
+  // eslint-disable-next-line autofix/no-unused-vars
   Next,
+  // eslint-disable-next-line autofix/no-unused-vars
   Previous,
 }
 

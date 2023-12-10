@@ -23,8 +23,8 @@ const CurrentQuestion = ({
   setCurrentQuestion,
   options = [],
 }: CurrentQuestionProps) => {
-  if(number !== 0){
-    promptText = number + ". " + promptText
+  if (number !== 0) {
+    promptText = number + ". " + promptText;
   }
   return (
     <div className={styles.currentQuestionContainer}>
