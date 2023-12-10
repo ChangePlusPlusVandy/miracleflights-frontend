@@ -1,6 +1,6 @@
-import { PassengerDetailsModalProps } from "./PassengerDetailsModal.definitions";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { PassengerDetailsModalProps } from "./PassengerDetailsModal.definitions";
 import "./PassengerDetailsModal.css";
 
 const PassengerDetailsModal = ({
