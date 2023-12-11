@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlane } from "@fortawesome/free-solid-svg-icons";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 interface Tab {
   title: Tabs;
@@ -27,7 +27,11 @@ const renderTab = (
 ) => {
   return (
     <button
-      className={isSelected ? styles.TabSelected : styles.TabNotSelected}
+      className={
+        isSelected
+          ? `${styles.TabSelected} ${styles.Tab}`
+          : `${styles.TabUnselected} ${styles.Tab}`
+      }
       onClick={() => handleClick(tab)}
       key={index}
     >

@@ -1,4 +1,4 @@
-.TabNotSelected {
+.Tab {
   font-family: "Inter", sans-serif;
   font-size: 24px;
   color: rgb(103, 99, 99);
@@ -6,25 +6,27 @@
   width: 100%;
   height: fit-content;
   padding-left: 20px;
-
   display: flex;
   justify-content: flex-start;
   align-items: center;
   background: none;
+  margin-bottom: 10px;
+
+  transition: 0.2s ease-in-out;
 }
 
-.TabSelected {
-  width: 100%;
-  font-size: 24px;
-  color: rgb(255, 255, 255);
-  height: fit-content;
-  border: none;
-  padding-left: 20px;
+.Tab:hover {
+  background-color: rgb(206, 206, 206);
+  border-radius: 10px;
+  cursor: pointer;
+}
 
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background: none;
+/* .TabNotSelected {
+} */
+
+.TabSelected {
+  background-color: rgb(199, 199, 199) !important;
+  border-radius: 10px;
 }
 
 .SideBar {
