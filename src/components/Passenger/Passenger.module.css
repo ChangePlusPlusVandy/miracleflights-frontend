@@ -50,14 +50,8 @@
 
 .viewAllInfo {
   width: 100%;
-  font-size: 1rem;
-  font-weight: normal;
-  color: rgb(248, 237, 237);
-  background-color: rgb(231, 134, 134);
-  margin-bottom: 1rem;
-  padding: 0.5rem 4rem;
-  border-radius: 1rem;
   align-items: center;
-  box-shadow: 2px 2px 5px rgb(106, 99, 99);
-  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -3,6 +3,11 @@ import { formatDate, getAge } from "../../util/date.util";
 import PassengerDetailsModal from "../../modals/PassengerDetailsModal/PassengerDetailsModal";
 import Tag from "../TagComponent/Tag";
 import { TagColor, TagVariant } from "../TagComponent/Tag.definitions";
+import Button from "../ButtonComponent/ButtonComponent";
+import {
+  ButtonColor,
+  ButtonVariant,
+} from "../ButtonComponent/ButtonComponent.definitions";
 import { useState } from "react";
 import type { PassengerProps } from "./Passenger.definitions";
 
@@ -40,14 +45,19 @@ const Passenger = ({ passenger }: PassengerProps) => {
         </span>
         {")"}
       </div>
-      <div>
-        <button
-          className={styles.viewAllInfo}
+
+      <div className={styles.viewAllInfo}>
+        <Button
+          text="View All Information"
           onClick={() => setIsModalOpen(true)}
-        >
-          View All Information
-        </button>
+          loading={false}
+          disabled={false}
+          variant={ButtonVariant.Compact}
+          color={ButtonColor.Red}
+          extraStyles={{ fontWeight: 300, fontSize: 16 }}
+        />
       </div>
+
       {isModalOpen && (
         <PassengerDetailsModal
           onClose={handleCloseModal}
