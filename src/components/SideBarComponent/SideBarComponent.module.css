@@ -1,50 +1,121 @@
-.Tab {
+.TabOpen {
   font-family: "Inter", sans-serif;
-  font-size: 24px;
   color: rgb(103, 99, 99);
   border: none;
   width: 100%;
-  height: fit-content;
+  height: 38px;
   padding-left: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   background: none;
   margin-bottom: 10px;
-
-  transition: 0.2s ease-in-out;
+  border-radius: 4px;
 }
 
-.Tab:hover {
-  background-color: rgb(206, 206, 206);
-  border-radius: 10px;
+.TabClosed {
+  font-family: "Inter", sans-serif;
+  color: rgb(103, 99, 99);
+  border: none;
+  width: 100%;
+  height: 38px;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  background: none;
+  border-radius: 4px;
+}
+
+.TabUnselected {
+  transition: 0.2s ease-in-out background-color;
+}
+
+.TabUnselected:hover {
   cursor: pointer;
+  background-color: rgb(237, 237, 237);
 }
-
-/* .TabNotSelected {
-} */
 
 .TabSelected {
-  background-color: rgb(199, 199, 199) !important;
-  border-radius: 10px;
+  background-color: rgb(255, 226, 226);
+  color: rgb(185, 94, 94);
+  transition: 0.2s ease-in-out background-color;
 }
-
-.SideBar {
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+.SideBarLinks {
   width: 100%;
 }
 
-.SideBarTitle {
+.SideBarOpen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  width: 30vw;
+  min-width: 225px;
+  max-width: 300px;
+}
+
+.SideBarClosed {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  width: 5vw;
+  min-width: 50px;
+  max-width: 100px;
+}
+
+.SideBarTitleSelected {
+  font-family: "Inter", sans-serif;
+  color: rgb(229, 106, 106);
+  font-size: 12px;
+  font-weight: 600;
+  margin: 10px 10px;
+}
+
+.SideBarTitleUnselected {
   font-family: "Inter", sans-serif;
   color: rgb(103, 99, 99);
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 600;
   margin: 10px 10px;
 }
 
 .SidebarIcon {
   height: 16px;
   width: 16px;
+}
+
+.sideBarToggleArrowContainerOpen {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sideBarToggleArrowContainerClosed {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.sideBarToggleArrow {
+  background: none;
+  border: none;
+  font-size: 20px;
+  padding: 5px 10px;
+  color: rgb(103, 99, 99);
+  transition: 0.2s ease-in-out background-color;
+}
+
+.sideBarToggleArrow:hover {
+  cursor: pointer;
+  background-color: rgb(243, 243, 243);
+  border-radius: 8px;
 }
