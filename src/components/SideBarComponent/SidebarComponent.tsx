@@ -1,5 +1,5 @@
-/* eslint-disable autofix/no-unused-vars */
 import styles from "./SideBarComponent.module.css";
+import { Tabs, type Tab } from "./SideBarComponent.definitions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,21 +12,6 @@ import {
   faPlane,
   faTicket,
 } from "@fortawesome/free-solid-svg-icons";
-import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-
-interface Tab {
-  title: Tabs;
-  link: string;
-  icon: IconDefinition;
-}
-
-enum Tabs {
-  DASHBOARD = "Dashboard",
-  REQUEST = "Request a Flight",
-  MYFLIGHTS = "My Flights",
-  PERSONALINFO = "Personal Info",
-  PASSENGERS = "Passengers",
-}
 
 const renderTab = (
   tab: Tab,
