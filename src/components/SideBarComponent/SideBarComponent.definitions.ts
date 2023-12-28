@@ -1,10 +1,10 @@
 /* eslint-disable autofix/no-unused-vars */
-import type { IconProp } from "@fortawesome/fontawesome-svg-core";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export interface Tab {
   title: Tabs;
   link: string;
-  icon: IconProp;
+  icon: IconDefinition;
 }
 
 export enum Tabs {
