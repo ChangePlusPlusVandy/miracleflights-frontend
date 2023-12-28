@@ -12,37 +12,77 @@ exports[`Tabs Tests Test snapshots 1`] = `
         class="tabSelected"
         type="button"
       >
-        One
+        General
       </button>
       <button
         class="tab"
         type="button"
       >
-        Two
+        Medical
       </button>
       <button
         class="tab"
         type="button"
       >
-        Three
+        Financial
       </button>
       <button
         class="tab"
         type="button"
       >
-        Four
-      </button>
-      <button
-        class="tab"
-        type="button"
-      >
-        Five
+        Flight History
       </button>
     </div>
     <div
-      class="tabPanel"
+      class="tabPanels"
     >
-      hello i am 1
+      <div>
+        <div
+          class="InfoBox"
+        >
+          Full Name: John Doe
+        </div>
+        <div
+          class="InfoBox"
+        >
+          Street: 123 Main St
+        </div>
+        <div
+          class="InfoBox"
+        >
+          Country: USA
+        </div>
+        <div
+          class="InfoBox"
+        >
+          Email Address: test@test.com
+        </div>
+        <div
+          class="InfoBox"
+        >
+          Type of Passenger: Patient
+        </div>
+        <div
+          class="InfoBox"
+        >
+          Military Service Status: Yes
+        </div>
+        <div
+          class="InfoBox"
+        >
+          Military Member Status: Yes
+        </div>
+        <div
+          class="InfoBox"
+        >
+          Date Created: 2021-09-13
+        </div>
+        <div
+          class="InfoBox"
+        >
+          How did you hear about us?: Internet
+        </div>
+      </div>
     </div>
   </div>
 </div>

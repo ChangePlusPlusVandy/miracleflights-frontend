@@ -43,8 +43,19 @@
   transition: 200ms ease-in-out;
 }
 
-.tabPanel {
-  display: flex;
+.tabPanels {
+  display: flex-start;
   justify-content: center;
   font-weight: bold;
+}
+
+.InfoBox {
+  flex-direction: column;
+  width: 270px;
+  font-family: "Roboto", sans-serif;
+  box-shadow: 0px 5px 5px #949494;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 10px;
+  background-color: #cf2e2e;
 }

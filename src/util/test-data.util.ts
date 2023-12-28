@@ -70,7 +70,7 @@ export const createTestPassengerData = (
       "Military Member": faker.helpers.arrayElements(
         ["Self", "Spouse", "Mother", "Father", "Other"],
         faker.number.int({
-          min: 1,
+          min: 0,
           max: 3,
         }),
       ),
@@ -78,7 +78,7 @@ export const createTestPassengerData = (
         ["Social Media", "Internet Search", "Friend or Family", "Other"],
         faker.number.int({
           min: 1,
-          max: 4,
+          max: 1,
         }),
       ),
       "BL - Account Number": faker.finance.accountNumber(),
