@@ -1,5 +1,5 @@
 import Button from "../ButtonComponent";
-import { ButtonColors, ButtonVariants } from "../ButtonComponent.definitions";
+import { ButtonColor, ButtonVariant } from "../ButtonComponent.definitions";
 import { render } from "@testing-library/react";
 const onClick = jest.fn();
 
@@ -8,8 +8,8 @@ describe("ButtonComponent Tests", () => {
   test("Test Button component to render", () => {
     const component = render(
       <Button
-        variant={ButtonVariants.Regular}
-        color={ButtonColors.Blue}
+        variant={ButtonVariant.Regular}
+        color={ButtonColor.Blue}
         onClick={onClick}
         text="Test Button"
         loading={true}

@@ -1,20 +1,21 @@
 /* eslint-disable autofix/no-unused-vars */
 export interface ButtonProps {
-  variant: "Compact" | "Regular" | "Large";
-  color: ButtonColors;
+  variant?: ButtonVariant;
+  color?: ButtonColor;
   onClick: () => void;
   text: string;
-  loading: boolean;
-  disabled: boolean;
+  loading?: boolean;
+  disabled?: boolean;
+  extraStyles?: React.CSSProperties;
 }
 
-export enum ButtonVariants {
+export enum ButtonVariant {
   Compact = "Compact",
   Regular = "Regular",
   Large = "Large",
 }
 
-export enum ButtonColors {
+export enum ButtonColor {
   Blue = "Blue",
   Yellow = "Yellow",
   Green = "Green",
