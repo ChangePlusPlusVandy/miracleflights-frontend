@@ -1,15 +1,32 @@
 .appContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 20px;
   min-height: 100vh;
+  width: 100vw;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   color: #333;
-  line-height: 1.5;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.sideBarContainer {
+  width: fit-content;
+  height: 92vh;
+  padding: 20px;
+  align-self: center;
+  background-color: #ffffff;
+  border-right: 1px solid #e8e8e8;
+}
+
+.contentContainer {
+  width: 80vw;
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
