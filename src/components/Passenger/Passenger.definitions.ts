@@ -1,18 +1,10 @@
+import type { PassengerData } from "../../interfaces/passenger.interface";
+
 /**
  * Passenger Props
  *
- * @property {string} firstName
- * @property {string} lastName
- * @property {string} email
- * @property {string} relationship
- * @property {string} userType
- * @property {string} dateOfBirth
+ * @property {PassengerData} passenger - Passenger data
  */
 export interface PassengerProps {
-  firstName: string;
-  lastName: string;
-  email: string;
-  relationship: string;
-  userType: string;
-  dateOfBirth: string;
+  passenger: PassengerData;
 }

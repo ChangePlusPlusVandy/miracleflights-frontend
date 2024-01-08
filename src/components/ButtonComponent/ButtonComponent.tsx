@@ -1,23 +1,25 @@
 import styles from "./ButtonComponent.module.css";
 import {
-  ButtonVariants,
+  ButtonVariant,
   type ButtonProps,
+  ButtonColor,
 } from "./ButtonComponent.definitions";
 import { MoonLoader } from "react-spinners";
 
 const Button = ({
-  variant,
-  color,
+  variant = ButtonVariant.Regular,
+  color = ButtonColor.Blue,
   onClick,
   text,
-  loading,
-  disabled,
+  loading = false,
+  disabled = false,
+  extraStyles = {},
 }: ButtonProps) => {
   const buttonClassName = `${styles.button} ${styles[variant]} ${styles[color]}`;
   const loaderSize =
-    variant === ButtonVariants.Compact
+    variant === ButtonVariant.Compact
       ? 15
-      : variant === ButtonVariants.Regular
+      : variant === ButtonVariant.Regular
       ? 20
       : 25;
 
@@ -26,6 +28,7 @@ const Button = ({
       className={buttonClassName}
       onClick={onClick}
       disabled={disabled || loading}
+      style={{ ...extraStyles }}
     >
       {text}
       {loading && (

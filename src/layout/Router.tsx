@@ -14,42 +14,44 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "/sign-up",
-    element: <SignUp />,
-  },
-  {
-    path: "/sign-in",
-    element: <SignIn />,
-  },
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
-  },
-  {
-    path: "/request",
-    element: <RequestFlight />,
-  },
-  {
-    path: "/my-flights",
-    element: <MyFlights />,
-  },
-  {
-    path: "/personal-info",
-    element: <PersonalInfo />,
-  },
-  {
-    path: "/example",
-    element: <ExamplePage />,
-  },
-  {
-    path: "/onboarding-form",
-    element: <OnboardingForm />,
-  },
-  {
-    path: "/passengers",
-    element: <Passengers />,
+    children: [
+      {
+        path: "/sign-up",
+        element: <SignUp />,
+      },
+      {
+        path: "/sign-in",
+        element: <SignIn />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/request",
+        element: <RequestFlight />,
+      },
+      {
+        path: "/my-flights",
+        element: <MyFlights />,
+      },
+      {
+        path: "/personal-info",
+        element: <PersonalInfo />,
+      },
+      {
+        path: "/example",
+        element: <ExamplePage />,
+      },
+      {
+        path: "/passengers",
+        element: <Passengers />,
+      },
+      {
+        path: "/onboarding-form",
+        element: <OnboardingForm />,
+      },
+    ],
   },
 ]);
 
