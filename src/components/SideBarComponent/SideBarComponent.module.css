@@ -68,8 +68,8 @@
   height: 100%;
   flex-grow: 1;
   width: 5vw;
-  min-width: 50px;
-  max-width: 100px;
+  min-width: 40px;
+  max-width: 60px;
 }
 
 .SideBarTitleSelected {
