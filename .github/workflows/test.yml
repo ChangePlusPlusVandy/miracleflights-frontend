@@ -33,6 +33,10 @@ jobs:
   prettier-check:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [19.x]
+
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -49,6 +53,10 @@ jobs:
   eslint-check:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [19.x]
+
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -64,6 +72,10 @@ jobs:
     
   typescript-check:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [19.x]
 
     steps:
       - uses: actions/checkout@v3
