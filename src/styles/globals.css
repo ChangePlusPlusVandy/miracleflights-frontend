@@ -24,35 +24,15 @@
 /* Fonts */
 html,
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Bai Jamjuree", sans-serif;
   margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
 }
 
 body {
   font-size: 16px;
   background-color: var(--miracle-color-light);
-}
-
-/* Background Colors */
-.app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  color: var(--miracle-color-dark);
-  font-weight: 100;
-}
-
-p {
-  line-height: 24px;
-}
-
-/* Utility for Text and Background Colors */
-.text-color {
-  color: var(--miracle-color-dark);
-}
-
-.background-color {
-  background-color: var(--miracle-color-dark-25);
 }
 
 /* Headings */
