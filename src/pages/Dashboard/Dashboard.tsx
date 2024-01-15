@@ -1,4 +1,5 @@
 import CustomInput from "../../components/InputComponent/InputComponent";
+import Select from "../../components/SelectComponent/SelectComponent";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
 
@@ -49,6 +50,13 @@ const Dashboard = () => {
           label="Password"
           type="password"
           placeholder="Password"
+        />
+        <Select
+          name="Select"
+          register={register}
+          label="Select"
+          placeholder="Select"
+          options={["Option 1", "Option 2", "Option 3"]}
         />
         <button type="submit">Submit</button>
       </form>
