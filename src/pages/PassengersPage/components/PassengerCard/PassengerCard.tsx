@@ -1,18 +1,18 @@
-import styles from "./Passenger.module.css";
+import styles from "./PassengerCard.module.css";
 import { formatDate, getAge } from "../../../../util/date.util";
 import PassengerDetailsModal from "../PassengerDetailsModal/PassengerDetailsModal";
-import Tag from "../../../../components/TagComponent/Tag";
+import Tag from "../../../../components/Tag/Tag";
 import {
   TagColor,
   TagVariant,
-} from "../../../../components/TagComponent/Tag.definitions";
-import Button from "../../../../components/ButtonComponent/ButtonComponent";
+} from "../../../../components/Tag/Tag.definitions";
+import Button from "../../../../components/Button/Button";
 import {
   ButtonColor,
   ButtonVariant,
-} from "../../../../components/ButtonComponent/ButtonComponent.definitions";
+} from "../../../../components/Button/Button.definitions";
 import { useState } from "react";
-import type { PassengerProps } from "./Passenger.definitions";
+import type { PassengerProps } from "./PassengerCard.definitions";
 
 /**
  * Passenger component - a simple component that holds passenger details
@@ -23,7 +23,7 @@ import type { PassengerProps } from "./Passenger.definitions";
  * @property {string} userType
  * @property {string} dateOfBirth
  */
-const Passenger = ({ passenger }: PassengerProps) => {
+const PassengerCard = ({ passenger }: PassengerProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCloseModal = () => {
@@ -53,11 +53,9 @@ const Passenger = ({ passenger }: PassengerProps) => {
         <Button
           text="View All Information"
           onClick={() => setIsModalOpen(true)}
-          loading={false}
-          disabled={false}
-          variant={ButtonVariant.Compact}
+          variant={ButtonVariant.Regular}
           color={ButtonColor.Red}
-          extraStyles={{ fontWeight: 300, fontSize: 16 }}
+          extraStyles={{ width: "100%" }}
         />
       </div>
 
@@ -71,4 +69,4 @@ const Passenger = ({ passenger }: PassengerProps) => {
   );
 };
 
-export default Passenger;
+export default PassengerCard;

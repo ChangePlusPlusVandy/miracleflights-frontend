@@ -1,5 +1,5 @@
-import CustomInput from "../../components/InputComponent/InputComponent";
-import Select from "../../components/SelectComponent/SelectComponent";
+import Input from "../../components/Input/Input";
+import Select from "../../components/Select/Select";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
 
@@ -35,7 +35,7 @@ const DashboardPage = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <CustomInput
+        <Input
           name="Email"
           register={register}
           error={errors[FormValueNames.email]?.message}
@@ -43,7 +43,7 @@ const DashboardPage = () => {
           type="text"
           placeholder="Email"
         />
-        <CustomInput
+        <Input
           name="Password"
           register={register}
           error={errors[FormValueNames.email]?.message}

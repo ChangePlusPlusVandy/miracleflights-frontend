@@ -2,7 +2,7 @@
 export interface ButtonProps {
   variant?: ButtonVariant;
   color?: ButtonColor;
-  onClick: () => void;
+  onClick?: () => void;
   text: string;
   loading?: boolean;
   disabled?: boolean;

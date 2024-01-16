@@ -1,7 +1,7 @@
 import styles from "./FlightTicket.module.css";
 import { FlightTicketColorVariant, LegType } from "./FlightTicket.definitions";
-import Tag from "../../../../components/TagComponent/Tag";
-import { TagColor } from "../../../../components/TagComponent/Tag.definitions";
+import Tag from "../../../../components/Tag/Tag";
+import { TagColor } from "../../../../components/Tag/Tag.definitions";
 import FlightDetailsModal from "../FlightDetailsModal/FlightDetailsModal";
 import { formatDate } from "../../../../util/date.util";
 import { formatAirlineString } from "../../../../util/flight.util";
