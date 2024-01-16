@@ -1,6 +1,6 @@
 import styles from "./App.module.css";
+import SideBar from "./SideBar/Sidebar";
 import { createTestPassengerData } from "../util/test-data.util";
-import SideBar from "../components/SideBarComponent/SidebarComponent";
 import { Outlet } from "react-router-dom";
 
 const App = () => {
