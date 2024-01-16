@@ -1,6 +1,6 @@
 import { getAge } from "../../../../../util/date.util";
 import { createTestPassengerData } from "../../../../../util/test-data.util";
-import Passenger from "../Passenger";
+import PassengerCard from "../PassengerCard";
 import { render } from "@testing-library/react";
 
 describe("Passenger", () => {
@@ -9,7 +9,7 @@ describe("Passenger", () => {
       passenger: createTestPassengerData(),
     };
 
-    const component = render(<Passenger {...mockProps} />);
+    const component = render(<PassengerCard {...mockProps} />);
     expect(component).toBeTruthy();
 
     expect(component.getByText("PASSENGER")).toBeTruthy();

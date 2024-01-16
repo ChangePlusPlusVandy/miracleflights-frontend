@@ -1,28 +1,19 @@
 .button {
   font-family: "Inter", sans-serif;
-  font-weight: 600;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   border: none;
-  border-radius: 10px;
-  border-radius: 10px;
+  border-radius: var(--border-radius-small);
   cursor: pointer;
-  transition: 0.3s ease-in-out;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+  transition: var(--transition-duration-long) ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-}
-
-.button:hover {
-  transform: translateY(-1px);
-  transition: 0.3s ease-in-out;
-  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.3);
+  width: fit-content;
 }
 
 .buttonText {
   visibility: visible;
-  margin-right: 10px;
+  margin-right: 0.625rem;
 }
 
 /* Hides the text when loading */
@@ -37,52 +28,52 @@
   align-items: center;
   position: absolute;
   height: 100%;
-  width: 30px;
-  right: 10px;
+  width: 2rem;
+  right: 0.625rem;
 }
 
 .Compact {
-  padding: 5px 10px;
-  font-size: 18px;
+  padding: 0.3125rem 0.625rem;
+  font-size: 1.125rem;
 }
 
 .Regular {
-  padding: 10px 20px;
-  font-size: 20px;
+  padding: 0.625rem 1.25rem;
+  font-size: 1.25rem;
 }
 
 .Large {
-  padding: 15px 20px;
-  font-size: 26px;
+  padding: 0.9375rem 1.25rem;
+  font-size: 1.625rem;
 }
 
 .Blue {
-  background-color: rgb(68, 131, 198);
+  background-color: var(--miracle-color-blue);
   color: white;
 }
 
 .Yellow {
-  background-color: rgb(255, 255, 105);
+  background-color: var(--miracle-color-yellow);
   color: black;
 }
 
 .Green {
-  background-color: rgb(119, 237, 119);
+  background-color: var(--miracle-color-green);
   color: white;
 }
 
 .Grey {
-  background-color: rgb(98, 98, 98);
+  background-color: var(--miracle-color-medium-dark);
   color: white;
 }
 
 .Red {
-  background-color: rgb(250, 117, 117);
+  background-color: var(--miracle-color-red);
   color: white;
 }
 
 .Black {
-  background-color: black;
+  background-color: var(--miracle-color-dark);
   color: white;
 }
 
@@ -95,5 +86,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 10px;
+  padding-left: 0.625rem;
 }

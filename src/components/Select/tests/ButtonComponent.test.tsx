@@ -1,4 +1,4 @@
-import Select from "../SelectComponent";
+import Select from "../Select";
 import { render } from "@testing-library/react";
 
 describe("SelectComponent Tests", () => {

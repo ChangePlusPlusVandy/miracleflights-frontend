@@ -1,18 +1,18 @@
-import styles from "./InputComponent.module.css";
-import type { ReusableInputProps } from "./InputComponent.definitions";
+import styles from "./Input.module.css";
+import type { ReusableInputProps } from "./Input.definitions";
 
-const CustomInput = ({
+const Input = ({
   name,
   register,
   error,
   label,
-  type,
+  type = "text",
   placeholder,
 }: ReusableInputProps) => {
   return (
     <div className={styles["form-field"]}>
       <div className={styles["label-and-error"]}>
-        <p className={styles["label"]}>{label}</p>
+        {label && <p className={styles["label"]}>{label}</p>}
         {error && <p className={styles["error-text"]}>{"(" + error + ")"}</p>}
       </div>
       <input placeholder={placeholder} type={type} {...register(name)} />
@@ -20,4 +20,4 @@ const CustomInput = ({
   );
 };
 
-export default CustomInput;
+export default Input;

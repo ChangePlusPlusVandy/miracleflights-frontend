@@ -1,0 +1,40 @@
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.selectWrapper label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin: 0rem 0rem 0.125rem 0.3125rem;
+  color: var(--miracle-color-medium-dark);
+}
+
+.selectWrapper select {
+  font-family: "Inter", sans-serif;
+  max-width: 100%;
+  padding: 0.5rem;
+  border: 0.0625rem solid var(--miracle-color-medium);
+  font-size: 1rem;
+  transition: var(--transition-duration-short) ease-in-out;
+  color: var(--miracle-color-dark);
+  font-weight: 400;
+  outline: none;
+  height: fit-content;
+  width: 100%;
+}
+
+.selectWrapper select:focus {
+  outline: none;
+  border: 0.0625rem solid var(--miracle-color-red-extra-dark);
+  transition: var(--transition-duration-short) ease-in-out;
+}
+
+.selectWrapper select:hover {
+  outline: none;
+  border: 0.0625rem solid var(--miracle-color-red-extra-dark);
+  transition: var(--transition-duration-short) ease-in-out;
+}

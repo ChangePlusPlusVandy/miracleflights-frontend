@@ -1,9 +1,9 @@
-import styles from "./ButtonComponent.module.css";
+import styles from "./Button.module.css";
 import {
   ButtonVariant,
   type ButtonProps,
   ButtonColor,
-} from "./ButtonComponent.definitions";
+} from "./Button.definitions";
 import { MoonLoader } from "react-spinners";
 
 const Button = ({
@@ -30,7 +30,7 @@ const Button = ({
       disabled={disabled || loading}
       style={{ ...extraStyles }}
     >
-      {text}
+      <h4>{text}</h4>
       {loading && (
         <div className={styles.spinner}>
           <MoonLoader size={loaderSize} color="#FFFFFF" />

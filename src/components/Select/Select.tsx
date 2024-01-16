@@ -1,6 +1,6 @@
-import style from "./SelectComponent.module.css";
+import style from "./Select.module.css";
 import type { ReactElement } from "react";
-import type { SelectProps } from "./SelectComponent.definitions.tsx";
+import type { SelectProps } from "./Select.definitions.ts";
 
 const Select = ({
   name,

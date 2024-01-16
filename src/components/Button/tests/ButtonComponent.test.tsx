@@ -1,5 +1,5 @@
-import Button from "../ButtonComponent";
-import { ButtonColor, ButtonVariant } from "../ButtonComponent.definitions";
+import Button from "../Button";
+import { ButtonColor, ButtonVariant } from "../Button.definitions";
 import { render } from "@testing-library/react";
 const onClick = jest.fn();
 
