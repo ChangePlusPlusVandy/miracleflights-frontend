@@ -9,6 +9,10 @@
 
 .logo {
   align-self: flex-start; /* Align the logo to the top left */
+  width: 180px;
+  height: 100px;
+  margin-left: 32px;
+  margin-top: 24px;
 }
 
 .loginContainer {
