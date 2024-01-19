@@ -54,12 +54,7 @@
 .loginInputContainerUpper,
 .loginInputContainerLower {
   width: 100%;
-}
-
-.loginInputLabel {
-  font-size: 12px;
-  color: var(--miracle-color-medium);
-  margin-bottom: 6px;
+  margin-bottom: 16px;
 }
 
 .loginInput {
@@ -85,12 +80,11 @@
 .passwordToggle {
   cursor: pointer;
   display: flex;
-  /* margin: -33px 10px 0 auto; */
   color: var(--miracle-color-medium-dark);
 }
 
 .Icon {
-  margin: -33px 10px 0 auto;
+  margin: -30px 10px 0 auto;
 }
 
 .forgotPassword {

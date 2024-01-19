@@ -1,14 +1,40 @@
 import styles from "./Login.module.css";
 import Button from "../../components/Button/Button";
 import Icon from "../../components/CustomIcon/Icon";
+import Input from "../../components/Input/Input";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const Submit = () => {
     console.log("Submitted");
   };
+  // eslint-disable-next-line autofix/no-unused-vars
+  enum FormValueNames {
+    // eslint-disable-next-line autofix/no-unused-vars
+    email = "email",
+    // eslint-disable-next-line autofix/no-unused-vars
+    password = "password",
+  }
+
+  interface FormValues {
+    email: string;
+    password: string;
+  }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
+    defaultValues: {
+      [FormValueNames.email]: "",
+      [FormValueNames.password]: "",
+    },
+  });
+
   return (
     <>
       <img
@@ -26,22 +52,30 @@ const Login = () => {
               Sign up
             </Link>
           </div>
-          <form className={styles.loginBlockContent}>
+          <form
+            onSubmit={handleSubmit(Submit)}
+            className={styles.loginBlockContent}
+          >
             <div className={styles.loginInputContainerUpper}>
-              <div className={styles.loginInputLabel}>Username</div>
-              <input
-                className={styles.loginInput}
+              <Input
+                name="Email"
+                register={register}
+                error={errors[FormValueNames.email]?.message}
+                label="Email"
                 type="text"
-                placeholder="Enter your username"
+                placeholder="Email"
               />
             </div>
             <div className={styles.loginInputContainerLower}>
-              <div className={styles.loginInputLabel}>Password</div>
-              <input
-                className={styles.loginInput}
+              <Input
+                name="Email"
+                register={register}
+                error={errors[FormValueNames.email]?.message}
+                label="Email"
                 type={passwordVisible ? "text" : "password"}
-                placeholder="Enter your password"
+                placeholder="Password"
               />
+
               <div
                 className={styles.passwordToggle}
                 onClick={() => setPasswordVisible(!passwordVisible)}
