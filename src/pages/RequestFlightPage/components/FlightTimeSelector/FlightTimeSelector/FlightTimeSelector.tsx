@@ -3,9 +3,10 @@ import styles from "./FlightTimeSelector.module.css";
 // import "../../../../../styles/Calendar.css";
 import "react-calendar/dist/Calendar.css";
 import Icon from "../../../../../components/CustomIcon/Icon.tsx";
+import Button from "../../../../../components/Button/Button.tsx";
 import DatePicker from "react-calendar";
 import { useState } from "react";
-import type { DateValue, FormTypes } from "./FlightTimeSelector.definitions.ts";
+import type { DateValue } from "./FlightTimeSelector.definitions.ts";
 // import { set } from "react-hook-form";
 
 const FlightTimeSelector = () => {
@@ -21,19 +22,18 @@ const FlightTimeSelector = () => {
   const [arrivalAirportAlternate, setArrivalAirportAlternate] =
     useState<string>("");
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    const form: FormTypes = {
-      departDate,
-      arrivalDate,
-      oneWay,
-      departureAirportPrimary,
-      departureAirportAlternate,
-      arrivalAirportPrimary,
-      arrivalAirportAlternate,
-    };
-
-    console.log(form);
+  const handleSubmit = () => {
+    // e.preventDefault();
+    // const form: FormTypes = {
+    //   departDate,
+    //   arrivalDate,
+    //   oneWay,
+    //   departureAirportPrimary,
+    //   departureAirportAlternate,
+    //   arrivalAirportPrimary,
+    //   arrivalAirportAlternate,
+    // };
+    // console.log(form);
   };
 
   const submitDisabled = () => {
@@ -152,13 +152,18 @@ const FlightTimeSelector = () => {
               />
             )}
           </div>
-          <button
+          {/* <button
             className={styles.flightSelectorSubmitButton}
             onClick={handleSubmit}
             disabled={submitDisabled()}
           >
             Submit
-          </button>
+          </button> */}
+          <Button
+            onClick={handleSubmit}
+            disabled={submitDisabled()}
+            text={"Submit "}
+          />
           <div className={styles.submitErrorMessage}>
             {submitDisabled() && "Please fill out all required fields"}
           </div>
