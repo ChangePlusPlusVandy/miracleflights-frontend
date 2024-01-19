@@ -27,12 +27,13 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormValues>({
     defaultValues: {
       [FormValueNames.email]: "",
       [FormValueNames.password]: "",
     },
+    mode: "all", // Use 'all' mode to check all fields for validation
   });
 
   return (
@@ -90,7 +91,7 @@ const Login = () => {
                 Forgot password?
               </Link>
             </div>
-            <Button onClick={Submit} text={"Login"} />
+            <Button onClick={Submit} text={"Login"} disabled={!isValid} />
           </form>
         </div>
       </div>
