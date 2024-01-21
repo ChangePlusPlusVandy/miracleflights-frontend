@@ -1,6 +1,8 @@
 import styles from "./Passenger.module.css";
 import { getAge } from "../../util/date.util";
 import type { PassengerProps } from "./Passenger.definitions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Passenger component - a simple component that holds passenger details
@@ -14,24 +16,28 @@ import type { PassengerProps } from "./Passenger.definitions";
 const Passenger = (Passengers: PassengerProps) => {
   return (
     <div className={styles.passengerCard}>
-      <div className={styles.title}>Passenger {}</div>
-      <div className={styles.name}>
-        {Passengers.firstName} {Passengers.lastName}
+      <div className={styles.editIcon}>
+        <FontAwesomeIcon icon={faPen} />
       </div>
-      <div className={styles.dob}>
-        <span className={styles.boldText}>DOB: </span>
-        {Passengers.dateOfBirth} {"("}
-        <span className={styles.boldText}>
-          {getAge(Passengers.dateOfBirth)}
-        </span>
-        {")"}
-      </div>
-      <div className={styles.relationship}>
-        <span className={styles.boldText}>Relationship: </span>
-        {Passengers.relationship}
-      </div>
-      <div>
-        <button className={styles.viewAllInfo}>View All Information</button>
+      <div className={styles.imgAndInfo}>
+        <div className={styles.imgContainer}></div>
+        <div className={styles.info}>
+          <div className={styles.name}>
+            {Passengers.firstName} {Passengers.lastName}
+          </div>
+          <div className={styles.dob}>
+            <span>DOB: </span>
+            <span>{Passengers.dateOfBirth}</span>
+            <span className={styles.boldText}>
+              {" ("}
+              {getAge(Passengers.dateOfBirth)}
+              {")"}
+            </span>
+          </div>
+          <div className={styles.medCondition}>
+            <span>Medical Condition: </span>
+          </div>
+        </div>
       </div>
     </div>
   );

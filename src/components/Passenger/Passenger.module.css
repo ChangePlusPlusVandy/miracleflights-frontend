@@ -4,10 +4,16 @@
   align-items: left;
   justify-content: center;
   font-family: "Inter";
-  width: 300px;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  box-shadow: 2px 2px 5px rgb(106, 99, 99);
+  width: 60%;
+  padding: 1.5rem 3rem;
+  border-radius: 2.5rem;
+  box-shadow: 1px 1px 4px rgb(20, 19, 19);
+  background: linear-gradient(
+    -75deg,
+    rgb(245, 232, 232) 3%,
+    rgb(228, 228, 244) 8%,
+    white 40%
+  );
 }
 
 .title {
@@ -24,21 +30,26 @@
 
 .name {
   font-size: 2rem;
-  font-weight: bold;
-  color: #0b0c0c;
+  font-weight: 10px;
+  color: #3d3d3d;
   margin-bottom: 1rem;
-  border-radius: 0.25rem;
 }
 
 .boldText {
-  font-weight: 600;
+  font-weight: 460;
 }
 
-.dob {
-  font-size: 1rem;
+.dob,
+.medCondition {
+  font-size: 18px;
   font-weight: normal;
   color: rgb(144, 137, 137);
   margin-bottom: 0.5rem;
+}
+
+span {
+  color: rgb(71, 70, 70);
+  font-weight: 40%;
 }
 
 .relationship {
@@ -46,6 +57,7 @@
   font-weight: normal;
   color: rgb(144, 137, 137);
   margin-bottom: 0.5rem;
+  margin-left: 20%;
 }
 
 .viewAllInfo {
@@ -54,10 +66,45 @@
   font-weight: normal;
   color: rgb(248, 237, 237);
   background-color: rgb(231, 134, 134);
+  margin-top: 4rem;
   margin-bottom: 1rem;
   padding: 0.5rem 4rem;
   border-radius: 1rem;
   align-items: center;
   box-shadow: 2px 2px 5px rgb(106, 99, 99);
   border: none;
+}
+
+.imgContainer {
+  /* position: relative; */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #000000;
+  margin-left: 5%;
+  margin-bottom: 25px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-between;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  margin-left: 25%;
+}
+
+.imgAndInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: first baseline;
+}
+
+.editIcon {
+  margin-left: 100%;
+  font-size: 20px;
+  color: #000000;
+  cursor: pointer;
 }
