@@ -2,6 +2,8 @@ import styles from "./Login.module.css";
 import Button from "../../components/Button/Button";
 import Icon from "../../components/CustomIcon/Icon";
 import Input from "../../components/Input/Input";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -24,17 +26,31 @@ const Login = () => {
     password: string;
   }
 
+  const schema = yup.object().shape({
+    [FormValueNames.email]: yup
+      .string()
+      .email("Please enter a valid email address")
+      .required("Please enter an email address"),
+    [FormValueNames.password]: yup
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .required("Please enter a password"),
+  });
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
       [FormValueNames.email]: "",
       [FormValueNames.password]: "",
     },
-    mode: "all", // Use 'all' mode to check all fields for validation
+    resolver: yupResolver(schema),
+    mode: "onChange",
   });
+
+  console.log(errors);
 
   return (
     <>
@@ -59,7 +75,7 @@ const Login = () => {
           >
             <div className={styles.loginInputContainerUpper}>
               <Input
-                name="Email"
+                name="email"
                 register={register}
                 error={errors[FormValueNames.email]?.message}
                 label="Email"
@@ -69,10 +85,10 @@ const Login = () => {
             </div>
             <div className={styles.loginInputContainerLower}>
               <Input
-                name="Email"
+                name="password"
                 register={register}
-                error={errors[FormValueNames.email]?.message}
-                label="Email"
+                error={errors[FormValueNames.password]?.message}
+                label="Password"
                 type={passwordVisible ? "text" : "password"}
                 placeholder="Password"
               />
@@ -91,7 +107,14 @@ const Login = () => {
                 Forgot password?
               </Link>
             </div>
-            <Button onClick={Submit} text={"Login"} disabled={!isValid} />
+            <Button
+              onClick={Submit}
+              text={"Login"}
+              disabled={
+                !!errors[FormValueNames.email] ||
+                !!errors[FormValueNames.password]
+              }
+            />
           </form>
         </div>
       </div>
