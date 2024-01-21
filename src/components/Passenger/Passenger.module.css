@@ -6,8 +6,8 @@
   font-family: "Inter";
   width: 60%;
   padding: 1.5rem 3rem;
+  border: 1.5px solid #8c8787;
   border-radius: 2.5rem;
-  box-shadow: 1px 1px 4px rgb(20, 19, 19);
   background: linear-gradient(
     -75deg,
     rgb(245, 232, 232) 3%,
