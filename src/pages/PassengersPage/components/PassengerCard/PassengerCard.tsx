@@ -1,16 +1,8 @@
 import styles from "./PassengerCard.module.css";
 import { formatDate, getAge } from "../../../../util/date.util";
 import PassengerDetailsModal from "../PassengerDetailsModal/PassengerDetailsModal";
-import Tag from "../../../../components/Tag/Tag";
-import {
-  TagColor,
-  TagVariant,
-} from "../../../../components/Tag/Tag.definitions";
-import Button from "../../../../components/Button/Button";
-import {
-  ButtonColor,
-  ButtonVariant,
-} from "../../../../components/Button/Button.definitions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import type { PassengerProps } from "./PassengerCard.definitions";
 
@@ -23,50 +15,44 @@ import type { PassengerProps } from "./PassengerCard.definitions";
  * @property {string} userType
  * @property {string} dateOfBirth
  */
-const PassengerCard = ({ passenger }: PassengerProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+const Passenger = ({ passenger }: PassengerProps) => {
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <div className={styles.passengerCard}>
-      <Tag
-        text="PASSENGER"
-        color={TagColor.GREEN}
-        variant={TagVariant.NORMAL}
-      />
-      <div className={styles.name}>
-        {passenger.fields["First Name"]} {passenger.fields["Last Name"]}
+    <>
+      <div className={styles.passengerCard} onClick={() => setModalOpen(true)}>
+        <div className={styles.imgAndInfo}>
+          <div className={styles.imgContainer} />
+          <div className={styles.info}>
+            <div className={styles.name}>
+              {passenger.fields["First Name"]} {passenger.fields["Last Name"]}
+            </div>
+            <div className={styles.dob}>
+              <span>DOB: </span>
+              <span>{formatDate(passenger.fields["Date of Birth"])}</span>
+              <span className={styles.boldText}>
+                {" ("}
+                {getAge(passenger.fields["Date of Birth"])}
+                {")"}
+              </span>
+            </div>
+            <div className={styles.medCondition}>
+              <span>Medical Condition: </span>
+            </div>
+          </div>
+        </div>
+        <div className={styles.editIcon}>
+          <FontAwesomeIcon icon={faPen} />
+        </div>
       </div>
-      <div className={styles.dob}>
-        <span className={styles.boldText}>DOB: </span>
-        {formatDate(passenger.fields["Date of Birth"])} {"("}
-        <span className={styles.boldText}>
-          {getAge(passenger.fields["Date of Birth"])}
-        </span>
-        {")"}
-      </div>
-
-      <div className={styles.viewAllInfo}>
-        <Button
-          text="View All Information"
-          onClick={() => setIsModalOpen(true)}
-          variant={ButtonVariant.Regular}
-          color={ButtonColor.Red}
-          extraStyles={{ width: "100%" }}
-        />
-      </div>
-
-      {isModalOpen && (
+      {modalOpen && (
         <PassengerDetailsModal
-          onClose={handleCloseModal}
           passenger={passenger}
+          onClose={() => setModalOpen(false)}
         />
       )}
-    </div>
+    </>
   );
 };
 
-export default PassengerCard;
+export default Passenger;

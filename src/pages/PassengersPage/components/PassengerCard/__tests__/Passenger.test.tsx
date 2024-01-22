@@ -12,7 +12,6 @@ describe("Passenger", () => {
     const component = render(<PassengerCard {...mockProps} />);
     expect(component).toBeTruthy();
 
-    expect(component.getByText("PASSENGER")).toBeTruthy();
     expect(
       component.getByText(
         mockProps.passenger.fields["First Name"] +
@@ -22,9 +21,11 @@ describe("Passenger", () => {
     ).toBeTruthy();
     expect(
       component.getByText(
-        getAge(mockProps.passenger.fields["Date of Birth"]).toString(),
+        "(" +
+          getAge(mockProps.passenger.fields["Date of Birth"]).toString() +
+          ")",
       ),
     ).toBeTruthy();
-    expect(component.getByText("View All Information")).toBeTruthy();
+    expect(component.getByText("Medical Condition:")).toBeTruthy();
   });
 });

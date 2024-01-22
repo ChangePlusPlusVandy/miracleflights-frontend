@@ -31,9 +31,21 @@
   --miracle-color-medium-dark: #626262;
   --miracle-color-dark: #222831;
   --miracle-color-black: #000000;
-}
 
-:root {
+  --passenger-card-gradient: linear-gradient(
+    -75deg,
+    rgb(245, 232, 232) 3%,
+    rgb(228, 228, 244) 8%,
+    white 40%
+  );
+
+  --passenger-card-gradient-hover: linear-gradient(
+    -75deg,
+    rgb(225, 205, 205) 3%,
+    rgb(207, 207, 224) 8%,
+    rgb(248, 248, 248) 40%
+  );
+
   --transition-duration-short: 0.15s;
   --transition-duration-long: 0.3s;
   --border-radius-small: 0.125rem;
