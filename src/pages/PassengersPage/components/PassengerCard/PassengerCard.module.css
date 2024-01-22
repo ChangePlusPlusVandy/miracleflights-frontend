@@ -1,19 +1,35 @@
 .passengerCard {
   display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-end;
   font-family: "Inter";
-  width: 60%;
-  padding: 1.5rem 3rem;
-  border: 1.5px solid #8c8787;
+  width: 100%;
+  border: 0.125rem solid var(--miracle-color-medium-light);
   border-radius: 2.5rem;
-  background: linear-gradient(
-    -75deg,
-    rgb(245, 232, 232) 3%,
-    rgb(228, 228, 244) 8%,
-    white 40%
-  );
+  background: var(--passenger-card-gradient);
+}
+
+.passengerCard:hover {
+  background: var(--passenger-card-gradient-hover);
+  cursor: pointer;
+}
+
+.imgAndInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 1;
+  padding: 2rem 4rem;
+  gap: 4rem;
+}
+
+.editIcon {
+  font-size: 1rem;
+  color: var(--miracle-color-medium-dark);
+  cursor: pointer;
+  width: fit-content;
+  padding: 1rem 1.5rem;
 }
 
 .title {
@@ -23,14 +39,14 @@
   width: fit-content;
   margin-bottom: 1rem;
   padding: 0.5rem 0.5rem;
-  border: 1px solid #0da054;
+  border: 0.0625rem solid #0da054;
   border-radius: 1rem;
   background-color: #aee6a0;
 }
 
 .name {
   font-size: 2rem;
-  font-weight: 10px;
+  font-weight: 300;
   color: #3d3d3d;
   margin-bottom: 1rem;
 }
@@ -41,7 +57,7 @@
 
 .dob,
 .medCondition {
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: normal;
   color: rgb(144, 137, 137);
   margin-bottom: 0.5rem;
@@ -78,12 +94,10 @@ span {
 
 .imgContainer {
   /* position: relative; */
-  width: 150px;
-  height: 150px;
+  min-width: 10rem;
+  min-height: 10rem;
   border-radius: 50%;
-  border: 3px solid #000000;
-  margin-left: 5%;
-  margin-bottom: 25px;
+  background-color: var(--miracle-color-medium);
 }
 
 .info {
@@ -91,21 +105,4 @@ span {
   flex-direction: column;
   align-items: left;
   justify-content: space-between;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
-  margin-left: 25%;
-}
-
-.imgAndInfo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: first baseline;
-}
-
-.editIcon {
-  margin-left: 100%;
-  font-size: 20px;
-  color: #000000;
-  cursor: pointer;
 }
