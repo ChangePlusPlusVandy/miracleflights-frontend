@@ -20,9 +20,13 @@
   width: fit-content;
   height: 100vh;
   padding: 20px;
-  align-self: center;
-  background: var(--rs-sidebar-gradient);
+  align-self: left;
   border-right: 1px solid #e8e8e8;
+  background: linear-gradient(
+    176deg,
+    #d2ddf0 1.86%,
+    rgba(210, 221, 240, 0.26) 98.06%
+  );
 }
 
 /************* Content *************/

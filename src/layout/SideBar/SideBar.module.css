@@ -30,6 +30,7 @@
 
 .TabUnselected {
   transition: 0.2s ease-in-out background-color;
+  margin-bottom: 30px;
 }
 
 .TabUnselected:hover {
@@ -38,19 +39,36 @@
 }
 
 .TabSelected {
-  background-color: rgb(255, 226, 226);
-  color: rgb(185, 94, 94);
+  text-decoration: underline;
+  margin-bottom: 30px;
   transition: 0.2s ease-in-out background-color;
 }
-.SideBarLinks {
+
+.RequestFlight {
   width: 100%;
-  margin-top: 50px;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 1px;
+}
+
+.UpperSideBarLinks {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.LowerSideBarLinks {
+  /* width: 70%;
+  height: 22%; */
+  margin-top: 10px;
+  margin-bottom: 1px;
 }
 
 .SideBarOpen {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
   height: 100%;
@@ -63,7 +81,7 @@
 .SideBarClosed {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   min-width: 50px;
   max-width: 60px;
@@ -75,7 +93,6 @@
 
 .SideBarTitleSelected {
   font-family: "Inter", sans-serif;
-  color: rgb(229, 106, 106);
   font-size: 12px;
   font-weight: 600;
   margin: 10px 10px;
@@ -94,30 +111,50 @@
   width: 16px;
 }
 
-.sideBarToggleArrowContainerOpen {
+.sideBarToggleMenuContainer {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
-.sideBarToggleArrowContainerClosed {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.sideBarToggleArrow {
+.sideBarToggleMenu {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 30px;
   padding: 5px 10px;
   color: rgb(103, 99, 99);
   transition: 0.2s ease-in-out background-color;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
-.sideBarToggleArrow:hover {
+.sideBarToggleMenu:hover {
   cursor: pointer;
   background-color: rgb(243, 243, 243);
   border-radius: 8px;
+}
+
+.Logo {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.heart {
+  height: 15px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.1px;
+}
+
+.Reference {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  margin-bottom: 10px;
+  font-size: 10px;
+  flex-grow: 1;
+  justify-content: center;
 }
