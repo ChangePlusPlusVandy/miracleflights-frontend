@@ -1,0 +1,90 @@
+.button {
+  font-family: "Inter", sans-serif;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  transition: var(--transition-duration-long) ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+}
+
+.buttonText {
+  visibility: visible;
+  margin-right: 0.625rem;
+}
+
+/* Hides the text when loading */
+.button.loading .buttonText {
+  visibility: visible;
+}
+
+/* Spinner container to control the spinner positioning */
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 2rem;
+  right: 0.625rem;
+}
+
+.Compact {
+  padding: 0.3125rem 0.625rem;
+  font-size: 1.125rem;
+}
+
+.Regular {
+  padding: 0.625rem 1.25rem;
+  font-size: 1.25rem;
+}
+
+.Large {
+  padding: 0.9375rem 1.25rem;
+  font-size: 1.625rem;
+}
+
+.Blue {
+  background-color: var(--miracle-color-blue);
+  color: white;
+}
+
+.Yellow {
+  background-color: var(--miracle-color-yellow);
+  color: black;
+}
+
+.Green {
+  background-color: var(--miracle-color-green);
+  color: white;
+}
+
+.Grey {
+  background-color: var(--miracle-color-medium-dark);
+  color: white;
+}
+
+.Red {
+  background-color: var(--miracle-color-red);
+  color: white;
+}
+
+.Black {
+  background-color: var(--miracle-color-dark);
+  color: white;
+}
+
+.button:disabled,
+.button.loading {
+  cursor: not-allowed;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.625rem;
+}

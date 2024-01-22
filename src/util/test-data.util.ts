@@ -70,7 +70,7 @@ export const createTestPassengerData = (
       "Military Member": faker.helpers.arrayElements(
         ["Self", "Spouse", "Mother", "Father", "Other"],
         faker.number.int({
-          min: 1,
+          min: 0,
           max: 3,
         }),
       ),
@@ -78,7 +78,7 @@ export const createTestPassengerData = (
         ["Social Media", "Internet Search", "Friend or Family", "Other"],
         faker.number.int({
           min: 1,
-          max: 4,
+          max: 1,
         }),
       ),
       "BL - Account Number": faker.finance.accountNumber(),
@@ -218,7 +218,7 @@ export const createTestFlightLegData = (
       ]),
       Airline: faker.helpers.arrayElement(AIRLINES),
       "BL - Departure Airport": faker.location.city(),
-      "Departure Date/Time": faker.date.recent().toISOString(),
+      "Departure Date/Time": faker.date.anytime().toString(),
       "BL - Arrival Airport": faker.location.city(),
       "Arrival Date/Time": faker.date.recent().toISOString(),
       "Nautical Miles": faker.number.int({
@@ -248,20 +248,8 @@ export const createTestFlightLegData = (
           max: 3,
         }),
       ),
-      "Departure Airport": faker.helpers.arrayElements(
-        [faker.location.city(), faker.location.city(), faker.location.city()],
-        faker.number.int({
-          min: 1,
-          max: 2,
-        }),
-      ),
-      "Arrival Airport": faker.helpers.arrayElements(
-        [faker.location.city(), faker.location.city(), faker.location.city()],
-        faker.number.int({
-          min: 1,
-          max: 2,
-        }),
-      ),
+      "Departure Airport": faker.string.alpha(3).toLocaleUpperCase(),
+      "Arrival Airport": faker.string.alpha(3).toLocaleUpperCase(),
       "BL - Site 1 Links": faker.helpers.arrayElements(
         [faker.internet.url(), faker.internet.url(), faker.internet.url()],
         faker.number.int({
@@ -274,6 +262,11 @@ export const createTestFlightLegData = (
         min: 1,
         max: 3,
       }),
+      "Leg Type": faker.helpers.arrayElement([
+        "Departure",
+        "Connecting",
+        "Return",
+      ]),
       "# of PAX": faker.number.int({
         min: 1,
         max: 3,
@@ -302,6 +295,13 @@ export const createTestFlightLegData = (
         max: 10000,
       }),
       "AirTable Record ID": faker.string.uuid(),
+      "Request AirTable Record ID": faker.helpers.arrayElements(
+        ["request1", "request2", "request3", "request4", "request5"],
+        faker.number.int({
+          min: 1,
+          max: 1,
+        }),
+      ),
       "Passenger AirTable Record IDs": faker.helpers.arrayElements(
         [faker.string.uuid(), faker.string.uuid(), faker.string.uuid()],
         faker.number.int({

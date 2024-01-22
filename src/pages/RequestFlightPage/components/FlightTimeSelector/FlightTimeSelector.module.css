@@ -1,0 +1,139 @@
+.flightSelectorBlock {
+  padding: 56px 48px;
+  box-shadow: var(--miracle-shadow-ambient);
+  background-color: var(--miracle-color-dark-50);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin: 48px 200px;
+}
+
+.flightSelectorBlockHeader {
+  font-size: 24px;
+  font-weight: 700px;
+  margin-bottom: 10px;
+  color: var(--miracle-color-dark);
+  opacity: 0.8;
+}
+
+.flightSelectorBlockSubtitle {
+  color: var(--miracle-color-dark-500);
+  font-size: 16px;
+  border-bottom: 1px solid var(--miracle-color-dark);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.airportChunk {
+  display: flex;
+  flex-direction: column;
+}
+
+.flightSelectorBlockContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 0 0 0;
+}
+
+.flightSelectorInputContainerUpper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center; /* Adjust alignment as needed */
+  margin-bottom: 10px;
+}
+
+.flightSelectorInputContainerLower {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 32px;
+}
+
+/* Additional styles for the individual components if needed */
+.checkBoxContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.flightSelectorSubmitButton {
+  background-color: var(--miracle-color-red);
+  color: var(--miracle-color-light);
+  border-radius: 4px;
+  border-style: solid;
+  border-color: var(--miracle-color-red);
+  border-width: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  height: fit-content;
+  padding: 12px 28px;
+  text-align: center;
+  width: 400px;
+  align-self: center;
+}
+
+.flightSelectorSubmitButton:hover {
+  background-color: transparent;
+  border-color: var(--miracle-color-red); /* Change border color to red */
+  color: var(--miracle-color-red); /* Change text color to red */
+  cursor: pointer;
+}
+
+.flightSelectorSubmitButton:disabled {
+  color: var(--miracle-color-medium);
+  background-color: var(--miracle-color-light);
+  border-color: var(--miracle-color-medium);
+}
+
+.flightSelectorSubmitButton:disabled:hover {
+  cursor: not-allowed;
+}
+
+.flightSelectorInputContainer {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  justify-content: space-between;
+}
+
+.flightSelectorInput {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid var(--miracle-color-medium);
+  border-radius: 5px;
+  width: 200px;
+  transition: border-color 0.3s ease;
+}
+
+.flightSelectorInputLabel {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--miracle-color-dark);
+  opacity: 0.8;
+  border-bottom: 10px;
+  margin-left: 2px;
+}
+
+.airplaneIcon {
+  font-size: 20px;
+  color: var(--miracle-color-light);
+  background-color: var(--miracle-color-red);
+  text-align: center;
+  padding: 16px;
+  border-radius: 50%;
+}
+
+.submitErrorMessage {
+  color: var(--miracle-color-red);
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 10px;
+  margin-bottom: 0;
+  text-align: center;
+}
