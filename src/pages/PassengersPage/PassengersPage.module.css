@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding-left: 2rem;
 }
 
 .patientSection {
@@ -24,7 +23,6 @@
 .header {
   font-weight: 300;
   color: var(--miracle-color-medium-dark);
-  margin-top: 5rem;
 }
 
 .subheader {

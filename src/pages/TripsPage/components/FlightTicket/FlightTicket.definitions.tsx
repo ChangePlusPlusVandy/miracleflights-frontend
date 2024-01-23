@@ -6,11 +6,11 @@ export interface FlightTicketProps {
   flight: FlightLegData;
 }
 
-export enum LegType {
-  DEPARTURE = "Departure",
-  CONNECTING = "Connecting",
-  RETURN = "Return",
-}
+// export enum LegType {
+//   DEPARTURE = "Departure",
+//   CONNECTING = "Connecting",
+//   RETURN = "Return",
+// }
 
 export enum FlightTicketColorVariant {
   RED = "red",

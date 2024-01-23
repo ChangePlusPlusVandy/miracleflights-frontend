@@ -1,89 +1,86 @@
 import styles from "./FlightTicket.module.css";
-import { FlightTicketColorVariant, LegType } from "./FlightTicket.definitions";
-import Tag from "../../../../components/Tag/Tag";
-import { TagColor } from "../../../../components/Tag/Tag.definitions";
+// import Tag from "../../../../components/Tag/Tag";
+// import { TagColor } from "../../../../components/Tag/Tag.definitions";
 import FlightDetailsModal from "../FlightDetailsModal/FlightDetailsModal";
 import { formatDate } from "../../../../util/date.util";
-import { formatAirlineString } from "../../../../util/flight.util";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleArrowRight,
-  faPlaneArrival,
-  faPlaneDeparture,
-  faPlane,
-} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+// import { formatAirlineString } from "../../../../util/flight.util";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlane } from "@fortawesome/free-solid-svg-icons";
+import { fakerEN_US } from "@faker-js/faker";
 import type { FlightTicketProps } from "./FlightTicket.definitions";
 
 const FlightTicket = ({ flight }: FlightTicketProps) => {
-  const renderLegTypeIcon = (legType: string) => {
-    if (legType === LegType.DEPARTURE) {
-      return <FontAwesomeIcon icon={faPlaneDeparture} />;
-    } else if (legType === LegType.CONNECTING) {
-      return <FontAwesomeIcon icon={faPlane} />;
-    } else {
-      return <FontAwesomeIcon icon={faPlaneArrival} />;
-    }
-  };
-
-  const colorVariant = FlightTicketColorVariant.RED;
-
+  // const [departureImageUrl, setDepartureImageUrl] = useState<string>('');
+  // const [arrivalImageUrl, setArrivalImageUrl] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = () => setIsModalOpen(false);
+  const openModal = () => setIsModalOpen(true);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const cityImages: Array<string> = [
+    `url("https://t3.ftcdn.net/jpg/04/00/28/14/360_F_400281443_i56g5NEq4opesN2LLPC5qn2Mvr2j440d.jpg")`,
+    `url("https://media.istockphoto.com/id/464852512/photo/seattle-skyline-at-night-with-mt-rainier-in-the-distance.jpg?s=612x612&w=0&k=20&c=yBBr2gTWY7OSh-ogIUeNIJKJmaiSJOgxQvZHrFyEPGc=")`,
+    `url("https://t3.ftcdn.net/jpg/00/35/35/40/360_F_35354022_kVyRIi42r1EReIdrVQ7iXANMZ3zeDNio.jpg")`,
+    `url("https://image.cnbcfm.com/api/v1/image/107139583-1666620871667-gettyimages-1359908964-dji_0973hdrpanoedit_1639963084.jpeg?v=1666799178&w=630&h=354&ffmt=webp&vtcrop=y")`,
+    `url("https://www.shutterstock.com/image-photo/nashville-skyline-moon-260nw-1041309010.jpg")`,
+  ];
+
+  let currentDepartureImage = -1;
+  const getCityImage = (): number => {
+    const num = Math.floor(Math.random() * cityImages.length);
+    if (num === currentDepartureImage) {
+      return getCityImage();
+    }
+    return num;
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  currentDepartureImage = getCityImage();
+  const currentArrivalImage = getCityImage();
 
   return (
-    <div>
+    <div className={styles.flightTicket}>
       <div className={styles.ticketBase} onClick={openModal}>
-        <div
-          className={
-            colorVariant == FlightTicketColorVariant.RED
-              ? styles.dateRowRed
-              : styles.dateRowBlue
-          }
-        >
+        <div className={styles.dateRow}>
           <div className={styles.date}>
             {formatDate(flight.fields["Departure Date/Time"])}
           </div>
         </div>
-        <div className={styles.airportsRow}>
-          <div className={styles.departingAirport}>
-            {flight.fields["Departure Airport"]}
-          </div>
-          <FontAwesomeIcon
-            icon={faCircleArrowRight}
-            className={styles.arrowIcon}
-          />
-          <div className={styles.arrivingAirport}>
-            {flight.fields["Arrival Airport"]}
-          </div>
-        </div>
-        <div className={styles.detailsRow}>
-          <div className={styles.legTypeWithImage}>
-            <div className={styles.legType}>
-              <div className={styles.legTypeText}>
-                <Tag
-                  color={TagColor.GREY}
-                  text={flight.fields["Leg Type"].toLocaleUpperCase()}
-                />
-              </div>
-              <div>{renderLegTypeIcon(flight.fields["Leg Type"])}</div>
+
+        <div className={styles.flightInfoRow}>
+          <div
+            className={styles.departureInfo}
+            style={{ backgroundImage: cityImages.at(currentDepartureImage) }}
+          >
+            <div className={styles.backgroundOverlay}> </div>
+            <div className={styles.cityAndAirport}>
+              {`${fakerEN_US.location.city()} - ${
+                fakerEN_US.airline.airport().iataCode
+              }`}
             </div>
-            <div className={styles.airline}>
-              {formatAirlineString(
-                flight.fields["Airline"].toLocaleUpperCase(),
-              )}
+
+            <div className={styles.flightNumAndTime}>
+              Flight#1 Departs 9:30 AM
             </div>
           </div>
-        </div>
-        <div className={styles.seeMoreRow}>
-          <div>click to see more details</div>
+          <div className={styles.separator}>
+            <FontAwesomeIcon icon={faPlane} className={styles.plane} />
+          </div>
+
+          <div
+            className={styles.arrivalInfo}
+            style={{ backgroundImage: cityImages.at(currentArrivalImage) }}
+          >
+            <div className={styles.backgroundOverlay}> </div>
+            <div className={styles.cityAndAirport}>
+              {`${fakerEN_US.location.city()} - ${
+                fakerEN_US.airline.airport().iataCode
+              }`}
+            </div>
+
+            <div className={styles.flightNumAndTime}>
+              Flight#1 Arrives 12:30 PM
+            </div>
+          </div>
         </div>
       </div>
       {isModalOpen && (
