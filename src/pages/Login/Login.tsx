@@ -4,14 +4,19 @@ import Icon from "../../components/CustomIcon/Icon";
 import Input from "../../components/Input/Input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+  const [disabled, setDisabled] = useState<boolean>(true);
+  const Navigate = useNavigate();
+
   const Submit = () => {
     console.log("Submitted");
+    // redirect to dashboard
+    Navigate("/");
   };
   // eslint-disable-next-line autofix/no-unused-vars
   enum FormValueNames {
@@ -40,7 +45,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid }, // Add isValid to formState
   } = useForm<FormValues>({
     defaultValues: {
       [FormValueNames.email]: "",
@@ -49,6 +54,11 @@ const Login = () => {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
+
+  // Update the disabled state based on whether there are errors and the form is valid
+  useEffect(() => {
+    setDisabled(!isValid);
+  }, [isValid]);
 
   console.log(errors);
 
@@ -107,14 +117,7 @@ const Login = () => {
                 Forgot password?
               </Link>
             </div>
-            <Button
-              onClick={Submit}
-              text={"Login"}
-              disabled={
-                !!errors[FormValueNames.email] ||
-                !!errors[FormValueNames.password]
-              }
-            />
+            <Button onClick={Submit} text={"Login"} disabled={disabled} />
           </form>
         </div>
       </div>
