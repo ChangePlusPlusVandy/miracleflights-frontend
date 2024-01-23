@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./FlightTimeSelector.module.css";
-// import "../../../../../styles/Calendar.css";
-import "react-calendar/dist/Calendar.css";
+import "../../../../../styles/Calendar.css";
 import Icon from "../../../../../components/CustomIcon/Icon.tsx";
 import Button from "../../../../../components/Button/Button.tsx";
 import DatePicker from "react-calendar";
@@ -57,21 +56,13 @@ const FlightTimeSelector = () => {
         </div>
         <form className={styles.flightSelectorBlockContent}>
           <div className={styles.checkBoxContainer}>
-            {/* <label className={styles.flightSelectorInputLabel}>One way:</label>
-            <input
-              type="checkbox"
-              id="oneWay"
-              name="oneWay"
-              checked={oneWay}
-              data-testid="oneWay"
-              onChange={() => setOneWay(!oneWay)}
-            />{" "} */}
             <div className={styles.toggleContainer}>
               <div
                 className={`${styles.toggleItem} ${
                   !oneWay ? styles.selected : ""
                 }`}
                 onClick={() => setOneWay(!oneWay)}
+                data-testid="oneWay"
               >
                 Round Trip
               </div>
@@ -80,6 +71,7 @@ const FlightTimeSelector = () => {
                   oneWay ? styles.selected : ""
                 }`}
                 onClick={() => setOneWay(!oneWay)}
+                data-testid="roundTrip"
               >
                 One Way
               </div>
@@ -140,6 +132,7 @@ const FlightTimeSelector = () => {
                 setDepartDate(date);
               }}
               value={departDate}
+              className={styles.datePicker}
             />
 
             {!oneWay && (
@@ -149,6 +142,7 @@ const FlightTimeSelector = () => {
                 }}
                 value={arrivalDate}
                 minDate={departDate as Date}
+                className={styles.datePicker}
               />
             )}
           </div>

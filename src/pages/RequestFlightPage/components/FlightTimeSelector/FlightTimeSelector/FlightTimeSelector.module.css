@@ -266,3 +266,7 @@
     color: var(--miracle-color-white); /* White text color */
   }
 }
+
+.datePicker {
+  margin: 1rem;
+}

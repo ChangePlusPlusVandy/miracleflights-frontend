@@ -82,7 +82,7 @@ const SideBar = () => {
     },
     {
       title: Tabs.DOCUMENTS,
-      link: "request",
+      link: "documents",
       icon: faFile,
     },
     {
@@ -146,6 +146,7 @@ const SideBar = () => {
               boxShadow: "0px 0.25rem  0.25rem rgba(0, 0.125rem, 0, 0.1)",
               borderRadius: "0.25rem",
             }}
+            onClick={() => navigate("request")}
           />
         </div>
       )}
