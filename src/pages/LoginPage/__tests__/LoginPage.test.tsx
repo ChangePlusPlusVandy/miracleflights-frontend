@@ -7,7 +7,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => jest.fn(),
 }));
 
-/**************************EXAMPLE PAGE TESTING SUITE*******************************/
+/**************************LOGIN PAGE TESTING SUITE*******************************/
 describe("ExamplePage Tests", () => {
   /**************************SNAPSHOT TEST*******************************/
   test("Renders the ExamplePage snapshot correctly", () => {
