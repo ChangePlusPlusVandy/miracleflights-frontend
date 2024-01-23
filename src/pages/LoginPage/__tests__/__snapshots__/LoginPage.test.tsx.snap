@@ -5,7 +5,7 @@ exports[`ExamplePage Tests Renders the ExamplePage snapshot correctly 1`] = `
   <img
     alt="Description of the image"
     class="logo"
-    src="/src/styles/MiracleFlightsLogo.png"
+    src="test-file-stub"
   />
   <div
     class="loginContainer"
