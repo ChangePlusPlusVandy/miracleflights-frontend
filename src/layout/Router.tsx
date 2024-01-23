@@ -5,13 +5,22 @@ import RequestFlightPage from "../pages/RequestFlightPage/RequestFlightPage";
 import ExamplePage from "../pages/ExamplePage/ExamplePage";
 import PassengersPage from "../pages/PassengersPage/PassengersPage";
 import Login from "../pages/LoginPage/LoginPage";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/",
+        // redirect to dashboard
+        element: <Navigate to="/dashboard" />,
+      },
       {
         path: "/dashboard",
         element: <DashboardPage />,
