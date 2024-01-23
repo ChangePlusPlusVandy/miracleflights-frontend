@@ -7,6 +7,7 @@ import { useState } from "react";
 // import { formatAirlineString } from "../../../../util/flight.util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlane } from "@fortawesome/free-solid-svg-icons";
+import { fakerEN_US } from "@faker-js/faker";
 import type { FlightTicketProps } from "./FlightTicket.definitions";
 
 const FlightTicket = ({ flight }: FlightTicketProps) => {
@@ -51,7 +52,11 @@ const FlightTicket = ({ flight }: FlightTicketProps) => {
             style={{ backgroundImage: cityImages.at(currentDepartureImage) }}
           >
             <div className={styles.backgroundOverlay}> </div>
-            <div className={styles.cityAndAirport}>New York - JFK</div>
+            <div className={styles.cityAndAirport}>
+              {`${fakerEN_US.location.city()} - ${
+                fakerEN_US.airline.airport().iataCode
+              }`}
+            </div>
 
             <div className={styles.flightNumAndTime}>
               Flight#1 Departs 9:30 AM
@@ -66,7 +71,12 @@ const FlightTicket = ({ flight }: FlightTicketProps) => {
             style={{ backgroundImage: cityImages.at(currentArrivalImage) }}
           >
             <div className={styles.backgroundOverlay}> </div>
-            <div className={styles.cityAndAirport}>Nashville - BNA</div>
+            <div className={styles.cityAndAirport}>
+              {" "}
+              {`${fakerEN_US.location.city()} - ${
+                fakerEN_US.airline.airport().iataCode
+              }`}
+            </div>
 
             <div className={styles.flightNumAndTime}>
               Flight#1 Arrives 12:30 PM
