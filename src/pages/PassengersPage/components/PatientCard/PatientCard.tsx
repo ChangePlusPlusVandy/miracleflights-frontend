@@ -1,10 +1,10 @@
-import styles from "./PassengerCard.module.css";
+import styles from "./PatientCard.module.css";
 import { formatDate, getAge } from "../../../../util/date.util";
-import PassengerDetailsModal from "../PassengerDetailsModal/PassengerDetailsModal";
+import PatientDetailsModal from "../PatientDetailsModal/PatientDetailsModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import type { PassengerProps } from "./PassengerCard.definitions";
+import type { PatientProps } from "./PatientCard.definitions";
 
 /**
  * Passenger component - a simple component that holds passenger details
@@ -15,24 +15,24 @@ import type { PassengerProps } from "./PassengerCard.definitions";
  * @property {string} userType
  * @property {string} dateOfBirth
  */
-const Passenger = ({ passenger }: PassengerProps) => {
+const Patient = ({ patient }: PatientProps) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
-      <div className={styles.passengerCard} onClick={() => setModalOpen(true)}>
+      <div className={styles.patientCard} onClick={() => setModalOpen(true)}>
         <div className={styles.imgAndInfo}>
           <div className={styles.imgContainer} />
           <div className={styles.info}>
             <div className={styles.name}>
-              {passenger.fields["First Name"]} {passenger.fields["Last Name"]}
+              {patient.fields["First Name"]} {patient.fields["Last Name"]}
             </div>
             <div className={styles.dob}>
               <span>DOB: </span>
-              <span>{formatDate(passenger.fields["Date of Birth"])}</span>
+              <span>{formatDate(patient.fields["Date of Birth"])}</span>
               <span className={styles.boldText}>
                 {" ("}
-                {getAge(passenger.fields["Date of Birth"])}
+                {getAge(patient.fields["Date of Birth"])}
                 {")"}
               </span>
             </div>
@@ -46,8 +46,8 @@ const Passenger = ({ passenger }: PassengerProps) => {
         </div>
       </div>
       {modalOpen && (
-        <PassengerDetailsModal
-          passenger={passenger}
+        <PatientDetailsModal
+          patient={patient}
           onClose={() => setModalOpen(false)}
         />
       )}
@@ -55,4 +55,4 @@ const Passenger = ({ passenger }: PassengerProps) => {
   );
 };
 
-export default Passenger;
+export default Patient;

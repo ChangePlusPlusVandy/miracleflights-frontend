@@ -1,15 +1,15 @@
-.passengerCard {
+.patientCard {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   font-family: "Inter";
-  width: 100%;
+  width: 95%;
   border: 0.125rem solid var(--miracle-color-medium-light);
   border-radius: 2.5rem;
   background: var(--passenger-card-gradient);
 }
 
-.passengerCard:hover {
+.patientCard:hover {
   background: var(--passenger-card-gradient-hover);
   cursor: pointer;
 }
