@@ -11,6 +11,14 @@
   width: fit-content;
 }
 
+.button:disabled {
+  opacity: 0.5;
+}
+
+.button:not(:disabled):hover {
+  transform: scale(1.05); /* Expand the size slightly on hover */
+}
+
 .buttonText {
   visibility: visible;
   margin-right: 0.625rem;

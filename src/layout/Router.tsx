@@ -2,11 +2,14 @@ import App from "./App";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import TripsPage from "../pages/TripsPage/TripsPage";
 import RequestFlightPage from "../pages/RequestFlightPage/RequestFlightPage";
-import SignInPage from "../pages/SignInPage/SignInPage";
-import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import ExamplePage from "../pages/ExamplePage/ExamplePage";
 import PassengersPage from "../pages/PassengersPage/PassengersPage";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Login from "../pages/LoginPage/LoginPage";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -14,12 +17,9 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/sign-up",
-        element: <SignUpPage />,
-      },
-      {
-        path: "/sign-in",
-        element: <SignInPage />,
+        path: "/",
+        // redirect to dashboard
+        element: <Navigate to="/dashboard" />,
       },
       {
         path: "/dashboard",
@@ -46,6 +46,10 @@ const router = createBrowserRouter([
         element: <div>Documents</div>,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 

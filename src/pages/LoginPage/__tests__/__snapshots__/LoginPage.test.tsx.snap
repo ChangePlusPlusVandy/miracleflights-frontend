@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExamplePage Tests Renders the ExamplePage snapshot correctly 1`] = `
+<div>
+  <img
+    alt="Description of the image"
+    class="logo"
+    src="/src/styles/MiracleFlightsLogo.png"
+  />
+  <div
+    class="loginContainer"
+  >
+    <div
+      class="loginBlock"
+    >
+      <div
+        class="loginBlockHeader"
+      >
+        Log In
+      </div>
+      <div
+        class="loginRedirect"
+      >
+        Dont have an account?
+        <div
+          class="loginBlockLink"
+        >
+          Sign up
+        </div>
+      </div>
+      <form
+        class="loginBlockContent"
+      >
+        <div
+          class="loginInputContainerUpper"
+        >
+          <div
+            class="form-field"
+          >
+            <div
+              class="label-and-error"
+            >
+              <p
+                class="label"
+              >
+                Email
+              </p>
+            </div>
+            <input
+              name="email"
+              placeholder="Email"
+              type="text"
+            />
+          </div>
+        </div>
+        <div
+          class="loginInputContainerLower"
+        >
+          <div
+            class="form-field"
+          >
+            <div
+              class="label-and-error"
+            >
+              <p
+                class="label"
+              >
+                Password
+              </p>
+            </div>
+            <input
+              name="password"
+              placeholder="Password"
+              type="password"
+            />
+          </div>
+          <div
+            class="passwordToggle"
+          >
+            <div
+              class="Icon"
+            >
+              <i
+                class="Icon fas fa-eye Text-fontSize--"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="forgotPassword"
+        >
+          <div
+            class="loginBlockLink"
+          >
+            Forgot password?
+          </div>
+        </div>
+        <button
+          class="button Regular Blue"
+          disabled=""
+        >
+          <h4>
+            Login
+          </h4>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
