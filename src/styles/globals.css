@@ -122,7 +122,7 @@ h6 {
 
 /* Links */
 a {
-  text-decoration: none;
+  text-decoration: underline;
   color: var(--miracle-color-dark);
 }
 

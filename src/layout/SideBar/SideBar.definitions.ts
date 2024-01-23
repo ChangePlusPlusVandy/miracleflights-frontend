@@ -9,9 +9,11 @@ export interface Tab {
 
 export enum Tabs {
   DASHBOARD = "Dashboard",
-  PASSENGERS = "Patient and Passengers",
+  PASSENGERS = "Patient & Companions",
   DOCUMENTS = "Documents",
   TRIPS = "Trips",
   PERSONAL_INFO = "Personal Info",
   REQUEST = "Request a Flight",
+  SUPPORT = "Support",
+  SETTINGS = "Profile Settings",
 }

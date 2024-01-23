@@ -7,6 +7,7 @@ export interface ButtonProps {
   loading?: boolean;
   disabled?: boolean;
   extraStyles?: React.CSSProperties;
+  textStyles?: React.CSSProperties;
 }
 
 export enum ButtonVariant {
@@ -22,4 +23,5 @@ export enum ButtonColor {
   Grey = "Grey",
   Red = "Red",
   Black = "Black",
+  White = "White",
 }
