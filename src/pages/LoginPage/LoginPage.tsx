@@ -1,22 +1,22 @@
-import styles from "./Login.module.css";
+import styles from "./LoginPage.module.css";
 import Button from "../../components/Button/Button";
 import Icon from "../../components/CustomIcon/Icon";
 import Input from "../../components/Input/Input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-const Login = () => {
+const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(true);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const Submit = () => {
     console.log("Submitted");
     // redirect to dashboard
-    Navigate("/");
+    navigate("/");
   };
   // eslint-disable-next-line autofix/no-unused-vars
   enum FormValueNames {
@@ -74,10 +74,12 @@ const Login = () => {
           <div className={styles.loginBlockHeader}>Log In</div>
           <div className={styles.loginRedirect}>
             Dont have an account?
-            <Link to="/sign-up" className={styles.loginBlockLink}>
-              {" "}
+            <div
+              onClick={() => navigate("/sign-up")}
+              className={styles.loginBlockLink}
+            >
               Sign up
-            </Link>
+            </div>
           </div>
           <form
             onSubmit={handleSubmit(Submit)}
@@ -113,9 +115,12 @@ const Login = () => {
               </div>
             </div>
             <div className={styles.forgotPassword}>
-              <Link to="/forgot-password" className={styles.loginBlockLink}>
+              <div
+                onClick={() => navigate("/forgot-password")}
+                className={styles.loginBlockLink}
+              >
                 Forgot password?
-              </Link>
+              </div>
             </div>
             <Button onClick={Submit} text={"Login"} disabled={disabled} />
           </form>
@@ -125,4 +130,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
