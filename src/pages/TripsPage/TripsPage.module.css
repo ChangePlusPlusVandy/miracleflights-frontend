@@ -1,24 +1,16 @@
 .title {
-  width: 100%;
   font-size: 2rem;
-  font-weight: bold;
-  color: #282828;
-  border-radius: 1rem;
-  font-weight: bold;
-  padding-left: 10px;
-  padding-bottom: 8px;
-  font-family: "Inter", sans-serif;
+  font-weight: 700px;
+  margin-bottom: 10px;
+  color: var(--miracle-color-dark);
+  opacity: 0.8;
 }
 
 .timeFrame {
-  width: 100%;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: #686868;
-  font-weight: 600;
-  padding-left: 10px;
-  padding-bottom: 5px;
-  font-family: "Inter", sans-serif;
+  color: var(--miracle-color-dark-500);
+  font-size: 16px;
+
+  opacity: 0.5;
 }
 
 .pageContainer {

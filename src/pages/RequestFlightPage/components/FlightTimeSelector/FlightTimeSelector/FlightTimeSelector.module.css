@@ -1,10 +1,9 @@
 .flightSelectorContainer {
-  padding: 32px 24px 0 24px;
   height: 100%;
 }
 
 .flightSelectorBlockHeader {
-  font-size: 24px;
+  font-size: 2rem;
   font-weight: 700px;
   margin-bottom: 10px;
   color: var(--miracle-color-dark);
