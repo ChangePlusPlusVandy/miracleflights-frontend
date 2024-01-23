@@ -1,3 +1,5 @@
+import Button from "../../components/Button/Button";
+import { ButtonColor } from "../../components/Button/Button.definitions";
 import Input from "../../components/Input/Input";
 import Select from "../../components/Select/Select";
 import { useForm } from "react-hook-form";
@@ -58,7 +60,7 @@ const DashboardPage = () => {
           placeholder="Select"
           options={["Option 1", "Option 2", "Option 3"]}
         />
-        <button type="submit">Submit</button>
+        <Button color={ButtonColor.Blue} text={"Submit"} />
       </form>
     </>
   );
