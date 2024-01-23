@@ -1,0 +1,118 @@
+.flightTicket {
+  width: 100%;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: "Inter";
+  background-color: white;
+}
+
+.ticketBase {
+  background-color: white;
+}
+
+.dateRow {
+  background-color: white;
+  padding: 1rem 0rem;
+  font-weight: bold;
+}
+
+.date {
+  padding: 0.25rem 0.5rem;
+  color: var(--miracle-color-blue);
+  border: 0.0625rem solid var(--miracle-color-medium);
+  border-radius: var(--border-radius-medium);
+  width: fit-content;
+  font-size: 0.8125rem;
+}
+
+.flightInfoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.departureInfo,
+.arrivalInfo {
+  flex-basis: 40%;
+  text-align: center;
+  font-family: "Inter";
+  color: white;
+  background-color: black;
+  width: 30rem;
+  height: 10rem;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.backgroundOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.cityAndAirport {
+  font-size: 36px;
+  font-weight: 700;
+  z-index: 2;
+  position: relative;
+}
+
+.flightNumAndTime {
+  font-size: 18px;
+  font-weight: 600;
+  z-index: 2;
+  position: relative;
+}
+
+.separator {
+  flex-grow: 1;
+  text-align: center;
+  position: relative;
+}
+
+.separator::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 2px dashed #ccc;
+  transform: translateY(-50%);
+}
+
+.duration {
+  display: inline-block;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.plane {
+  position: relative;
+  z-index: 30;
+  font-size: 30px;
+}
+
+.arrowIcon {
+  margin-right: 0.5rem;
+}
+
+.seeMoreRow {
+  background-color: #f8f8f8;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+}

@@ -1,0 +1,67 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.patientSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.patientInfo {
+  margin-top: 2rem;
+}
+
+.passengerSection {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  padding-right: 4rem;
+}
+
+.header {
+  font-weight: 300;
+  color: var(--miracle-color-medium-dark);
+}
+
+.subheader {
+  font-weight: 700;
+  color: var(--miracle-color-dark);
+  margin-top: 2rem;
+}
+
+.description {
+  font-weight: 300;
+  color: var(--miracle-color-medium-dark);
+  margin-top: 0.5rem;
+}
+table {
+  table-layout: fixed;
+  margin-top: 1rem;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableHead {
+  border: none;
+  font-size: 1rem;
+}
+
+tr {
+  display: flex;
+  border: 1px solid gray;
+  margin-bottom: 1rem;
+}
+
+th,
+td {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+}
+
+th {
+  font-weight: 500;
+  color: var(--miracle-color-gray);
+}

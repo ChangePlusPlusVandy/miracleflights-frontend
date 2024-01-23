@@ -1,13 +1,12 @@
 import App from "./App";
-import Dashboard from "../pages/Dashboard/Dashboard";
-import MyFlights from "../pages/MyFlights/MyFlights";
-import PersonalInfo from "../pages/PersonalInfo/PersonalInfo";
-import RequestFlight from "../pages/RequestFlight/RequestFlight";
-import SignIn from "../pages/SignIn/SignIn";
-import SignUp from "../pages/SignUp/SignUp";
+import DashboardPage from "../pages/DashboardPage/DashboardPage";
+import TripsPage from "../pages/TripsPage/TripsPage";
+import RequestFlightPage from "../pages/RequestFlightPage/RequestFlightPage";
+import SignInPage from "../pages/SignInPage/SignInPage";
+import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import ExamplePage from "../pages/ExamplePage/ExamplePage";
 import OnboardingForm from "../pages/OnboardingForm/OnboardingForm";
-import Passengers from "../pages/Passengers/Passengers";
+import PassengersPage from "../pages/PassengersPage/PassengersPage";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -17,27 +16,23 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/sign-up",
-        element: <SignUp />,
+        element: <SignUpPage />,
       },
       {
         path: "/sign-in",
-        element: <SignIn />,
+        element: <SignInPage />,
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <DashboardPage />,
       },
       {
         path: "/request",
-        element: <RequestFlight />,
+        element: <RequestFlightPage />,
       },
       {
-        path: "/my-flights",
-        element: <MyFlights />,
-      },
-      {
-        path: "/personal-info",
-        element: <PersonalInfo />,
+        path: "/trips",
+        element: <TripsPage />,
       },
       {
         path: "/example",
@@ -45,7 +40,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/passengers",
-        element: <Passengers />,
+        element: <PassengersPage />,
+      },
+      {
+        path: "/documents",
+        element: <div>Documents</div>,
       },
       {
         path: "/onboarding-form",
