@@ -1,68 +1,75 @@
 .TabOpen {
   font-family: "Inter", sans-serif;
-  color: rgb(103, 99, 99);
+  color: var(--miracle-color-dark);
   border: none;
   width: 100%;
-  height: 38px;
-  padding-left: 20px;
+  height: fit-content;
+  padding-left: 1.25rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   background: none;
-  margin-bottom: 10px;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 .TabClosed {
   font-family: "Inter", sans-serif;
-  color: rgb(103, 99, 99);
+  color: var(--miracle-color-dark);
   border: none;
   width: 100%;
-  height: 38px;
-  padding: 0px 20px;
+  height: fit-content;
+  padding: 0rem 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
   background: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 .TabUnselected {
   transition: 0.2s ease-in-out background-color;
-  margin-bottom: 30px;
+  padding: 1rem;
 }
 
 .TabUnselected:hover {
   cursor: pointer;
-  background-color: rgb(237, 237, 237);
+  background-color: rgb(255, 255, 255);
 }
 
 .TabSelected {
   text-decoration: underline;
-  margin-bottom: 30px;
   transition: 0.2s ease-in-out background-color;
+  padding: 1rem;
+  background-color: rgb(255, 255, 255);
 }
 
 .RequestFlight {
   width: 100%;
   display: flex;
-  flex-grow: 1;
   justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 1px;
 }
 
 .UpperSideBarLinks {
   width: 100%;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .LowerSideBarLinks {
-  /* width: 70%;
-  height: 22%; */
-  margin-top: 10px;
-  margin-bottom: 1px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.SideBarLinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
 }
 
 .SideBarOpen {
@@ -70,12 +77,13 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  gap: 2rem;
   width: 100%;
   height: 100%;
   flex-grow: 1;
   width: 30vw;
-  min-width: 250px;
-  max-width: 300px;
+  min-width: 15.625rem;
+  max-width: 18.75rem;
 }
 
 .SideBarClosed {
@@ -83,32 +91,33 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  min-width: 50px;
-  max-width: 60px;
+  min-width: 3.125rem;
+  max-width: 3.75rem;
   width: 100%;
   height: 100%;
   flex-grow: 1;
   width: 5vw;
+  gap: 2rem;
 }
 
 .SideBarTitleSelected {
   font-family: "Inter", sans-serif;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 600;
-  margin: 10px 10px;
+  margin: 0rem 1rem;
 }
 
 .SideBarTitleUnselected {
   font-family: "Inter", sans-serif;
-  color: rgb(103, 99, 99);
-  font-size: 12px;
+  color: var(--miracle-color-dark);
+  font-size: 0.75rem;
   font-weight: 600;
-  margin: 10px 10px;
+  margin: 0rem 1rem;
 }
 
 .SidebarIcon {
-  height: 16px;
-  width: 16px;
+  height: 1rem;
+  width: 1rem;
 }
 
 .sideBarToggleMenuContainer {
@@ -120,41 +129,59 @@
 .sideBarToggleMenu {
   background: none;
   border: none;
-  font-size: 30px;
-  padding: 5px 10px;
-  color: rgb(103, 99, 99);
+  font-size: 2rem;
+  padding: 0rem 0.625rem;
+  color: var(--miracle-color-dark);
   transition: 0.2s ease-in-out background-color;
-  margin-bottom: 10px;
-  margin-top: 10px;
 }
 
 .sideBarToggleMenu:hover {
   cursor: pointer;
   background-color: rgb(243, 243, 243);
-  border-radius: 8px;
+  border-radius: 0.5rem;
 }
 
 .Logo {
   display: flex;
   width: 100%;
   justify-content: center;
-  flex-grow: 1;
+  align-items: center;
 }
 
-.heart {
-  height: 15px;
-  width: 100px;
+.builtByContainer {
+  width: 100%;
+  flex-grow: 1;
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  margin-top: 0.1px;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.heartLogo {
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Reference {
   display: flex;
   width: 100%;
   flex-direction: row;
-  margin-bottom: 10px;
-  font-size: 10px;
-  flex-grow: 1;
+  font-size: 0.625rem;
   justify-content: center;
+}
+
+.logoImageOpen {
+  height: 3rem;
+}
+
+.logoImageClosed {
+  height: 2rem;
+}
+
+#smallerText {
+  font-size: 0.75rem;
 }

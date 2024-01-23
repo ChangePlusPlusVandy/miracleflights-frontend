@@ -18,10 +18,8 @@
 /************* Sidebar *************/
 .sideBarContainer {
   width: fit-content;
-  height: 100vh;
-  padding: 20px;
-  align-self: left;
-  border-right: 1px solid #e8e8e8;
+  height: calc(100vh - 3rem);
+  padding: 1.5rem;
   background: linear-gradient(
     176deg,
     #d2ddf0 1.86%,

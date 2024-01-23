@@ -5,7 +5,7 @@ import {
   ButtonColor,
   ButtonVariant,
 } from "../../components/Button/Button.definitions";
-import logo1 from "../../public/Vector.png";
+import heartLogo from "../../public/Vector.png";
 import logo from "../../public/0GAGNk.tif.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -41,6 +41,7 @@ const renderTab = (
       }
       onClick={() => handleClick(tab)}
       key={index}
+      data-testid={"open-button"}
     >
       <FontAwesomeIcon icon={tab.icon} className={styles.SidebarIcon} />
       {isOpen && (
@@ -125,7 +126,11 @@ const SideBar = () => {
         </button>
       </div>
       <div className={styles.Logo}>
-        <img src={logo} alt="Logo" />
+        <img
+          className={isOpen ? styles.logoImageOpen : styles.logoImageClosed}
+          src={logo}
+          alt="Logo"
+        />
       </div>
       {isOpen && (
         <div className={styles.RequestFlight}>
@@ -137,42 +142,51 @@ const SideBar = () => {
               color: "#7196D0",
             }}
             variant={ButtonVariant.Compact}
+            extraStyles={{
+              boxShadow: "0px 0.25rem  0.25rem rgba(0, 0.125rem, 0, 0.1)",
+              borderRadius: "0.25rem",
+            }}
           />
         </div>
       )}
-      <div className={styles.UpperSideBarLinks}>
-        {UpperTabs.map((tab, index) =>
-          renderTab(
-            tab,
-            currentTab.title === tab.title,
-            handleClick,
-            index,
-            isOpen,
-          ),
-        )}
-      </div>
-      <div className={styles.LowerSideBarLinks}>
-        {LowerTabs.map((tab, index) =>
-          renderTab(
-            tab,
-            currentTab.title === tab.title,
-            handleClick,
-            index,
-            isOpen,
-          ),
-        )}
-      </div>
-      <div className={styles.heart}>
-        <img src={logo1} alt="Logo" />
-      </div>
-      {isOpen && (
-        <div className={styles.Reference}>
-          <p>Built by&nbsp;</p>
-          <a href="https://www.changeplusplus.org/">
-            <p> ChangePlusPlus</p>
-          </a>
+      <div className={styles.SideBarLinks}>
+        <div className={styles.UpperSideBarLinks}>
+          {UpperTabs.map((tab, index) =>
+            renderTab(
+              tab,
+              currentTab.title === tab.title,
+              handleClick,
+              index,
+              isOpen,
+            ),
+          )}
         </div>
-      )}
+        <div className={styles.LowerSideBarLinks}>
+          {LowerTabs.map((tab, index) =>
+            renderTab(
+              tab,
+              currentTab.title === tab.title,
+              handleClick,
+              index,
+              isOpen,
+            ),
+          )}
+          <div className={styles.builtByContainer}>
+            <img src={heartLogo} className={styles.heartLogo} alt="Logo" />
+            {isOpen && (
+              <p>
+                <span id={styles.smallerText}>&nbsp;&nbsp;Built by&nbsp;</span>
+                <a
+                  id={styles.smallerText}
+                  href="https://www.changeplusplus.org/"
+                >
+                  ChangePlusPlus
+                </a>
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

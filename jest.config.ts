@@ -19,6 +19,8 @@ export default {
   // A list of paths to directories that Jest should use to search for files in
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+    "\\.(png|jpg|webp|ttf|woff|woff2|svg|mp4)$":
+      "<rootDir>/src/util/mocks/mockImage.ts",
   },
 
   // A preset that is used as a base for Jest's configuration
@@ -26,7 +28,7 @@ export default {
 
   // The glob patterns Jest uses to detect test files
   transform: {
-    "^.+\\.(ts|tsx|js|jsx)$": "ts-jest",
+    "^.+\\.(ts|tsx|js|jsx|png)$": "ts-jest",
   },
 
   // Indicates whether each individual test should be reported during the run
