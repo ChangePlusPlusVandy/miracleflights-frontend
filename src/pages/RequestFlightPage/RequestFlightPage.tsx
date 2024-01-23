@@ -1,4 +1,4 @@
-import FlightTimeSelector from "./components/FlightTimeSelector/FlightTimeSelector";
+import FlightTimeSelector from "./components/FlightTimeSelector/FlightTimeSelector/FlightTimeSelector";
 
 const RequestFlightPage = () => {
   // Request flight tab

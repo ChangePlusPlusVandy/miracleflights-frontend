@@ -1,13 +1,35 @@
 .passengerCard {
   display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-end;
   font-family: "Inter";
-  width: 300px;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  box-shadow: 2px 2px 5px rgb(106, 99, 99);
+  width: 100%;
+  border: 0.125rem solid var(--miracle-color-medium-light);
+  border-radius: 2.5rem;
+  background: var(--passenger-card-gradient);
+}
+
+.passengerCard:hover {
+  background: var(--passenger-card-gradient-hover);
+  cursor: pointer;
+}
+
+.imgAndInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 1;
+  padding: 2rem 4rem;
+  gap: 4rem;
+}
+
+.editIcon {
+  font-size: 1rem;
+  color: var(--miracle-color-medium-dark);
+  cursor: pointer;
+  width: fit-content;
+  padding: 1rem 1.5rem;
 }
 
 .title {
@@ -17,28 +39,33 @@
   width: fit-content;
   margin-bottom: 1rem;
   padding: 0.5rem 0.5rem;
-  border: 1px solid #0da054;
+  border: 0.0625rem solid #0da054;
   border-radius: 1rem;
   background-color: #aee6a0;
 }
 
 .name {
   font-size: 2rem;
-  font-weight: bold;
-  color: #0b0c0c;
-  margin: 0.5rem 0;
-  border-radius: 0.25rem;
+  font-weight: 300;
+  color: #3d3d3d;
+  margin-bottom: 1rem;
 }
 
 .boldText {
-  font-weight: 600;
+  font-weight: 460;
 }
 
-.dob {
+.dob,
+.medCondition {
   font-size: 1rem;
   font-weight: normal;
   color: rgb(144, 137, 137);
   margin-bottom: 0.5rem;
+}
+
+span {
+  color: rgb(71, 70, 70);
+  font-weight: 40%;
 }
 
 .relationship {
@@ -46,12 +73,36 @@
   font-weight: normal;
   color: rgb(144, 137, 137);
   margin-bottom: 0.5rem;
+  margin-left: 20%;
 }
 
 .viewAllInfo {
   width: 100%;
+  font-size: 1rem;
+  font-weight: normal;
+  color: rgb(248, 237, 237);
+  background-color: rgb(231, 134, 134);
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 4rem;
+  border-radius: 1rem;
   align-items: center;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.imgContainer {
+  /* position: relative; */
+  min-width: 10rem;
+  min-height: 10rem;
+  border-radius: 50%;
+  background-color: var(--miracle-color-medium);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-between;
 }

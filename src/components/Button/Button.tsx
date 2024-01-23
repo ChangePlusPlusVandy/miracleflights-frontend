@@ -14,6 +14,7 @@ const Button = ({
   loading = false,
   disabled = false,
   extraStyles = {},
+  textStyles = {},
 }: ButtonProps) => {
   const buttonClassName = `${styles.button} ${styles[variant]} ${styles[color]}`;
   const loaderSize =
@@ -30,7 +31,7 @@ const Button = ({
       disabled={disabled || loading}
       style={{ ...extraStyles }}
     >
-      <h4>{text}</h4>
+      <h4 style={{ ...textStyles }}>{text}</h4>
       {loading && (
         <div className={styles.spinner}>
           <MoonLoader size={loaderSize} color="#FFFFFF" />
