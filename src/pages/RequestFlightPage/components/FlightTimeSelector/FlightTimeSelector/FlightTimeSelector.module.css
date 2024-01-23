@@ -1,0 +1,272 @@
+.flightSelectorContainer {
+  padding: 32px 24px 0 24px;
+  height: 100%;
+}
+
+.flightSelectorBlockHeader {
+  font-size: 24px;
+  font-weight: 700px;
+  margin-bottom: 10px;
+  color: var(--miracle-color-dark);
+  opacity: 0.8;
+}
+
+.flightSelectorBlockSubtitle {
+  color: var(--miracle-color-dark-500);
+  font-size: 16px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.airportChunk {
+  display: flex;
+  flex-direction: column;
+}
+
+.flightSelectorBlockContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 0 0 0;
+  align-items: center;
+}
+
+.flightSelectorInputContainerUpper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 48px;
+  width: 100%;
+}
+
+.flightSelectorInputContainerLower {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 32px;
+}
+
+/* Additional styles for the individual components if needed */
+.checkBoxContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.flightSelectorSubmitButton {
+  background-color: var(--miracle-color-red);
+  color: var(--miracle-color-light);
+  border-radius: 4px;
+  border-style: solid;
+  border-color: var(--miracle-color-red);
+  border-width: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  height: fit-content;
+  padding: 12px 28px;
+  text-align: center;
+  width: 400px;
+  align-self: center;
+}
+
+.flightSelectorSubmitButton:hover {
+  background-color: transparent;
+  border-color: var(--miracle-color-red); /* Change border color to red */
+  color: var(--miracle-color-red); /* Change text color to red */
+  cursor: pointer;
+}
+
+.flightSelectorSubmitButton:disabled {
+  color: var(--miracle-color-medium);
+  background-color: var(--miracle-color-light);
+  border-color: var(--miracle-color-medium);
+}
+
+.flightSelectorSubmitButton:disabled:hover {
+  cursor: not-allowed;
+}
+
+.flightSelectorInputContainer {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  justify-content: space-between;
+}
+
+.flightSelectorInputRed {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid var(--miracle-color-red);
+  color: var(--miracle-color-white);
+  font-weight: 700;
+  background-color: var(--miracle-color-red);
+  border-radius: 2px;
+  width: 200px;
+  transition: border-color 0.3s ease;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.flightSelectorInputRedBorder {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid var(--miracle-color-red);
+  color: var(--miracle-color-red);
+  font-weight: 700;
+  border-radius: 2px;
+  width: 200px;
+  transition: border-color 0.3s ease;
+  text-align: center;
+}
+
+.flightSelectorInputRed::placeholder {
+  color: var(--miracle-color-white);
+}
+
+.flightSelectorInputRedBorder::placeholder {
+  color: var(--miracle-color-red);
+}
+
+.flightSelectorInputBlue {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid var(--miracle-color-blue);
+  color: var(--miracle-color-white);
+  font-weight: 700;
+  background-color: var(--miracle-color-blue);
+  border-radius: 2px;
+  width: 200px;
+  transition: border-color 0.3s ease;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.flightSelectorInputBlueBorder {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid var(--miracle-color-blue);
+  color: var(--miracle-color-blue);
+  font-weight: 700;
+  border-radius: 2px;
+  width: 200px;
+  transition: border-color 0.3s ease;
+  text-align: center;
+}
+
+.flightSelectorInputBlue::placeholder {
+  color: var(--miracle-color-white);
+}
+
+.flightSelectorInputBlueBorder::placeholder {
+  color: var(--miracle-color-blue);
+}
+
+.flightSelectorInputLabelBlue {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--miracle-color-blue);
+  font-weight: 400;
+  font-size: 18px;
+  opacity: 0.8;
+  border-bottom: 10px;
+  margin-left: 2px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.flightSelectorInputLabelRed {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: var(--miracle-color-red);
+  font-weight: 400;
+  font-size: 18px;
+  opacity: 0.8;
+  border-bottom: 10px;
+  margin-left: 2px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.airplaneIconContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.horizontalLineWithIcon {
+  display: flex;
+  align-items: center;
+  width: 20%;
+  margin: 36px 16px 0px 16px;
+}
+
+.horizontalLineWithIcon::before,
+.horizontalLineWithIcon::after {
+  content: "";
+  flex-grow: 1;
+  border-top: 1px dashed var(--miracle-color-medium-dark);
+}
+
+.airplaneIcon {
+  font-size: 24px;
+  color: var(--miracle-color-medium-dark);
+  text-align: center;
+  margin: 0 16px;
+}
+
+.submitErrorMessage {
+  color: var(--miracle-color-red);
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 10px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.toggleContainer {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  width: fit-content;
+  background-color: #e0e0e0; /* Grey background color */
+  border-radius: 20px; /* Adjust the border-radius as needed */
+  overflow: hidden; /* Clip content that goes beyond the border-radius */
+}
+
+.toggleItem {
+  padding: 8px 16px; /* Adjust padding as needed */
+  cursor: pointer;
+  user-select: none; /* Disable text selection */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease; /* Smooth transition */
+
+  /* Initial styles for unselected state */
+  background-color: transparent;
+  color: #333; /* Default text color */
+
+  /* Hover styles for unselected state */
+  &:hover {
+    background-color: var(
+      --miracle-color-medium
+    ); /* Hover fill color similar to selected */
+  }
+
+  /* Selected state styles */
+  &.selected {
+    background-color: var(
+      --miracle-color-medium-dark
+    ); /* Blue background color */
+    color: var(--miracle-color-white); /* White text color */
+  }
+}
+
+.datePicker {
+  margin: 1rem;
+}

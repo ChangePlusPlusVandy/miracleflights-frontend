@@ -25,6 +25,7 @@
   --miracle-color-purple: #7a52ca;
 
   --miracle-color-white: #ffffff;
+  --miracle-color-very-light: #f5f5f5;
   --miracle-color-light: #e7e7e7;
   --miracle-color-medium-light: #cfcfcf;
   --miracle-color-medium: #afb1b5;
@@ -54,11 +55,13 @@
   --box-shadow: 0 0 48px rgba(34, 40, 49, 0.1);
   --miracle-shadow-ambient: rgba(34, 40, 49, 0.05) 0.0625rem 0.4375rem 0.9375rem
     0rem;
+
+  --miracle-font-family: "Inter", sans-serif;
 }
 /* Fonts, sizing, and lines */
 html,
 body {
-  font-family: "Inter", sans-serif;
+  font-family: var(--miracle-font-family);
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
