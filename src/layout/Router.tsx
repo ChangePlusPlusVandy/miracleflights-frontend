@@ -1,7 +1,6 @@
 import App from "./App";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import TripsPage from "../pages/TripsPage/TripsPage";
-import PersonalInfoPage from "../pages/PersonalInfoPage/PersonalInfoPage";
 import RequestFlightPage from "../pages/RequestFlightPage/RequestFlightPage";
 import SignInPage from "../pages/SignInPage/SignInPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
@@ -36,16 +35,16 @@ const router = createBrowserRouter([
         element: <TripsPage />,
       },
       {
-        path: "/personal-info",
-        element: <PersonalInfoPage />,
-      },
-      {
         path: "/example",
         element: <ExamplePage />,
       },
       {
         path: "/passengers",
         element: <PassengersPage />,
+      },
+      {
+        path: "/documents",
+        element: <div>Documents</div>,
       },
     ],
   },

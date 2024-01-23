@@ -1,6 +1,6 @@
 import type { PassengerData } from "../../../../interfaces/passenger.interface";
 
-export interface PassengerDetailsModalProps {
-  passenger: PassengerData;
+export interface PatientDetailsModalProps {
+  patient: PassengerData;
   onClose: () => void;
 }

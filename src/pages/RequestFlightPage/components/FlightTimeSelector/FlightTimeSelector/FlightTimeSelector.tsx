@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./FlightTimeSelector.module.css";
-import "react-calendar/dist/Calendar.css";
-import Icon from "../../../../components/CustomIcon/Icon.tsx";
+import "../../../../../styles/Calendar.css";
+import Icon from "../../../../../components/CustomIcon/Icon.tsx";
+import Button from "../../../../../components/Button/Button.tsx";
 import DatePicker from "react-calendar";
 import { useState } from "react";
-import type { DateValue, FormTypes } from "./FlightTimeSelector.definitions.ts";
+import type { DateValue } from "./FlightTimeSelector.definitions.ts";
+// import { set } from "react-hook-form";
 
 const FlightTimeSelector = () => {
   const [departDate, setDepartDate] = useState<DateValue>(new Date());
@@ -19,19 +21,18 @@ const FlightTimeSelector = () => {
   const [arrivalAirportAlternate, setArrivalAirportAlternate] =
     useState<string>("");
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    const form: FormTypes = {
-      departDate,
-      arrivalDate,
-      oneWay,
-      departureAirportPrimary,
-      departureAirportAlternate,
-      arrivalAirportPrimary,
-      arrivalAirportAlternate,
-    };
-
-    console.log(form);
+  const handleSubmit = () => {
+    // e.preventDefault();
+    // const form: FormTypes = {
+    //   departDate,
+    //   arrivalDate,
+    //   oneWay,
+    //   departureAirportPrimary,
+    //   departureAirportAlternate,
+    //   arrivalAirportPrimary,
+    //   arrivalAirportAlternate,
+    // };
+    // console.log(form);
   };
 
   const submitDisabled = () => {
@@ -48,72 +49,81 @@ const FlightTimeSelector = () => {
 
   return (
     <div>
-      <div className={styles.flightSelectorBlock}>
-        <div className={styles.flightSelectorBlockHeader}>Flight Selector</div>
+      <div className={styles.flightSelectorContainer}>
+        <div className={styles.flightSelectorBlockHeader}>Request a Flight</div>
         <div className={styles.flightSelectorBlockSubtitle}>
-          Select your flight
+          Choose two of the nearest airports to you and your destination.
         </div>
         <form className={styles.flightSelectorBlockContent}>
+          <div className={styles.checkBoxContainer}>
+            <div className={styles.toggleContainer}>
+              <div
+                className={`${styles.toggleItem} ${
+                  !oneWay ? styles.selected : ""
+                }`}
+                onClick={() => setOneWay(!oneWay)}
+                data-testid="oneWay"
+              >
+                Round Trip
+              </div>
+              <div
+                className={`${styles.toggleItem} ${
+                  oneWay ? styles.selected : ""
+                }`}
+                onClick={() => setOneWay(!oneWay)}
+                data-testid="roundTrip"
+              >
+                One Way
+              </div>
+            </div>
+          </div>
           <div className={styles.flightSelectorInputContainerUpper}>
             <div className={styles.airportChunk}>
-              <div className={styles.flightSelectorInputLabel}>
-                Departure Airport
+              <div className={styles.flightSelectorInputLabelBlue}>
+                Departure
               </div>
               <div className={styles.flightSelectorInputContainer}>
                 <input
                   type="text"
                   placeholder="Primary Selection"
-                  className={styles.flightSelectorInput}
+                  className={styles.flightSelectorInputBlue}
                   value={departureAirportPrimary}
                   onChange={(e) => setDepartureAirportPrimary(e.target.value)}
                 />
                 <input
                   type="text"
                   placeholder="Alternate Selection"
-                  className={styles.flightSelectorInput}
+                  className={styles.flightSelectorInputBlueBorder}
                   value={departureAirportAlternate}
                   onChange={(e) => setDepartureAirportAlternate(e.target.value)}
                 />
               </div>
             </div>
-
-            <div className={styles.airplaneIcon}>
-              <Icon glyph="plane" />
+            <div className={styles.horizontalLineWithIcon}>
+              <div className={styles.airplaneIcon}>
+                <Icon glyph="plane" />
+              </div>
             </div>
 
             <div className={styles.airportChunk}>
-              <div className={styles.flightSelectorInputLabel}>
-                Arrival Airport
-              </div>
+              <div className={styles.flightSelectorInputLabelRed}>Arrival</div>
               <div className={styles.flightSelectorInputContainer}>
                 <input
                   type="text"
                   placeholder="Primary Selection"
-                  className={styles.flightSelectorInput}
+                  className={styles.flightSelectorInputRed}
                   value={arrivalAirportPrimary}
                   onChange={(e) => setArrivalAirportPrimary(e.target.value)}
                 />
                 <input
                   type="text"
                   placeholder="Alternate Selection"
-                  className={styles.flightSelectorInput}
+                  className={styles.flightSelectorInputRedBorder}
                   value={arrivalAirportAlternate}
                   onChange={(e) => setArrivalAirportAlternate(e.target.value)}
                 />
               </div>
             </div>
-          </div>
-
-          <div className={styles.checkBoxContainer}>
-            <label className={styles.flightSelectorInputLabel}>One way:</label>
-            <input
-              type="checkbox"
-              id="oneWay"
-              name="oneWay"
-              checked={oneWay}
-              data-testid="oneWay"
-              onChange={() => setOneWay(!oneWay)}
-            />{" "}
           </div>
 
           <div className={styles.flightSelectorInputContainerLower}>
@@ -122,6 +132,7 @@ const FlightTimeSelector = () => {
                 setDepartDate(date);
               }}
               value={departDate}
+              className={styles.datePicker}
             />
 
             {!oneWay && (
@@ -131,16 +142,22 @@ const FlightTimeSelector = () => {
                 }}
                 value={arrivalDate}
                 minDate={departDate as Date}
+                className={styles.datePicker}
               />
             )}
           </div>
-          <button
+          {/* <button
             className={styles.flightSelectorSubmitButton}
             onClick={handleSubmit}
             disabled={submitDisabled()}
           >
             Submit
-          </button>
+          </button> */}
+          <Button
+            onClick={handleSubmit}
+            disabled={submitDisabled()}
+            text={"Submit "}
+          />
           <div className={styles.submitErrorMessage}>
             {submitDisabled() && "Please fill out all required fields"}
           </div>

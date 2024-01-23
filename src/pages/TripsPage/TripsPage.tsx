@@ -76,7 +76,7 @@ const TripsPage = () => {
 
   return (
     <div className={styles.pageContainer}>
-      <div className={styles.title}>Current</div>
+      <div className={styles.title}>Upcoming Trips</div>
       <div className={styles.flightsGroup}>
         {Object.values(groupedUpcomingFlights).map(
           (flightArray: FlightLegData[], index: number) => (

@@ -18,11 +18,13 @@
 /************* Sidebar *************/
 .sideBarContainer {
   width: fit-content;
-  height: 100vh;
-  padding: 20px;
-  align-self: center;
-  background: var(--rs-sidebar-gradient);
-  border-right: 1px solid #e8e8e8;
+  height: calc(100vh - 3rem);
+  padding: 1.5rem;
+  background: linear-gradient(
+    176deg,
+    #d2ddf0 1.86%,
+    rgba(210, 221, 240, 0.26) 98.06%
+  );
 }
 
 /************* Content *************/
@@ -31,5 +33,5 @@
   max-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 20px 40px;
+  padding: 4rem 6rem;
 }

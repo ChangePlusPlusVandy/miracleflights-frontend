@@ -41,8 +41,9 @@
 }
 
 .Compact {
-  padding: 0.3125rem 0.625rem;
+  padding: 1rem 1rem;
   font-size: 1.125rem;
+  height: fit-content;
 }
 
 .Regular {
@@ -83,6 +84,11 @@
 .Black {
   background-color: var(--miracle-color-dark);
   color: white;
+}
+
+.White {
+  background-color: white;
+  color: var(--miracle-color-dark);
 }
 
 .button:disabled,

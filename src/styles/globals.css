@@ -25,15 +25,29 @@
   --miracle-color-purple: #7a52ca;
 
   --miracle-color-white: #ffffff;
+  --miracle-color-very-light: #f5f5f5;
   --miracle-color-light: #e7e7e7;
   --miracle-color-medium-light: #cfcfcf;
   --miracle-color-medium: #afb1b5;
   --miracle-color-medium-dark: #626262;
+  --miracle-color-gray: #4a4a4a;
   --miracle-color-dark: #222831;
   --miracle-color-black: #000000;
-}
 
-:root {
+  --passenger-card-gradient: linear-gradient(
+    -75deg,
+    rgb(245, 232, 232) 3%,
+    rgb(228, 228, 244) 8%,
+    white 40%
+  );
+
+  --passenger-card-gradient-hover: linear-gradient(
+    -75deg,
+    rgb(225, 205, 205) 3%,
+    rgb(207, 207, 224) 8%,
+    rgb(248, 248, 248) 40%
+  );
+
   --transition-duration-short: 0.15s;
   --transition-duration-long: 0.3s;
   --border-radius-small: 0.125rem;
@@ -42,11 +56,13 @@
   --box-shadow: 0 0 48px rgba(34, 40, 49, 0.1);
   --miracle-shadow-ambient: rgba(34, 40, 49, 0.05) 0.0625rem 0.4375rem 0.9375rem
     0rem;
+
+  --miracle-font-family: "Inter", sans-serif;
 }
 /* Fonts, sizing, and lines */
 html,
 body {
-  font-family: "Inter", sans-serif;
+  font-family: var(--miracle-font-family);
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
@@ -110,7 +126,7 @@ h6 {
 
 /* Links */
 a {
-  text-decoration: none;
+  text-decoration: underline;
   color: var(--miracle-color-dark);
 }
 

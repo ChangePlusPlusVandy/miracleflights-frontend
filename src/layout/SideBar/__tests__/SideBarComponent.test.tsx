@@ -13,27 +13,27 @@ describe("SideBarComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("renders the tabs correctly", () => {
+  it("renders the tabs correctly", async () => {
     // render the component
     const component = render(<SideBar />);
 
     // check if the tabs are there
     expect(component.getByText("DASHBOARD")).toBeTruthy();
-    expect(component.getByText("REQUEST A FLIGHT")).toBeTruthy();
+    expect(component.getByText("Request a Flight")).toBeTruthy();
     expect(component.getByText("TRIPS")).toBeTruthy();
-    expect(component.getByText("PERSONAL INFO")).toBeTruthy();
-    expect(component.getByText("PATIENT AND PASSENGERS")).toBeTruthy();
+    expect(component.getByText("DOCUMENTS")).toBeTruthy();
+    expect(component.getByText("PATIENT & COMPANIONS")).toBeTruthy();
 
     // get the open button and click it
-    const openButton = component.getByTestId("open-button");
+    const openButton = component.getAllByTestId("open-button")[0];
     fireEvent.click(openButton);
 
     // check if that worked (the text shouldn't be there anymore)
-    expect(component.queryByText("DASHBOARD")).toBeFalsy();
-    expect(component.queryByText("REQUEST A FLIGHT")).toBeFalsy();
-    expect(component.queryByText("TRIPS")).toBeFalsy();
-    expect(component.queryByText("PERSONAL INFO")).toBeFalsy();
-    expect(component.queryByText("PATIENT AND PASSENGERS")).toBeFalsy();
+    expect(component.queryByText("DASHBOARD")).not.toBeTruthy();
+    expect(component.queryByText("Request a Flight")).not.toBeTruthy();
+    expect(component.queryByText("TRIPS")).not.toBeTruthy();
+    expect(component.queryByText("DOCUMENTS")).not.toBeTruthy();
+    expect(component.queryByText("PATIENT & COMPANIONS")).not.toBeTruthy();
   });
 
   it("correctly switches tabs", () => {
@@ -47,13 +47,6 @@ describe("SideBarComponent", () => {
     // check if the dashboard tab is selected
     expect(dashboardTab.className).toContain("SideBarTitleSelected");
 
-    // get the request tab and click it
-    const requestTab = component.getByText("REQUEST A FLIGHT");
-    fireEvent.click(requestTab);
-
-    // check if the request tab is selected
-    expect(requestTab.className).toContain("SideBarTitleSelected");
-
     // get the my flights tab and click it
     const myFlightsTab = component.getByText("TRIPS");
     fireEvent.click(myFlightsTab);
@@ -62,15 +55,15 @@ describe("SideBarComponent", () => {
     expect(myFlightsTab.className).toContain("SideBarTitleSelected");
 
     // get the personal info tab and click it
-    const personalInfoTab = component.getByText("PERSONAL INFO");
+    const documentsTab = component.getByText("DOCUMENTS");
 
-    fireEvent.click(personalInfoTab);
+    fireEvent.click(documentsTab);
 
     // check if the personal info tab is selected
-    expect(personalInfoTab.className).toContain("SideBarTitleSelected");
+    expect(documentsTab.className).toContain("SideBarTitleSelected");
 
     // get the passengers tab and click it
-    const passengersTab = component.getByText("PATIENT AND PASSENGERS");
+    const passengersTab = component.getByText("PATIENT & COMPANIONS");
     fireEvent.click(passengersTab);
 
     // check if the passengers tab is selected
