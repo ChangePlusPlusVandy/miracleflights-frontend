@@ -72,7 +72,6 @@ const FlightTicket = ({ flight }: FlightTicketProps) => {
           >
             <div className={styles.backgroundOverlay}> </div>
             <div className={styles.cityAndAirport}>
-              {" "}
               {`${fakerEN_US.location.city()} - ${
                 fakerEN_US.airline.airport().iataCode
               }`}
