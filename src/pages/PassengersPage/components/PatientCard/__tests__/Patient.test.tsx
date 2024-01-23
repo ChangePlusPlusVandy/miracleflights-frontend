@@ -1,28 +1,28 @@
 import { getAge } from "../../../../../util/date.util";
 import { createTestPassengerData } from "../../../../../util/test-data.util";
-import PassengerCard from "../PassengerCard";
+import PatientCard from "../PatientCard";
 import { render } from "@testing-library/react";
 
-describe("Passenger", () => {
+describe("Patient", () => {
   it("should render correctly", () => {
     const mockProps = {
-      passenger: createTestPassengerData(),
+      patient: createTestPassengerData(),
     };
 
-    const component = render(<PassengerCard {...mockProps} />);
+    const component = render(<PatientCard {...mockProps} />);
     expect(component).toBeTruthy();
 
     expect(
       component.getByText(
-        mockProps.passenger.fields["First Name"] +
+        mockProps.patient.fields["First Name"] +
           " " +
-          mockProps.passenger.fields["Last Name"],
+          mockProps.patient.fields["Last Name"],
       ),
     ).toBeTruthy();
     expect(
       component.getByText(
         "(" +
-          getAge(mockProps.passenger.fields["Date of Birth"]).toString() +
+          getAge(mockProps.patient.fields["Date of Birth"]).toString() +
           ")",
       ),
     ).toBeTruthy();
