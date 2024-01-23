@@ -2,6 +2,7 @@ import styles from "./LoginPage.module.css";
 import Button from "../../components/Button/Button";
 import Icon from "../../components/CustomIcon/Icon";
 import Input from "../../components/Input/Input";
+import logo from "../../public/0GAGNk.tif.png";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
@@ -64,11 +65,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <img
-        src="/src/styles/MiracleFlightsLogo.png"
-        alt="Description of the image"
-        className={styles.logo}
-      />
+      <img src={logo} alt="Description of the image" className={styles.logo} />
       <div className={styles.loginContainer}>
         <div className={styles.loginBlock}>
           <div className={styles.loginBlockHeader}>Log In</div>
