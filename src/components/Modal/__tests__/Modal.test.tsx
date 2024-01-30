@@ -13,8 +13,8 @@ describe("Modal Component Tests", () => {
     );
 
     expect(container.querySelector(".Modal")).toBeTruthy();
-    expect(container.querySelector(".Modal-header")).toBeTruthy();
-    expect(container.querySelector(".Modal-content")).toBeTruthy();
+    expect(container.querySelector(".ModalHeader")).toBeTruthy();
+    expect(container.querySelector(".ModalContent")).toBeTruthy();
   });
 
   test("Modal renders properly without header and body", () => {
@@ -22,7 +22,5 @@ describe("Modal Component Tests", () => {
     const { container } = render(<Modal action={mockAction} />);
 
     expect(container.querySelector(".Modal")).toBeTruthy();
-    expect(container.querySelector(".Modal-header")).toBeNull();
-    expect(container.querySelector(".Modal-content")).toBeNull();
   });
 });

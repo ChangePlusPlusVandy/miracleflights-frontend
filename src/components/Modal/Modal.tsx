@@ -17,7 +17,7 @@ const Modal = (props: ModalProps) => {
         {props.header != null && (
           <div className={styles.ModalHeader}>{props.header}</div>
         )}
-        <div className={styles.modalContent}> {props.body} </div>
+        <div className={styles.ModalContent}> {props.body} </div>
       </div>
     </>
   );
