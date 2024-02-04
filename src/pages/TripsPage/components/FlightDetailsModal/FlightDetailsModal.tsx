@@ -15,11 +15,11 @@ const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
         />
         <div className={styles.modalContent}>
           {[
-            flight.fields["Departure Date/Time"].substring(0, 9),
-            flight.fields["Departure Airport"],
-            flight.fields["Arrival Airport"],
-            flight.fields.Airline,
-            flight.fields["Leg Type"],
+            flight["Departure Date/Time"].substring(0, 9),
+            flight["Departure Airport"],
+            flight["Arrival Airport"],
+            flight.Airline,
+            flight["Leg Type"],
           ]}
         </div>
       </div>

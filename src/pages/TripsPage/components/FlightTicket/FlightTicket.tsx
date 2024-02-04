@@ -42,7 +42,7 @@ const FlightTicket = ({ flight }: FlightTicketProps) => {
       <div className={styles.ticketBase} onClick={openModal}>
         <div className={styles.dateRow}>
           <div className={styles.date}>
-            {formatDate(flight.fields["Departure Date/Time"])}
+            {formatDate(flight["Departure Date/Time"])}
           </div>
         </div>
 

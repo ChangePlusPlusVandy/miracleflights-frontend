@@ -17,13 +17,13 @@ const PatientDetailsModal = ({
         />
         <div className={styles["patient-details"]}>
           <p>
-            <span>First Name:</span> {patient.fields["First Name"]}
+            <span>First Name:</span> {patient["First Name"]}
           </p>
           <p>
-            <span>Last Name:</span> {patient.fields["Last Name"]}
+            <span>Last Name:</span> {patient["Last Name"]}
           </p>
           <p>
-            <span>Email:</span> {patient.fields["Email"]}
+            <span>Email:</span> {patient["Email"]}
           </p>
         </div>
       </div>

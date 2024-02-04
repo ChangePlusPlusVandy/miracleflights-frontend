@@ -14,16 +14,12 @@ describe("Patient", () => {
 
     expect(
       component.getByText(
-        mockProps.patient.fields["First Name"] +
-          " " +
-          mockProps.patient.fields["Last Name"],
+        mockProps.patient["First Name"] + " " + mockProps.patient["Last Name"],
       ),
     ).toBeTruthy();
     expect(
       component.getByText(
-        "(" +
-          getAge(mockProps.patient.fields["Date of Birth"]).toString() +
-          ")",
+        "(" + getAge(mockProps.patient["Date of Birth"]).toString() + ")",
       ),
     ).toBeTruthy();
     expect(component.getByText("Medical Condition:")).toBeTruthy();
