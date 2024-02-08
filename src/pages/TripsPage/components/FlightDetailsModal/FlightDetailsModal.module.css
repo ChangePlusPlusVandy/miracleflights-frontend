@@ -8,32 +8,95 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Inter", sans-serif;
   z-index: 1000;
 }
 
 .modal {
   background-color: white;
   padding: 20px;
-  margin-bottom: 200px;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  top: 10%;
+  width: 500px;
+  max-width: 90%;
+  font-family: "Inter", sans-serif;
+  position: relative;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: 600;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.flightInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.from,
+.to,
+.flightTime,
+.flightNum {
+  font-size: 16px;
+  color: #333;
+}
+
+.from,
+.to {
+  display: flex;
+  align-items: center;
+}
+
+.airplaneIcon1 {
+  color: #7597ce;
+  margin-right: 8px;
+}
+
+.airplaneIcon2 {
+  color: #d07171;
+  margin-right: 8px;
+}
+
+.flightTime,
+.flightNum,
+.confirmationNum {
+  padding-left: 26px;
 }
 
 .exitIcon {
-  width: 30px;
-  height: 30px;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .exitIcon:hover {
   cursor: pointer;
+  color: #d07171;
 }
 
 .modalContent {
-  padding-top: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
+  overflow-y: auto; /*idek if this is even neccessary*/
+  padding: 0 20px;
+}
+
+.footer {
+  text-align: center;
+  padding-top: 20px;
+  color: #7597ce;
+  font-weight: 700;
+}
+
+.fromMargin {
+  margin-right: 100px;
+}
+
+.toMargin {
+  margin-right: 120px;
 }
