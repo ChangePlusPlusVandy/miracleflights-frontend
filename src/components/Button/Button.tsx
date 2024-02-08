@@ -11,6 +11,7 @@ const Button = ({
   color = ButtonColor.Blue,
   onClick,
   text,
+  type = "button",
   loading = false,
   disabled = false,
   extraStyles = {},
@@ -30,6 +31,7 @@ const Button = ({
       onClick={onClick}
       disabled={disabled || loading}
       style={{ ...extraStyles }}
+      type={type}
     >
       <h4 style={{ ...textStyles }}>{text}</h4>
       {loading && (

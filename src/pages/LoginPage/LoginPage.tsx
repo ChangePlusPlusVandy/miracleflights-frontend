@@ -61,8 +61,6 @@ const LoginPage = () => {
     setDisabled(!isValid);
   }, [isValid]);
 
-  console.log(errors);
-
   return (
     <>
       <img src={logo} alt="Description of the image" className={styles.logo} />

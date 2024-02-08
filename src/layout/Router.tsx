@@ -5,6 +5,7 @@ import RequestFlightPage from "../pages/RequestFlightPage/RequestFlightPage";
 import ExamplePage from "../pages/ExamplePage/ExamplePage";
 import PassengersPage from "../pages/PassengersPage/PassengersPage";
 import Login from "../pages/LoginPage/LoginPage";
+import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import {
   Navigate,
   RouterProvider,
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/sign-up",
+    element: <SignUpPage />,
   },
 ]);
 

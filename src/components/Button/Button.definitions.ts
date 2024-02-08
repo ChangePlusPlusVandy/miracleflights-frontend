@@ -4,6 +4,7 @@ export interface ButtonProps {
   color?: ButtonColor;
   onClick?: () => void;
   text: string;
+  type?: "button" | "submit" | "reset";
   loading?: boolean;
   disabled?: boolean;
   extraStyles?: React.CSSProperties;
