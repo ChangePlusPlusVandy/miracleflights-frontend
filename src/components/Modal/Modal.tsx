@@ -11,12 +11,16 @@ const Modal = (props: ModalProps) => {
           props.large ?? false ? styles.ModalLarge : ""
         }`}
       >
-        <div onClick={props.action} className={styles.ModalClose}>
-          <Icon glyph="times" />
+        <div className={styles.ModalHeader}>
+          {props.header != null && (
+            <div className={styles.ModalHeaderText}>{props.header}</div>
+          )}
+          <div onClick={props.action} className={styles.ModalHeaderClose}>
+            <div className={styles.ModalCircle}>
+              <Icon glyph="times" />
+            </div>
+          </div>
         </div>
-        {props.header != null && (
-          <div className={styles.ModalHeader}>{props.header}</div>
-        )}
         <div className={styles.ModalContent}> {props.body} </div>
       </div>
     </>
