@@ -1,34 +1,3 @@
-.patientText {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--miracle-color-gray);
-}
-
-.patientLabel {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--miracle-color-medium);
-  margin-bottom: 0.5rem;
-}
-
-.patientGroup {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-}
-
-.marginBottom {
-  margin-bottom: 1rem;
-}
-
-.patientRow {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 2rem; /* Adjust the value as needed */
-}
-
 .patientCard {
   display: flex;
   flex-direction: row;
