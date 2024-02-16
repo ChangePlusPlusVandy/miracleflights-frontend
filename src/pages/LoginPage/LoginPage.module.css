@@ -71,6 +71,10 @@
   text-decoration: none;
 }
 
+.loginBlockLink:hover {
+  cursor: pointer;
+}
+
 .loginRedirect {
   margin-bottom: 16px;
   font-size: 12px;

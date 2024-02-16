@@ -11,8 +11,10 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
+import { SignedIn, SignedOut } from "@clerk/clerk-react";
+import OnboardingPage from "./OnboardingPage/OnboardingPage";
 
-const router = createBrowserRouter([
+const protectedRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -49,7 +51,18 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
+    path: "/onboard",
+    element: <OnboardingPage />,
+  },
+  {
+    path: "*",
+    element: <Navigate to="/" />,
+  },
+]);
+
+const unprotectedRouter = createBrowserRouter([
+  {
+    path: "/sign-in",
     element: <Login />,
   },
   {
@@ -58,6 +71,15 @@ const router = createBrowserRouter([
   },
 ]);
 
-const Router = () => <RouterProvider router={router} />;
+const Router = () => (
+  <>
+    <SignedIn>
+      <RouterProvider router={protectedRouter} />
+    </SignedIn>
+    <SignedOut>
+      <RouterProvider router={unprotectedRouter} />
+    </SignedOut>
+  </>
+);
 
 export default Router;

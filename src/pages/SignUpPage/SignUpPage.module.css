@@ -71,6 +71,10 @@
   text-decoration: none;
 }
 
+.signUpBlockLink:hover {
+  cursor: pointer;
+}
+
 .signUpRedirect {
   margin-bottom: 16px;
   font-size: 12px;
@@ -91,4 +95,11 @@
   color: var(--miracle-color-medium-dark);
   margin-bottom: 16px;
   margin-left: auto;
+}
+
+.sentEmailText {
+  font-size: 14px;
+  color: var(--miracle-color-medium-dark);
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
 }

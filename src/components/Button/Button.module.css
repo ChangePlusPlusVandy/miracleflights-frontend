@@ -16,7 +16,7 @@
 }
 
 .button:not(:disabled):hover {
-  transform: scale(1.05); /* Expand the size slightly on hover */
+  transform: scale(1.02); /* Expand the size slightly on hover */
 }
 
 .buttonText {

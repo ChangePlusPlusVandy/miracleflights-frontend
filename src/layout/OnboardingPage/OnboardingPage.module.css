@@ -1,0 +1,77 @@
+.logo {
+  align-self: flex-start; /* Align the logo to the top left */
+  height: 50px;
+  margin-left: 32px;
+  margin-top: 24px;
+}
+
+.onboardingPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.onboardingBlock {
+  background-color: var(--miracle-color-white);
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.onboardingBlockHeader {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.onboardingBlockContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.onboardingInputContainer {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.subtitleText {
+  font-size: 14px;
+  color: var(--miracle-color-medium-dark);
+  margin-top: 0.5rem;
+}
+
+.patientText {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--miracle-color-gray);
+}
+
+.patientLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--miracle-color-medium);
+  margin-bottom: 0.5rem;
+}
+
+.patientGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.continueButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 2rem;
+  width: 100%;
+}

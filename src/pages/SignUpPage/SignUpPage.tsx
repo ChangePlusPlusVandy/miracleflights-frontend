@@ -22,6 +22,8 @@ const SignUpPage = () => {
 
   const signUpSchema = yup.object().shape({
     email: yup.string().email().required("Required"),
+    firstName: yup.string().required("Required"),
+    lastName: yup.string().required("Required"),
     password: yup
       .string()
       .required("Required")
@@ -44,6 +46,8 @@ const SignUpPage = () => {
   } = useForm<SignUpInput>({
     defaultValues: {
       [SignUpInputName.EMAIL]: "",
+      [SignUpInputName.FIRST_NAME]: "",
+      [SignUpInputName.LAST_NAME]: "",
       [SignUpInputName.PASSWORD]: "",
       [SignUpInputName.CONFIRM_PASSWORD]: "",
     },
@@ -79,6 +83,8 @@ const SignUpPage = () => {
       await signUp.create({
         emailAddress: signUpData.email,
         password: signUpData.password,
+        firstName: signUpData.firstName,
+        lastName: signUpData.lastName,
       });
 
       // send the email.
@@ -109,7 +115,7 @@ const SignUpPage = () => {
       }
       if (completeSignUp.status === "complete") {
         await setActive({ session: completeSignUp.createdSessionId });
-        navigate("/");
+        navigate("/onboard");
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
@@ -127,7 +133,7 @@ const SignUpPage = () => {
             <div className={styles.signUpRedirect}>
               Have an account?
               <div
-                onClick={() => navigate("/sign-up")}
+                onClick={() => navigate("/sign-in")}
                 className={styles.signUpBlockLink}
               >
                 Sign in
@@ -145,6 +151,26 @@ const SignUpPage = () => {
                   label="Email"
                   type="text"
                   placeholder="Email"
+                />
+              </div>
+              <div className={styles.signUpInputContainerUpper}>
+                <Input
+                  name="firstName"
+                  register={signUpRegister}
+                  error={signUpErrors[SignUpInputName.EMAIL]?.message}
+                  label="First name"
+                  type="text"
+                  placeholder="John"
+                />
+              </div>
+              <div className={styles.signUpInputContainerUpper}>
+                <Input
+                  name="lastName"
+                  register={signUpRegister}
+                  error={signUpErrors[SignUpInputName.EMAIL]?.message}
+                  label="Last name"
+                  type="text"
+                  placeholder="Doe"
                 />
               </div>
               <div className={styles.signUpInputContainerLower}>
@@ -202,12 +228,15 @@ const SignUpPage = () => {
           <div className={styles.signUpBlock}>
             <div className={styles.signUpBlockHeader}>
               {"Let's see if you're real"}
+              <p
+                className={styles.sentEmailText}
+              >{`We've sent a 6-digit code to ${signUp?.emailAddress}.`}</p>
             </div>
+
             <form
               onSubmit={handleCodeSubmit(onSubmitCode)}
               className={styles.signUpBlockContent}
             >
-              {" "}
               <div className={styles.signUpInputContainerUpper}>
                 <Input
                   name="code"
