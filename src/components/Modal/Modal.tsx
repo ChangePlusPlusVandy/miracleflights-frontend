@@ -15,7 +15,11 @@ const Modal = (props: ModalProps) => {
           {props.header != null && (
             <div className={styles.ModalHeaderText}>{props.header}</div>
           )}
-          <div onClick={props.action} className={styles.ModalHeaderClose}>
+          <div
+            onClick={props.action}
+            className={styles.ModalHeaderClose}
+            data-testid="modal-close"
+          >
             <div className={styles.ModalCircle}>
               <Icon glyph="times" />
             </div>
