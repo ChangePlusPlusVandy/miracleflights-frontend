@@ -1,5 +1,6 @@
 import styles from "./FlightDetailsModal.module.css";
-import { faCircleXmark, faPlaneUp } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../../../../components/Modal/Modal";
+import { faPlaneUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { FlightDetailsModalProps } from "./FlightDetailsModal.definitions";
 
@@ -26,16 +27,11 @@ const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
   }
 
   return (
-    <div className={styles.modalBackdrop}>
-      <div className={styles.modal}>
-        <FontAwesomeIcon
-          icon={faCircleXmark}
-          className={styles.exitIcon}
-          onClick={onClose}
-          id="closeIcon"
-        />
-        <div className={styles.modalContent}>
-          <div className={styles.header}>Flight Information</div>
+    <Modal
+      action={onClose}
+      header="Flight Information"
+      body={
+        <>
           <div className={styles.flightInfo}>
             <div className={styles.from}>
               <FontAwesomeIcon
@@ -68,9 +64,9 @@ const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
               Check Flight Status
             </a>
           </div>
-        </div>
-      </div>
-    </div>
+        </>
+      }
+    />
   );
 };
 
