@@ -1,0 +1,81 @@
+.ModalOverlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--hextronics-z-100);
+  overflow: hidden;
+}
+
+.Modal {
+  position: fixed;
+  padding: 20px;
+  width: 400px;
+  z-index: 1000;
+  top: 10%;
+  left: 50%;
+  margin-left: -200px;
+  background-color: var(--miracle-color-white);
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--box-shadow);
+}
+
+.ModalLarge {
+  width: 500px;
+  margin-left: -250px;
+  max-height: 700px;
+}
+
+.ModalContent {
+  border-radius: var(--border-radius-large);
+  color: var(--miracle-color-black);
+  z-index: 5;
+  height: fit-content;
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 10px 0 0 0;
+}
+
+.ModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically */
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--miracle-color-medium-light); /* Light grey line at the bottom */
+}
+
+.ModalHeaderText {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  color: var(--miracle-color-black);
+  font-weight: 600;
+}
+
+.ModalHeaderClose {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  background-color: var(--miracle-color-medium-light);
+  text-align: center;
+}
+
+.ModalClose {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--miracle-color-dark);
+}
+
+.ModalCircle:hover {
+  cursor: pointer;
+  color: var(
+    --miracle-color-red-dark
+  ) !important; /* Added !important to ensure specificity */
+}
