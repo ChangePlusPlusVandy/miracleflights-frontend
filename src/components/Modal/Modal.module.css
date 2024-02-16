@@ -28,19 +28,6 @@
   max-height: 700px;
 }
 
-.ModalClose {
-  display: flex;
-  justify-content: flex-end;
-  color: var(--miracle-color-blue-dark);
-}
-
-.ModalClose:hover {
-  cursor: pointer;
-  color: var(
-    --miracle-color-red-dark
-  ) !important; /* Added !important to ensure specificity */
-}
-
 .ModalContent {
   border-radius: var(--border-radius-large);
   color: var(--miracle-color-black);
@@ -48,16 +35,47 @@
   height: fit-content;
   max-height: 600px;
   overflow-y: auto;
-  padding: 10px;
+  padding: 10px 0 0 0;
 }
 
 .ModalHeader {
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Align items vertically */
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--miracle-color-medium-light); /* Light grey line at the bottom */
+}
+
+.ModalHeaderText {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
   font-size: 24px;
-  font-weight: 400;
-  margin-bottom: 8px;
-  color: var(--miracle-color-blue-dark);
+  color: var(--miracle-color-black);
+  font-weight: 600;
+}
+
+.ModalHeaderClose {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  background-color: var(--miracle-color-medium-light);
+  text-align: center;
+}
+
+.ModalClose {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--miracle-color-dark);
+}
+
+.ModalCircle:hover {
+  cursor: pointer;
+  color: var(
+    --miracle-color-red-dark
+  ) !important; /* Added !important to ensure specificity */
 }
