@@ -1,8 +1,7 @@
 import styles from "./PatientCard.module.css";
 import { formatDate, getAge } from "../../../../util/date.util";
+// import Icon from "../../../../components/CustomIcon/Icon";
 import PatientDetailsModal from "../PatientDetailsModal/PatientDetailsModal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import type { PatientProps } from "./PatientCard.definitions";
 
@@ -16,11 +15,17 @@ import type { PatientProps } from "./PatientCard.definitions";
  * @property {string} dateOfBirth
  */
 const Patient = ({ patient }: PatientProps) => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modal, setModal] = useState(false);
 
   return (
     <>
-      <div className={styles.patientCard} onClick={() => setModalOpen(true)}>
+      {modal && (
+        <PatientDetailsModal
+          patient={patient}
+          onClose={() => setModal(false)}
+        />
+      )}
+      <div className={styles.patientCard} onClick={() => setModal(true)}>
         <div className={styles.imgAndInfo}>
           <div className={styles.imgContainer} />
           <div className={styles.info}>
@@ -41,16 +46,10 @@ const Patient = ({ patient }: PatientProps) => {
             </div>
           </div>
         </div>
-        <div className={styles.editIcon}>
-          <FontAwesomeIcon icon={faPen} />
-        </div>
+        {/* <div className={styles.editIcon} onClick={}>
+          <Icon glyph="pen" />
+        </div> */}
       </div>
-      {modalOpen && (
-        <PatientDetailsModal
-          patient={patient}
-          onClose={() => setModalOpen(false)}
-        />
-      )}
     </>
   );
 };

@@ -1,29 +1,69 @@
 import styles from "./FlightDetailsModal.module.css";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../../../../components/Modal/Modal";
+import { faPlaneUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { FlightDetailsModalProps } from "./FlightDetailsModal.definitions";
 
 const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
+  function joinWithCommasAndAnd(words: string | string[]): string {
+    // Handle the case where 'words' is a single string
+    if (typeof words === "string") {
+      return words;
+    }
+
+    // Now 'words' is guaranteed to be an array of strings
+    switch (words.length) {
+      case 0:
+        return "";
+      case 1:
+        return words[0];
+      case 2:
+        return words.join(" and ");
+      default: {
+        const lastWord = words.pop();
+        return `${words.join(", ")}, and ${lastWord}`;
+      }
+    }
+  }
+
   return (
-    <div className={styles.modalBackdrop}>
-      <div className={styles.modal}>
-        <FontAwesomeIcon
-          icon={faXmark}
-          className={styles.exitIcon}
-          onClick={onClose}
-          id="closeIcon"
-        />
-        <div className={styles.modalContent}>
-          {[
-            flight["Departure Date/Time"].substring(0, 9),
-            flight["Departure Airport"],
-            flight["Arrival Airport"],
-            flight.Airline,
-            flight["Leg Type"],
-          ]}
-        </div>
-      </div>
-    </div>
+    <Modal
+      action={onClose}
+      header="Flight Information"
+      body={
+        <>
+          <div className={styles.flightInfo}>
+            <div className={styles.from}>
+              <FontAwesomeIcon
+                icon={faPlaneUp}
+                className={styles.airplaneIcon1}
+              />
+              <div className={styles.fromMargin}>From:</div>{" "}
+              {flight["Departure Airport"]}
+            </div>
+            <div className={styles.to}>
+              <FontAwesomeIcon
+                icon={faPlaneUp}
+                className={styles.airplaneIcon2}
+              />
+              <div className={styles.toMargin}>To:</div>{" "}
+              {flight["Arrival Airport"]}
+            </div>
+            <div className={styles.flightTime}>
+              Departure Time: {flight["Departure Date/Time"]}
+            </div>
+            <div className={styles.flightNum}>
+              Passengers: {joinWithCommasAndAnd(flight["Passenger Names"])}
+            </div>
+          </div>
+          <div className={styles.footer}>
+            <a href="https://eelslap.com/" className={styles.footer}>
+              Check Flight Status
+            </a>
+          </div>
+        </>
+      }
+    />
   );
 };
 

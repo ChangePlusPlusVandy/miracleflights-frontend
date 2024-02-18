@@ -1,5 +1,5 @@
-import PatientCard from "./components/PatientCard/PatientCard";
 import styles from "./PassengersPage.module.css";
+import PatientCard from "./components/PatientCard/PatientCard";
 import { createTestPassengerData } from "../../util/test-data.util";
 import { useMemo } from "react";
 import type { PassengerData } from "../../interfaces/passenger.interface";
@@ -51,39 +51,41 @@ const PassengersPage = () => {
   const { generalInfo } = allInfo;
 
   return (
-    <div className={styles.container}>
-      <div className={styles.patientSection}>
-        <h2 className={styles.header}>Patients and Companions</h2>
-        <h3 className={styles.subheader}>Patient Information</h3>
-        <div className={styles.patientInfo}>
-          <PatientCard patient={createTestPassengerData()} />
+    <>
+      <div className={styles.container}>
+        <div className={styles.patientSection}>
+          <h2 className={styles.header}>Patients and Companions</h2>
+          <h3 className={styles.subheader}>Patient Information</h3>
+          <div className={styles.patientInfo}>
+            <PatientCard patient={createTestPassengerData()} />
+          </div>
+        </div>
+        <div className={styles.passengerSection}>
+          <h3 className={styles.subheader}>Companion Information</h3>
+          <h5 className={styles.description}>
+            Companions of {generalInfo["First Name"]}
+          </h5>
+          <table>
+            <tr className={styles.tableHead}>
+              <th>Name</th>
+              <th>Relationship</th>
+              <th>Notes</th>
+            </tr>
+            {generalInfo.Passengers.map((passenger, index) => (
+              <tr key={index}>
+                <td>{passenger}</td>
+                <td>{index % 2 == 1 ? "Mother" : "Brother"}</td>
+                <td>
+                  {index % 2 == 1
+                    ? "Helps with medication"
+                    : "Likes to fly window seat"}
+                </td>
+              </tr>
+            ))}
+          </table>
         </div>
       </div>
-      <div className={styles.passengerSection}>
-        <h3 className={styles.subheader}>Companion Information</h3>
-        <h5 className={styles.description}>
-          Companions of {generalInfo["First Name"]}
-        </h5>
-        <table>
-          <tr className={styles.tableHead}>
-            <th>Name</th>
-            <th>Relationship</th>
-            <th>Notes</th>
-          </tr>
-          {generalInfo.Passengers.map((passenger, index) => (
-            <tr key={index}>
-              <td>{passenger}</td>
-              <td>{index % 2 == 1 ? "Mother" : "Brother"}</td>
-              <td>
-                {index % 2 == 1
-                  ? "Helps with medication"
-                  : "Likes to fly window seat"}
-              </td>
-            </tr>
-          ))}
-        </table>
-      </div>
-    </div>
+    </>
   );
 };
 
