@@ -52,8 +52,8 @@ export const formatDate = (date: string) => {
 export const formatTimeFrame = (trip: FlightLegData[]) => {
   // return the earliest and latest start dates for flights concatenated
   return (
-    formatDate(trip[0].fields["Departure Date/Time"]) +
+    formatDate(trip[0]["Departure Date/Time"]) +
     " - " +
-    formatDate(trip[trip.length - 1].fields["Departure Date/Time"])
+    formatDate(trip[trip.length - 1]["Departure Date/Time"])
   );
 };
