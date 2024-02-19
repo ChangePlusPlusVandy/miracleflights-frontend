@@ -1,4 +1,5 @@
 import App from "./App";
+import OnboardingPage from "./OnboardingPage/OnboardingPage";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import TripsPage from "../pages/TripsPage/TripsPage";
 import RequestFlightPage from "../pages/RequestFlightPage/RequestFlightPage";
@@ -12,7 +13,6 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
-import OnboardingPage from "./OnboardingPage/OnboardingPage";
 
 const protectedRouter = createBrowserRouter([
   {
