@@ -1,5 +1,6 @@
 import styles from "./PassengersPage.module.css";
 import PatientCard from "./components/PatientCard/PatientCard";
+import PassengerCard from "./components/PassengerCard/PassengerCard";
 import { createTestPassengerData } from "../../util/test-data.util";
 import { useMemo } from "react";
 import type { PassengerData } from "../../interfaces/passenger.interface";
@@ -67,24 +68,17 @@ const PassengersPage = () => {
           <h5 className={styles.description}>
             Companions of {generalInfo["First Name"]}
           </h5>
-          <table>
-            <tr className={styles.tableHead}>
-              <th>Name</th>
-              <th>Relationship</th>
-              <th>Notes</th>
-            </tr>
+          <div className={styles.passengersContainer}>
             {generalInfo.Passengers.map((passenger, index) => (
-              <tr key={index}>
-                <td>{passenger}</td>
-                <td>{index % 2 == 1 ? "Mother" : "Brother"}</td>
-                <td>
-                  {index % 2 == 1
-                    ? "Helps with medication"
-                    : "Likes to fly window seat"}
-                </td>
-              </tr>
+              <div className={styles.passengerCard} key={index}>
+                <PassengerCard
+                  name={passenger}
+                  relationship="Brother"
+                  notes="He has no legs"
+                />
+              </div>
             ))}
-          </table>
+          </div>
         </div>
       </div>
     </>

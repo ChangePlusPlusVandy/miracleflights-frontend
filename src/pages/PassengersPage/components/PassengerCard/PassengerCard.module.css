@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  height: 10rem;
+  padding: 2rem;
+  border: 0.05rem solid var(--miracle-color-gray);
+  border-radius: 1rem;
+  background: var(--passenger-card-gradient);
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--miracle-color-dark);
+  margin-top: 1rem;
+}
+
+.relationship {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--miracle-color-medium);
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--miracle-color-medium);
+  margin-top: 3rem;
+}
+
+.notes {
+  font-size: 1rem;
+  margin-top: 2rem;
+}
