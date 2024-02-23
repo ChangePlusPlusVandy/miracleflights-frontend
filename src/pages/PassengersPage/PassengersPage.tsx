@@ -67,13 +67,9 @@ const PassengersPage = () => {
             Companions of {generalInfo["First Name"]}
           </h5>
           <div className={styles.passengersContainer}>
-            {generalInfo.Passengers.map((passenger, index) => (
+            {generalInfo.Passengers.map((index) => (
               <div className={styles.passengerCard} key={index}>
-                <PassengerCard
-                  name={passenger}
-                  relationship="Brother"
-                  notes="He has no legs"
-                />
+                <PassengerCard passenger={createTestPassengerData()} />
               </div>
             ))}
           </div>
