@@ -39,8 +39,7 @@ const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
                 className={styles.airplaneIcon1}
               />
               <div className={styles.fromMargin}>From:</div>{" "}
-              {flight.fields["BL - Departure Airport"]} -{" "}
-              {flight.fields["Departure Airport"]}
+              {flight["Departure Airport"]}
             </div>
             <div className={styles.to}>
               <FontAwesomeIcon
@@ -48,15 +47,13 @@ const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
                 className={styles.airplaneIcon2}
               />
               <div className={styles.toMargin}>To:</div>{" "}
-              {flight.fields["BL - Arrival Airport"]} -{" "}
-              {flight.fields["Arrival Airport"]}
+              {flight["Arrival Airport"]}
             </div>
             <div className={styles.flightTime}>
-              Departure Time: {flight.fields["Departure Date/Time"]}
+              Departure Time: {flight["Departure Date/Time"]}
             </div>
             <div className={styles.flightNum}>
-              Passengers:{" "}
-              {joinWithCommasAndAnd(flight.fields["Passenger Names"])}
+              Passengers: {joinWithCommasAndAnd(flight["Passenger Names"])}
             </div>
           </div>
           <div className={styles.footer}>

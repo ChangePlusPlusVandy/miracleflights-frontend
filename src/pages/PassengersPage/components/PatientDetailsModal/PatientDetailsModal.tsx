@@ -14,38 +14,32 @@ const PatientDetailsModal = ({
             <div className={`${styles.patientRow} ${styles.marginBottom}`}>
               <div>
                 <span className={styles.patientLabel}>Gender</span>{" "}
-                <span className={styles.patientText}>
-                  {patient.fields["Gender"]}
-                </span>
+                <span className={styles.patientText}>{patient["Gender"]}</span>
               </div>
               <div>
                 <span className={styles.patientLabel}>DOB</span>{" "}
                 <span className={styles.patientText}>
-                  {patient.fields["Date of Birth"].split("T")[0]}{" "}
+                  {patient["Date of Birth"].split("T")[0]}{" "}
                 </span>
               </div>
             </div>
             {/* make another patient group for address where each line of the address is separated */}
             <div className={styles.patientGroup}>
               <span className={styles.patientLabel}>Address</span>{" "}
-              <span className={styles.patientText}>
-                {patient.fields["Street"]}
-              </span>
-              <span className={styles.patientText}>
-                {patient.fields["Country"]}
-              </span>
+              <span className={styles.patientText}>{patient["Street"]}</span>
+              <span className={styles.patientText}>{patient["Country"]}</span>
             </div>
             <div className={styles.patientGroup}>
               <span className={styles.patientLabel}>Military</span>{" "}
               <span className={styles.patientText}>
-                {patient.fields["Military Service"]}
+                {patient["Military Service"]}
               </span>
             </div>
             <div className={styles.patientRow}>
               <div className={styles.patientGroup}>
                 <span className={styles.patientLabel}># of Flight Legs</span>{" "}
                 <span className={styles.patientText}>
-                  {patient.fields["# of Flight Legs"]}
+                  {patient["# of Flight Legs"]}
                 </span>
               </div>
               <div className={styles.patientGroup}>
@@ -53,7 +47,7 @@ const PatientDetailsModal = ({
                   # of Booked Flight Requests
                 </span>{" "}
                 <span className={styles.patientText}>
-                  {patient.fields["# of Booked Flight Requests (Patient)"]}
+                  {patient["# of Booked Flight Requests"]}
                 </span>
               </div>
             </div>
@@ -64,7 +58,7 @@ const PatientDetailsModal = ({
             {/* <span className={styles.patientLabel}>Joined Goes Here</span>{" "} */}
           </>
         }
-        header={patient.fields["Full Name"]}
+        header={patient["Full Name"]}
         action={onClose}
       />
     </>

@@ -12,11 +12,9 @@ describe("PatientDetailsModal", () => {
     );
 
     expect(getByText("Gender")).toBeTruthy();
-    expect(getByText(mockPatient.fields.Gender)).toBeTruthy();
+    expect(getByText(mockPatient.Gender)).toBeTruthy();
     expect(getByText("DOB")).toBeTruthy();
-    expect(
-      getByText(mockPatient.fields["Date of Birth"].split("T")[0]),
-    ).toBeTruthy();
+    expect(getByText(mockPatient["Date of Birth"].split("T")[0])).toBeTruthy();
     // Add similar checks for other fields
   });
 
