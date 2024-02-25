@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  height: 15rem;
+  padding: 2rem;
+  border: 0.05rem solid var(--miracle-color-gray);
+  border-radius: 1rem;
+  background: var(--passenger-card-gradient);
+}
+.container:hover {
+  background: var(--passenger-card-gradient-hover);
+  cursor: pointer;
+}
+.line {
+  width: 25%;
+  height: 0.05rem;
+  background: var(--miracle-color-gray);
+  margin: 0.5rem 0;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--miracle-color-dark);
+  margin-top: 1rem;
+}
+
+.relationship {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--miracle-color-medium);
+}
+
+.birthContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--miracle-color-medium);
+}
+
+.birth {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
