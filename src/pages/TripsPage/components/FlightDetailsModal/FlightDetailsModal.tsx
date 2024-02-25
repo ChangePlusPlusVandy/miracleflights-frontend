@@ -46,26 +46,23 @@ const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
               <Icon glyph="plane" />
             </div>
             <div className={styles.label}>From:</div>{" "}
-            {flight.fields["BL - Departure Airport"]} -{" "}
-            {flight.fields["Departure Airport"]}
+            {flight["Departure Airport"]}
           </div>
           <div className={styles.row}>
             <div className={`${styles.icon} ${styles.colorBlue}`}>
               <Icon glyph="plane" />
             </div>
-            <div className={styles.label}>To:</div>{" "}
-            {flight.fields["BL - Arrival Airport"]} -{" "}
-            {flight.fields["Arrival Airport"]}
+            <div className={styles.label}>To:</div> {flight["Arrival Airport"]}
           </div>
           <div className={styles.row}>
             <div className={styles.icon} />
             <div className={styles.label}> Departure Time: </div>
-            {formatDateString(flight.fields["Departure Date/Time"])}
+            {formatDateString(flight["Departure Date/Time"])}
           </div>
           <div className={styles.row}>
             <div className={styles.icon} />
             <div className={styles.label}> Passengers:</div>
-            {joinWithCommasAndAnd(flight.fields["Passenger Names"])}
+            {joinWithCommasAndAnd(flight["Passenger Names"])}
           </div>
           <div className={styles.footer}>
             <a href="https://eelslap.com/" className={styles.footer}>

@@ -20,7 +20,7 @@ describe("FlightTicket Tests", () => {
 
     //check that date is the same
     const date = component.getByText(
-      formatDate(mockProps.flight.fields["Departure Date/Time"]),
+      formatDate(mockProps.flight["Departure Date/Time"]),
     );
     expect(date).toBeTruthy();
   });
@@ -38,7 +38,7 @@ describe("FlightTicket Tests", () => {
 
     //check that date is the same
     const date = component.getByText(
-      formatDate(mockProps.flight.fields["Departure Date/Time"]),
+      formatDate(mockProps.flight["Departure Date/Time"]),
     );
     expect(date).toBeTruthy();
   });
@@ -57,7 +57,7 @@ describe("FlightTicket Tests", () => {
 
     //check that date is the same
     const date = component.getByText(
-      formatDate(mockProps.flight.fields["Departure Date/Time"]),
+      formatDate(mockProps.flight["Departure Date/Time"]),
     );
     expect(date).toBeTruthy();
   });

@@ -16,20 +16,20 @@ const TripsPage = () => {
     const groupedUpcomingFlights = flights
       .filter((flight: FlightLegData) => {
         return (
-          new Date(flight.fields["Departure Date/Time"]).getTime() -
+          new Date(flight["Departure Date/Time"]).getTime() -
             new Date().getTime() >
           0
         );
       })
       .sort((flight1: FlightLegData, flight2: FlightLegData) => {
         return (
-          new Date(flight1.fields["Departure Date/Time"]).getTime() -
-          new Date(flight2.fields["Departure Date/Time"]).getTime()
+          new Date(flight1["Departure Date/Time"]).getTime() -
+          new Date(flight2["Departure Date/Time"]).getTime()
         );
       })
       .reduce((acc: Record<string, FlightLegData[]>, flight: FlightLegData) => {
         const firstElementRequestAirTableRecordID =
-          flight.fields["Request AirTable Record ID"][0];
+          flight["Request AirTable Record ID"][0];
         if (acc[firstElementRequestAirTableRecordID]) {
           acc[firstElementRequestAirTableRecordID].push(flight);
         } else {
@@ -41,20 +41,20 @@ const TripsPage = () => {
     const groupedPastFlights = flights
       .filter((flight: FlightLegData) => {
         return (
-          new Date(flight.fields["Departure Date/Time"]).getTime() -
+          new Date(flight["Departure Date/Time"]).getTime() -
             new Date().getTime() <
           0
         );
       })
       .sort((flight1: FlightLegData, flight2: FlightLegData) => {
         return (
-          new Date(flight1.fields["Departure Date/Time"]).getTime() -
-          new Date(flight2.fields["Departure Date/Time"]).getTime()
+          new Date(flight1["Departure Date/Time"]).getTime() -
+          new Date(flight2["Departure Date/Time"]).getTime()
         );
       })
       .reduce((acc: Record<string, FlightLegData[]>, flight: FlightLegData) => {
         const firstElementRequestAirTableRecordID =
-          flight.fields["Request AirTable Record ID"][0];
+          flight["Request AirTable Record ID"][0];
         if (acc[firstElementRequestAirTableRecordID]) {
           acc[firstElementRequestAirTableRecordID].push(flight);
         } else {

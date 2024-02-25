@@ -30,14 +30,14 @@ const Patient = ({ patient }: PatientProps) => {
           <div className={styles.imgContainer} />
           <div className={styles.info}>
             <div className={styles.name}>
-              {patient.fields["First Name"]} {patient.fields["Last Name"]}
+              {patient["First Name"]} {patient["Last Name"]}
             </div>
             <div className={styles.dob}>
               <span>DOB: </span>
-              <span>{formatDate(patient.fields["Date of Birth"])}</span>
+              <span>{formatDate(patient["Date of Birth"])}</span>
               <span className={styles.boldText}>
                 {" ("}
-                {getAge(patient.fields["Date of Birth"])}
+                {getAge(patient["Date of Birth"])}
                 {")"}
               </span>
             </div>
