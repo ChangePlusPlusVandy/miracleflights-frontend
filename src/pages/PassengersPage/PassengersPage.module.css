@@ -16,7 +16,7 @@
 .passengerSection {
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding-right: 4rem;
 }
 
