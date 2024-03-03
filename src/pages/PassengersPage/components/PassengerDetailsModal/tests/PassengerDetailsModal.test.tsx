@@ -1,14 +1,14 @@
 import { createTestPassengerData } from "../../../../../util/test-data.util";
-import PatientDetailsModal from "../PatientDetailsModal";
+import PassengerDetailsModal from "../PassengerDetailsModal";
 import { render, fireEvent } from "@testing-library/react";
 
-describe("PatientDetailsModal", () => {
+describe("PassengerDetailsModal", () => {
   const mockOnClose = jest.fn();
   const mockPatient = createTestPassengerData();
 
   it("renders patient details correctly", () => {
     const { getByText } = render(
-      <PatientDetailsModal patient={mockPatient} onClose={mockOnClose} />,
+      <PassengerDetailsModal passenger={mockPatient} onClose={mockOnClose} />,
     );
 
     expect(getByText("Gender")).toBeTruthy();
@@ -20,7 +20,7 @@ describe("PatientDetailsModal", () => {
 
   it("calls onClose when the modal action is triggered", () => {
     const component = render(
-      <PatientDetailsModal patient={mockPatient} onClose={mockOnClose} />,
+      <PassengerDetailsModal passenger={mockPatient} onClose={mockOnClose} />,
     );
 
     fireEvent.click(component.getByTestId("modal-close")); // Assuming the action triggers on a button click

@@ -23,9 +23,9 @@ const PatientDetailsModal = ({
   // Initialize the form with default values from the patient data
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
-      Address: patient.fields["Street"],
-      Country: patient.fields["Country"],
-      Email: patient.fields["Email"],
+      Address: patient["Street"],
+      Country: patient["Country"],
+      Email: patient["Email"],
       // Add other fields as needed
     },
   });
@@ -46,13 +46,13 @@ const PatientDetailsModal = ({
                 <div>
                   <span className={styles.patientLabel}>Gender</span>{" "}
                   <span className={styles.patientText}>
-                    {patient.fields["Gender"]}
+                    {patient["Gender"]}
                   </span>
                 </div>
                 <div>
                   <span className={styles.patientLabel}>DOB</span>{" "}
                   <span className={styles.patientText}>
-                    {patient.fields["Date of Birth"].split("T")[0]}{" "}
+                    {patient["Date of Birth"].split("T")[0]}{" "}
                   </span>
                 </div>
               </div>
@@ -63,10 +63,10 @@ const PatientDetailsModal = ({
                 {!editMode && (
                   <>
                     <span className={styles.patientText}>
-                      {patient.fields["Street"]}
+                      {patient["Street"]}
                     </span>
                     <span className={styles.patientText}>
-                      {patient.fields["Country"]}
+                      {patient["Country"]}
                     </span>
                   </>
                 )}
@@ -90,9 +90,7 @@ const PatientDetailsModal = ({
               <div className={styles.patientGroup}>
                 <span className={styles.patientLabel}>Email</span>{" "}
                 {!editMode && (
-                  <span className={styles.patientText}>
-                    {patient.fields["Email"]}
-                  </span>
+                  <span className={styles.patientText}>{patient["Email"]}</span>
                 )}
                 {editMode && (
                   <Input
@@ -106,14 +104,14 @@ const PatientDetailsModal = ({
               <div className={styles.patientGroup}>
                 <span className={styles.patientLabel}>Military</span>{" "}
                 <span className={styles.patientText}>
-                  {patient.fields["Military Service"]}
+                  {patient["Military Service"]}
                 </span>
               </div>
               <div className={styles.patientRow}>
                 <div className={styles.patientGroup}>
                   <span className={styles.patientLabel}># of Flight Legs</span>{" "}
                   <span className={styles.patientText}>
-                    {patient.fields["# of Flight Legs"]}
+                    {patient["# of Flight Legs"]}
                   </span>
                 </div>
                 <div className={styles.patientGroup}>
@@ -121,7 +119,7 @@ const PatientDetailsModal = ({
                     # of Booked Flight Requests
                   </span>{" "}
                   <span className={styles.patientText}>
-                    {patient.fields["# of Booked Flight Requests (Patient)"]}
+                    {patient["# of Booked Flight Requests (Patient)"]}
                   </span>
                 </div>
               </div>
@@ -155,7 +153,7 @@ const PatientDetailsModal = ({
             {/* <span className={styles.patientLabel}>Joined Goes Here</span>{" "} */}
           </>
         }
-        header={patient.fields["Full Name"]}
+        header={patient["Full Name"]}
         action={onClose}
       />
     </>

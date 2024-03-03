@@ -1,5 +1,6 @@
 import styles from "./PassengersPage.module.css";
 import PatientCard from "./components/PatientCard/PatientCard";
+import PassengerCard from "./components/PassengerCard/PassengerCard";
 import { createTestPassengerData } from "../../util/test-data.util";
 import { useMemo } from "react";
 import type { PassengerData } from "../../interfaces/passenger.interface";
@@ -10,36 +11,34 @@ const PassengersPage = () => {
   // Memoize the flight info so that it doesn't have to be recalculated every time the component re-renders
   const allInfo = useMemo(() => {
     const generalInfo = {
-      "Full Name": data.fields["Full Name"],
-      "First Name": data.fields["First Name"],
-      Street: data.fields.Street,
-      Country: data.fields.Country,
-      "Email Address": data.fields.Email,
-      "Type of Passenger": data.fields.Type,
-      "Military Service Status": data.fields["Military Service"],
-      "Military Member Status": data.fields["Military Member"],
-      "Date Created": data.createdTime.split("T")[0],
-      "How did you hear about us?": data.fields["How did you hear about us"],
-      Passengers: data.fields["Passenger Names (from All Flight Legs)"],
+      "Full Name": data["Full Name"],
+      "First Name": data["First Name"],
+      Street: data.Street,
+      Country: data.Country,
+      "Email Address": data.Email,
+      "Type of Passenger": data.Type,
+      "Military Service Status": data["Military Service"],
+      "Military Member Status": data["Military Member"],
+      "How did you hear about us?": data["How did you hear about us"],
+      Passengers: data["Passenger Names (from All Flight Legs)"],
     };
 
     const medicalInfo = {
-      "Date of Birth": data.fields["Date of Birth"].split("T")[0],
-      Gender: data.fields.Gender,
-      Ethnicity: data.fields.Ethnicity,
-      Diagnosis: data.fields.Diagnosis,
+      "Date of Birth": data["Date of Birth"].split("T")[0],
+      Gender: data.Gender,
+      Ethnicity: data.Ethnicity,
+      Diagnosis: data.Diagnosis,
     };
 
     const financialInfo = {
-      "Household Income": data.fields["Household Income"],
-      "Household Size": data.fields["Household Size"],
+      "Household Income": data["Household Income"],
+      "Household Size": data["Household Size"],
     };
 
     const flightInfo = {
-      "All Flights": data.fields["All Flight Legs"],
-      "Number of Flight Legs": data.fields["# of Flight Legs"],
-      "Number of Booked Flight Requests":
-        data.fields["# of Booked Flight Requests (Patient)"],
+      "All Flights": data["All Flight Legs"],
+      "Number of Flight Legs": data["# of Flight Legs"],
+      "Number of Booked Flight Requests": data["# of Booked Flight Requests"],
     };
 
     return {
@@ -67,24 +66,13 @@ const PassengersPage = () => {
           <h5 className={styles.description}>
             Companions of {generalInfo["First Name"]}
           </h5>
-          <table>
-            <tr className={styles.tableHead}>
-              <th>Name</th>
-              <th>Relationship</th>
-              <th>Notes</th>
-            </tr>
-            {generalInfo.Passengers.map((passenger, index) => (
-              <tr key={index}>
-                <td>{passenger}</td>
-                <td>{index % 2 == 1 ? "Mother" : "Brother"}</td>
-                <td>
-                  {index % 2 == 1
-                    ? "Helps with medication"
-                    : "Likes to fly window seat"}
-                </td>
-              </tr>
+          <div className={styles.passengersContainer}>
+            {generalInfo.Passengers.map((index) => (
+              <div className={styles.passengerCard} key={index}>
+                <PassengerCard passenger={createTestPassengerData()} />
+              </div>
             ))}
-          </table>
+          </div>
         </div>
       </div>
     </>
