@@ -8,4 +8,5 @@ export interface ReusableInputProps {
   label?: string;
   type?: string;
   placeholder?: string;
+  defaultValue?: string;
 }

@@ -6,6 +6,8 @@ import { ButtonColor } from "../../../../components/Button/Button.definitions";
 import Button from "../../../../components/Button/Button";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import type { PatientDetailsModalProps } from "./PatientDetailsModal.definitions";
 
 const PatientDetailsModal = ({
@@ -20,8 +22,25 @@ const PatientDetailsModal = ({
     Email: string;
   }
 
-  // Initialize the form with default values from the patient data
-  const { register, handleSubmit, reset } = useForm({
+  // Define the validation schema using Yup
+  const schema = yup.object().shape({
+    Email: yup
+      .string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    Address: yup.string().required("Address is required"),
+    Country: yup.string().required("Country is required"),
+    // Add other field validations as needed
+  });
+
+  // Initialize the form with default values and Yup validation schema
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
     defaultValues: {
       Address: patient["Street"],
       Country: patient["Country"],
@@ -29,6 +48,7 @@ const PatientDetailsModal = ({
       // Add other fields as needed
     },
   });
+
   // Handler for form submission
   const onSubmit = (data: PatientFormData) => {
     console.log("Form Data:", data);
@@ -52,7 +72,7 @@ const PatientDetailsModal = ({
                 <div>
                   <span className={styles.patientLabel}>DOB</span>{" "}
                   <span className={styles.patientText}>
-                    {patient["Date of Birth"].split("T")[0]}{" "}
+                    {patient["Date of Birth"]}
                   </span>
                 </div>
               </div>
@@ -77,12 +97,16 @@ const PatientDetailsModal = ({
                       register={register}
                       type="text"
                       placeholder="Address"
+                      defaultValue={patient["Street"]}
+                      error={errors.Address?.message} // Display the error message
                     />
                     <Input
                       name="Country"
                       register={register}
                       type="text"
                       placeholder="Country"
+                      defaultValue={patient["Country"]}
+                      error={errors.Country?.message} // Display the error message
                     />
                   </>
                 )}
@@ -98,6 +122,8 @@ const PatientDetailsModal = ({
                     register={register}
                     type="text"
                     placeholder="Email"
+                    defaultValue={patient["Email"]}
+                    error={errors.Email?.message} // Display the error message
                   />
                 )}
               </div>
@@ -119,7 +145,7 @@ const PatientDetailsModal = ({
                     # of Booked Flight Requests
                   </span>{" "}
                   <span className={styles.patientText}>
-                    {patient["# of Booked Flight Requests (Patient)"]}
+                    {patient["# of Booked Flight Requests"]}
                   </span>
                 </div>
               </div>
@@ -141,19 +167,21 @@ const PatientDetailsModal = ({
                 {editMode && (
                   <div className={styles.buttonOptions}>
                     <Button
-                      onClick={() => reset()}
+                      onClick={() => {
+                        reset(), setEditMode(false);
+                      }}
                       text="Exit"
                       color={ButtonColor.Red}
+                      type="button"
                     />
                     <Button text="Save" />
                   </div>
                 )}
               </div>
             </form>
-            {/* <span className={styles.patientLabel}>Joined Goes Here</span>{" "} */}
           </>
         }
-        header={patient["Full Name"]}
+        header={patient["First Name"] + " " + patient["Last Name"]}
         action={onClose}
       />
     </>
