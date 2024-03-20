@@ -8,6 +8,7 @@ export interface ButtonProps {
   disabled?: boolean;
   extraStyles?: React.CSSProperties;
   textStyles?: React.CSSProperties;
+  type?: "button" | "submit" | "reset";
 }
 
 export enum ButtonVariant {

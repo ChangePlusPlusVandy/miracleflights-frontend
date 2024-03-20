@@ -8,6 +8,7 @@ const Input = ({
   label,
   type = "text",
   placeholder,
+  defaultValue,
 }: ReusableInputProps) => {
   return (
     <div className={styles["form-field"]}>
@@ -15,7 +16,13 @@ const Input = ({
         {label && <p className={styles["label"]}>{label}</p>}
         {error && <p className={styles["error-text"]}>{"(" + error + ")"}</p>}
       </div>
-      <input placeholder={placeholder} type={type} {...register(name)} />
+      <input
+        placeholder={placeholder}
+        type={type}
+        {...register(name)}
+        defaultValue={defaultValue} // Apply defaultValue here
+        {...register(name)}
+      />
     </div>
   );
 };

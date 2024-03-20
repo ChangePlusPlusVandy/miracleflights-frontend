@@ -15,6 +15,7 @@ const Button = ({
   disabled = false,
   extraStyles = {},
   textStyles = {},
+  type = "submit",
 }: ButtonProps) => {
   const buttonClassName = `${styles.button} ${styles[variant]} ${styles[color]}`;
   const loaderSize =
@@ -30,6 +31,7 @@ const Button = ({
       onClick={onClick}
       disabled={disabled || loading}
       style={{ ...extraStyles }}
+      type={type}
     >
       <h4 style={{ ...textStyles }}>{text}</h4>
       {loading && (
