@@ -8,8 +8,6 @@ import type { PassengerData } from "../../interfaces/passenger.interface";
 const ID = "rec9C9rLarSiAb9ZQ";
 
 const PassengersPage = () => {
-  // const data: PassengerData = createTestPassengerData();
-
   // ping the getUserByID endpoint to get the user's data
   const { data: passengerData, isLoading: passengerLoading } =
     useQuery<PassengerData>({
