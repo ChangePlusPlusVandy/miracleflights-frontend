@@ -18,6 +18,7 @@ import {
   faBars,
   faCircleQuestion,
   faGear,
+  faPerson,
 } from "@fortawesome/free-solid-svg-icons";
 
 const renderTab = (
@@ -88,6 +89,11 @@ const SideBar = () => {
       title: Tabs.TRIPS,
       link: "trips",
       icon: faPlane,
+    },
+    {
+      title: Tabs.PERSONAL_INFO,
+      link: "onboarding-form",
+      icon: faPerson,
     },
   ];
   const LowerTabs = [

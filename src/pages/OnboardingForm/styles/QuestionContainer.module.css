@@ -1,0 +1,50 @@
+.questionContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 15px;
+  width: 90%;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.questionPromptContainer {
+  text-align: left;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  color: rgb(45 51, 68);
+  text-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.questionHeaderContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-content: center;
+  margin-bottom: 2px;
+}
+
+.symbolContainer {
+  display: flex;
+  align-content: flex-start;
+  justify-content: flex-start;
+  margin-right: 15px;
+}
+
+.symbolContainer {
+  width: 8px;
+  /* height: 10px; */
+  margin-top: 2.5px;
+  background-size: contain;
+}
+
+.titleText {
+  text-align: left;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-family: "Roboto", sans-serif;
+  color: rgb(45 51, 68);
+  font-weight: bold;
+}
