@@ -3,6 +3,7 @@ import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import TripsPage from "../pages/TripsPage/TripsPage";
 import RequestFlightPage from "../pages/RequestFlightPage/RequestFlightPage";
 import ExamplePage from "../pages/ExamplePage/ExamplePage";
+import OnboardingForm from "../pages/OnboardingForm/OnboardingForm";
 import PassengersPage from "../pages/PassengersPage/PassengersPage";
 import Login from "../pages/LoginPage/LoginPage";
 import {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/documents",
         element: <div>Documents</div>,
+      },
+      {
+        path: "/onboarding-form",
+        element: <OnboardingForm />,
       },
     ],
   },

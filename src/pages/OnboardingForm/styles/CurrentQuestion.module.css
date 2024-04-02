@@ -1,0 +1,24 @@
+.buttonsContainer {
+  display: flex;
+  margin-top: 0px;
+  height: 10vh;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.columnContainer {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.currentQuestionContainer {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  padding: 20px;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 100%;
+}
