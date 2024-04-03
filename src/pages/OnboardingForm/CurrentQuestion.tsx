@@ -4,9 +4,11 @@ import IntroductionComponent from "../../components/OnboardingFormComponents/Int
 import MultipleChoiceSelector from "../../components/OnboardingFormComponents/MultipleChoiceSelector/MultipleChoiceSelector";
 import MultipleSelect from "../../components/OnboardingFormComponents/MultipleSelect/MultipleSelect";
 import NumberInput from "../../components/OnboardingFormComponents/NumberInput/NumberInput";
+import TextInput from "../../components/OnboardingFormComponents/TextInput/TextInput";
 import NextPreviousButton, {
   ButtonType,
 } from "../../components/OnboardingFormComponents/NextPreviousButton/NextPreviousButton";
+import DateInput from "../../components/OnboardingFormComponents/DateInput/DateInput";
 
 interface CurrentQuestionProps {
   number: number;
@@ -29,16 +31,25 @@ const CurrentQuestion = ({
   return (
     <div className={styles.currentQuestionContainer}>
       <div className={styles.columnContainer}>
-        {type === QuestionType.IntroToForm && <IntroductionComponent />}
         {type === QuestionType.YesNoQuestion && (
           <MultipleChoiceSelector
             options={["Yes", "No"]}
             promptText={promptText}
           />
         )}
+        {type === QuestionType.MultipleChoiceQuestion && (
+          <MultipleChoiceSelector options={options} promptText={promptText} />
+        )}
         {type === QuestionType.MultiSelectQuestion && (
           <MultipleSelect options={options} promptText={promptText} />
         )}
+        {type === QuestionType.DateQuestion && (
+          <DateInput promptText={promptText} />
+        )}
+        {type === QuestionType.TextResponseQuestion && (
+          <TextInput promptText={promptText} />
+        )}
+        {type === QuestionType.IntroToForm && <IntroductionComponent />}
         {type === QuestionType.NumberInput && (
           <NumberInput promptText={promptText} />
         )}

@@ -342,7 +342,7 @@ export const questions: Question[] = [
   },
   {
     id: 53,
-    type: QuestionType.MultiSelectQuestion,
+    type: QuestionType.MultipleChoiceQuestion,
     promptText:
       "Highest level of education completed (by adult patient OR parent/guardian of child patient filling out this form)",
     options: [
@@ -356,14 +356,14 @@ export const questions: Question[] = [
   },
   {
     id: 54,
-    type: QuestionType.MultiSelectQuestion,
+    type: QuestionType.MultipleChoiceQuestion,
     promptText:
       "Marital Status (of adult patient OR parent/guardian of child patient filling out this form)",
     options: ["Single", "Married", "Divorced", "Widowed"],
   },
   {
     id: 55,
-    type: QuestionType.MultiSelectQuestion,
+    type: QuestionType.MultipleChoiceQuestion,
     promptText:
       "Employment Status (of adult patient OR parent/guardian of child patient filling out this form)",
     options: [
@@ -377,14 +377,14 @@ export const questions: Question[] = [
   },
   {
     id: 56,
-    type: QuestionType.MultiSelectQuestion,
+    type: QuestionType.MultipleChoiceQuestion,
     promptText:
       "Military Service (of adult patient OR parent/guardian of child patient)",
     options: ["Active", "Veteran", "Not Applicable"],
   },
   {
     id: 57,
-    type: QuestionType.MultiSelectQuestion,
+    type: QuestionType.MultipleChoiceQuestion,
     promptText: "How did you hear about us?",
     options: [
       "Another Miracle Flights Family",
