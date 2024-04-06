@@ -173,10 +173,10 @@ const PatientDetailsModal = ({
                 {editMode && (
                   <>
                     <Input
-                      name="Address"
+                      name="Street"
                       register={register}
                       type="text"
-                      placeholder="Address"
+                      placeholder="Street"
                       defaultValue={patient["Street"]}
                       error={errors.Street?.message} // Display the error message
                     />
