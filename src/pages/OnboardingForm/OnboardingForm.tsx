@@ -17,10 +17,12 @@ const OnboardingForm = () => {
               <QuestionContainer
                 number={idx}
                 promptText={q.promptText}
+                type={q.type}
                 key={idx}
                 backgroundColor={idx % 2 === 0 ? "#fafbfc" : "#f0f0f0"}
                 setCurrentQuestion={setCurrentQuestion}
                 currentQuestion={currentQuestion}
+                sectionTitle={q.sectionTitle}
               />
             );
           })}
@@ -32,9 +34,19 @@ const OnboardingForm = () => {
           type={questions[currentQuestion]?.type}
           setCurrentQuestion={setCurrentQuestion}
           options={questions[currentQuestion].options}
+          helperText={questions[currentQuestion]?.helperText}
+          sectionTitle={questions[currentQuestion]?.sectionTitle}
+          introText={questions[currentQuestion]?.introText}
         />
+      </div>
+    </div>
+  );
+};
 
-        {/* <div className={styles.headerContainer}>
+export default OnboardingForm;
+
+{
+  /* <div className={styles.headerContainer}>
           <h1 className={styles.formTitle}>
             Child Medical Flight Request Application
           </h1>
@@ -52,9 +64,13 @@ const OnboardingForm = () => {
             purpose. Before completing our application, please answer the
             questions below to see if you qualify for our program services.
           </p>
-        </div> */}
-        {/* <hr className={styles.formDivider} /> */}
-        {/* <div className={styles.questionsContainer}>
+        </div> */
+}
+{
+  /* <hr className={styles.formDivider} /> */
+}
+{
+  /* <div className={styles.questionsContainer}>
           <form>
             <MultipleChoiceSelector
               options={["Yes", "No"]}
@@ -105,10 +121,5 @@ const OnboardingForm = () => {
               backgroundColor="#fafbfc"
             />
           </form>
-        </div> */}
-      </div>
-    </div>
-  );
-};
-
-export default OnboardingForm;
+        </div> */
+}

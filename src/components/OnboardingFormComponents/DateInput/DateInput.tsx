@@ -17,10 +17,10 @@ const DateInput = ({
       style={{ backgroundColor: backgroundColor }}
     >
       <div className={styles.questionContainer}>
-        <label className={styles.labelText}>{promptText}</label>
+        <label className={styles.questionText}>{promptText}</label>
       </div>
       <div className={styles.numberSelectContainer}>
-        <input type="date" className={styles.dateInput} required />
+        <input type="date" className={styles.textInput} required />
         {helperText && <span className={styles.helperText}>{helperText}</span>}
       </div>
     </div>

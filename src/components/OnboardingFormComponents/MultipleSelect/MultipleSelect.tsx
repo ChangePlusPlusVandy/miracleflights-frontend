@@ -4,12 +4,14 @@ interface MultipleSelectProps {
   promptText: string;
   options: string[];
   backgroundColor?: string;
+  helperText?: string;
 }
 
 const MultipleSelect = ({
   promptText,
   options,
   backgroundColor = "#fff",
+  helperText = "",
 }: MultipleSelectProps) => {
   return (
     <div
@@ -17,7 +19,7 @@ const MultipleSelect = ({
       style={{ backgroundColor: backgroundColor }}
     >
       <div className={styles.questionContainer}>
-        <label className={styles.labelText}>{promptText}</label>
+        <label className={styles.questionText}>{promptText}</label>
       </div>
       <br />
       <div className={styles.multiSelectContainer}>
@@ -30,6 +32,7 @@ const MultipleSelect = ({
           );
         })}
       </div>
+      {helperText && <span className={styles.helperText}>{helperText}</span>}
     </div>
   );
 };

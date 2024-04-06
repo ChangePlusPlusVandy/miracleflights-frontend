@@ -9,19 +9,23 @@ import {
 interface QuestionContainerProps {
   number: number;
   promptText: string;
+  type: string;
   backgroundColor?: string;
   answer?: string;
   setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
   currentQuestion: number;
+  sectionTitle?: string;
 }
 
 const QuestionContainer = ({
   number,
   promptText,
+  type,
   backgroundColor = "#fff",
   answer = "",
   setCurrentQuestion,
   currentQuestion,
+  sectionTitle = "",
 }: QuestionContainerProps) => {
   let answerComp;
   if (answer) {
@@ -56,7 +60,7 @@ const QuestionContainer = ({
       <div className={styles.questionHeaderContainer}>
         <div className={styles.symbolContainer}>{symbol}</div>
         <div className={styles.titleText}>
-          {number === 0 ? "Introduction" : `Question ${number}`}
+          {type === "section" ? sectionTitle : `Question ${number}`}
         </div>
       </div>
       <div className={styles.questionPromptContainer}>{promptText}</div>

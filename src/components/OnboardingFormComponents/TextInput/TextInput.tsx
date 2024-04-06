@@ -17,12 +17,12 @@ const TextInput = ({
       style={{ backgroundColor: backgroundColor }}
     >
       <div className={styles.questionContainer}>
-        <label className={styles.labelText}>{promptText}</label>
+        <label className={styles.questionText}>{promptText}</label>
       </div>
       <div className={styles.numberSelectContainer}>
         <input
           type="text"
-          className={styles.numberInput}
+          className={styles.textInput}
           required
           placeholder="Enter your answer"
         />

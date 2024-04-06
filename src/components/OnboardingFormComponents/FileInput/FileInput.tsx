@@ -1,16 +1,16 @@
 import styles from "../OnboardingFormInputStyles.module.css";
 
-interface NumberInputProps {
+interface FileInputProps {
   promptText: string;
   backgroundColor?: string;
   helperText?: string;
 }
 
-const NumberInput = ({
+const FileInput = ({
   promptText,
   backgroundColor = "#fff",
   helperText = "",
-}: NumberInputProps) => {
+}: FileInputProps) => {
   return (
     <div
       className={styles.inputContainer}
@@ -20,11 +20,11 @@ const NumberInput = ({
         <label className={styles.questionText}>{promptText}</label>
       </div>
       <div className={styles.numberSelectContainer}>
-        <input type="number" className={styles.textInput} required />
+        <input type="file" className={styles.fileInput} required />
         {helperText && <span className={styles.helperText}>{helperText}</span>}
       </div>
     </div>
   );
 };
 
-export default NumberInput;
+export default FileInput;
