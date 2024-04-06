@@ -7,6 +7,8 @@ import {
 } from "../../components/Button/Button.definitions";
 import heartLogo from "../../public/Vector.png";
 import logo from "../../public/0GAGNk.tif.png";
+import Divider from "../../components/Divider/Divider";
+import { DividerSpacing } from "../../components/Divider/Divider.definitions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,9 +18,8 @@ import {
   faPlane,
   faFile,
   faBars,
-  faCircleQuestion,
-  faGear,
 } from "@fortawesome/free-solid-svg-icons";
+import { UserButton, useUser } from "@clerk/clerk-react";
 
 const renderTab = (
   tab: Tab,
@@ -60,6 +61,7 @@ const renderTab = (
 
 const SideBar = () => {
   const navigate = useNavigate();
+  const { user } = useUser();
 
   const [currentTab, setCurrentTab] = useState<Tab>({
     title: Tabs.DASHBOARD,
@@ -88,18 +90,6 @@ const SideBar = () => {
       title: Tabs.TRIPS,
       link: "trips",
       icon: faPlane,
-    },
-  ];
-  const LowerTabs = [
-    {
-      title: Tabs.SUPPORT,
-      link: "support",
-      icon: faCircleQuestion,
-    },
-    {
-      title: Tabs.SETTINGS,
-      link: "settings",
-      icon: faGear,
     },
   ];
 
@@ -157,15 +147,14 @@ const SideBar = () => {
           )}
         </div>
         <div className={styles.LowerSideBarLinks}>
-          {LowerTabs.map((tab, index) =>
-            renderTab(
-              tab,
-              currentTab.title === tab.title,
-              handleClick,
-              index,
-              isOpen,
-            ),
-          )}
+          <div className={styles.profileContainer}>
+            <UserButton />
+            <div className={styles.profileInfoContainer}>
+              <p>{`${user?.firstName} ${user?.lastName}`}</p>
+              <p>{`${user?.primaryEmailAddress?.emailAddress}`}</p>
+            </div>
+          </div>
+          <Divider spacing={DividerSpacing.MEDIUM} />
           <div className={styles.builtByContainer}>
             <img src={heartLogo} className={styles.heartLogo} alt="Logo" />
             {isOpen && (

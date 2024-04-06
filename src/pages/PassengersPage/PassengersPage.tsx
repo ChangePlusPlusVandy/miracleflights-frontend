@@ -1,21 +1,22 @@
 import styles from "./PassengersPage.module.css";
 import PatientCard from "./components/PatientCard/PatientCard";
 import PassengerCard from "./components/PassengerCard/PassengerCard";
+import { getAccompanyingPassengers, getPassengers } from "../../api/queries";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useAuth } from "@clerk/clerk-react";
+
 import type { PassengerData } from "../../interfaces/passenger.interface";
 
 const ID = "rec9C9rLarSiAb9ZQ";
 
 const PassengersPage = () => {
+  const { getToken } = useAuth();
+
   // ping the getUserByID endpoint to get the user's data
   const { data: passengerData, isLoading: passengerLoading } =
     useQuery<PassengerData>({
       queryKey: ["passenger"],
-      queryFn: async () =>
-        axios
-          .get(`${process.env.VITE_HOST}/passenger/${ID}`)
-          .then((res) => res.data),
+      queryFn: async () => getPassengers(ID, await getToken()),
       enabled: true,
     });
 
@@ -24,13 +25,9 @@ const PassengersPage = () => {
     isLoading: accompanyingPassengerLoading,
   } = useQuery<PassengerData[]>({
     queryKey: ["accompanyingPassengers"],
-    queryFn: async () =>
-      axios
-        .get(`${process.env.VITE_HOST}/passenger/accompanying?id=${ID}`)
-        .then((res) => res.data),
+    queryFn: async () => getAccompanyingPassengers(ID, await getToken()),
     enabled: true,
   });
-
   if (
     passengerLoading ||
     accompanyingPassengerLoading ||

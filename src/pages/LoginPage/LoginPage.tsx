@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./LoginPage.module.css";
 import Button from "../../components/Button/Button";
 import Icon from "../../components/CustomIcon/Icon";
@@ -8,28 +9,25 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSignIn } from "@clerk/clerk-react";
 
 const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(true);
   const navigate = useNavigate();
+  const { signIn, setActive, isLoaded } = useSignIn();
 
-  const Submit = () => {
-    console.log("Submitted");
-    // redirect to dashboard
-    navigate("/");
-  };
+  interface FormValues {
+    email: string;
+    password: string;
+  }
+
   // eslint-disable-next-line autofix/no-unused-vars
   enum FormValueNames {
     // eslint-disable-next-line autofix/no-unused-vars
     email = "email",
     // eslint-disable-next-line autofix/no-unused-vars
     password = "password",
-  }
-
-  interface FormValues {
-    email: string;
-    password: string;
   }
 
   const schema = yup.object().shape({
@@ -47,6 +45,7 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors, isValid }, // Add isValid to formState
+    setError: setSignInError,
   } = useForm<FormValues>({
     defaultValues: {
       [FormValueNames.email]: "",
@@ -55,6 +54,58 @@ const LoginPage = () => {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
+
+  const Submit = async (inputData: FormValues) => {
+    if (!isLoaded) {
+      return;
+    }
+
+    //  Clear the session to attempt to sign in
+    await setActive({ session: null });
+
+    try {
+      // Complete the sign in and get the session with Clerk
+      const completeSignIn = await signIn.create({
+        identifier: inputData.email,
+        password: inputData.password,
+      });
+
+      // If the sign in was successful, set the active session and make the user request
+      if (completeSignIn.status === "complete") {
+        await setActive({ session: completeSignIn.createdSessionId });
+        navigate("/dashboard");
+      }
+    } catch (err: any) {
+      // if the error is form_identifier_not_found, set the error message on the email field
+      if (
+        err.errors.some(
+          (error: any) => error.code === "form_identifier_not_found",
+        )
+      ) {
+        setSignInError("email", {
+          type: "manual",
+          message: "We can't find an account with that email address.",
+        });
+      }
+
+      if (
+        err.errors.some(
+          (error: any) => error.code === "form_password_incorrect",
+        )
+      ) {
+        setSignInError("password", {
+          type: "manual",
+          message: "Incorrect password.",
+        });
+      }
+
+      // If the sign in was not successful, clear the session
+      await setActive({ session: null });
+
+      // Handle errors
+      console.error(JSON.stringify(err, null, 2));
+    }
+  };
 
   // Update the disabled state based on whether there are errors and the form is valid
   useEffect(() => {
@@ -117,7 +168,7 @@ const LoginPage = () => {
                 Forgot password?
               </div>
             </div>
-            <Button onClick={Submit} text={"Login"} disabled={disabled} />
+            <Button type="submit" text={"Login"} disabled={disabled} />
           </form>
         </div>
       </div>

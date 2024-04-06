@@ -39,6 +39,9 @@
 .onboardingInputContainer {
   width: 100%;
   margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .subtitleText {
@@ -74,4 +77,5 @@
   flex-direction: row;
   margin-top: 2rem;
   width: 100%;
+  gap: 1rem;
 }

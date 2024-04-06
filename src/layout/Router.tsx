@@ -7,6 +7,7 @@ import ExamplePage from "../pages/ExamplePage/ExamplePage";
 import PassengersPage from "../pages/PassengersPage/PassengersPage";
 import Login from "../pages/LoginPage/LoginPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
+import { UserProvider } from "../context/User.context";
 import {
   Navigate,
   RouterProvider,
@@ -69,12 +70,18 @@ const unprotectedRouter = createBrowserRouter([
     path: "/sign-up",
     element: <SignUpPage />,
   },
+  {
+    path: "*",
+    element: <Navigate to="/sign-in" />,
+  },
 ]);
 
 const Router = () => (
   <>
     <SignedIn>
-      <RouterProvider router={protectedRouter} />
+      <UserProvider>
+        <RouterProvider router={protectedRouter} />
+      </UserProvider>
     </SignedIn>
     <SignedOut>
       <RouterProvider router={unprotectedRouter} />
