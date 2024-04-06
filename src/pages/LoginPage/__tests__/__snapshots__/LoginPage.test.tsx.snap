@@ -50,6 +50,7 @@ exports[`ExamplePage Tests Renders the ExamplePage snapshot correctly 1`] = `
               name="email"
               placeholder="Email"
               type="text"
+              value=""
             />
           </div>
         </div>
@@ -72,6 +73,7 @@ exports[`ExamplePage Tests Renders the ExamplePage snapshot correctly 1`] = `
               name="password"
               placeholder="Password"
               type="password"
+              value=""
             />
           </div>
           <div
@@ -98,6 +100,7 @@ exports[`ExamplePage Tests Renders the ExamplePage snapshot correctly 1`] = `
         <button
           class="button Regular Blue"
           disabled=""
+          type="submit"
         >
           <h4>
             Login

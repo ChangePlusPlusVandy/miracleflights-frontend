@@ -20,6 +20,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@hookform/resolvers": "^3.3.4",
     "axios": "^1.6.7",
+    "@tanstack/react-query": "^5.28.6",
     "dotenv": "^16.3.1",
     "moon-loader": "^0.1.0",
     "react": "^18.2.0",

@@ -1,56 +1,44 @@
 import styles from "./PassengersPage.module.css";
 import PatientCard from "./components/PatientCard/PatientCard";
-import { createTestPassengerData } from "../../util/test-data.util";
-import { useMemo } from "react";
+import PassengerCard from "./components/PassengerCard/PassengerCard";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import type { PassengerData } from "../../interfaces/passenger.interface";
 
+const ID = "rec9C9rLarSiAb9ZQ";
+
 const PassengersPage = () => {
-  const data: PassengerData = createTestPassengerData();
+  // ping the getUserByID endpoint to get the user's data
+  const { data: passengerData, isLoading: passengerLoading } =
+    useQuery<PassengerData>({
+      queryKey: ["passenger"],
+      queryFn: async () =>
+        axios
+          .get(`${process.env.VITE_HOST}/passenger/${ID}`)
+          .then((res) => res.data),
+      enabled: true,
+    });
 
-  // Memoize the flight info so that it doesn't have to be recalculated every time the component re-renders
-  const allInfo = useMemo(() => {
-    const generalInfo = {
-      "Full Name": data.fields["Full Name"],
-      "First Name": data.fields["First Name"],
-      Street: data.fields.Street,
-      Country: data.fields.Country,
-      "Email Address": data.fields.Email,
-      "Type of Passenger": data.fields.Type,
-      "Military Service Status": data.fields["Military Service"],
-      "Military Member Status": data.fields["Military Member"],
-      "Date Created": data.createdTime.split("T")[0],
-      "How did you hear about us?": data.fields["How did you hear about us"],
-      Passengers: data.fields["Passenger Names (from All Flight Legs)"],
-    };
+  const {
+    data: accompanyingPassengerData,
+    isLoading: accompanyingPassengerLoading,
+  } = useQuery<PassengerData[]>({
+    queryKey: ["accompanyingPassengers"],
+    queryFn: async () =>
+      axios
+        .get(`${process.env.VITE_HOST}/passenger/accompanying?id=${ID}`)
+        .then((res) => res.data),
+    enabled: true,
+  });
 
-    const medicalInfo = {
-      "Date of Birth": data.fields["Date of Birth"].split("T")[0],
-      Gender: data.fields.Gender,
-      Ethnicity: data.fields.Ethnicity,
-      Diagnosis: data.fields.Diagnosis,
-    };
-
-    const financialInfo = {
-      "Household Income": data.fields["Household Income"],
-      "Household Size": data.fields["Household Size"],
-    };
-
-    const flightInfo = {
-      "All Flights": data.fields["All Flight Legs"],
-      "Number of Flight Legs": data.fields["# of Flight Legs"],
-      "Number of Booked Flight Requests":
-        data.fields["# of Booked Flight Requests (Patient)"],
-    };
-
-    return {
-      generalInfo,
-      medicalInfo,
-      financialInfo,
-      flightInfo,
-    };
-  }, [data]);
-
-  const { generalInfo } = allInfo;
+  if (
+    passengerLoading ||
+    accompanyingPassengerLoading ||
+    !accompanyingPassengerData ||
+    !passengerData
+  ) {
+    return <div>TEST...</div>;
+  }
 
   return (
     <>
@@ -59,32 +47,21 @@ const PassengersPage = () => {
           <h2 className={styles.header}>Patients and Companions</h2>
           <h3 className={styles.subheader}>Patient Information</h3>
           <div className={styles.patientInfo}>
-            <PatientCard patient={createTestPassengerData()} />
+            <PatientCard patient={passengerData} />
           </div>
         </div>
         <div className={styles.passengerSection}>
           <h3 className={styles.subheader}>Companion Information</h3>
           <h5 className={styles.description}>
-            Companions of {generalInfo["First Name"]}
+            Companions of {passengerData["First Name"]}
           </h5>
-          <table>
-            <tr className={styles.tableHead}>
-              <th>Name</th>
-              <th>Relationship</th>
-              <th>Notes</th>
-            </tr>
-            {generalInfo.Passengers.map((passenger, index) => (
-              <tr key={index}>
-                <td>{passenger}</td>
-                <td>{index % 2 == 1 ? "Mother" : "Brother"}</td>
-                <td>
-                  {index % 2 == 1
-                    ? "Helps with medication"
-                    : "Likes to fly window seat"}
-                </td>
-              </tr>
+          <div className={styles.passengersContainer}>
+            {accompanyingPassengerData.map((passenger, index) => (
+              <div className={styles.passengerCard} key={index}>
+                <PassengerCard passenger={passenger} />
+              </div>
             ))}
-          </table>
+          </div>
         </div>
       </div>
     </>

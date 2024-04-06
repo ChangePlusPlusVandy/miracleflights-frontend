@@ -1,70 +1,267 @@
 import styles from "./PatientDetailsModal.module.css";
 import Modal from "../../../../components/Modal/Modal";
+import Icon from "../../../../components/CustomIcon/Icon";
+import Input from "../../../../components/Input/Input";
+import { ButtonColor } from "../../../../components/Button/Button.definitions";
+import Button from "../../../../components/Button/Button";
+import Select from "../../../../components/Select/Select";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 import type { PatientDetailsModalProps } from "./PatientDetailsModal.definitions";
 
 const PatientDetailsModal = ({
   patient,
   onClose,
 }: PatientDetailsModalProps) => {
+  const [editMode, setEditMode] = useState(false);
+  const queryClient = useQueryClient();
+
+  const countries = [
+    "Argentina",
+    "Australia",
+    "Azerbaijan",
+    "Bahamas",
+    "Belize",
+    "Brazil",
+    "Canada",
+    "Chile",
+    "China",
+    "Colombia",
+    "Croatia",
+    "Dominican Republic",
+    "Ecuador",
+    "El Salvador",
+    "Germany",
+    "Grenada",
+    "Guam",
+    "Guatemala",
+    "Guyana",
+    "Honduras",
+    "India",
+    "Israel",
+    "Jamaica",
+    "Kuwait",
+    "Mauritius",
+    "Mexico",
+    "Nicaragua",
+    "Paraguay",
+    "Peru",
+    "Philippines",
+    "Serbia",
+    "South Africa",
+    "Tajikistan",
+    "Trinidad and Tobago",
+    "Tunisia",
+    "Turkey",
+    "Uganda",
+    "Ukraine",
+    "United Kingdom",
+    "United States",
+  ];
+
+  const ID = "rec9C9rLarSiAb9ZQ";
+
+  const { mutate: updatePassenger } = useMutation({
+    mutationFn: async ({ Street, Country, Email }: PatientFormData) => {
+      const response = await axios.put(
+        `${process.env.VITE_HOST}/passenger/${ID}`,
+        {
+          Street,
+          Country,
+          Email,
+        },
+      );
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["passenger"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["accompanyingPassengers"],
+      });
+    },
+  });
+
+  interface PatientFormData {
+    Street: string;
+    Country: string;
+    Email: string;
+  }
+
+  // Define the validation schema using Yup
+  const schema = yup.object().shape({
+    Email: yup
+      .string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    Street: yup.string().required("Street is required"),
+    Country: yup.string().required("Country is required"),
+    // Add other field validations as needed
+  });
+
+  // Initialize the form with default values and Yup validation schema
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      Street: patient["Street"],
+      Country: patient["Country"],
+      Email: patient["Email"],
+      // Add other fields as needed
+    },
+  });
+
+  // Handler for form submission
+  const onSubmit = (data: PatientFormData) => {
+    console.log("Form Data:", data);
+    updatePassenger(data);
+    setEditMode(false);
+  };
+
+  useEffect(() => {
+    reset({
+      Street: patient["Street"],
+      Country: patient["Country"],
+      Email: patient["Email"],
+      // other fields...
+    });
+  }, [patient, reset]);
+
   return (
     <>
       <Modal
         body={
           <>
-            <div className={`${styles.patientRow} ${styles.marginBottom}`}>
-              <div>
-                <span className={styles.patientLabel}>Gender</span>{" "}
-                <span className={styles.patientText}>
-                  {patient.fields["Gender"]}
-                </span>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className={`${styles.patientRow} ${styles.marginBottom}`}>
+                <div>
+                  <span className={styles.patientLabel}>Gender</span>{" "}
+                  <span className={styles.patientText}>
+                    {patient["Gender"]}
+                  </span>
+                </div>
+                <div>
+                  <span className={styles.patientLabel}>DOB</span>{" "}
+                  <span className={styles.patientText}>
+                    {patient["Date of Birth"]}
+                  </span>
+                </div>
               </div>
-              <div>
-                <span className={styles.patientLabel}>DOB</span>{" "}
-                <span className={styles.patientText}>
-                  {patient.fields["Date of Birth"].split("T")[0]}{" "}
-                </span>
-              </div>
-            </div>
-            {/* make another patient group for address where each line of the address is separated */}
-            <div className={styles.patientGroup}>
-              <span className={styles.patientLabel}>Address</span>{" "}
-              <span className={styles.patientText}>
-                {patient.fields["Street"]}
-              </span>
-              <span className={styles.patientText}>
-                {patient.fields["Country"]}
-              </span>
-            </div>
-            <div className={styles.patientGroup}>
-              <span className={styles.patientLabel}>Military</span>{" "}
-              <span className={styles.patientText}>
-                {patient.fields["Military Service"]}
-              </span>
-            </div>
-            <div className={styles.patientRow}>
+              {/* make another patient group for address where each line of the address is separated */}
+
               <div className={styles.patientGroup}>
-                <span className={styles.patientLabel}># of Flight Legs</span>{" "}
-                <span className={styles.patientText}>
-                  {patient.fields["# of Flight Legs"]}
-                </span>
+                <span className={styles.patientLabel}>Street</span>{" "}
+                {!editMode && (
+                  <>
+                    <span className={styles.patientText}>
+                      {patient["Street"]}
+                    </span>
+                    <span className={styles.patientText}>
+                      {patient["Country"]}
+                    </span>
+                  </>
+                )}
+                {editMode && (
+                  <>
+                    <Input
+                      name="Street"
+                      register={register}
+                      type="text"
+                      placeholder="Street"
+                      defaultValue={patient["Street"]}
+                      error={errors.Street?.message} // Display the error message
+                    />
+                    <Select
+                      name="Country"
+                      register={register}
+                      label="Select Label"
+                      placeholder="Select Placeholder"
+                      options={countries}
+                    />
+                    ,
+                  </>
+                )}
               </div>
               <div className={styles.patientGroup}>
-                <span className={styles.patientLabel}>
-                  # of Booked Flight Requests
-                </span>{" "}
+                <span className={styles.patientLabel}>Email</span>{" "}
+                {!editMode && (
+                  <span className={styles.patientText}>{patient["Email"]}</span>
+                )}
+                {editMode && (
+                  <Input
+                    name="Email"
+                    register={register}
+                    type="text"
+                    placeholder="Email"
+                    defaultValue={patient["Email"]}
+                    error={errors.Email?.message} // Display the error message
+                  />
+                )}
+              </div>
+              <div className={styles.patientGroup}>
+                <span className={styles.patientLabel}>Military</span>{" "}
                 <span className={styles.patientText}>
-                  {patient.fields["# of Booked Flight Requests (Patient)"]}
+                  {patient["Military Service"]}
                 </span>
               </div>
-            </div>
-            <div className={styles.patientGroup}>
-              <span className={styles.patientLabel}>Notes</span>
-              <span className={styles.patientText}>Notes go here</span>
-            </div>
-            {/* <span className={styles.patientLabel}>Joined Goes Here</span>{" "} */}
+              <div className={styles.patientRow}>
+                <div className={styles.patientGroup}>
+                  <span className={styles.patientLabel}># of Flight Legs</span>{" "}
+                  <span className={styles.patientText}>
+                    {patient["# of Flight Legs"]}
+                  </span>
+                </div>
+                <div className={styles.patientGroup}>
+                  <span className={styles.patientLabel}>
+                    # of Booked Flight Requests
+                  </span>{" "}
+                  <span className={styles.patientText}>
+                    {patient["# of Booked Flight Requests"]}
+                  </span>
+                </div>
+              </div>
+              <div className={styles.patientGroup}>
+                <span className={styles.patientLabel}>Notes</span>
+                <span className={styles.patientText}>Notes go here</span>
+              </div>
+              <div className={styles.footer}>
+                {!editMode && (
+                  <div
+                    className={styles.editButton}
+                    onClick={() => {
+                      setEditMode(!editMode);
+                    }}
+                  >
+                    <Icon glyph="edit" />
+                  </div>
+                )}
+                {editMode && (
+                  <div className={styles.buttonOptions}>
+                    <Button
+                      onClick={() => {
+                        reset(), setEditMode(false);
+                      }}
+                      text="Exit"
+                      color={ButtonColor.Red}
+                      type="button"
+                    />
+                    <Button text="Save" type="submit" />
+                  </div>
+                )}
+              </div>
+            </form>
           </>
         }
-        header={patient.fields["Full Name"]}
+        header={patient["First Name"] + " " + patient["Last Name"]}
         action={onClose}
       />
     </>

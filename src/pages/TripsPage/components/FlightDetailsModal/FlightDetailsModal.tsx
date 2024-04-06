@@ -1,7 +1,6 @@
 import styles from "./FlightDetailsModal.module.css";
 import Modal from "../../../../components/Modal/Modal";
-import { faPlaneUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Icon from "../../../../components/CustomIcon/Icon";
 import type { FlightDetailsModalProps } from "./FlightDetailsModal.definitions";
 
 const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
@@ -25,6 +24,16 @@ const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
       }
     }
   }
+  function formatDateString(dateString: string | number | Date) {
+    const date = new Date(dateString);
+    const formattedDate =
+      date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
+    const formattedTime =
+      date.getHours().toString().padStart(2, "0") +
+      ":" +
+      date.getMinutes().toString().padStart(2, "0");
+    return formattedDate + " " + formattedTime;
+  }
 
   return (
     <Modal
@@ -32,32 +41,28 @@ const FlightDetailsModal = ({ onClose, flight }: FlightDetailsModalProps) => {
       header="Flight Information"
       body={
         <>
-          <div className={styles.flightInfo}>
-            <div className={styles.from}>
-              <FontAwesomeIcon
-                icon={faPlaneUp}
-                className={styles.airplaneIcon1}
-              />
-              <div className={styles.fromMargin}>From:</div>{" "}
-              {flight.fields["BL - Departure Airport"]} -{" "}
-              {flight.fields["Departure Airport"]}
+          <div className={styles.row}>
+            <div className={`${styles.icon} ${styles.colorRed}`}>
+              <Icon glyph="plane" />
             </div>
-            <div className={styles.to}>
-              <FontAwesomeIcon
-                icon={faPlaneUp}
-                className={styles.airplaneIcon2}
-              />
-              <div className={styles.toMargin}>To:</div>{" "}
-              {flight.fields["BL - Arrival Airport"]} -{" "}
-              {flight.fields["Arrival Airport"]}
+            <div className={styles.label}>From:</div>{" "}
+            {flight["Departure Airport"]}
+          </div>
+          <div className={styles.row}>
+            <div className={`${styles.icon} ${styles.colorBlue}`}>
+              <Icon glyph="plane" />
             </div>
-            <div className={styles.flightTime}>
-              Departure Time: {flight.fields["Departure Date/Time"]}
-            </div>
-            <div className={styles.flightNum}>
-              Passengers:{" "}
-              {joinWithCommasAndAnd(flight.fields["Passenger Names"])}
-            </div>
+            <div className={styles.label}>To:</div> {flight["Arrival Airport"]}
+          </div>
+          <div className={styles.row}>
+            <div className={styles.icon} />
+            <div className={styles.label}> Departure Time: </div>
+            {formatDateString(flight["Departure Date/Time"])}
+          </div>
+          <div className={styles.row}>
+            <div className={styles.icon} />
+            <div className={styles.label}> Passengers:</div>
+            {joinWithCommasAndAnd(flight["Passenger Names"])}
           </div>
           <div className={styles.footer}>
             <a href="https://eelslap.com/" className={styles.footer}>
