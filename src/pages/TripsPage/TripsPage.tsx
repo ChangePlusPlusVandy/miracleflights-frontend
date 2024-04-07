@@ -2,9 +2,18 @@ import styles from "./TripsPage.module.css";
 import FlightTicket from "./components/FlightTicket/FlightTicket";
 import { createTestFlightLegData } from "../../util/test-data.util";
 import { formatTimeFrame } from "../../util/date.util";
+import { Tabs } from "../../layout/SideBar/SideBar.definitions";
+import { useNavigationContext } from "../../context/Navigation.context";
+import { useEffect } from "react";
 import type { FlightLegData } from "../../interfaces/flight-leg.interface";
 
 const TripsPage = () => {
+  const { setCurrentTab } = useNavigationContext();
+
+  useEffect(() => {
+    setCurrentTab(Tabs.TRIPS);
+  }, []);
+
   /**
    * Processes the flights by filtering, sorting, and grouping them by request.
    *

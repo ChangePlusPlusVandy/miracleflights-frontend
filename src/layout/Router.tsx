@@ -1,17 +1,21 @@
 import App from "./App";
+import OnboardingPage from "./OnboardingPage/OnboardingPage";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import TripsPage from "../pages/TripsPage/TripsPage";
 import RequestFlightPage from "../pages/RequestFlightPage/RequestFlightPage";
-import ExamplePage from "../pages/ExamplePage/ExamplePage";
 import PassengersPage from "../pages/PassengersPage/PassengersPage";
 import Login from "../pages/LoginPage/LoginPage";
+import SignUpPage from "../pages/SignUpPage/SignUpPage";
+import { UserProvider } from "../context/User.context";
+import { NavigationProvider } from "../context/Navigation.context";
 import {
   Navigate,
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
+import { SignedIn, SignedOut } from "@clerk/clerk-react";
 
-const router = createBrowserRouter([
+const protectedRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -34,10 +38,6 @@ const router = createBrowserRouter([
         element: <TripsPage />,
       },
       {
-        path: "/example",
-        element: <ExamplePage />,
-      },
-      {
         path: "/passengers",
         element: <PassengersPage />,
       },
@@ -48,11 +48,43 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
-    element: <Login />,
+    path: "/onboard",
+    element: <OnboardingPage />,
+  },
+  {
+    path: "*",
+    element: <Navigate to="/" />,
   },
 ]);
 
-const Router = () => <RouterProvider router={router} />;
+const unprotectedRouter = createBrowserRouter([
+  {
+    path: "/sign-in",
+    element: <Login />,
+  },
+  {
+    path: "/sign-up",
+    element: <SignUpPage />,
+  },
+  {
+    path: "*",
+    element: <Navigate to="/sign-in" />,
+  },
+]);
+
+const Router = () => (
+  <>
+    <SignedIn>
+      <NavigationProvider>
+        <UserProvider>
+          <RouterProvider router={protectedRouter} />
+        </UserProvider>
+      </NavigationProvider>
+    </SignedIn>
+    <SignedOut>
+      <RouterProvider router={unprotectedRouter} />
+    </SignedOut>
+  </>
+);
 
 export default Router;

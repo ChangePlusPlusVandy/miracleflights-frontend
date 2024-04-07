@@ -1,4 +1,4 @@
-/* Login.module.css */
+/* signUp.module.css */
 
 .pageContainer {
   display: flex;
@@ -14,49 +14,49 @@
   margin-top: 24px;
 }
 
-.loginContainer {
+.signUpContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 72px 0;
 }
 
-.loginBlock {
+.signUpBlock {
   background-color: var(--miracle-color-white);
   box-shadow: var(--box-shadow);
   padding: 20px;
-  width: 300px;
+  width: 400px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
 }
 
-.loginBlockHeader {
+.signUpBlockHeader {
   font-size: 24px;
   font-weight: 400;
   margin-bottom: 8px;
   color: #333;
 }
 
-.loginBlockSubtitle {
+.signUpBlockSubtitle {
   font-size: 14px;
   color: var(--miracle-color-medium-dark);
   margin-bottom: 16px;
 }
 
-.loginBlockContent {
+.signUpBlockContent {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.loginInputContainerUpper,
-.loginInputContainerLower {
+.signUpInputContainerUpper,
+.signUpInputContainerLower {
   width: 100%;
   margin-bottom: 16px;
 }
 
-.loginInput {
+.signUpInput {
   padding: 8px;
   font-size: 14px;
   border: 1px solid var(--miracle-color-medium-light);
@@ -66,16 +66,16 @@
   margin-bottom: 8px;
 }
 
-.loginBlockLink {
+.signUpBlockLink {
   color: var(--miracle-color-blue);
   text-decoration: none;
 }
 
-.loginBlockLink:hover {
+.signUpBlockLink:hover {
   cursor: pointer;
 }
 
-.loginRedirect {
+.signUpRedirect {
   margin-bottom: 16px;
   font-size: 12px;
 }
@@ -95,4 +95,11 @@
   color: var(--miracle-color-medium-dark);
   margin-bottom: 16px;
   margin-left: auto;
+}
+
+.sentEmailText {
+  font-size: 14px;
+  color: var(--miracle-color-medium-dark);
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
 }

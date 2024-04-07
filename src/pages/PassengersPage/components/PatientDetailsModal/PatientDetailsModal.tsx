@@ -5,12 +5,14 @@ import Input from "../../../../components/Input/Input";
 import { ButtonColor } from "../../../../components/Button/Button.definitions";
 import Button from "../../../../components/Button/Button";
 import Select from "../../../../components/Select/Select";
+import { COUNTRIES } from "../../../../util/constants.util";
+import { updatePassenger } from "../../../../api/queries";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { useAuth } from "@clerk/clerk-react";
 import type { PatientDetailsModalProps } from "./PatientDetailsModal.definitions";
 
 const PatientDetailsModal = ({
@@ -19,64 +21,11 @@ const PatientDetailsModal = ({
 }: PatientDetailsModalProps) => {
   const [editMode, setEditMode] = useState(false);
   const queryClient = useQueryClient();
+  const { getToken } = useAuth();
 
-  const countries = [
-    "Argentina",
-    "Australia",
-    "Azerbaijan",
-    "Bahamas",
-    "Belize",
-    "Brazil",
-    "Canada",
-    "Chile",
-    "China",
-    "Colombia",
-    "Croatia",
-    "Dominican Republic",
-    "Ecuador",
-    "El Salvador",
-    "Germany",
-    "Grenada",
-    "Guam",
-    "Guatemala",
-    "Guyana",
-    "Honduras",
-    "India",
-    "Israel",
-    "Jamaica",
-    "Kuwait",
-    "Mauritius",
-    "Mexico",
-    "Nicaragua",
-    "Paraguay",
-    "Peru",
-    "Philippines",
-    "Serbia",
-    "South Africa",
-    "Tajikistan",
-    "Trinidad and Tobago",
-    "Tunisia",
-    "Turkey",
-    "Uganda",
-    "Ukraine",
-    "United Kingdom",
-    "United States",
-  ];
-
-  const ID = "rec9C9rLarSiAb9ZQ";
-
-  const { mutate: updatePassenger } = useMutation({
-    mutationFn: async ({ Street, Country, Email }: PatientFormData) => {
-      const response = await axios.put(
-        `${process.env.VITE_HOST}/passenger/${ID}`,
-        {
-          Street,
-          Country,
-          Email,
-        },
-      );
-      return response.data;
-    },
+  const { mutate: updatePassengerMutate } = useMutation({
+    mutationFn: async (data: PatientFormData) =>
+      updatePassenger(data, patient["AirTable Record ID"], await getToken()),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["passenger"],
@@ -123,7 +72,7 @@ const PatientDetailsModal = ({
   // Handler for form submission
   const onSubmit = (data: PatientFormData) => {
     console.log("Form Data:", data);
-    updatePassenger(data);
+    updatePassengerMutate(data);
     setEditMode(false);
   };
 
@@ -185,7 +134,7 @@ const PatientDetailsModal = ({
                       register={register}
                       label="Select Label"
                       placeholder="Select Placeholder"
-                      options={countries}
+                      options={COUNTRIES}
                     />
                     ,
                   </>
