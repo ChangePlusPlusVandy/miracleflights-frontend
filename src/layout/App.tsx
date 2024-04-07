@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { PassengerData } from "../interfaces/passenger.interface";
 
 const App = () => {
-  const { user, isLoaded } = useUser();
+  const { user } = useUser();
   const navigate = useNavigate();
   const { getToken } = useAuth();
   const { currentUser, setCurrentUser } = useUserContext();
@@ -26,10 +26,6 @@ const App = () => {
   });
 
   useEffect(() => {
-    if (!isLoaded) {
-      return;
-    }
-
     if (error && !currentUser) {
       navigate("/onboard");
     }

@@ -68,3 +68,20 @@ export const getUserByAirtableRecordId = (
       },
     })
     .then((res) => res.data);
+
+export const updatePassenger = (
+  passenger: {
+    Street: string;
+    Country: string;
+    Email: string;
+  },
+  airtableRecordId: string,
+  token?: string | null,
+): Promise<PassengerData> =>
+  axios
+    .put(`${process.env.VITE_HOST}/passenger/${airtableRecordId}`, passenger, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
