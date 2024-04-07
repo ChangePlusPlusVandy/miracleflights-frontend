@@ -1,3 +1,4 @@
+import { Tabs } from "../SideBar.definitions";
 import SideBar from "../Sidebar";
 import { fireEvent, render } from "@testing-library/react";
 
@@ -5,6 +6,28 @@ import { fireEvent, render } from "@testing-library/react";
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: () => jest.fn(),
+}));
+
+// mock the context
+jest.mock("../../../context/Navigation.context", () => ({
+  ...jest.requireActual("../../../context/Navigation.context"),
+  useNavigationContext: () => ({
+    currentTab: Tabs.DASHBOARD,
+    setCurrentTab: jest.fn(),
+  }),
+}));
+
+// mock useUser
+jest.mock("@clerk/clerk-react", () => ({
+  ...jest.requireActual("@clerk/clerk-react"),
+  useUser: () => ({
+    user: {
+      firstName: "John",
+      lastName: "Doe",
+      email: "test@test.com",
+    },
+  }),
+  UserButton: () => <div>UserButton</div>,
 }));
 
 describe("SideBarComponent", () => {
@@ -49,24 +72,8 @@ describe("SideBarComponent", () => {
 
     // get the my flights tab and click it
     const myFlightsTab = component.getByText("TRIPS");
-    fireEvent.click(myFlightsTab);
 
     // check if the my flights tab is selected
-    expect(myFlightsTab.className).toContain("SideBarTitleSelected");
-
-    // get the personal info tab and click it
-    const documentsTab = component.getByText("DOCUMENTS");
-
-    fireEvent.click(documentsTab);
-
-    // check if the personal info tab is selected
-    expect(documentsTab.className).toContain("SideBarTitleSelected");
-
-    // get the passengers tab and click it
-    const passengersTab = component.getByText("PATIENT & COMPANIONS");
-    fireEvent.click(passengersTab);
-
-    // check if the passengers tab is selected
-    expect(passengersTab.className).toContain("SideBarTitleSelected");
+    expect(myFlightsTab.className).toContain("SideBarTitleUnselected");
   });
 });

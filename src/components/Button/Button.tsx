@@ -11,11 +11,11 @@ const Button = ({
   color = ButtonColor.Blue,
   onClick,
   text,
+  type = "button",
   loading = false,
   disabled = false,
   extraStyles = {},
   textStyles = {},
-  type = "submit",
 }: ButtonProps) => {
   const buttonClassName = `${styles.button} ${styles[variant]} ${styles[color]}`;
   const loaderSize =

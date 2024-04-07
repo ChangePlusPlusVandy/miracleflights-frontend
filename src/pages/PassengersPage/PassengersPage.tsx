@@ -1,21 +1,29 @@
 import styles from "./PassengersPage.module.css";
 import PatientCard from "./components/PatientCard/PatientCard";
 import PassengerCard from "./components/PassengerCard/PassengerCard";
+import { getAccompanyingPassengers, getPassengers } from "../../api/queries";
+import { useUserContext } from "../../context/User.context";
+import { useNavigationContext } from "../../context/Navigation.context";
+import { Tabs } from "../../layout/SideBar/SideBar.definitions";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useAuth } from "@clerk/clerk-react";
+import { useEffect } from "react";
 import type { PassengerData } from "../../interfaces/passenger.interface";
 
-const ID = "rec9C9rLarSiAb9ZQ";
-
 const PassengersPage = () => {
+  const { getToken } = useAuth();
+  const { currentUser } = useUserContext();
+  const { setCurrentTab } = useNavigationContext();
+
   // ping the getUserByID endpoint to get the user's data
   const { data: passengerData, isLoading: passengerLoading } =
     useQuery<PassengerData>({
       queryKey: ["passenger"],
       queryFn: async () =>
-        axios
-          .get(`${process.env.VITE_HOST}/passenger/${ID}`)
-          .then((res) => res.data),
+        getPassengers(
+          currentUser?.["AirTable Record ID"] || "",
+          await getToken(),
+        ),
       enabled: true,
     });
 
@@ -25,11 +33,16 @@ const PassengersPage = () => {
   } = useQuery<PassengerData[]>({
     queryKey: ["accompanyingPassengers"],
     queryFn: async () =>
-      axios
-        .get(`${process.env.VITE_HOST}/passenger/accompanying?id=${ID}`)
-        .then((res) => res.data),
+      getAccompanyingPassengers(
+        currentUser?.["AirTable Record ID"] || "",
+        await getToken(),
+      ),
     enabled: true,
   });
+
+  useEffect(() => {
+    setCurrentTab(Tabs.PASSENGERS);
+  }, []);
 
   if (
     passengerLoading ||
@@ -37,7 +50,7 @@ const PassengersPage = () => {
     !accompanyingPassengerData ||
     !passengerData
   ) {
-    return <div>TEST...</div>;
+    return <div>Loading...</div>;
   }
 
   return (

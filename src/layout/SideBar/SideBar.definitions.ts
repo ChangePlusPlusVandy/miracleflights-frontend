@@ -12,8 +12,5 @@ export enum Tabs {
   PASSENGERS = "Patient & Companions",
   DOCUMENTS = "Documents",
   TRIPS = "Trips",
-  PERSONAL_INFO = "Personal Info",
   REQUEST = "Request a Flight",
-  SUPPORT = "Support",
-  SETTINGS = "Profile Settings",
 }

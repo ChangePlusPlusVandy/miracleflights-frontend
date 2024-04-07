@@ -12,6 +12,13 @@ jest.mock("@tanstack/react-query", () => ({
   })),
 }));
 
+// mock useAuth
+jest.mock("@clerk/clerk-react", () => ({
+  useAuth: jest.fn(() => ({
+    getToken: jest.fn(),
+  })),
+}));
+
 describe("PatientDetailsModal", () => {
   const mockOnClose = jest.fn();
   const mockPatient = createTestPassengerData();
