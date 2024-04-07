@@ -3,13 +3,17 @@ import PatientCard from "./components/PatientCard/PatientCard";
 import PassengerCard from "./components/PassengerCard/PassengerCard";
 import { getAccompanyingPassengers, getPassengers } from "../../api/queries";
 import { useUserContext } from "../../context/User.context";
+import { useNavigationContext } from "../../context/Navigation.context";
+import { Tabs } from "../../layout/SideBar/SideBar.definitions";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@clerk/clerk-react";
+import { useEffect } from "react";
 import type { PassengerData } from "../../interfaces/passenger.interface";
 
 const PassengersPage = () => {
   const { getToken } = useAuth();
   const { currentUser } = useUserContext();
+  const { setCurrentTab } = useNavigationContext();
 
   // ping the getUserByID endpoint to get the user's data
   const { data: passengerData, isLoading: passengerLoading } =
@@ -35,13 +39,18 @@ const PassengersPage = () => {
       ),
     enabled: true,
   });
+
+  useEffect(() => {
+    setCurrentTab(Tabs.PASSENGERS);
+  }, []);
+
   if (
     passengerLoading ||
     accompanyingPassengerLoading ||
     !accompanyingPassengerData ||
     !passengerData
   ) {
-    return <div>TEST...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
