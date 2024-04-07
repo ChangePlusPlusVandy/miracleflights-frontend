@@ -157,7 +157,7 @@ const SignUpPage = () => {
                 <Input
                   name="firstName"
                   register={signUpRegister}
-                  error={signUpErrors[SignUpInputName.EMAIL]?.message}
+                  error={signUpErrors[SignUpInputName.FIRST_NAME]?.message}
                   label="First name"
                   type="text"
                   placeholder="John"
@@ -167,7 +167,7 @@ const SignUpPage = () => {
                 <Input
                   name="lastName"
                   register={signUpRegister}
-                  error={signUpErrors[SignUpInputName.EMAIL]?.message}
+                  error={signUpErrors[SignUpInputName.LAST_NAME]?.message}
                   label="Last name"
                   type="text"
                   placeholder="Doe"
