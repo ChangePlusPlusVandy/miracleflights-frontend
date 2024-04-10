@@ -1,0 +1,76 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.passengerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: auto;
+}
+
+.passengerCard {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 6rem);
+  padding: 2rem;
+  border: 0.05rem solid var(--miracle-color-gray);
+  border-radius: 1rem;
+  background: var(--passenger-card-gradient);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.passengerCard:hover {
+  cursor: pointer;
+  background: var(--passenger-card-gradient-hover);
+}
+
+.iconUnchecked {
+  font-size: 1.5rem;
+}
+
+.iconChecked {
+  font-size: 1.5rem;
+  color: var(--miracle-color-green);
+}
+
+.goBack {
+  cursor: pointer;
+}
+
+.goBack:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.titleAndError {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.titleAndError p {
+  font-size: 0.75rem;
+  color: var(--miracle-color-red);
+}
+.minText {
+  color: var(--miracle-color-medium-dark);
+  font-weight: 400;
+}
+
+.continueContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: calc(100% - 2rem);
+  gap: 1rem;
+}
