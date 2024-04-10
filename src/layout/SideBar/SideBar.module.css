@@ -155,7 +155,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-top: 2rem;
 }
 
 .heartLogo {
@@ -180,6 +179,26 @@
 
 .logoImageClosed {
   height: 2rem;
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profileInfoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileInfoContainer p {
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 #smallerText {

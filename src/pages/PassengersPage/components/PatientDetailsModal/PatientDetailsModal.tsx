@@ -4,10 +4,15 @@ import Icon from "../../../../components/CustomIcon/Icon";
 import Input from "../../../../components/Input/Input";
 import { ButtonColor } from "../../../../components/Button/Button.definitions";
 import Button from "../../../../components/Button/Button";
-import { useState } from "react";
+import Select from "../../../../components/Select/Select";
+import { COUNTRIES } from "../../../../util/constants.util";
+import { updatePassenger } from "../../../../api/queries";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useAuth } from "@clerk/clerk-react";
 import type { PatientDetailsModalProps } from "./PatientDetailsModal.definitions";
 
 const PatientDetailsModal = ({
@@ -15,9 +20,24 @@ const PatientDetailsModal = ({
   onClose,
 }: PatientDetailsModalProps) => {
   const [editMode, setEditMode] = useState(false);
+  const queryClient = useQueryClient();
+  const { getToken } = useAuth();
+
+  const { mutate: updatePassengerMutate } = useMutation({
+    mutationFn: async (data: PatientFormData) =>
+      updatePassenger(data, patient["AirTable Record ID"], await getToken()),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["passenger"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["accompanyingPassengers"],
+      });
+    },
+  });
 
   interface PatientFormData {
-    Address: string;
+    Street: string;
     Country: string;
     Email: string;
   }
@@ -28,7 +48,7 @@ const PatientDetailsModal = ({
       .string()
       .email("Invalid email format")
       .required("Email is required"),
-    Address: yup.string().required("Address is required"),
+    Street: yup.string().required("Street is required"),
     Country: yup.string().required("Country is required"),
     // Add other field validations as needed
   });
@@ -42,7 +62,7 @@ const PatientDetailsModal = ({
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      Address: patient["Street"],
+      Street: patient["Street"],
       Country: patient["Country"],
       Email: patient["Email"],
       // Add other fields as needed
@@ -52,9 +72,18 @@ const PatientDetailsModal = ({
   // Handler for form submission
   const onSubmit = (data: PatientFormData) => {
     console.log("Form Data:", data);
-    // Here you can later add the POST request to your backend
-    setEditMode(false); // Exit edit mode after submission
+    updatePassengerMutate(data);
+    setEditMode(false);
   };
+
+  useEffect(() => {
+    reset({
+      Street: patient["Street"],
+      Country: patient["Country"],
+      Email: patient["Email"],
+      // other fields...
+    });
+  }, [patient, reset]);
 
   return (
     <>
@@ -79,7 +108,7 @@ const PatientDetailsModal = ({
               {/* make another patient group for address where each line of the address is separated */}
 
               <div className={styles.patientGroup}>
-                <span className={styles.patientLabel}>Address</span>{" "}
+                <span className={styles.patientLabel}>Street</span>{" "}
                 {!editMode && (
                   <>
                     <span className={styles.patientText}>
@@ -93,21 +122,21 @@ const PatientDetailsModal = ({
                 {editMode && (
                   <>
                     <Input
-                      name="Address"
+                      name="Street"
                       register={register}
                       type="text"
-                      placeholder="Address"
+                      placeholder="Street"
                       defaultValue={patient["Street"]}
-                      error={errors.Address?.message} // Display the error message
+                      error={errors.Street?.message} // Display the error message
                     />
-                    <Input
+                    <Select
                       name="Country"
                       register={register}
-                      type="text"
-                      placeholder="Country"
-                      defaultValue={patient["Country"]}
-                      error={errors.Country?.message} // Display the error message
+                      label="Select Label"
+                      placeholder="Select Placeholder"
+                      options={COUNTRIES}
                     />
+                    ,
                   </>
                 )}
               </div>
@@ -174,7 +203,7 @@ const PatientDetailsModal = ({
                       color={ButtonColor.Red}
                       type="button"
                     />
-                    <Button text="Save" />
+                    <Button text="Save" type="submit" />
                   </div>
                 )}
               </div>

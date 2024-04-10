@@ -1,0 +1,21 @@
+.divider {
+  width: 100%;
+  height: 0.0625em;
+  background-color: var(--miracle-color-medium-light);
+}
+
+#spacingNone {
+  margin: 0rem 0rem;
+}
+
+#spacingSmall {
+  margin: 0.5rem 0rem;
+}
+
+#spacingMedium {
+  margin: 1rem 0rem;
+}
+
+#spacingLarge {
+  margin: 2rem 0rem;
+}

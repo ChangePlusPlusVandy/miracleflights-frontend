@@ -7,6 +7,9 @@ import {
 } from "../../components/Button/Button.definitions";
 import heartLogo from "../../public/Vector.png";
 import logo from "../../public/0GAGNk.tif.png";
+import Divider from "../../components/Divider/Divider";
+import { DividerSpacing } from "../../components/Divider/Divider.definitions";
+import { useNavigationContext } from "../../context/Navigation.context";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,21 +19,21 @@ import {
   faPlane,
   faFile,
   faBars,
-  faCircleQuestion,
-  faGear,
 } from "@fortawesome/free-solid-svg-icons";
+import { UserButton, useUser } from "@clerk/clerk-react";
 
 const renderTab = (
   tab: Tab,
-  isSelected: boolean,
   handleClick: (_: Tab) => void,
   index: number,
   isOpen: boolean,
 ) => {
+  const { currentTab } = useNavigationContext();
+
   return (
     <button
       className={
-        isSelected
+        currentTab === tab.title
           ? `${styles.TabSelected} ${
               isOpen ? styles.TabOpen : styles.TabClosed
             }`
@@ -46,7 +49,7 @@ const renderTab = (
       {isOpen && (
         <div
           className={
-            isSelected
+            currentTab === tab.title
               ? styles.SideBarTitleSelected
               : styles.SideBarTitleUnselected
           }
@@ -60,12 +63,9 @@ const renderTab = (
 
 const SideBar = () => {
   const navigate = useNavigate();
+  const { user } = useUser();
 
-  const [currentTab, setCurrentTab] = useState<Tab>({
-    title: Tabs.DASHBOARD,
-    link: "dashboard",
-    icon: faHome,
-  });
+  const { setCurrentTab } = useNavigationContext();
   const [isOpen, setIsOpen] = useState(true);
 
   const UpperTabs = [
@@ -90,21 +90,9 @@ const SideBar = () => {
       icon: faPlane,
     },
   ];
-  const LowerTabs = [
-    {
-      title: Tabs.SUPPORT,
-      link: "support",
-      icon: faCircleQuestion,
-    },
-    {
-      title: Tabs.SETTINGS,
-      link: "settings",
-      icon: faGear,
-    },
-  ];
 
   const handleClick = (tab: Tab) => {
-    setCurrentTab(tab);
+    setCurrentTab(tab.title);
     navigate(tab.link);
   };
 
@@ -147,25 +135,18 @@ const SideBar = () => {
       <div className={styles.SideBarLinks}>
         <div className={styles.UpperSideBarLinks}>
           {UpperTabs.map((tab, index) =>
-            renderTab(
-              tab,
-              currentTab.title === tab.title,
-              handleClick,
-              index,
-              isOpen,
-            ),
+            renderTab(tab, handleClick, index, isOpen),
           )}
         </div>
         <div className={styles.LowerSideBarLinks}>
-          {LowerTabs.map((tab, index) =>
-            renderTab(
-              tab,
-              currentTab.title === tab.title,
-              handleClick,
-              index,
-              isOpen,
-            ),
-          )}
+          <div className={styles.profileContainer}>
+            <UserButton />
+            <div className={styles.profileInfoContainer}>
+              <p>{`${user?.firstName} ${user?.lastName}`}</p>
+              <p>{`${user?.primaryEmailAddress?.emailAddress}`}</p>
+            </div>
+          </div>
+          <Divider spacing={DividerSpacing.MEDIUM} />
           <div className={styles.builtByContainer}>
             <img src={heartLogo} className={styles.heartLogo} alt="Logo" />
             {isOpen && (
