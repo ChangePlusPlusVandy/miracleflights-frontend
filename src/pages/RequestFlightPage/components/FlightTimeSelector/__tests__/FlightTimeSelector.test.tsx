@@ -1,9 +1,20 @@
 import FlightTimeSelector from "../FlightTimeSelector";
+import { useState } from "react";
 import { render, fireEvent } from "@testing-library/react";
+import type { FlightInfoType } from "../FlightTimeSelector.definitions";
 
 describe("FlightTimeSelector Tests", () => {
   it("renders FlightTimeSelector component correctly", () => {
-    const component = render(<FlightTimeSelector />);
+    const [, setStep] = useState(1);
+    const [flightInfo, setFlightInfo] = useState<FlightInfoType | null>();
+
+    const component = render(
+      <FlightTimeSelector
+        setStep={setStep}
+        setFlightInfo={setFlightInfo}
+        defaultFlightInfo={flightInfo}
+      />,
+    );
 
     expect(component.getByText("Request a Flight")).toBeTruthy();
     expect(
@@ -24,7 +35,15 @@ describe("FlightTimeSelector Tests", () => {
   });
 
   it("updates departure airports on input change", () => {
-    const component = render(<FlightTimeSelector />);
+    const [, setStep] = useState(1);
+    const [flightInfo, setFlightInfo] = useState<FlightInfoType | null>();
+    const component = render(
+      <FlightTimeSelector
+        setStep={setStep}
+        setFlightInfo={setFlightInfo}
+        defaultFlightInfo={flightInfo}
+      />,
+    );
     const primaryInput = component.getAllByPlaceholderText(
       "Primary Selection",
     )[0] as HTMLInputElement;
@@ -40,7 +59,15 @@ describe("FlightTimeSelector Tests", () => {
   });
 
   it("disables submit button when required fields are empty", () => {
-    const component = render(<FlightTimeSelector />);
+    const [, setStep] = useState(1);
+    const [flightInfo, setFlightInfo] = useState<FlightInfoType | null>();
+    const component = render(
+      <FlightTimeSelector
+        setStep={setStep}
+        setFlightInfo={setFlightInfo}
+        defaultFlightInfo={flightInfo}
+      />,
+    );
     const submitButton = component.getByText("Submit") as HTMLButtonElement;
 
     fireEvent.click(submitButton);

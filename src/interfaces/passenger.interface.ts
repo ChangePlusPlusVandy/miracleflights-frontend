@@ -16,7 +16,7 @@ export interface PassengerData {
   "Military Member": string[];
   "How did you hear about us": string[];
   "All Flight Legs": string[];
-  Diagnosis: string[];
+  Diagnoses: string[];
   "AirTable Record ID": string;
   "# of Flight Legs": number;
   "# of Booked Flight Requests": number;

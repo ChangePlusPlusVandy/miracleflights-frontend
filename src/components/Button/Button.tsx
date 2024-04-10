@@ -22,8 +22,8 @@ const Button = ({
     variant === ButtonVariant.Compact
       ? 15
       : variant === ButtonVariant.Regular
-      ? 20
-      : 25;
+        ? 20
+        : 25;
   return (
     <button
       className={buttonClassName}
