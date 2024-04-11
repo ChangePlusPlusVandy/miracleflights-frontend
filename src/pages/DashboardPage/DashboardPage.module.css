@@ -1,0 +1,35 @@
+.welcomeMessage {
+  display: flex;
+  gap: 1rem;
+}
+/* make purple border around flightsToday */
+.cardStyle {
+  flex-basis: 33.3333%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 100px;
+  background: transparent;
+  border-radius: 5px;
+  box-shadow: 1px 1px 8px 1px #edebeb;
+  border: 1px solid #e1dede;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  height: 8rem;
+  flex-direction: column;
+  color: #888787;
+  background: rgb(250, 251, 252);
+  background: linear-gradient(
+    90deg,
+    rgba(250, 251, 252, 1) 33%,
+    rgba(218, 230, 249, 1) 100%
+  );
+}
+
+.flightNumber {
+  font-size: 4rem;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1rem 0;
+  color: var(--miracle-color-blue);
+}
