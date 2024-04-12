@@ -48,7 +48,6 @@ describe("SideBarComponent", () => {
     expect(component.getByText("DASHBOARD")).toBeTruthy();
     expect(component.getByText("Request a Flight")).toBeTruthy();
     expect(component.getByText("TRIPS")).toBeTruthy();
-    expect(component.getByText("DOCUMENTS")).toBeTruthy();
     expect(component.getByText("PATIENT & COMPANIONS")).toBeTruthy();
 
     // get the open button and click it
@@ -58,7 +57,6 @@ describe("SideBarComponent", () => {
     expect(component.queryByText("DASHBOARD")).not.toBeTruthy();
     expect(component.queryByText("Request a Flight")).not.toBeTruthy();
     expect(component.queryByText("TRIPS")).not.toBeTruthy();
-    expect(component.queryByText("DOCUMENTS")).not.toBeTruthy();
     expect(component.queryByText("PATIENT & COMPANIONS")).not.toBeTruthy();
   });
 

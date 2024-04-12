@@ -17,7 +17,6 @@ import {
   faHome,
   faPeopleGroup,
   faPlane,
-  faFile,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { UserButton, useUser } from "@clerk/clerk-react";
@@ -78,11 +77,6 @@ const SideBar = () => {
       title: Tabs.PASSENGERS,
       link: "passengers",
       icon: faPeopleGroup,
-    },
-    {
-      title: Tabs.DOCUMENTS,
-      link: "documents",
-      icon: faFile,
     },
     {
       title: Tabs.TRIPS,
