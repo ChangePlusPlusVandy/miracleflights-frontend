@@ -18,12 +18,13 @@ const DashboardPage = () => {
       enabled: true,
     });
 
-  console.log(dashboardData);
-  console.log(dashboardLoading);
-
   useEffect(() => {
     setCurrentTab(Tabs.DASHBOARD);
   }, []);
+
+  if (dashboardLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
