@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import type { PassengerData } from "../../interfaces/passenger.interface";
 import type { FlightInfoType } from "./components/FlightTimeSelector/FlightTimeSelector.definitions";
 import type { TreatmentInfoType } from "../../interfaces/flight-request-submission";
@@ -94,6 +95,7 @@ const RequestFlightPage = () => {
       passenger1: selectedPassengers[0] || undefined,
       passenger2: selectedPassengers[1] || undefined,
       flightRequestData: {
+        enoughDaysAway: "Yes",
         travelType: flightInfo?.oneWay,
         ScheduledMedicalAppointmentDate: ScheduledMedicalAppointmentDateWatch,
         DepartureDate: flightInfo?.departDate,
@@ -107,6 +109,39 @@ const RequestFlightPage = () => {
           FullNameOfPrimaryTreatmentSiteDoctorWatch,
       },
     });
+
+    const data = {
+      patient: currentUser,
+      passengerTwo: selectedPassengers[0] || undefined,
+      passengerThree: selectedPassengers[1] || undefined,
+      flightRequestData: {
+        travelType: flightInfo?.oneWay,
+        ScheduledMedicalAppointmentDate: ScheduledMedicalAppointmentDateWatch,
+        DepartureDate: flightInfo?.departDate,
+        AirportOfOrigin: flightInfo?.departureAirportPrimary,
+        AlternateAirportOfOrigin: flightInfo?.departureAirportAlternate,
+        DestinationAirport: flightInfo?.arrivalAirportPrimary,
+        AlternateDestinationAirport: flightInfo?.arrivalAirportAlternate,
+        ReturnDate: flightInfo?.departDate,
+        FullNameOfTreatmentSite: FullNameOfTreatmentSiteWatch,
+        FullNameOfPrimaryTreatmentSiteDoctor:
+          FullNameOfPrimaryTreatmentSiteDoctorWatch,
+      },
+    };
+
+    console.log("HERE is the data being sent over", data);
+
+    axios
+      .post(`${process.env.VITE_HOST}/submit-flight-request`, data)
+      .then((res) => res.data)
+      .then((data) => {
+        console.log("Flight request submitted successfully:", data);
+        // Perform any further actions upon successful submission
+      })
+      .catch((error) => {
+        console.error("Error submitting flight request:", error);
+        // Handle errors appropriately
+      });
   };
 
   return (

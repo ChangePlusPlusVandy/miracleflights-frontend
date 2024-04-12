@@ -23,7 +23,7 @@ describe("Test Data", () => {
     expect(passengerData["Military Member"]).toBeTruthy();
     expect(passengerData["How did you hear about us"]).toBeTruthy();
     expect(passengerData["All Flight Legs"]).toBeTruthy();
-    expect(passengerData["Diagnosis"]).toBeTruthy();
+    expect(passengerData["Diagnoses"]).toBeTruthy();
     expect(passengerData["AirTable Record ID"]).toBeTruthy();
     expect(passengerData["# of Flight Legs"]).toBeTruthy();
     expect(passengerData["# of Booked Flight Requests"]).toBeTruthy();

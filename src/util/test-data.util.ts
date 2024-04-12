@@ -84,7 +84,7 @@ export const createTestPassengerData = (
         max: 3,
       }),
     ),
-    Diagnosis: faker.helpers.arrayElements(
+    Diagnoses: faker.helpers.arrayElements(
       [faker.string.uuid(), faker.string.uuid(), faker.string.uuid()],
       faker.number.int({
         min: 1,
@@ -258,7 +258,7 @@ export const createTestFlightRequestData = (
       "Approved",
       "Denied",
     ]),
-    Diagnosis: faker.helpers.arrayElement([
+    Diagnoses: faker.helpers.arrayElement([
       "Cancer",
       "Heart Disease",
       "Diabetes",
