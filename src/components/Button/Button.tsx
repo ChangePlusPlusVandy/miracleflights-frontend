@@ -18,6 +18,7 @@ const Button = ({
   textStyles = {},
 }: ButtonProps) => {
   const buttonClassName = `${styles.button} ${styles[variant]} ${styles[color]}`;
+
   const loaderSize =
     variant === ButtonVariant.Compact
       ? 15
