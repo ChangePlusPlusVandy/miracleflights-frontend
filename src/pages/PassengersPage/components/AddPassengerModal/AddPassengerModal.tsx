@@ -106,7 +106,7 @@ const AddPassengerModal: React.FC<AddPassengerModalProps> = ({ onClose }) => {
 
   return (
     <Modal
-      action={onClose}
+      action={() => onClose()}
       header="Add Passenger"
       body={
         <form onSubmit={handleSubmit(onSubmit)} className={styles.inputList}>
