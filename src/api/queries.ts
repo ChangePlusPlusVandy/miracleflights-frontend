@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { DashboardData } from "../pages/DashboardPage/DashboardPage.definitions";
 import type { PassengerData } from "../interfaces/passenger.interface";
 
 export const getPassengers = async (
@@ -35,6 +36,44 @@ export const createUser = (
 ): Promise<PassengerData> =>
   axios
     .post(`${process.env.VITE_HOST}/user`, user, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const createPassenger = (
+  passenger: {
+    fields: {
+      "First Name": string;
+      "Last Name": string;
+      Relationship:
+        | "Mother"
+        | "Father"
+        | "Step-mother"
+        | "Step-father"
+        | "Legal Guardian"
+        | "Spouse"
+        | "Family Member"
+        | "Other Caregiver";
+      "Date of Birth": Date | string;
+      Diagnoses?: (string | undefined)[];
+      Gender: "Male" | "Female" | "Other";
+      Street: string;
+      City: string;
+      State: string;
+      Zip: string;
+      Country: string;
+      "Cell Phone": string;
+      Email: string;
+      Waiver: boolean;
+    };
+  },
+  userId: string,
+  token?: string | null,
+): Promise<PassengerData> =>
+  axios
+    .post(`${process.env.VITE_HOST}/passenger/${userId}`, passenger, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -80,6 +119,17 @@ export const updatePassenger = (
 ): Promise<PassengerData> =>
   axios
     .put(`${process.env.VITE_HOST}/passenger/${airtableRecordId}`, passenger, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getDashboardData = (
+  token?: string | null,
+): Promise<DashboardData> =>
+  axios
+    .get(`${process.env.VITE_HOST}/dashboard`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
