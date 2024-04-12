@@ -1,3 +1,13 @@
-/* .plus-button {
-  size: 10px;
-} */
+.inputList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.errorMessage {
+  color: red;
+  margin-top: 0.2rem;
+  text-align: center;
+  font-size: medium;
+}

@@ -1,6 +1,7 @@
 import styles from "./PassengersPage.module.css";
 import PatientCard from "./components/PatientCard/PatientCard";
 import PassengerCard from "./components/PassengerCard/PassengerCard";
+import PlusButton from "./components/AddPassengerModal/PlusButton";
 import { getAccompanyingPassengers, getPassengers } from "../../api/queries";
 import { useUserContext } from "../../context/User.context";
 import { useNavigationContext } from "../../context/Navigation.context";
@@ -9,7 +10,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@clerk/clerk-react";
 import { useEffect } from "react";
 import type { PassengerData } from "../../interfaces/passenger.interface";
-import PlusButton from "./components/AddPassengerModal/PlusButton";
 
 const PassengersPage = () => {
   const { getToken } = useAuth();
@@ -65,9 +65,13 @@ const PassengersPage = () => {
           </div>
         </div>
         <div className={styles.passengerSection}>
-          <div className={styles.passengerSectionHeader}> 
-            <h3 className={styles.subheader}>Companion Information</h3>
-            <PlusButton /> 
+          <div className={styles.passengerSectionHeader}>
+            <h3 className={styles.subheader}>
+              Companion Information
+              <div className={styles.plusButton}>
+                <PlusButton />
+              </div>{" "}
+            </h3>
           </div>
           <h5 className={styles.description}>
             Companions of {passengerData["First Name"]}

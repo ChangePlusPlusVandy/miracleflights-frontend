@@ -29,6 +29,8 @@
   font-weight: 700;
   color: var(--miracle-color-dark);
   margin-top: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .description {
@@ -43,8 +45,14 @@
   justify-content: space-evenly;
   justify-content: flex-start;
   margin-top: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .passengerCard {
   margin-right: 3rem;
+}
+
+.plusButton {
+  margin-left: 0.5rem;
 }

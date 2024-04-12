@@ -10,8 +10,8 @@ export type FormData = {
     | "Spouse"
     | "Family Member"
     | "Other Caregiver";
-  "Date of Birth": Date;
-  Diagnoses?: string[];
+  "Date of Birth": Date | string;
+  Diagnoses?: (string | undefined)[];
   Gender: "Male" | "Female" | "Other";
   Street: string;
   City: string;
