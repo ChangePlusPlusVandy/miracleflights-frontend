@@ -1,13 +1,26 @@
-.welcomeMessage {
+.dashboardContainer {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
 }
+
+.CardsContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.dashboardTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
 /* make purple border around flightsToday */
 .cardStyle {
-  flex-basis: 33.3333%;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+  width: 15rem;
   height: 100px;
   background: transparent;
   border-radius: 5px;
@@ -28,7 +41,6 @@
 
 .flightNumber {
   font-size: 4rem;
-  font-family: Arial, Helvetica, sans-serif;
   padding: 1rem 0;
   color: var(--miracle-color-blue);
 }
