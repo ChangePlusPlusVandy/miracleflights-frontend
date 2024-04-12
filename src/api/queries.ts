@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { DashboardData } from "../pages/DashboardPage/DashboardPage.definitions";
 import type { PassengerData } from "../interfaces/passenger.interface";
 
 export const getPassengers = async (
@@ -80,6 +81,17 @@ export const updatePassenger = (
 ): Promise<PassengerData> =>
   axios
     .put(`${process.env.VITE_HOST}/passenger/${airtableRecordId}`, passenger, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getDashboardData = (
+  token?: string | null,
+): Promise<DashboardData> =>
+  axios
+    .get(`${process.env.VITE_HOST}/dashboard`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
