@@ -42,6 +42,44 @@ export const createUser = (
     })
     .then((res) => res.data);
 
+export const createPassenger = (
+  passenger: {
+    fields: {
+      "First Name": string;
+      "Last Name": string;
+      Relationship:
+        | "Mother"
+        | "Father"
+        | "Step-mother"
+        | "Step-father"
+        | "Legal Guardian"
+        | "Spouse"
+        | "Family Member"
+        | "Other Caregiver";
+      "Date of Birth": Date | string;
+      Diagnoses?: (string | undefined)[];
+      Gender: "Male" | "Female" | "Other";
+      Street: string;
+      City: string;
+      State: string;
+      Zip: string;
+      Country: string;
+      "Cell Phone": string;
+      Email: string;
+      Waiver: boolean;
+    };
+  },
+  userId: string,
+  token?: string | null,
+): Promise<PassengerData> =>
+  axios
+    .post(`${process.env.VITE_HOST}/passenger/${userId}`, passenger, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
 export const linkUser = (
   airtableRecordId: string,
   token?: string | null,

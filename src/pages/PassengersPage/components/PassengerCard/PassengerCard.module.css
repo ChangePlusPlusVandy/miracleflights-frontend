@@ -48,3 +48,14 @@
   font-size: 1rem;
   margin-top: 0.5rem;
 }
+
+.passengerSectionHeader {
+  display: inline-flex;
+  align-items: center; /* Align items vertically in the center */
+  justify-content: space-between; /* Spreads the items to fill the container */
+  flex-direction: column;
+}
+
+.subheader {
+  margin-right: 10px;
+}
