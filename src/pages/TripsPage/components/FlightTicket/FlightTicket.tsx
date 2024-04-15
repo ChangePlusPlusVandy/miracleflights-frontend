@@ -24,6 +24,7 @@ const FlightTicket = ({ flight }: FlightTicketProps) => {
     `url("https://image.cnbcfm.com/api/v1/image/107139583-1666620871667-gettyimages-1359908964-dji_0973hdrpanoedit_1639963084.jpeg?v=1666799178&w=630&h=354&ffmt=webp&vtcrop=y")`,
     `url("https://www.shutterstock.com/image-photo/nashville-skyline-moon-260nw-1041309010.jpg")`,
   ];
+  console.log(flight);
 
   let currentDepartureImage = -1;
   const getCityImage = (): number => {
@@ -53,13 +54,11 @@ const FlightTicket = ({ flight }: FlightTicketProps) => {
           >
             <div className={styles.backgroundOverlay}> </div>
             <div className={styles.cityAndAirport}>
-              {`${fakerEN_US.location.city()} - ${
-                fakerEN_US.airline.airport().iataCode
-              }`}
+              {`${flight["Departure Airport"]}`}
             </div>
 
             <div className={styles.flightNumAndTime}>
-              Flight#1 Departs 9:30 AM
+              {flight["Departure Date/Time"]}
             </div>
           </div>
           <div className={styles.separator}>
@@ -72,13 +71,11 @@ const FlightTicket = ({ flight }: FlightTicketProps) => {
           >
             <div className={styles.backgroundOverlay}> </div>
             <div className={styles.cityAndAirport}>
-              {`${fakerEN_US.location.city()} - ${
-                fakerEN_US.airline.airport().iataCode
-              }`}
+              {`${flight["Arrival Airport"]}`}
             </div>
 
             <div className={styles.flightNumAndTime}>
-              Flight#1 Arrives 12:30 PM
+              {flight["Arrival Date/Time"]}
             </div>
           </div>
         </div>

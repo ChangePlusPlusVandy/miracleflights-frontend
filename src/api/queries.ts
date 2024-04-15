@@ -1,5 +1,6 @@
 import axios from "axios";
 import type { PassengerData } from "../interfaces/passenger.interface";
+import { FlightRequestData } from "../interfaces/flight-request-interface";
 
 export const getPassengers = async (
   id: string,
@@ -80,6 +81,25 @@ export const updatePassenger = (
 ): Promise<PassengerData> =>
   axios
     .put(`${process.env.VITE_HOST}/passenger/${airtableRecordId}`, passenger, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+/**
+ * Fetch all flight requests for a specific user from the server.
+ *
+ * @param {string} userId The unique identifier for the user whose flight requests are to be retrieved.
+ * @returns {Promise<Object[]>} A promise that resolves to an array of flight requests.
+ */
+
+export const getAllFlightsForUser = (
+  userId: string,
+  token?: string | null,
+): Promise<FlightRequestData[]> =>
+  axios
+    .get(`${process.env.VITE_HOST}/requests?userId=${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
