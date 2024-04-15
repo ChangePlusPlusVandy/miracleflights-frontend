@@ -35,7 +35,7 @@ MEDICAL INFO:
 "Date of Birth": string;
 Gender: string;
 Ethnicity: string[];
-Diagnosis: string[];
+Diagnoses: string[];
 
 FINANCIAL INFO:
 "Household Income": number;

@@ -1,6 +1,6 @@
 export type DateValue = Date | null | [Date, Date];
 
-export interface FormTypes {
+export interface FlightInfoType {
   departDate: DateValue;
   arrivalDate: DateValue;
   oneWay: boolean;
@@ -8,4 +8,10 @@ export interface FormTypes {
   departureAirportAlternate: string;
   arrivalAirportPrimary: string;
   arrivalAirportAlternate: string;
+}
+
+export interface FlightTimeSelectorProps {
+  setStep: (_step: number) => void;
+  defaultFlightInfo?: FlightInfoType | null;
+  setFlightInfo: (_flightInfo: FlightInfoType) => void;
 }

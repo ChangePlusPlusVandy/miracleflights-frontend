@@ -1,0 +1,86 @@
+.goBack {
+  cursor: pointer;
+}
+
+.goBack:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.reviewContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.passengerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow: auto;
+}
+
+.flightInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow: auto;
+}
+.flightInfoContainer h4 {
+  padding-bottom: 0.5rem;
+}
+
+.passengerContainer h4 {
+  padding-bottom: 0.5rem;
+}
+
+.passengerKey {
+  font-weight: 700;
+}
+
+.passengerValue {
+  padding-left: 0.75rem;
+}
+
+.flightInfoKey {
+  font-weight: 700;
+}
+
+.flightInfoValue {
+  padding-left: 0.75rem;
+}
+
+.submitContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.confirmationModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  overflow: hidden;
+  padding-top: 1rem;
+}
+.actionContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.confirmationModal h3 {
+  font-weight: 800;
+}
+
+.cannotUndo {
+  color: var(--miracle-color-red-dark);
+  font-weight: 700;
+}
+
+.areYouSure {
+  color: var(--miracle-color-medium-dark);
+  font-weight: 400;
+}

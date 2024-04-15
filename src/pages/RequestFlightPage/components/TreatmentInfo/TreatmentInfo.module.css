@@ -1,0 +1,21 @@
+.goBack {
+  cursor: pointer;
+}
+
+.goBack:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.treatmentInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.continueContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
