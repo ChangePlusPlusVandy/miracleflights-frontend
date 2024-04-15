@@ -58,7 +58,7 @@ const FlightTicket = ({ flight }: FlightTicketProps) => {
             </div>
 
             <div className={styles.flightNumAndTime}>
-              {flight["Departure Date/Time"]}
+              {formatDate(flight["Departure Date/Time"])}
             </div>
           </div>
           <div className={styles.separator}>
