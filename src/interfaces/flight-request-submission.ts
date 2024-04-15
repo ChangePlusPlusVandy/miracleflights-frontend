@@ -2,7 +2,6 @@
  * Represents a flight request submission.
  */
 export interface FlightRequestSubmission {
-  enoughDaysAway: string;
   travelType: string;
   ScheduledMedicalAppointmentDate: string; // Needs to be in ISO string format (use .toISOString())
   DepartureDate: string; // Needs to be in ISO string format (use .toISOString())
