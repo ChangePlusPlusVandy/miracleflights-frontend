@@ -71,7 +71,6 @@ const PatientDetailsModal = ({
 
   // Handler for form submission
   const onSubmit = (data: PatientFormData) => {
-    console.log("Form Data:", data);
     updatePassengerMutate(data);
     setEditMode(false);
   };

@@ -1,38 +1,51 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./FlightTimeSelector.module.css";
-import "../../../../../styles/Calendar.css";
-import Icon from "../../../../../components/CustomIcon/Icon.tsx";
-import Button from "../../../../../components/Button/Button.tsx";
+import "../../../../styles/Calendar.css";
+import Icon from "../../../../components/CustomIcon/Icon.tsx";
+import Button from "../../../../components/Button/Button.tsx";
 import DatePicker from "react-calendar";
 import { useState } from "react";
-import type { DateValue } from "./FlightTimeSelector.definitions.ts";
+import type {
+  DateValue,
+  FlightTimeSelectorProps,
+} from "./FlightTimeSelector.definitions.ts";
 // import { set } from "react-hook-form";
 
-const FlightTimeSelector = () => {
-  const [departDate, setDepartDate] = useState<DateValue>(new Date());
-  const [arrivalDate, setArrivalDate] = useState<DateValue>(new Date());
-  const [oneWay, setOneWay] = useState<boolean>(false);
+const FlightTimeSelector = ({
+  setStep,
+  setFlightInfo,
+  defaultFlightInfo,
+}: FlightTimeSelectorProps) => {
+  const [departDate, setDepartDate] = useState<DateValue>(
+    defaultFlightInfo?.departDate || new Date(),
+  );
+  const [arrivalDate, setArrivalDate] = useState<DateValue>(
+    defaultFlightInfo?.arrivalDate || new Date(),
+  );
+  const [oneWay, setOneWay] = useState<boolean>(
+    defaultFlightInfo?.oneWay || false,
+  );
   const [departureAirportPrimary, setDepartureAirportPrimary] =
-    useState<string>("");
+    useState<string>(defaultFlightInfo?.departureAirportPrimary || "");
   const [departureAirportAlternate, setDepartureAirportAlternate] =
-    useState<string>("");
-  const [arrivalAirportPrimary, setArrivalAirportPrimary] =
-    useState<string>("");
+    useState<string>(defaultFlightInfo?.departureAirportAlternate || "");
+  const [arrivalAirportPrimary, setArrivalAirportPrimary] = useState<string>(
+    defaultFlightInfo?.arrivalAirportPrimary || "",
+  );
   const [arrivalAirportAlternate, setArrivalAirportAlternate] =
-    useState<string>("");
+    useState<string>(defaultFlightInfo?.arrivalAirportAlternate || "");
 
   const handleSubmit = () => {
-    // e.preventDefault();
-    // const form: FormTypes = {
-    //   departDate,
-    //   arrivalDate,
-    //   oneWay,
-    //   departureAirportPrimary,
-    //   departureAirportAlternate,
-    //   arrivalAirportPrimary,
-    //   arrivalAirportAlternate,
-    // };
-    // console.log(form);
+    setFlightInfo({
+      departDate,
+      arrivalDate,
+      oneWay,
+      departureAirportPrimary,
+      departureAirportAlternate,
+      arrivalAirportPrimary,
+      arrivalAirportAlternate,
+    });
+    setStep(2);
   };
 
   const submitDisabled = () => {
@@ -146,13 +159,6 @@ const FlightTimeSelector = () => {
               />
             )}
           </div>
-          {/* <button
-            className={styles.flightSelectorSubmitButton}
-            onClick={handleSubmit}
-            disabled={submitDisabled()}
-          >
-            Submit
-          </button> */}
           <Button
             onClick={handleSubmit}
             disabled={submitDisabled()}

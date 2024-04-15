@@ -17,4 +17,5 @@ export enum TagColor {
   RED = "red",
   BLUE = "blue",
   GREY = "gray",
+  ORANGE = "orange",
 }

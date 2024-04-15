@@ -17,7 +17,6 @@ import {
   faHome,
   faPeopleGroup,
   faPlane,
-  faFile,
   faBars,
   faPerson,
 } from "@fortawesome/free-solid-svg-icons";
@@ -67,7 +66,7 @@ const SideBar = () => {
   const { user } = useUser();
 
   const { setCurrentTab } = useNavigationContext();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const UpperTabs = [
     {
@@ -79,11 +78,6 @@ const SideBar = () => {
       title: Tabs.PASSENGERS,
       link: "passengers",
       icon: faPeopleGroup,
-    },
-    {
-      title: Tabs.DOCUMENTS,
-      link: "documents",
-      icon: faFile,
     },
     {
       title: Tabs.TRIPS,
@@ -147,10 +141,12 @@ const SideBar = () => {
         <div className={styles.LowerSideBarLinks}>
           <div className={styles.profileContainer}>
             <UserButton />
-            <div className={styles.profileInfoContainer}>
-              <p>{`${user?.firstName} ${user?.lastName}`}</p>
-              <p>{`${user?.primaryEmailAddress?.emailAddress}`}</p>
-            </div>
+            {isOpen && (
+              <div className={styles.profileInfoContainer}>
+                <p>{`${user?.firstName} ${user?.lastName}`}</p>
+                <p>{`${user?.primaryEmailAddress?.emailAddress}`}</p>
+              </div>
+            )}
           </div>
           <Divider spacing={DividerSpacing.MEDIUM} />
           <div className={styles.builtByContainer}>

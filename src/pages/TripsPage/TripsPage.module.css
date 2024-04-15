@@ -9,8 +9,11 @@
 .timeFrame {
   color: var(--miracle-color-dark-500);
   font-size: 16px;
-
-  opacity: 0.5;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .pageContainer {
@@ -31,7 +34,7 @@
   flex-wrap: wrap;
   display: flex;
   justify-content: flex-start;
-  padding-bottom: 20px;
+  width: 100%;
 }
 
 .divider {
@@ -41,4 +44,65 @@
   margin-top: 10px;
   margin-bottom: 10px;
   margin: 0px 10px;
+}
+
+.departureText {
+  font-size: 1.25rem !important;
+  font-weight: 800;
+  color: var(--miracle-color-blue);
+}
+
+.arrivalText {
+  font-size: 1.25rem !important;
+  font-weight: 800;
+  color: var(--miracle-color-red);
+}
+
+.statusText {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--miracle-color-dark);
+}
+
+.statusContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.requestContainer {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--miracle-color-blue-light);
+  border-radius: 4px;
+  background-color: var(--miracle-color-very-light);
+  padding: 1rem;
+  margin: 0;
+  transition: all 0.3s;
+  margin-bottom: 2rem;
+}
+
+.requestContainer:hover {
+  cursor: pointer;
+  transform: scale(1.005);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.chevron {
+  color: var(--miracle-color-blue);
+  font-size: 1rem !important;
+}
+
+.noDataContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  height: 100%;
 }

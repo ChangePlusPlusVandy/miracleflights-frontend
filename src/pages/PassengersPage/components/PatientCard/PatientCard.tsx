@@ -3,6 +3,8 @@ import { formatDate, getAge } from "../../../../util/date.util";
 // import Icon from "../../../../components/CustomIcon/Icon";
 import PatientDetailsModal from "../PatientDetailsModal/PatientDetailsModal";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChildReaching } from "@fortawesome/free-solid-svg-icons";
 import type { PatientProps } from "./PatientCard.definitions";
 
 /**
@@ -27,7 +29,12 @@ const Patient = ({ patient }: PatientProps) => {
       )}
       <div className={styles.patientCard} onClick={() => setModal(true)}>
         <div className={styles.imgAndInfo}>
-          <div className={styles.imgContainer} />
+          <div className={styles.imgContainer}>
+            <FontAwesomeIcon
+              icon={faChildReaching}
+              className={styles.childIcon}
+            />
+          </div>
           <div className={styles.info}>
             <div className={styles.name}>
               {patient["First Name"]} {patient["Last Name"]}

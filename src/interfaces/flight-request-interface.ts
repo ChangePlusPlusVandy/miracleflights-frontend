@@ -1,3 +1,5 @@
+import type { FlightLegData } from "./flight-leg.interface";
+
 export interface FlightRequestData {
   id: string;
   createdTime: string;
@@ -7,7 +9,7 @@ export interface FlightRequestData {
   "Request Type": string;
   "Household Size": number;
   "Passenger 2 Approval Status": string;
-  Diagnosis: string;
+  Diagnoses: string;
   "Passenger 3": string[];
   "Patient Type": string;
   Ethnicity: string[];
@@ -24,7 +26,7 @@ export interface FlightRequestData {
   "First Request": string;
   "Type of Treatment": string;
   "Passenger 3 Reason": string;
-  "Flight Legs": string[];
+  //"Flight Legs": string[];
   Status: string;
   "Oxygen?": string;
   "Origin Airport": string;
@@ -53,4 +55,6 @@ export interface FlightRequestData {
   "# of Legs": number;
   "Total # of Legs": number;
   "Request ID": string;
+
+  "Flight Legs": FlightLegData[];
 }

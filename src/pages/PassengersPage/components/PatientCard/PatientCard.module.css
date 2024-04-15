@@ -98,6 +98,15 @@ span {
   min-height: 10rem;
   border-radius: 50%;
   background-color: var(--miracle-color-medium);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.childIcon {
+  min-width: 6rem;
+  min-height: 6rem;
+  color: white;
 }
 
 .info {

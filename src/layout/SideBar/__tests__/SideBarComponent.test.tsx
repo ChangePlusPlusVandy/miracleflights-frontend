@@ -40,28 +40,33 @@ describe("SideBarComponent", () => {
     // render the component
     const component = render(<SideBar />);
 
+    // get the open button and click it
+    const openButton = component.getAllByTestId("open-button")[0];
+    fireEvent.click(openButton);
+
     // check if the tabs are there
     expect(component.getByText("DASHBOARD")).toBeTruthy();
     expect(component.getByText("Request a Flight")).toBeTruthy();
     expect(component.getByText("TRIPS")).toBeTruthy();
-    expect(component.getByText("DOCUMENTS")).toBeTruthy();
     expect(component.getByText("PATIENT & COMPANIONS")).toBeTruthy();
 
     // get the open button and click it
-    const openButton = component.getAllByTestId("open-button")[0];
     fireEvent.click(openButton);
 
     // check if that worked (the text shouldn't be there anymore)
     expect(component.queryByText("DASHBOARD")).not.toBeTruthy();
     expect(component.queryByText("Request a Flight")).not.toBeTruthy();
     expect(component.queryByText("TRIPS")).not.toBeTruthy();
-    expect(component.queryByText("DOCUMENTS")).not.toBeTruthy();
     expect(component.queryByText("PATIENT & COMPANIONS")).not.toBeTruthy();
   });
 
   it("correctly switches tabs", () => {
     // render the component
     const component = render(<SideBar />);
+
+    // get the open button and click it
+    const openButton = component.getAllByTestId("open-button")[0];
+    fireEvent.click(openButton);
 
     // get the dashboard tab and click it
     const dashboardTab = component.getByText("DASHBOARD");
