@@ -87,7 +87,7 @@ const TripsPage = () => {
     setOpenFlights(openFlights.filter((id) => id !== flightId));
   };
 
-  if (isLoading || !data) return <h1>Loading....</h1>;
+  if (isLoading || !data) return <p>Loading....</p>;
 
   const sortedFlightRequests = data.sort(
     (a: FlightRequestData, b: FlightRequestData) => {
