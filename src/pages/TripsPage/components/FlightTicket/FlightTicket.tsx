@@ -7,7 +7,6 @@ import { useState } from "react";
 // import { formatAirlineString } from "../../../../util/flight.util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlane } from "@fortawesome/free-solid-svg-icons";
-import { fakerEN_US } from "@faker-js/faker";
 import type { FlightTicketProps } from "./FlightTicket.definitions";
 
 const FlightTicket = ({ flight }: FlightTicketProps) => {

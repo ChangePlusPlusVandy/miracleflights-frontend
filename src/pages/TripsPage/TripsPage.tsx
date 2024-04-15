@@ -1,16 +1,14 @@
 import styles from "./TripsPage.module.css";
 import FlightTicket from "./components/FlightTicket/FlightTicket";
-//import { createTestFlightLegData } from "../../util/test-data.util";
-import { formatTimeFrame } from "../../util/date.util";
 import { Tabs } from "../../layout/SideBar/SideBar.definitions";
 import { useNavigationContext } from "../../context/Navigation.context";
-import { useEffect } from "react";
-import type { FlightLegData } from "../../interfaces/flight-leg.interface";
-import { useQuery } from "@tanstack/react-query";
-import { FlightRequestData } from "../../interfaces/flight-request-interface.ts";
 import { useUserContext } from "../../context/User.context.tsx";
 import { getAllFlightsForUser } from "../../api/queries.ts";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { useAuth } from "@clerk/clerk-react";
+import type { FlightRequestData } from "../../interfaces/flight-request-interface.ts";
+import type { FlightLegData } from "../../interfaces/flight-leg.interface";
 
 const TripsPage = () => {
   const { setCurrentTab } = useNavigationContext();
@@ -64,11 +62,9 @@ const TripsPage = () => {
             <div key={index}>
               <div className={styles.timeFrame}>Time Frame</div>
               <div className={styles.tripContainer}>
-                {flightLegs.map(
-                  (flight: FlightLegData, flightIndex: number) => {
-                    return <FlightTicket key={flight.id} flight={flight} />;
-                  },
-                )}
+                {flightLegs.map((flight: FlightLegData) => {
+                  return <FlightTicket key={flight.id} flight={flight} />;
+                })}
               </div>
             </div>
           );
