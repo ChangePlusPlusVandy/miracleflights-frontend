@@ -5,17 +5,21 @@
   overflow: hidden;
   cursor: pointer;
   font-family: "Inter";
-  background-color: white;
-}
-
-.ticketBase {
-  background-color: white;
 }
 
 .dateRow {
-  background-color: white;
   padding: 1rem 0rem;
   font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dateRow h5 {
+  font-size: 0.75rem !important;
+  font-weight: 500;
+  color: var(--miracle-color-medium);
 }
 
 .date {
@@ -31,7 +35,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
 }
 
 .departureInfo,
@@ -41,7 +44,6 @@
   font-family: "Inter";
   color: white;
   background-color: black;
-  width: 30rem;
   height: 10rem;
   position: relative;
   background-size: cover;
@@ -94,7 +96,6 @@
 
 .duration {
   display: inline-block;
-  background-color: #fff;
   padding: 0.5rem 1rem;
   position: relative;
   z-index: 1;
@@ -111,7 +112,6 @@
 }
 
 .seeMoreRow {
-  background-color: #f8f8f8;
   padding: 0.5rem 1rem;
   text-align: center;
   font-size: 0.85rem;

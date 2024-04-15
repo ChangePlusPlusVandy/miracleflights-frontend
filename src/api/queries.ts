@@ -126,13 +126,6 @@ export const updatePassenger = (
     })
     .then((res) => res.data);
 
-/**
- * Fetch all flight requests for a specific user from the server.
- *
- * @param {string} userId The unique identifier for the user whose flight requests are to be retrieved.
- * @returns {Promise<Object[]>} A promise that resolves to an array of flight requests.
- */
-
 export const getAllFlightsForUser = (
   userId: string,
   token?: string | null,
@@ -145,11 +138,6 @@ export const getAllFlightsForUser = (
     })
     .then((res) => res.data);
 
-/**
- * Retrieves the dashboard data from the server.
- * @param token - Optional token for authentication.
- * @returns A Promise that resolves to the DashboardData object.
- */
 export const getDashboardData = (
   token?: string | null,
 ): Promise<DashboardData> =>
