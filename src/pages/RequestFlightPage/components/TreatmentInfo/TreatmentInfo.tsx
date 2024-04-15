@@ -43,6 +43,7 @@ const TreatmentInfo = ({
         label="Scheduled medical appointment date"
         register={register}
         error={errors.ScheduledMedicalAppointmentDate?.message}
+        type="date"
       />
       <div className={styles.continueContainer}>
         <Button

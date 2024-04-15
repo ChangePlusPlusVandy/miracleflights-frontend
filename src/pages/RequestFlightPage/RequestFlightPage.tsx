@@ -95,7 +95,6 @@ const RequestFlightPage = () => {
       passenger1: selectedPassengers[0] || undefined,
       passenger2: selectedPassengers[1] || undefined,
       flightRequestData: {
-        enoughDaysAway: "Yes",
         travelType: flightInfo?.oneWay,
         ScheduledMedicalAppointmentDate: ScheduledMedicalAppointmentDateWatch,
         DepartureDate: flightInfo?.departDate,
@@ -128,8 +127,6 @@ const RequestFlightPage = () => {
           FullNameOfPrimaryTreatmentSiteDoctorWatch,
       },
     };
-
-    console.log("HERE is the data being sent over", data);
 
     axios
       .post(`${process.env.VITE_HOST}/submit-flight-request`, data)
