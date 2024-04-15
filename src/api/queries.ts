@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { FlightRequestData } from "../interfaces/flight-request-interface";
 import type { DashboardData } from "../pages/DashboardPage/DashboardPage.definitions";
 import type { PassengerData } from "../interfaces/passenger.interface";
 
@@ -119,6 +120,18 @@ export const updatePassenger = (
 ): Promise<PassengerData> =>
   axios
     .put(`${process.env.VITE_HOST}/passenger/${airtableRecordId}`, passenger, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const getAllFlightsForUser = (
+  userId: string,
+  token?: string | null,
+): Promise<FlightRequestData[]> =>
+  axios
+    .get(`${process.env.VITE_HOST}/requests?userId=${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
