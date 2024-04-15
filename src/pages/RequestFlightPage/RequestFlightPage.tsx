@@ -2,19 +2,25 @@ import FlightTimeSelector from "./components/FlightTimeSelector/FlightTimeSelect
 import PassengerSelector from "./components/PassengerSelector/PassengerSelector";
 import ReviewAndSubmit from "./components/ReviewAndSubmit/ReviewAndSubmit";
 import TreatmentInfo from "./components/TreatmentInfo/TreatmentInfo";
+import styles from "./RequestFlightPage.module.css";
 import { useNavigationContext } from "../../context/Navigation.context";
 import { Tabs } from "../../layout/SideBar/SideBar.definitions";
 import { useUserContext } from "../../context/User.context";
+import Button from "../../components/Button/Button";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
+import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import type { PassengerData } from "../../interfaces/passenger.interface";
 import type { FlightInfoType } from "./components/FlightTimeSelector/FlightTimeSelector.definitions";
 import type { TreatmentInfoType } from "../../interfaces/flight-request-submission";
 
 const RequestFlightPage = () => {
+  const navigate = useNavigate();
   const { setCurrentTab } = useNavigationContext();
   const [step, setStep] = useState(1);
   const [flightInfo, setFlightInfo] = useState<FlightInfoType | null>();
@@ -182,30 +188,24 @@ const RequestFlightPage = () => {
         />
       )}
       {step === 5 && (
-        <div>
-          <h2>Successfully submitted flight request</h2>
-          <p>
-            {JSON.stringify({
-              patient: currentUser,
-              passenger1: selectedPassengers[0] || undefined,
-              passenger2: selectedPassengers[1] || undefined,
-              flightRequestData: {
-                travelType: flightInfo?.oneWay,
-                ScheduledMedicalAppointmentDate:
-                  ScheduledMedicalAppointmentDateWatch,
-                DepartureDate: flightInfo?.departDate,
-                AirportOfOrigin: flightInfo?.departureAirportPrimary,
-                AlternateAirportOfOrigin: flightInfo?.departureAirportAlternate,
-                DestinationAirport: flightInfo?.arrivalAirportPrimary,
-                AlternateDestinationAirport:
-                  flightInfo?.arrivalAirportAlternate,
-                ReturnDate: flightInfo?.departDate,
-                FullNameOfTreatmentSite: FullNameOfTreatmentSiteWatch,
-                FullNameOfPrimaryTreatmentSiteDoctor:
-                  FullNameOfPrimaryTreatmentSiteDoctorWatch,
-              },
-            })}
-          </p>
+        <div className={styles.successPage}>
+          <div className={styles.successTitle}>
+            <h1>Successfully submitted flight request</h1>
+            <h3 className={styles.sub}>
+              Your flight request has been sent to our team. Check back in a few
+              hours for updates on your request!
+            </h3>
+          </div>
+          <FontAwesomeIcon
+            icon={faCircleCheck}
+            className={styles.circleCheck}
+            style={{ color: "#00cc00" }}
+          />
+          <Button
+            text="Return to dashboard"
+            onClick={() => navigate("/dashboard")}
+            extraStyles={{ width: "200px", marginTop: "5rem" }}
+          />
         </div>
       )}
     </div>
