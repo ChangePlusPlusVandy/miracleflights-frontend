@@ -12,7 +12,7 @@ export interface PassengerData {
   "Household Income": number;
   "Household Size": number;
   Ethnicity: string[];
-  "Military Service"?: string;
+  "Military Service": string;
   "Military Member": string[];
   "How did you hear about us": string[];
   "All Flight Legs": string[];

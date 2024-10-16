@@ -42,7 +42,7 @@ const PatientDetailsModal = ({
     Email: string;
     Gender: string;
     DateOfBirth: string;
-    MilitaryService?: string;
+    MilitaryService: string;
     Notes?: string;
   }
 
@@ -56,7 +56,7 @@ const PatientDetailsModal = ({
     Country: yup.string().required("Country is required"),
     Gender: yup.string().required("Gender is required"),
     DateOfBirth: yup.string().required("Date of Birth is required"),
-    MilitaryService: yup.string(),
+    MilitaryService: yup.string().required("Military status is required"),
     Notes: yup.string(),
     // Add other field validations as needed
   });
@@ -88,6 +88,7 @@ const PatientDetailsModal = ({
   };
 
   useEffect(() => {
+    console.log(patient["Military Service"]);
     reset({
       Street: patient["Street"],
       Country: patient["Country"],
@@ -202,7 +203,7 @@ const PatientDetailsModal = ({
                     name="MilitaryService"
                     register={register}
                     placeholder="Select Status"
-                    options={["Not applicable", "Yes"]}
+                    options={["Active", "Veteran", "Not applicable"]}
                   />
                 )}
               </div>
