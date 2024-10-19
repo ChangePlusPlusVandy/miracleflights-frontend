@@ -88,7 +88,6 @@ const PatientDetailsModal = ({
   };
 
   useEffect(() => {
-    console.log(patient["Military Service"]);
     reset({
       Street: patient["Street"],
       Country: patient["Country"],
