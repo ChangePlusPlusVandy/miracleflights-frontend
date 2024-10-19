@@ -132,3 +132,21 @@
   background: var(--miracle-color-red-dark);
   color: var(--miracle-color-white);
 }
+
+.departure-calendar .react-calendar__tile--active {
+  background: var(--miracle-color-blue) !important;
+  color: var(--miracle-color-white) !important;
+}
+
+.arrival-calendar .react-calendar__tile--active {
+  background: var(--miracle-color-red) !important;
+  color: var(--miracle-color-white) !important;
+}
+
+.departure-calendar .react-calendar__tile--active:hover {
+  background: var(--miracle-color-light-blue) !important;
+}
+
+.arrival-calendar .react-calendar__tile--active:hover {
+  background: var(--miracle-color-light-red) !important;
+}
