@@ -2,8 +2,8 @@ import * as Yup from "yup";
 import type { FormData } from "./AddPassengerModal.definitions";
 
 const passengerSchema = Yup.object<FormData>().shape({
-  "First Name": Yup.string().required("First Name is required"),
-  "Last Name": Yup.string().required("Last Name is required"),
+  "First Name": Yup.string().trim().required("First Name is required"),
+  "Last Name": Yup.string().trim().required("Last Name is required"),
   Relationship: Yup.string()
     .oneOf(
       [
@@ -24,8 +24,8 @@ const passengerSchema = Yup.object<FormData>().shape({
   Gender: Yup.string()
     .oneOf(["Male", "Female", "Other"], "Invalid Gender")
     .required("Gender is required"),
-  Street: Yup.string().required("Street is required"),
-  City: Yup.string().required("City is required"),
+  Street: Yup.string().trim().required("Street is required"),
+  City: Yup.string().trim().required("City is required"),
   State: Yup.string().required("State is required"),
   Zip: Yup.string()
     .matches(/^\d{5}$/, "Invalid Zip Code")

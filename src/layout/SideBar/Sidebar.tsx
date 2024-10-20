@@ -151,6 +151,8 @@ const SideBar = () => {
                 <a
                   id={styles.smallerText}
                   href="https://www.changeplusplus.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   ChangePlusPlus
                 </a>
