@@ -40,6 +40,10 @@ const PatientDetailsModal = ({
     Street: string;
     Country: string;
     Email: string;
+    Gender: string;
+    DateOfBirth: string;
+    MilitaryService: string;
+    Notes?: string;
   }
 
   // Define the validation schema using Yup
@@ -50,6 +54,10 @@ const PatientDetailsModal = ({
       .required("Email is required"),
     Street: yup.string().required("Street is required"),
     Country: yup.string().required("Country is required"),
+    Gender: yup.string().required("Gender is required"),
+    DateOfBirth: yup.string().required("Date of Birth is required"),
+    MilitaryService: yup.string().required("Military status is required"),
+    Notes: yup.string(),
     // Add other field validations as needed
   });
 
@@ -65,6 +73,10 @@ const PatientDetailsModal = ({
       Street: patient["Street"],
       Country: patient["Country"],
       Email: patient["Email"],
+      Gender: patient["Gender"],
+      DateOfBirth: patient["Date of Birth"],
+      MilitaryService: patient["Military Service"],
+      Notes: patient["Notes"],
       // Add other fields as needed
     },
   });
@@ -80,7 +92,10 @@ const PatientDetailsModal = ({
       Street: patient["Street"],
       Country: patient["Country"],
       Email: patient["Email"],
-      // other fields...
+      Gender: patient["Gender"],
+      DateOfBirth: patient["Date of Birth"],
+      MilitaryService: patient["Military Service"],
+      Notes: patient["Notes"],
     });
   }, [patient, reset]);
 
@@ -92,16 +107,38 @@ const PatientDetailsModal = ({
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className={`${styles.patientRow} ${styles.marginBottom}`}>
                 <div>
-                  <span className={styles.patientLabel}>Gender</span>{" "}
-                  <span className={styles.patientText}>
-                    {patient["Gender"]}
-                  </span>
+                  <span className={styles.patientLabel}>Gender</span>
+                  {!editMode ? (
+                    <div>
+                      <span className={styles.patientText}>
+                        {patient["Gender"]}
+                      </span>
+                    </div>
+                  ) : (
+                    <Select
+                      name="Gender"
+                      register={register}
+                      placeholder="Select Gender"
+                      options={["Male", "Female"]}
+                    />
+                  )}
                 </div>
                 <div>
-                  <span className={styles.patientLabel}>DOB</span>{" "}
-                  <span className={styles.patientText}>
-                    {patient["Date of Birth"]}
-                  </span>
+                  <span className={styles.patientLabel}>DOB</span>
+                  {!editMode ? (
+                    <div>
+                      <span className={styles.patientText}>
+                        {patient["Date of Birth"]}
+                      </span>
+                    </div>
+                  ) : (
+                    <Input
+                      name="DateOfBirth"
+                      register={register}
+                      placeholder="YYYY-MM-DD"
+                      type="date"
+                    />
+                  )}
                 </div>
               </div>
               {/* make another patient group for address where each line of the address is separated */}
@@ -135,7 +172,6 @@ const PatientDetailsModal = ({
                       placeholder="Select Placeholder"
                       options={COUNTRIES}
                     />
-                    ,
                   </>
                 )}
               </div>
@@ -156,10 +192,19 @@ const PatientDetailsModal = ({
                 )}
               </div>
               <div className={styles.patientGroup}>
-                <span className={styles.patientLabel}>Military</span>{" "}
-                <span className={styles.patientText}>
-                  {patient["Military Service"]}
-                </span>
+                <span className={styles.patientLabel}>Military</span>
+                {!editMode ? (
+                  <span className={styles.patientText}>
+                    {patient["Military Service"]}
+                  </span>
+                ) : (
+                  <Select
+                    name="MilitaryService"
+                    register={register}
+                    placeholder="Select Status"
+                    options={["Active", "Veteran", "Not applicable"]}
+                  />
+                )}
               </div>
               <div className={styles.patientRow}>
                 <div className={styles.patientGroup}>
@@ -179,7 +224,19 @@ const PatientDetailsModal = ({
               </div>
               <div className={styles.patientGroup}>
                 <span className={styles.patientLabel}>Notes</span>
-                <span className={styles.patientText}>Notes go here</span>
+                {!editMode ? (
+                  <span className={styles.patientText}>
+                    {patient["Notes"] || "Notes go here"}
+                  </span>
+                ) : (
+                  <Input
+                    name="Notes"
+                    register={register}
+                    type="text"
+                    placeholder="Notes go here"
+                    defaultValue={patient["Notes"]}
+                  />
+                )}
               </div>
               <div className={styles.footer}>
                 {!editMode && (

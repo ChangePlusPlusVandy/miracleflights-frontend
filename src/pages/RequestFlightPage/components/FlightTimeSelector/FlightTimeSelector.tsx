@@ -140,23 +140,27 @@ const FlightTimeSelector = ({
           </div>
 
           <div className={styles.flightSelectorInputContainerLower}>
-            <DatePicker
-              onChange={(date: any) => {
-                setDepartDate(date);
-              }}
-              value={departDate}
-              className={styles.datePicker}
-            />
-
-            {!oneWay && (
+            <div className="departure-calendar">
               <DatePicker
                 onChange={(date: any) => {
-                  setArrivalDate(date);
+                  setDepartDate(date);
                 }}
-                value={arrivalDate}
-                minDate={departDate as Date}
+                value={departDate}
                 className={styles.datePicker}
               />
+            </div>
+
+            {!oneWay && (
+              <div className="arrival-calendar">
+                <DatePicker
+                  onChange={(date: any) => {
+                    setArrivalDate(date);
+                  }}
+                  value={arrivalDate}
+                  minDate={departDate as Date}
+                  className={styles.datePicker}
+                />
+              </div>
             )}
           </div>
           <Button

@@ -25,4 +25,5 @@ export interface PassengerData {
   "Passenger Names (from All Flight Legs)": string[];
   Age: number;
   "Latest Trip": string;
+  Notes?: string;
 }
