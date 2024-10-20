@@ -135,7 +135,6 @@ const PatientDetailsModal = ({
                       placeholder="Select Placeholder"
                       options={COUNTRIES}
                     />
-                    ,
                   </>
                 )}
               </div>

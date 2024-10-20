@@ -27,6 +27,15 @@ const SignUpPage = () => {
     password: yup
       .string()
       .required("Required")
+      .test(
+        "has-uppercase",
+        "Password must contain at least one uppercase letter",
+        (value) => /[A-Z]/.test(value),
+      )
+      .matches(
+        /[!@#$%^&*(),.?":{}|<>]/,
+        "Password must contain at least one special character",
+      )
       .min(8, "Password must be at least 8 characters long"),
     confirmPassword: yup
       .string()
