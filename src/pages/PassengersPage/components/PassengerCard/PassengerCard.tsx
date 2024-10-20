@@ -7,7 +7,7 @@ const PassengerCard = ({ passenger }: PassengerCardProps) => {
   const [modal, setModal] = useState(false);
 
   const name = passenger["Full Name"];
-  const relationship = "Mother";
+  const relationship = passenger["Relationship"];
   const birth = passenger["Date of Birth"].split("T")[0];
 
   return (
