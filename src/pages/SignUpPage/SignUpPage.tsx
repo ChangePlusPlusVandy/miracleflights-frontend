@@ -247,6 +247,7 @@ const SignUpPage = () => {
                   placeholder="Paste your 6-digit code here."
                 />
               </div>
+              <button type="submit">Submit Code</button>
             </form>
           </div>
         )}
