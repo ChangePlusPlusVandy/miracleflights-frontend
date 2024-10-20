@@ -168,8 +168,8 @@ const PatientDetailsModal = ({
                     <Select
                       name="Country"
                       register={register}
-                      label="Select Label"
-                      placeholder="Select Placeholder"
+                      label="Country"
+                      placeholder="Select Country"
                       options={COUNTRIES}
                     />
                   </>

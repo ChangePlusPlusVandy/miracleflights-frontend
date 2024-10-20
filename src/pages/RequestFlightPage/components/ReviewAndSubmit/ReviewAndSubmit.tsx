@@ -5,6 +5,7 @@ import Button from "../../../../components/Button/Button";
 import Modal from "../../../../components/Modal/Modal";
 import { ButtonColor } from "../../../../components/Button/Button.definitions";
 import { DividerSpacing } from "../../../../components/Divider/Divider.definitions";
+import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import type { ReviewAndSubmitProps } from "./ReviewAndSubmit.definitions";
 
@@ -203,7 +204,7 @@ const ReviewAndSubmit = ({
           </div>
           <div className={styles.flightInfoValue}>
             <span className={styles.flightInfoKey}>Departure Date: </span>
-            {(flightInfo?.departDate as Date).toISOString()}
+            {dayjs(flightInfo?.departDate as Date).format('YYYY-MM-DD')}
           </div>
           <div className={styles.flightInfoValue}>
             <span className={styles.flightInfoKey}>Airport of Origin: </span>
@@ -227,7 +228,7 @@ const ReviewAndSubmit = ({
           </div>
           <div className={styles.flightInfoValue}>
             <span className={styles.flightInfoKey}>Return Date: </span>
-            {(flightInfo?.departDate as Date)?.toISOString()}
+            {dayjs(flightInfo?.departDate as Date).format('YYYY-MM-DD')}
           </div>
         </div>
         <Divider />
