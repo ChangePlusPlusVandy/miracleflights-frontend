@@ -19,6 +19,7 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   const { isLoaded, signUp, setActive } = useSignUp();
   const [pendingVerification, setPendingVerification] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const signUpSchema = yup.object().shape({
     email: yup.string().email().required("Required"),
@@ -104,6 +105,7 @@ const SignUpPage = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error(JSON.stringify(error, null, 2));
+      setErrorMsg(error.errors[0].message);
     }
   };
 
@@ -232,6 +234,7 @@ const SignUpPage = () => {
               </div>
               <Button type="submit" text={"Sign Up"} disabled={disabled} />
             </form>
+            <p className={styles.errorMsg}>{errorMsg}</p>
           </div>
         ) : (
           <div className={styles.signUpBlock}>
