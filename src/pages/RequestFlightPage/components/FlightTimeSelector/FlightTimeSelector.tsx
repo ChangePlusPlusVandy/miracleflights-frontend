@@ -61,6 +61,9 @@ const FlightTimeSelector = ({
       !arrivalAirportPrimary ||
       !arrivalAirportAlternate ||
       !departDate ||
+      (arrivalDate && departDate > arrivalDate) ||
+      departureAirportPrimary == departureAirportAlternate ||
+      arrivalAirportPrimary == arrivalAirportAlternate ||
       (!oneWay && !arrivalDate)
     );
   };
@@ -108,8 +111,8 @@ const FlightTimeSelector = ({
                   value={departureAirportPrimary}
                   onChange={(e) => {
                     const value = e.target.value;
+                    setDepartureAirportPrimary(e.target.value);
                     if (value !== departureAirportAlternate) {
-                      setDepartureAirportPrimary(e.target.value);
                       setErrorMessages((prevErrors) => ({
                         ...prevErrors,
                         departure: "",
@@ -130,8 +133,8 @@ const FlightTimeSelector = ({
                   value={departureAirportAlternate}
                   onChange={(e) => {
                     const value = e.target.value;
+                    setDepartureAirportAlternate(e.target.value);
                     if (value !== departureAirportPrimary) {
-                      setDepartureAirportAlternate(e.target.value);
                       setErrorMessages((prevErrors) => ({
                         ...prevErrors,
                         departure: "",
@@ -168,8 +171,8 @@ const FlightTimeSelector = ({
                   value={arrivalAirportPrimary}
                   onChange={(e) => {
                     const value = e.target.value;
+                    setArrivalAirportPrimary(e.target.value);
                     if (value !== arrivalAirportAlternate) {
-                      setArrivalAirportPrimary(e.target.value);
                       setErrorMessages((prevErrors) => ({
                         ...prevErrors,
                         arrival: "",
@@ -190,8 +193,8 @@ const FlightTimeSelector = ({
                   value={arrivalAirportAlternate}
                   onChange={(e) => {
                     const value = e.target.value;
+                    setArrivalAirportAlternate(e.target.value);
                     if (value !== arrivalAirportPrimary) {
-                      setArrivalAirportAlternate(e.target.value);
                       setErrorMessages((prevErrors) => ({
                         ...prevErrors,
                         arrival: "",
