@@ -114,17 +114,39 @@ export const updatePassenger = (
     Street: string;
     Country: string;
     Email: string;
+    DateOfBirth: string;
+    MilitaryService: string;
+    Gender: string;
+    Notes?: string;
   },
   airtableRecordId: string,
   token?: string | null,
-): Promise<PassengerData> =>
-  axios
-    .put(`${process.env.VITE_HOST}/passenger/${airtableRecordId}`, passenger, {
+): Promise<PassengerData> => {
+  const airtableFields: { [key: string]: string | number | unknown } = {
+    Street: passenger.Street,
+    Country: passenger.Country,
+    Email: passenger.Email,
+    Gender: passenger.Gender,
+    "Date of Birth": passenger.DateOfBirth, // Correct Airtable field name
+    "Military Service": passenger.MilitaryService,
+  };
+  const data = {
+    records: [
+      {
+        id: airtableRecordId,
+        fields: airtableFields,
+      },
+    ],
+  };
+
+  return axios
+    .put(`${process.env.VITE_HOST}/passenger/${airtableRecordId}`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
     .then((res) => res.data);
+};
 
 export const getAllFlightsForUser = (
   userId: string,
