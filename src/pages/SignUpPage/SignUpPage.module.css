@@ -103,3 +103,9 @@
   margin-top: 0.25rem;
   margin-bottom: 1rem;
 }
+
+.errorMsg {
+  color: rgb(165, 56, 51);
+  margin-top: 16px;
+  text-align: center;
+}
