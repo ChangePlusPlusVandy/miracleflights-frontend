@@ -118,7 +118,7 @@ export const createTestPassengerData = (
       max: 80,
     }),
     "Latest Trip": faker.date.recent().toISOString(),
-    "Relationship": faker.helpers.arrayElements([
+    Relationship: faker.helpers.arrayElements([
       "Mother",
       "Father",
       "Step-mother",
