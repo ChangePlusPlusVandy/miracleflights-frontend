@@ -26,5 +26,5 @@ export interface PassengerData {
   Age: number;
   "Latest Trip": string;
   Notes?: string;
-  "Relationship": string;
+  "Relationship": string[];
 }
