@@ -204,7 +204,7 @@ const ReviewAndSubmit = ({
           </div>
           <div className={styles.flightInfoValue}>
             <span className={styles.flightInfoKey}>Departure Date: </span>
-            {dayjs(flightInfo?.departDate as Date).format('YYYY-MM-DD')}
+            {dayjs(flightInfo?.departDate as Date).format("YYYY-MM-DD")}
           </div>
           <div className={styles.flightInfoValue}>
             <span className={styles.flightInfoKey}>Airport of Origin: </span>
@@ -228,7 +228,7 @@ const ReviewAndSubmit = ({
           </div>
           <div className={styles.flightInfoValue}>
             <span className={styles.flightInfoKey}>Return Date: </span>
-            {dayjs(flightInfo?.departDate as Date).format('YYYY-MM-DD')}
+            {dayjs(flightInfo?.departDate as Date).format("YYYY-MM-DD")}
           </div>
         </div>
         <Divider />
