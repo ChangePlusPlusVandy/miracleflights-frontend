@@ -4,6 +4,7 @@ import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import TripsPage from "../pages/TripsPage/TripsPage";
 import RequestFlightPage from "../pages/RequestFlightPage/RequestFlightPage";
 import PassengersPage from "../pages/PassengersPage/PassengersPage";
+import NotificationsPage from "../pages/NotificationsPage/NotificationsPage";
 import Login from "../pages/LoginPage/LoginPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import { UserProvider } from "../context/User.context";
@@ -41,6 +42,10 @@ const protectedRouter = createBrowserRouter([
         path: "/passengers",
         element: <PassengersPage />,
       },
+      {
+        path: "/notifications",
+        element: <NotificationsPage />,
+      }
     ],
   },
   {

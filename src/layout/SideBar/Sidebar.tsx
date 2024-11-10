@@ -18,6 +18,7 @@ import {
   faPeopleGroup,
   faPlane,
   faBars,
+  faBell,
 } from "@fortawesome/free-solid-svg-icons";
 import { UserButton, useUser } from "@clerk/clerk-react";
 
@@ -83,6 +84,11 @@ const SideBar = () => {
       link: "trips",
       icon: faPlane,
     },
+    {
+      title: Tabs.NOTIFICATIONS,
+      link: "notifications",
+      icon: faBell,
+    }
   ];
 
   const handleClick = (tab: Tab) => {
