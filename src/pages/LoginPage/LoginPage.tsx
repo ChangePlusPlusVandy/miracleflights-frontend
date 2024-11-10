@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./LoginPage.module.css";
 import Button from "../../components/Button/Button";
+import { ButtonVariant } from "../../components/Button/Button.definitions";
 import Icon from "../../components/CustomIcon/Icon";
 import Input from "../../components/Input/Input";
 import logo from "../../public/0GAGNk.tif.png";
@@ -22,11 +22,16 @@ const LoginPage = () => {
     password: string;
   }
 
-  // eslint-disable-next-line autofix/no-unused-vars
+  interface CustomError {
+    code: string;
+  }
+
+  interface ErrorWithDetails {
+    errors: CustomError[];
+  }
+
   enum FormValueNames {
-    // eslint-disable-next-line autofix/no-unused-vars
     email = "email",
-    // eslint-disable-next-line autofix/no-unused-vars
     password = "password",
   }
 
@@ -44,7 +49,7 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid }, // Add isValid to formState
+    formState: { errors, isValid },
     setError: setSignInError,
   } = useForm<FormValues>({
     defaultValues: {
@@ -60,27 +65,22 @@ const LoginPage = () => {
       return;
     }
 
-    //  Clear the session to attempt to sign in
     await setActive({ session: null });
 
     try {
-      // Complete the sign in and get the session with Clerk
       const completeSignIn = await signIn.create({
         identifier: inputData.email,
         password: inputData.password,
       });
 
-      // If the sign in was successful, set the active session and make the user request
       if (completeSignIn.status === "complete") {
         await setActive({ session: completeSignIn.createdSessionId });
         navigate("/dashboard");
       }
-    } catch (err: any) {
-      // if the error is form_identifier_not_found, set the error message on the email field
+    } catch (err) {
+      const error = err as ErrorWithDetails;
       if (
-        err.errors.some(
-          (error: any) => error.code === "form_identifier_not_found",
-        )
+        error.errors.some((error) => error.code === "form_identifier_not_found")
       ) {
         setSignInError("email", {
           type: "manual",
@@ -89,9 +89,7 @@ const LoginPage = () => {
       }
 
       if (
-        err.errors.some(
-          (error: any) => error.code === "form_password_incorrect",
-        )
+        error.errors.some((error) => error.code === "form_password_incorrect")
       ) {
         setSignInError("password", {
           type: "manual",
@@ -99,80 +97,87 @@ const LoginPage = () => {
         });
       }
 
-      // If the sign in was not successful, clear the session
       await setActive({ session: null });
-
-      // Handle errors
       console.error(JSON.stringify(err, null, 2));
     }
   };
 
-  // Update the disabled state based on whether there are errors and the form is valid
   useEffect(() => {
     setDisabled(!isValid);
   }, [isValid]);
 
   return (
-    <>
-      <img src={logo} alt="Description of the image" className={styles.logo} />
-      <div className={styles.loginContainer}>
-        <div className={styles.loginBlock}>
-          <div className={styles.loginBlockHeader}>Log In</div>
-          <div className={styles.loginRedirect}>
-            Dont have an account?
-            <div
-              onClick={() => navigate("/sign-up")}
-              className={styles.loginBlockLink}
+    <div className={styles.pageContainer}>
+      <div className={styles.navbar}>
+        <img src={logo} alt="Miracle Flights Logo" className={styles.logo} />
+      </div>
+      <div className={styles.contentContainer}>
+        {/* Left side: login container */}
+        <div className={styles.loginContainer}>
+          <div className={styles.loginBlock}>
+            <div className={styles.loginBlockHeader}>Login to your Account</div>
+            <form
+              onSubmit={handleSubmit(Submit)}
+              className={styles.loginBlockContent}
             >
-              Sign up
-            </div>
-          </div>
-          <form
-            onSubmit={handleSubmit(Submit)}
-            className={styles.loginBlockContent}
-          >
-            <div className={styles.loginInputContainerUpper}>
-              <Input
-                name="email"
-                register={register}
-                error={errors[FormValueNames.email]?.message}
-                label="Email"
-                type="text"
-                placeholder="Email"
-              />
-            </div>
-            <div className={styles.loginInputContainerLower}>
-              <Input
-                name="password"
-                register={register}
-                error={errors[FormValueNames.password]?.message}
-                label="Password"
-                type={passwordVisible ? "text" : "password"}
-                placeholder="Password"
-              />
-
-              <div
-                className={styles.passwordToggle}
-                onClick={() => setPasswordVisible(!passwordVisible)}
-              >
-                <div className={styles.Icon}>
-                  <Icon glyph={passwordVisible ? "eye-slash" : "eye"} />
+              <div className={styles.loginInputContainerUpper}>
+                <Input
+                  name="email"
+                  register={register}
+                  error={errors[FormValueNames.email]?.message}
+                  type="text"
+                  placeholder="Email"
+                />
+              </div>
+              <div className={styles.loginInputContainerLower}>
+                <Input
+                  name="password"
+                  register={register}
+                  error={errors[FormValueNames.password]?.message}
+                  type={passwordVisible ? "text" : "password"}
+                  placeholder="Password"
+                />
+                <div
+                  className={styles.passwordToggle}
+                  onClick={() => setPasswordVisible(!passwordVisible)}
+                >
+                  <div className={styles.Icon}>
+                    <Icon glyph={passwordVisible ? "eye-slash" : "eye"} />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={styles.forgotPassword}>
-              <div
-                onClick={() => navigate("/forgot-password")}
-                className={styles.loginBlockLink}
-              >
-                Forgot password?
+              <div className={styles.forgotPassword}>
+                <div
+                  onClick={() => navigate("/forgot-password")}
+                  className={styles.loginBlockLink}
+                >
+                  Forgot password?
+                </div>
               </div>
-            </div>
-            <Button type="submit" text={"Login"} disabled={disabled} />
-          </form>
+              <Button
+                variant={ButtonVariant.Login}
+                type="submit"
+                text="Login"
+                disabled={disabled}
+              />
+            </form>
+          </div>
+        </div>
+
+        <div className={styles.rightSideContent}>
+          <div className={styles.rightSideHeader}>New Here?</div>
+          <div className={styles.rightSideText}>
+            Create your account with us today!
+          </div>
+          <Button
+            text="Sign Up"
+            type="button"
+            variant={ButtonVariant.Signup}
+            onClick={() => navigate("/sign-up")}
+          />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
