@@ -88,7 +88,7 @@ const SideBar = () => {
       title: Tabs.NOTIFICATIONS,
       link: "notifications",
       icon: faBell,
-    }
+    },
   ];
 
   const handleClick = (tab: Tab) => {

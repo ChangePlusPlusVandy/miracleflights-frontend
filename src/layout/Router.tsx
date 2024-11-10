@@ -45,7 +45,7 @@ const protectedRouter = createBrowserRouter([
       {
         path: "/notifications",
         element: <NotificationsPage />,
-      }
+      },
     ],
   },
   {
