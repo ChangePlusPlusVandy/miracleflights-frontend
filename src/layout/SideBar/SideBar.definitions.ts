@@ -13,4 +13,5 @@ export enum Tabs {
   DOCUMENTS = "Documents",
   TRIPS = "Trips",
   REQUEST = "Request a Flight",
+  NOTIFICATIONS = "Notifications",
 }
