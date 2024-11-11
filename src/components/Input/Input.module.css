@@ -6,30 +6,37 @@
 }
 
 .form-field input {
-  max-width: 100%;
+  width: 264px;
+  height: 53px;
   padding: 0.625rem;
-  border: 0.0625rem solid var(--miracle-color-medium);
-  font-size: 1rem;
+  border: 0.8px solid var(--miracle-color-medium);
   transition: 0.2s ease-in-out;
   font-family: "Inter", sans-serif;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding-right: 2rem;
+  font-family: Inter;
 }
 
 .form-field input:focus {
   outline: none;
-  border: 0.0625rem solid var(--miracle-color-red-extra-dark);
+  border: 0.8px solid var(--miracle-color-red-extra-dark);
   transition: var(--transition-duration-short) ease-in-out;
 }
 
 .form-field input:hover {
   outline: none;
-  border: 0.0625rem solid var(--miracle-color-red-extra-dark);
+  border: 0.8px solid var(--miracle-color-red-extra-dark);
   transition: var(--transition-duration-short) ease-in-out;
 }
 
 .form-field input::placeholder {
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
+  font-size: 15px;
   font-weight: 400;
+  text-align: left;
+  color: #7c7b7c;
+  opacity: 80%;
 }
 
 .label-and-error {
