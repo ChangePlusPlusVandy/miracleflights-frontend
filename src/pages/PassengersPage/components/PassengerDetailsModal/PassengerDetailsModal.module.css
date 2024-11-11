@@ -28,3 +28,27 @@
   align-items: center;
   gap: 2rem; /* Adjust the value as needed */
 }
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.editButton {
+  margin-left: auto;
+  color: var(--miracle-color-medium);
+}
+
+.editButton:hover {
+  cursor: pointer;
+  color: var(--miracle-color-yellow);
+}
+
+.buttonOptions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+}
