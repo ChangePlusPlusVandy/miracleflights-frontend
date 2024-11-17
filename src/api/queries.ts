@@ -109,7 +109,7 @@ export const getUserByAirtableRecordId = (
     })
     .then((res) => res.data);
 
-export const updatePassenger = (
+export const updatePassenger = async (
   passenger: {
     Street: string;
     Country: string;
@@ -130,6 +130,7 @@ export const updatePassenger = (
     "Date of Birth": passenger.DateOfBirth, // Correct Airtable field name
     "Military Service": passenger.MilitaryService,
   };
+
   const data = {
     records: [
       {
@@ -139,13 +140,55 @@ export const updatePassenger = (
     ],
   };
 
-  return axios
-    .put(`${process.env.VITE_HOST}/passenger/${airtableRecordId}`, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+  try {
+    const response = await axios.put(
+      `${process.env.VITE_HOST}/passenger/${airtableRecordId}`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        timeout: 5000,
       },
-    })
-    .then((res) => res.data);
+    );
+
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        // Server responded with error status (4xx, 5xx)
+        switch (error.response.status) {
+          case 400:
+            throw new Error("Invalid request data. Please check your input.");
+          case 401:
+            throw new Error("Authentication failed. Please log in again.");
+          case 403:
+            throw new Error(
+              "You do not have permission to perform this action.",
+            );
+          case 404:
+            throw new Error(`Passenger record ${airtableRecordId} not found.`);
+          case 429:
+            throw new Error("Too many requests. Please try again later.");
+          case 500:
+            throw new Error("Server error. Please try again later.");
+          default:
+            throw new Error(
+              `Server error: ${error.response.data.message || "Unknown error occurred"}`,
+            );
+        }
+      } else if (error.request) {
+        // Request was made but no response received
+        if (error.code === "ECONNABORTED") {
+          throw new Error("Request timed out. Please try again.");
+        }
+        throw new Error("Network error. Please check your connection.");
+      }
+    }
+    throw new Error(
+      `Unexpected error: ${error instanceof Error ? error.message : "Unknown error"}`,
+    );
+  }
 };
 
 export const getAllFlightsForUser = (

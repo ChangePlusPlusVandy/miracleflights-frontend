@@ -21,6 +21,7 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "react", "autofix"],
   rules: {
+    "import/no-named-as-default-member": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",
     "arrow-body-style": "off",

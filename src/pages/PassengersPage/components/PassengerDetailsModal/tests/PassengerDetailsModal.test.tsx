@@ -1,14 +1,29 @@
 import { createTestPassengerData } from "../../../../../util/test-data.util";
 import PassengerDetailsModal from "../PassengerDetailsModal";
 import { render, fireEvent } from "@testing-library/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// Mock useAuth to return a mock getToken function
+jest.mock("@clerk/clerk-react", () => ({
+  useAuth: () => ({
+    getToken: jest.fn().mockResolvedValue("mock-token"), // Mock token
+  }),
+}));
+
+// Create a new QueryClient for each test
+const createTestQueryClient = () => new QueryClient();
 
 describe("PassengerDetailsModal", () => {
   const mockOnClose = jest.fn();
   const mockPatient = createTestPassengerData();
 
   it("renders patient details correctly", () => {
+    const queryClient = createTestQueryClient();
+
     const { getByText } = render(
-      <PassengerDetailsModal passenger={mockPatient} onClose={mockOnClose} />,
+      <QueryClientProvider client={queryClient}>
+        <PassengerDetailsModal passenger={mockPatient} onClose={mockOnClose} />
+      </QueryClientProvider>,
     );
 
     expect(getByText("Gender")).toBeTruthy();
@@ -19,8 +34,12 @@ describe("PassengerDetailsModal", () => {
   });
 
   it("calls onClose when the modal action is triggered", () => {
+    const queryClient = createTestQueryClient();
+
     const component = render(
-      <PassengerDetailsModal passenger={mockPatient} onClose={mockOnClose} />,
+      <QueryClientProvider client={queryClient}>
+        <PassengerDetailsModal passenger={mockPatient} onClose={mockOnClose} />,
+      </QueryClientProvider>,
     );
 
     fireEvent.click(component.getByTestId("modal-close")); // Assuming the action triggers on a button click
