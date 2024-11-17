@@ -26,7 +26,7 @@ const App = () => {
   });
 
   useEffect(() => {
-    if (error && !currentUser) {
+    if (error || !currentUser) {
       navigate("/onboard");
     }
   }, [user, userData]);
