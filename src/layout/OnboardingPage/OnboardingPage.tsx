@@ -81,8 +81,10 @@ const OnboardingPage = () => {
     mutationFn: async () =>
       linkUser(userData?.["AirTable Record ID"] || "", await getToken()),
     onSuccess: () => {
-      setCurrentUser(userData as PassengerData);
-      navigate("/dashboard");
+      user?.reload().then(() => {
+        setCurrentUser(userData as PassengerData);
+        navigate("/dashboard");
+      });
     },
     onError: () => {
       setExists("no");

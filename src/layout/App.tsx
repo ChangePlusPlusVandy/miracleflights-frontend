@@ -25,18 +25,24 @@ const App = () => {
       ),
   });
 
-  useEffect(() => {
-    if (error || !currentUser) {
-      navigate("/onboard");
-    }
-  }, [user, userData]);
-
   // if there is an airtable record id, but no user data, get the user
   useEffect(() => {
     if (userData) {
       setCurrentUser(userData as PassengerData);
     }
   }, [userData]);
+
+  useEffect(() => {
+    if (!user?.publicMetadata.airtableRecordId) {
+      navigate("/onboard");
+    }
+  }, [currentUser]);
+
+  /*useEffect(() => {
+    if (error && !currentUser) {
+      navigate("/onboard");
+    }
+  }, [user, userData]);*/
 
   return (
     <div className={styles.appContainer}>
