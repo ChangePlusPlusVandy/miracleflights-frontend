@@ -81,8 +81,10 @@ const OnboardingPage = () => {
     mutationFn: async () =>
       linkUser(userData?.["AirTable Record ID"] || "", await getToken()),
     onSuccess: () => {
-      setCurrentUser(userData as PassengerData);
-      navigate("/dashboard");
+      user?.reload().then(() => {
+        setCurrentUser(userData as PassengerData);
+        navigate("/dashboard");
+      });
     },
     onError: () => {
       setExists("no");
@@ -150,49 +152,76 @@ const OnboardingPage = () => {
               </form>
             </>
           ) : exists === "yes" ? (
-            <div className={styles.onboardingBlockHeader}>
-              {"Looks like you've flown with us before!"}
-              <p
-                className={styles.subtitleText}
-              >{`If this is not you, please contact us`}</p>
-              <Divider spacing={DividerSpacing.MEDIUM} />
-              <div>
-                <div className={styles.patientGroup}>
-                  <span className={styles.patientLabel}>First Name</span>{" "}
-                  <span className={styles.patientText}>
-                    {userData?.["First Name"]}
-                  </span>
+            userData?.["Email"] === user?.primaryEmailAddress?.emailAddress ? (
+              <div className={styles.onboardingBlockHeader}>
+                {"Looks like you've flown with us before!"}
+                <p
+                  className={styles.subtitleText}
+                >{`If this is not you, please contact us`}</p>
+                <Divider spacing={DividerSpacing.MEDIUM} />
+                <div>
+                  <div className={styles.patientGroup}>
+                    <span className={styles.patientLabel}>First Name</span>{" "}
+                    <span className={styles.patientText}>
+                      {userData?.["First Name"]}
+                    </span>
+                  </div>
+                  <div className={styles.patientGroup}>
+                    <span className={styles.patientLabel}>Last Name</span>{" "}
+                    <span className={styles.patientText}>
+                      {userData?.["Last Name"]}
+                    </span>
+                  </div>
+                  <div className={styles.patientGroup}>
+                    <span className={styles.patientLabel}>Email</span>{" "}
+                    <span className={styles.patientText}>
+                      {userData?.["Email"].replace(
+                        /^(.{3}).*@/,
+                        "$1" +
+                          "*".repeat(
+                            userData?.["Email"].split("@")[0].length - 3,
+                          ) +
+                          "@",
+                      )}
+                    </span>
+                  </div>
                 </div>
-                <div className={styles.patientGroup}>
-                  <span className={styles.patientLabel}>Last Name</span>{" "}
-                  <span className={styles.patientText}>
-                    {userData?.["Last Name"]}
-                  </span>
-                </div>
-                <div className={styles.patientGroup}>
-                  <span className={styles.patientLabel}>City</span>{" "}
-                  <span className={styles.patientText}>
-                    {userData?.["Email"].replace(
-                      /^(.{3}).*@/,
-                      "$1" +
-                        "*".repeat(
-                          userData?.["Email"].split("@")[0].length - 3,
-                        ) +
-                        "@",
-                    )}
-                  </span>
+                <div className={styles.continueButtonContainer}>
+                  <Button
+                    text="Continue to dashboard"
+                    variant={ButtonVariant.Regular}
+                    onClick={() => {
+                      linkUserMutate();
+                    }}
+                  />
                 </div>
               </div>
-              <div className={styles.continueButtonContainer}>
-                <Button
-                  text="Continue to dashboard"
-                  variant={ButtonVariant.Regular}
-                  onClick={() => {
-                    linkUserMutate();
-                  }}
-                />
+            ) : (
+              <div className={styles.onboardingBlockHeader}>
+                {"We don't recognize you!"}
+                <p className={styles.subtitleText}>
+                  The provided information matches an account with a different
+                  email address than the one currently signed in. For security
+                  reasons, you can only link an account associated with your
+                  email address.
+                </p>
+                <p className={styles.subtitleText}>
+                  If you believe this is an error, please contact support for
+                  assistance.
+                </p>
+                <Divider spacing={DividerSpacing.MEDIUM} />
+                <div className={styles.continueButtonContainer}>
+                  <Button
+                    text="Try again"
+                    variant={ButtonVariant.Regular}
+                    color={ButtonColor.Grey}
+                    onClick={() => {
+                      setExists(null);
+                    }}
+                  />
+                </div>
               </div>
-            </div>
+            )
           ) : (
             <div className={styles.onboardingBlockHeader}>
               {"We don't recognize you!"}
