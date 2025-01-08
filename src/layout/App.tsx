@@ -15,6 +15,7 @@ const App = () => {
   const { getToken } = useAuth();
   const { currentUser, setCurrentUser } = useUserContext();
 
+  // Notifications logic
   const isNotificationsPage = location.pathname === "/notifications";
 
   const { data: userData, error } = useQuery({
@@ -30,16 +31,16 @@ const App = () => {
 
   // if there is an airtable record id, but no user data, get the user
   useEffect(() => {
-    if (error && !currentUser) {
-      navigate("/onboard");
-    }
-  }, [user, userData]);
-
-  useEffect(() => {
     if (userData) {
       setCurrentUser(userData as PassengerData);
     }
   }, [userData]);
+
+  useEffect(() => {
+    if (!user?.publicMetadata.airtableRecordId) {
+      navigate("/onboard");
+    }
+  }, [currentUser]);
 
   return (
     <div
