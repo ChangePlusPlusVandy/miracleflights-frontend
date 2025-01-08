@@ -35,3 +35,8 @@
   overflow-x: hidden;
   padding: 4rem 6rem;
 }
+
+.notificationsPage .contentContainer {
+  padding: 0;
+  background: linear-gradient(to bottom, #d3ddf0, #f1f5fb);
+}
