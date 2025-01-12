@@ -1,0 +1,47 @@
+.documentsContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.documentsTitle {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.flightNumber {
+  font-size: 4rem;
+  padding: 1rem 0;
+  color: var(--miracle-color-blue);
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    rgba(250, 251, 252, 1) 33%,
+    rgb(237, 242, 249) 100%
+  );
+  width: 19rem;
+  height: 20rem;
+  justify-content: center;
+  border-radius: 5%;
+}
+
+.cardContainer{
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.card:hover {
+  background: var(--passenger-card-gradient-hover);
+  cursor: pointer;
+}
+
+.documentData{
+  margin-bottom: 2rem;
+}

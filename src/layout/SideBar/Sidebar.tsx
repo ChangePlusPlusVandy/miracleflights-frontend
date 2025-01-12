@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
   faPeopleGroup,
+  faFileLines,
   faPlane,
   faBars,
   faBell,
@@ -78,6 +79,11 @@ const SideBar = () => {
       title: Tabs.PASSENGERS,
       link: "passengers",
       icon: faPeopleGroup,
+    },
+    {
+      title: Tabs.DOCUMENTS,
+      link: "documents",
+      icon: faFileLines,
     },
     {
       title: Tabs.TRIPS,

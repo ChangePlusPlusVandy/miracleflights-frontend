@@ -1,6 +1,7 @@
 import App from "./App";
 import OnboardingPage from "./OnboardingPage/OnboardingPage";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
+import DocumentsPage from "../pages/DocumentsPage/DocumentsPage";
 import TripsPage from "../pages/TripsPage/TripsPage";
 import RequestFlightPage from "../pages/RequestFlightPage/RequestFlightPage";
 import PassengersPage from "../pages/PassengersPage/PassengersPage";
@@ -29,6 +30,10 @@ const protectedRouter = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashboardPage />,
+      },
+      {
+        path: "/documents",
+        element: <DocumentsPage />,
       },
       {
         path: "/request",
