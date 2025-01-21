@@ -37,39 +37,39 @@ describe("SideBarComponent", () => {
   });
 
   it("renders the tabs correctly", async () => {
-    // render the component
-    const component = render(<SideBar isExpanded={false} />);
+    // Initial render with isExpanded set to true
+    const { getByText, queryByText, rerender } = render(
+      <SideBar isExpanded={true} />,
+    );
 
-    // get the open button and click it
-    const openButton = component.getAllByTestId("open-button")[0];
-    fireEvent.click(openButton);
+    // Check if the tabs are there when expanded
+    expect(getByText("HOME")).toBeTruthy();
+    expect(getByText("PATIENT & COMPANIONS")).toBeTruthy();
+    expect(getByText("DOCUMENTS")).toBeTruthy();
+    expect(getByText("TRIPS")).toBeTruthy();
+    expect(getByText("NOTIFICATIONS")).toBeTruthy();
 
-    // check if the tabs are there
-    expect(component.getByText("DASHBOARD")).toBeTruthy();
-    expect(component.getByText("Request a Flight")).toBeTruthy();
-    expect(component.getByText("TRIPS")).toBeTruthy();
-    expect(component.getByText("PATIENT & COMPANIONS")).toBeTruthy();
+    // Re-render with isExpanded set to false
+    rerender(<SideBar isExpanded={false} />);
 
-    // get the open button and click it
-    fireEvent.click(openButton);
-
-    // check if that worked (the text shouldn't be there anymore)
-    expect(component.queryByText("DASHBOARD")).not.toBeTruthy();
-    expect(component.queryByText("Request a Flight")).not.toBeTruthy();
-    expect(component.queryByText("TRIPS")).not.toBeTruthy();
-    expect(component.queryByText("PATIENT & COMPANIONS")).not.toBeTruthy();
+    // Check if the tabs are not there when collapsed
+    expect(queryByText("HOME")).not.toBeTruthy();
+    expect(queryByText("PATIENT & COMPANIONS")).not.toBeTruthy();
+    expect(queryByText("TRIPS")).not.toBeTruthy();
+    expect(queryByText("DOCUMENTS")).not.toBeTruthy();
+    expect(queryByText("NOTIFICATIONS")).not.toBeTruthy();
   });
 
   it("correctly switches tabs", () => {
     // render the component
-    const component = render(<SideBar isExpanded={false} />);
+    const component = render(<SideBar isExpanded={true} />);
 
     // get the open button and click it
     const openButton = component.getAllByTestId("open-button")[0];
     fireEvent.click(openButton);
 
     // get the dashboard tab and click it
-    const dashboardTab = component.getByText("DASHBOARD");
+    const dashboardTab = component.getByText("HOME");
     fireEvent.click(dashboardTab);
 
     // check if the dashboard tab is selected
