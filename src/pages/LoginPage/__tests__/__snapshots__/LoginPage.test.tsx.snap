@@ -2,111 +2,123 @@
 
 exports[`Login Page Tests Renders the Login Page snapshot correctly 1`] = `
 <div>
-  <img
-    alt="Description of the image"
-    class="logo"
-    src="test-file-stub"
-  />
   <div
-    class="loginContainer"
+    class="pageContainer"
   >
     <div
-      class="loginBlock"
+      class="navbar"
+    >
+      <img
+        alt="Miracle Flights Logo"
+        class="logo"
+        src="test-file-stub"
+      />
+    </div>
+    <div
+      class="contentContainer"
     >
       <div
-        class="loginBlockHeader"
+        class="loginContainer"
       >
-        Log In
+        <div
+          class="loginBlock"
+        >
+          <div
+            class="loginBlockHeader"
+          >
+            Login to your Account
+          </div>
+          <form
+            class="loginBlockContent"
+          >
+            <div
+              class="loginInputContainerUpper"
+            >
+              <div
+                class="form-field"
+              >
+                <div
+                  class="label-and-error"
+                />
+                <input
+                  name="email"
+                  placeholder="Email"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="loginInputContainerLower"
+            >
+              <div
+                class="form-field"
+              >
+                <div
+                  class="label-and-error"
+                />
+                <input
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  value=""
+                />
+              </div>
+              <div
+                class="passwordToggle"
+              >
+                <div
+                  class="Icon"
+                >
+                  <i
+                    class="Icon fas fa-eye Text-fontSize--"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="forgotPassword"
+            >
+              <div
+                class="loginBlockLink"
+              >
+                Forgot password?
+              </div>
+            </div>
+            <button
+              class="button Login Blue"
+              disabled=""
+              type="submit"
+            >
+              <h4>
+                Login
+              </h4>
+            </button>
+          </form>
+        </div>
       </div>
       <div
-        class="loginRedirect"
-      >
-        Dont have an account?
-        <div
-          class="loginBlockLink"
-        >
-          Sign up
-        </div>
-      </div>
-      <form
-        class="loginBlockContent"
+        class="rightSideContent"
       >
         <div
-          class="loginInputContainerUpper"
+          class="rightSideHeader"
         >
-          <div
-            class="form-field"
-          >
-            <div
-              class="label-and-error"
-            >
-              <p
-                class="label"
-              >
-                Email
-              </p>
-            </div>
-            <input
-              name="email"
-              placeholder="Email"
-              type="text"
-              value=""
-            />
-          </div>
+          New Here?
         </div>
         <div
-          class="loginInputContainerLower"
+          class="rightSideText"
         >
-          <div
-            class="form-field"
-          >
-            <div
-              class="label-and-error"
-            >
-              <p
-                class="label"
-              >
-                Password
-              </p>
-            </div>
-            <input
-              name="password"
-              placeholder="Password"
-              type="password"
-              value=""
-            />
-          </div>
-          <div
-            class="passwordToggle"
-          >
-            <div
-              class="Icon"
-            >
-              <i
-                class="Icon fas fa-eye Text-fontSize--"
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="forgotPassword"
-        >
-          <div
-            class="loginBlockLink"
-          >
-            Forgot password?
-          </div>
+          Create your account with us today!
         </div>
         <button
-          class="button Regular Blue"
-          disabled=""
-          type="submit"
+          class="button Signup Blue"
+          type="button"
         >
           <h4>
-            Login
+            Sign Up
           </h4>
         </button>
-      </form>
+      </div>
     </div>
   </div>
 </div>

@@ -8,7 +8,7 @@ export interface Tab {
 }
 
 export enum Tabs {
-  DASHBOARD = "Dashboard",
+  HOME = "Home",
   PASSENGERS = "Patient & Companions",
   DOCUMENTS = "Documents",
   TRIPS = "Trips",

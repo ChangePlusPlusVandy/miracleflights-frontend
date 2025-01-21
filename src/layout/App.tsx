@@ -1,10 +1,11 @@
 import styles from "./App.module.css";
 import SideBar from "./SideBar/Sidebar";
+import Navbar from "./NavBar/Navbar";
 import { getUserByAirtableRecordId } from "../api/queries";
 import { useUserContext } from "../context/User.context";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useUser, useAuth } from "@clerk/clerk-react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { PassengerData } from "../interfaces/passenger.interface";
 
@@ -14,7 +15,8 @@ const App = () => {
   const location = useLocation();
   const { getToken } = useAuth();
   const { currentUser, setCurrentUser } = useUserContext();
-
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
+  
   // Notifications logic
   const isNotificationsPage = location.pathname === "/notifications";
 
@@ -29,7 +31,6 @@ const App = () => {
       ),
   });
 
-  // if there is an airtable record id, but no user data, get the user
   useEffect(() => {
     if (userData) {
       setCurrentUser(userData as PassengerData);
@@ -43,24 +44,19 @@ const App = () => {
   }, [currentUser]);
 
   return (
-    <div
-      className={`${styles.appContainer} ${
-        isNotificationsPage ? styles.notificationsPage : ""
-      }`}
-    >
-      <div className={styles.sideBarContainer}>
-        <SideBar />
-      </div>
-      <div
-        className={styles.contentContainer}
-        style={{
-          background: isNotificationsPage
-            ? "linear-gradient(to bottom, #d3ddf0, #f1f5fb)"
-            : "#ffffff",
-          padding: isNotificationsPage ? "0" : "4rem 6rem",
-        }}
-      >
-        {!currentUser ? <div>Loading...</div> : <Outlet />}
+    <div className={styles.appContainer}>
+      <Navbar
+        onToggleSidebar={() => setIsSidebarExpanded(!isSidebarExpanded)}
+      />
+      <div className={styles.mainWrapper}>
+        <div className={styles.sideBarContainer}>
+          <SideBar isExpanded={isSidebarExpanded} />
+        </div>
+        <div className={styles.contentWrapper}>
+          <div className={styles.contentContainer}>
+            {!currentUser ? <div>Loading...</div> : <Outlet />}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ const DashboardPage = () => {
     });
 
   useEffect(() => {
-    setCurrentTab(Tabs.DASHBOARD);
+    setCurrentTab(Tabs.HOME);
   }, []);
 
   if (dashboardLoading) {

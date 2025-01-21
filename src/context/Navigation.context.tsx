@@ -10,13 +10,13 @@ interface NavigationContextType {
 
 // Create the context for the navigation
 const NavigationContext = createContext<NavigationContextType>({
-  currentTab: Tabs.DASHBOARD,
+  currentTab: Tabs.HOME,
   setCurrentTab: () => {},
 });
 
 // Create the wrapper for the navigation context
 export const NavigationProvider = ({ children }: PropsWithChildren) => {
-  const [currentTab, setCurrentTab] = useState<Tabs>(Tabs.DASHBOARD);
+  const [currentTab, setCurrentTab] = useState<Tabs>(Tabs.HOME);
 
   return (
     <NavigationContext.Provider value={{ currentTab, setCurrentTab }}>

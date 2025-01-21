@@ -1,4 +1,5 @@
 import styles from "./LoginPage.module.css";
+import { FormValueNames, type FormValues } from "./LoginPage.definitions";
 import Button from "../../components/Button/Button";
 import { ButtonVariant } from "../../components/Button/Button.definitions";
 import Icon from "../../components/CustomIcon/Icon";
@@ -17,22 +18,12 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { signIn, setActive, isLoaded } = useSignIn();
 
-  interface FormValues {
-    email: string;
-    password: string;
-  }
-
   interface CustomError {
     code: string;
   }
 
   interface ErrorWithDetails {
     errors: CustomError[];
-  }
-
-  enum FormValueNames {
-    email = "email",
-    password = "password",
   }
 
   const schema = yup.object().shape({
