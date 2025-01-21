@@ -56,3 +56,8 @@
   border-radius: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
+
+.notificationsPage .contentContainer {
+  padding: 0;
+  background: linear-gradient(to bottom, #d3ddf0, #f1f5fb);
+}
