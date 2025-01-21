@@ -28,19 +28,21 @@
 
 .TabUnselected {
   transition: 0.2s ease-in-out background-color;
+  border-radius: 1.5rem;
   padding: 1rem;
 }
 
 .TabUnselected:hover {
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
+  background-color: #abbee2;
+  border-radius: 1.5rem;
 }
 
 .TabSelected {
-  text-decoration: underline;
   transition: 0.2s ease-in-out background-color;
   padding: 1rem;
-  background-color: rgb(255, 255, 255);
+  background-color: #abbee2;
+  border-radius: 1.5rem;
 }
 
 .RequestFlight {
@@ -68,7 +70,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  height: 100%;
+  height: 85%;
   width: 100%;
 }
 
@@ -102,7 +104,7 @@
 
 .SideBarTitleSelected {
   font-family: "Inter", sans-serif;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 600;
   margin: 0rem 1rem;
 }
@@ -110,14 +112,14 @@
 .SideBarTitleUnselected {
   font-family: "Inter", sans-serif;
   color: var(--miracle-color-dark);
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 600;
   margin: 0rem 1rem;
 }
 
 .SidebarIcon {
-  height: 1rem;
-  width: 1rem;
+  height: 1.3rem;
+  width: 1.3rem;
 }
 
 .sideBarToggleMenuContainer {
@@ -126,6 +128,24 @@
   justify-content: flex-start;
 }
 
+.requestTripButton {
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  border: none;
+  background-color: #abbee2;
+  color: white;
+  font-weight: 600;
+  font-size: 1.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.requestTripButton:hover {
+  opacity: 0.8;
+}
 .sideBarToggleMenu {
   background: none;
   border: none;

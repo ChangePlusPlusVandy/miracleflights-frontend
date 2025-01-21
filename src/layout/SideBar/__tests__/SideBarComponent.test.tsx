@@ -12,7 +12,7 @@ jest.mock("react-router-dom", () => ({
 jest.mock("../../../context/Navigation.context", () => ({
   ...jest.requireActual("../../../context/Navigation.context"),
   useNavigationContext: () => ({
-    currentTab: Tabs.DASHBOARD,
+    currentTab: Tabs.HOME,
     setCurrentTab: jest.fn(),
   }),
 }));
@@ -32,13 +32,13 @@ jest.mock("@clerk/clerk-react", () => ({
 
 describe("SideBarComponent", () => {
   it("renders correctly", () => {
-    const component = render(<SideBar />);
+    const component = render(<SideBar isExpanded={false} />);
     expect(component).toBeTruthy();
   });
 
   it("renders the tabs correctly", async () => {
     // render the component
-    const component = render(<SideBar />);
+    const component = render(<SideBar isExpanded={false} />);
 
     // get the open button and click it
     const openButton = component.getAllByTestId("open-button")[0];
@@ -62,7 +62,7 @@ describe("SideBarComponent", () => {
 
   it("correctly switches tabs", () => {
     // render the component
-    const component = render(<SideBar />);
+    const component = render(<SideBar isExpanded={false} />);
 
     // get the open button and click it
     const openButton = component.getAllByTestId("open-button")[0];

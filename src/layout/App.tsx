@@ -1,10 +1,11 @@
 import styles from "./App.module.css";
 import SideBar from "./SideBar/Sidebar";
+import Navbar from "./NavBar/Navbar";
 import { getUserByAirtableRecordId } from "../api/queries";
 import { useUserContext } from "../context/User.context";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useUser, useAuth } from "@clerk/clerk-react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { PassengerData } from "../interfaces/passenger.interface";
 
@@ -13,8 +14,9 @@ const App = () => {
   const navigate = useNavigate();
   const { getToken } = useAuth();
   const { currentUser, setCurrentUser } = useUserContext();
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
 
-  const { data: userData, error } = useQuery({
+  const { data: userData } = useQuery({
     queryKey: ["user", user?.id],
     queryFn: async () =>
       getUserByAirtableRecordId(
@@ -25,7 +27,6 @@ const App = () => {
       ),
   });
 
-  // if there is an airtable record id, but no user data, get the user
   useEffect(() => {
     if (userData) {
       setCurrentUser(userData as PassengerData);
@@ -38,19 +39,20 @@ const App = () => {
     }
   }, [currentUser]);
 
-  /*useEffect(() => {
-    if (error && !currentUser) {
-      navigate("/onboard");
-    }
-  }, [user, userData]);*/
-
   return (
     <div className={styles.appContainer}>
-      <div className={styles.sideBarContainer}>
-        <SideBar />
-      </div>
-      <div className={styles.contentContainer}>
-        {!currentUser ? <div>Loading...</div> : <Outlet />}
+      <Navbar
+        onToggleSidebar={() => setIsSidebarExpanded(!isSidebarExpanded)}
+      />
+      <div className={styles.mainWrapper}>
+        <div className={styles.sideBarContainer}>
+          <SideBar isExpanded={isSidebarExpanded} />
+        </div>
+        <div className={styles.contentWrapper}>
+          <div className={styles.contentContainer}>
+            {!currentUser ? <div>Loading...</div> : <Outlet />}
+          </div>
+        </div>
       </div>
     </div>
   );
