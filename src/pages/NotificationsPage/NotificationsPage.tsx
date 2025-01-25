@@ -1,7 +1,7 @@
 import styles from "./NotificationsPage.module.css";
 import { useNavigationContext } from "../../context/Navigation.context";
 import { Tabs } from "../../layout/SideBar/SideBar.definitions";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 const NotificationsPage = () => {
   const { setCurrentTab } = useNavigationContext();

@@ -9,6 +9,7 @@ import Login from "../pages/LoginPage/LoginPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import { UserProvider } from "../context/User.context";
 import { NavigationProvider } from "../context/Navigation.context";
+import DocumentsPage from "../pages/DocumentsPage/DocumentsPage";
 import {
   Navigate,
   RouterProvider,
@@ -29,6 +30,10 @@ const protectedRouter = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashboardPage />,
+      },
+      {
+        path: "/documents",
+        element: <DocumentsPage />,
       },
       {
         path: "/request",

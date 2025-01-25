@@ -76,7 +76,7 @@ const SideBar = ({ isExpanded }: SidebarProps) => {
           {isExpanded ? (
             <button
               className={styles.requestTripButton}
-              onClick={() => navigate("request-trip")}
+              onClick={() => navigate("/request")}
             >
               Request a Trip
             </button>
