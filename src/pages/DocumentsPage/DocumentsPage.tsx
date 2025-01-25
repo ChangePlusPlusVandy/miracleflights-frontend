@@ -5,8 +5,8 @@ import { useNavigationContext } from "../../context/Navigation.context";
 import { useEffect, useState } from "react";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query";
-import type { DocumentsData } from "./Documents.definitions";
 import axios from "axios";
+import type { DocumentsData } from "./Documents.definitions";
 
 const DocumentsPage = () => {
   const { setCurrentTab } = useNavigationContext();
@@ -49,16 +49,29 @@ const DocumentsPage = () => {
     }
 
     const formData = new FormData();
-    formData.append("file", file);
-    formData.append("documentType", key);
+    formData.append("file", file, file.name); // File field
+    formData.append("documentType", key); // Document type field
+
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_HOST}/documents`,
+        "https://hooks.zapier.com/hooks/catch/9939309/2s0zzn7/",
         formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
       );
-      console.log("File uploaded successfully:", response.data);
+      console.log("File uploaded successfully to Zapier:", response.data);
     } catch (error) {
-      console.error("Error uploading file:", error);
+      if (axios.isAxiosError(error)) {
+        console.error(
+          "Error uploading file to Zapier:",
+          error.response?.data || error.message,
+        );
+      } else {
+        console.error("Unexpected error:", error);
+      }
     }
   };
 

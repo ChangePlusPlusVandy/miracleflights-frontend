@@ -14,7 +14,7 @@ const App = () => {
   const { getToken } = useAuth();
   const { currentUser, setCurrentUser } = useUserContext();
 
-  const { data: userData, error } = useQuery({
+  const { data: userData  } = useQuery({
     queryKey: ["user", user?.id],
     queryFn: async () =>
       getUserByAirtableRecordId(
