@@ -42,14 +42,14 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  border-radius: 1rem;
+  border-top-left-radius: 1rem;
   background-color: #abbee2;
   overflow: hidden;
 }
 
 .contentContainer {
   flex: 1;
-  padding: 2rem;
+  padding: 1rem;
   overflow-y: auto;
   background-color: white;
   margin: 1.5rem;
