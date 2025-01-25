@@ -49,7 +49,7 @@
 
 .contentContainer {
   flex: 1;
-  padding: 2rem;
+  padding: 1rem;
   overflow-y: auto;
   background-color: white;
   margin: 1.5rem;
