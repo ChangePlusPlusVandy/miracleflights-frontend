@@ -1,21 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap");
+
 .flightSelectorContainer {
   height: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .flightSelectorBlockHeader {
-  font-size: 2rem;
-  font-weight: 700px;
-  margin-bottom: 10px;
-  color: var(--miracle-color-dark);
-  opacity: 0.8;
+  margin-bottom: 24px;
+  font-size: 30px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  color: black;
 }
 
 .flightSelectorBlockSubtitle {
-  color: var(--miracle-color-dark-500);
-  font-size: 16px;
+  color: black;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
   padding-bottom: 10px;
   margin-bottom: 20px;
-  opacity: 0.5;
 }
 
 .airportChunk {
@@ -93,6 +98,7 @@
   flex-direction: column;
   height: 80px;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .flightSelectorInputRed {
@@ -164,30 +170,33 @@
 }
 
 .flightSelectorInputLabelBlue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 106px;
+  height: 37px;
+  background-color: #0067dd;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
   font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 5px;
-  color: var(--miracle-color-blue);
-  font-weight: 400;
-  font-size: 18px;
-  opacity: 0.8;
-  border-bottom: 10px;
-  margin-left: 2px;
+  border-radius: 10px;
   text-align: center;
-  margin-bottom: 16px;
 }
 
 .flightSelectorInputLabelRed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 106px;
+  height: 37px;
+  background-color: #b22a2a;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
   font-size: 14px;
-  margin-bottom: 5px;
-  color: var(--miracle-color-red);
-  font-weight: 400;
-  font-size: 18px;
-  opacity: 0.8;
-  border-bottom: 10px;
-  margin-left: 2px;
+  border-radius: 10px;
   text-align: center;
-  margin-bottom: 16px;
 }
 
 .airplaneIconContainer {
@@ -200,9 +209,10 @@
 
 .horizontalLineWithIcon {
   display: flex;
+  justify-content: center;
   align-items: center;
   width: 20%;
-  margin: 36px 16px 0px 16px;
+  margin: 100px 16px 0px 16px;
 }
 
 .horizontalLineWithIcon::before,
@@ -213,8 +223,8 @@
 }
 
 .airplaneIcon {
-  font-size: 24px;
-  color: var(--miracle-color-medium-dark);
+  font-size: 40px;
+  color: var(--miracle-color-dark);
   text-align: center;
   margin: 0 16px;
 }
@@ -230,44 +240,43 @@
 
 .toggleContainer {
   display: flex;
-  flex-direction: row;
-  font-size: 12px;
-  width: fit-content;
-  background-color: #e0e0e0; /* Grey background color */
-  border-radius: 20px; /* Adjust the border-radius as needed */
-  overflow: hidden; /* Clip content that goes beyond the border-radius */
+  justify-content: center;
+  align-items: center;
+  width: 235px;
+  height: 49px;
+  background-color: #f0f0f0;
+  border-radius: 31px;
+  margin: 0 auto;
+  margin-bottom: 24px;
 }
 
 .toggleItem {
-  padding: 8px 16px; /* Adjust padding as needed */
-  cursor: pointer;
-  user-select: none; /* Disable text selection */
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease; /* Smooth transition */
-
-  /* Initial styles for unselected state */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 112px;
+  height: 39px;
+  border-radius: 29px;
   background-color: transparent;
-  color: #333; /* Default text color */
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: black;
+}
 
-  /* Hover styles for unselected state */
-  &:hover {
-    background-color: var(
-      --miracle-color-medium
-    ); /* Hover fill color similar to selected */
-  }
-
-  /* Selected state styles */
-  &.selected {
-    background-color: var(
-      --miracle-color-medium-dark
-    ); /* Blue background color */
-    color: var(--miracle-color-white); /* White text color */
-  }
+.toggleItem.selected {
+  background-color: #d9d9d9;
 }
 
 .datePicker {
-  margin: 1rem;
+  width: 382px;
+  height: 334px;
+  border: 1px solid black;
+  border-radius: 50px;
+  background-color: transparent;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  box-sizing: border-box;
 }
 
 .flightSelectorErrorMessage {
@@ -278,4 +287,54 @@
   opacity: 1;
   text-align: center;
   width: 220px;
+}
+
+.subtitleDivider {
+  width: 100%;
+  height: 1px;
+  background-color: #a6a5a5;
+  border: none;
+  margin-bottom: 16px;
+  opacity: 0.48;
+}
+
+.requestsHeader {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  color: black;
+  text-align: left;
+  width: 100%;
+}
+
+.dateRequestsHeader {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  color: black;
+  text-align: left;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.labelContainer {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.flightSelectorInput {
+  width: 195px;
+  height: 40px;
+  border: 0.8px solid black;
+  color: black;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 8px;
+  text-align: center;
 }

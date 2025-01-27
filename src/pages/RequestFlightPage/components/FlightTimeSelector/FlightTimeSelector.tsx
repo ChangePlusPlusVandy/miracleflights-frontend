@@ -9,7 +9,6 @@ import type {
   DateValue,
   FlightTimeSelectorProps,
 } from "./FlightTimeSelector.definitions.ts";
-// import { set } from "react-hook-form";
 
 const FlightTimeSelector = ({
   setStep,
@@ -54,7 +53,6 @@ const FlightTimeSelector = ({
   };
 
   const submitDisabled = () => {
-    // Check if any of the required fields are empty
     return (
       !departureAirportPrimary ||
       !departureAirportAlternate ||
@@ -62,8 +60,8 @@ const FlightTimeSelector = ({
       !arrivalAirportAlternate ||
       !departDate ||
       (arrivalDate && departDate > arrivalDate) ||
-      departureAirportPrimary == departureAirportAlternate ||
-      arrivalAirportPrimary == arrivalAirportAlternate ||
+      departureAirportPrimary === departureAirportAlternate ||
+      arrivalAirportPrimary === arrivalAirportAlternate ||
       (!oneWay && !arrivalDate)
     );
   };
@@ -73,8 +71,9 @@ const FlightTimeSelector = ({
       <div className={styles.flightSelectorContainer}>
         <div className={styles.flightSelectorBlockHeader}>Request a Flight</div>
         <div className={styles.flightSelectorBlockSubtitle}>
-          Choose two of the nearest airports to you and your destination.
+          Choose your top two airport preferences as well as your trip dates.
         </div>
+        <hr className={styles.subtitleDivider} />
         <form className={styles.flightSelectorBlockContent}>
           <div className={styles.checkBoxContainer}>
             <div className={styles.toggleContainer}>
@@ -85,7 +84,7 @@ const FlightTimeSelector = ({
                 onClick={() => setOneWay(!oneWay)}
                 data-testid="oneWay"
               >
-                Round Trip
+                Roundtrip
               </div>
               <div
                 className={`${styles.toggleItem} ${
@@ -94,20 +93,23 @@ const FlightTimeSelector = ({
                 onClick={() => setOneWay(!oneWay)}
                 data-testid="roundTrip"
               >
-                One Way
+                One-way
               </div>
             </div>
           </div>
+          <div className={styles.requestsHeader}>Airport Requests</div>
           <div className={styles.flightSelectorInputContainerUpper}>
             <div className={styles.airportChunk}>
-              <div className={styles.flightSelectorInputLabelBlue}>
-                Departure
+              <div className={styles.labelContainer}>
+                <div className={styles.flightSelectorInputLabelBlue}>
+                  Departure
+                </div>
               </div>
               <div className={styles.flightSelectorInputContainer}>
                 <input
                   type="text"
                   placeholder="Primary Selection"
-                  className={styles.flightSelectorInputBlue}
+                  className={styles.flightSelectorInput}
                   value={departureAirportPrimary}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -129,7 +131,7 @@ const FlightTimeSelector = ({
                 <input
                   type="text"
                   placeholder="Alternate Selection"
-                  className={styles.flightSelectorInputBlueBorder}
+                  className={styles.flightSelectorInput}
                   value={departureAirportAlternate}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -160,14 +162,17 @@ const FlightTimeSelector = ({
                 <Icon glyph="plane" />
               </div>
             </div>
-
             <div className={styles.airportChunk}>
-              <div className={styles.flightSelectorInputLabelRed}>Arrival</div>
+              <div className={styles.labelContainer}>
+                <div className={styles.flightSelectorInputLabelRed}>
+                  Arrival
+                </div>
+              </div>
               <div className={styles.flightSelectorInputContainer}>
                 <input
                   type="text"
                   placeholder="Primary Selection"
-                  className={styles.flightSelectorInputRed}
+                  className={styles.flightSelectorInput}
                   value={arrivalAirportPrimary}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -189,7 +194,7 @@ const FlightTimeSelector = ({
                 <input
                   type="text"
                   placeholder="Alternate Selection"
-                  className={styles.flightSelectorInputRedBorder}
+                  className={styles.flightSelectorInput}
                   value={arrivalAirportAlternate}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -216,7 +221,8 @@ const FlightTimeSelector = ({
               </div>
             </div>
           </div>
-
+          <hr className={styles.subtitleDivider} />
+          <div className={styles.dateRequestsHeader}>Date Requests</div>
           <div className={styles.flightSelectorInputContainerLower}>
             <div className="departure-calendar">
               <DatePicker
