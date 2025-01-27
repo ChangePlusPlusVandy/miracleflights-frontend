@@ -242,7 +242,7 @@ const OnboardingPage = () => {
                   text="Create account"
                   variant={ButtonVariant.Regular}
                   onClick={() => {
-                    navigate("/dashboard");
+                    window.location.href = `https://form.jotform.com/250146934292155?uid=${user.id}`;
                   }}
                 />
               </div>
