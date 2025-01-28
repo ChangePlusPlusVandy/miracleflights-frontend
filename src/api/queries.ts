@@ -2,7 +2,7 @@ import axios from "axios";
 import type { FlightRequestData } from "../interfaces/flight-request-interface";
 import type { DashboardData } from "../pages/DashboardPage/DashboardPage.definitions";
 import type { PassengerData } from "../interfaces/passenger.interface";
-import type { DocumentsData } from "../pages/DocumentsPage/Documents.definitions";
+// import type { DocumentsData } from "../pages/DocumentsPage/Documents.definitions";
 
 export const getPassengers = async (
   id: string,
@@ -209,17 +209,6 @@ export const getDashboardData = (
 ): Promise<DashboardData> =>
   axios
     .get(`${process.env.VITE_HOST}/dashboard`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => res.data);
-
-export const getDocumentsData = (
-  token?: string | null,
-): Promise<DocumentsData> =>
-  axios
-    .get(`${process.env.VITE_HOST}/documents`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
