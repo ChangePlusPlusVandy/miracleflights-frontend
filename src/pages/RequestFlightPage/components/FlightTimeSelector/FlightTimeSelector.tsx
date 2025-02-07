@@ -231,6 +231,12 @@ const FlightTimeSelector = ({
                 }}
                 value={departDate}
                 className={styles.datePicker}
+                formatMonthYear={(locale, date) =>
+                  date.toLocaleString(locale, {
+                    month: "short",
+                    year: "numeric",
+                  })
+                }
               />
             </div>
 
@@ -243,6 +249,12 @@ const FlightTimeSelector = ({
                   value={arrivalDate}
                   minDate={departDate as Date}
                   className={styles.datePicker}
+                  formatMonthYear={(locale, date) =>
+                    date.toLocaleString(locale, {
+                      month: "short",
+                      year: "numeric",
+                    })
+                  }
                 />
               </div>
             )}
