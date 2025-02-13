@@ -49,14 +49,22 @@ const DocumentsPage = () => {
       return;
     }
 
-    let formData = new FormData();
-    formData.append("file", file);
-    formData.append("documentType", key);
-
     try {
+      const token = await getToken(); // Fetch Clerk auth token
+
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("documentType", key);
+
       const response = await axios.post(
         `${import.meta.env.VITE_HOST}/documents`,
         formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        },
       );
 
       console.log("File uploaded successfully:", response.data);

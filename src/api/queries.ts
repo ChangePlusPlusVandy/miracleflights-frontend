@@ -214,3 +214,15 @@ export const getDashboardData = (
       },
     })
     .then((res) => res.data);
+
+export const postDocuments = (
+      token?: string | null,
+    ) =>
+      axios
+        .post(`${process.env.VITE_HOST}/documents`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => res.data);
+
