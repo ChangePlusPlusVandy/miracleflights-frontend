@@ -3,7 +3,7 @@ import SideBar from "./SideBar/Sidebar";
 import Navbar from "./NavBar/Navbar";
 import { getUserByAirtableRecordId } from "../api/queries";
 import { useUserContext } from "../context/User.context";
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useUser, useAuth } from "@clerk/clerk-react";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -12,15 +12,13 @@ import type { PassengerData } from "../interfaces/passenger.interface";
 const App = () => {
   const { user } = useUser();
   const navigate = useNavigate();
-  const location = useLocation();
   const { getToken } = useAuth();
   const { currentUser, setCurrentUser } = useUserContext();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
-  
-  // Notifications logic
-  const isNotificationsPage = location.pathname === "/notifications";
 
-  const { data: userData, error } = useQuery({
+  // Notifications logic
+
+  const { data: userData } = useQuery({
     queryKey: ["user", user?.id],
     queryFn: async () =>
       getUserByAirtableRecordId(

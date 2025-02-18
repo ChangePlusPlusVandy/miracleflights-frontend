@@ -95,12 +95,17 @@ const TripsPage = () => {
       const bDate = new Date(b.createdTime);
       return aDate.getTime() + bDate.getTime();
     },
-  );
+  ) as FlightRequestData[];
 
   return (
     <div className={styles.pageContainer}>
-      <div className={styles.title}>Upcoming Trips</div>
+      <div className={styles.tripsMainTitle}>Trips</div>
+      <div className={styles.tripsMainSubtitle}>
+        Here, you can easily keep track all of your upcoming flights, manage
+        your bookings, as well as acess completed trips
+      </div>
       <Divider spacing={DividerSpacing.MEDIUM} />
+      <div className={styles.title}>Upcoming Trips</div>
       <div className={styles.flightsGroup}>
         {sortedFlightRequests?.map(
           (flightRequest: FlightRequestData, index: number) => {
@@ -161,11 +166,14 @@ const TripsPage = () => {
                         className={styles.chevron}
                       />
                     )}
-                    &nbsp;&nbsp;Requested trip from:{" "}
+                    &nbsp;&nbsp;
+                    <span className={styles.flightContainerText}>
+                      Trip requested from:{" "}
+                    </span>
                     <span className={styles.departureText}>
                       {earliestDeparture.toLocaleDateString()}
                     </span>{" "}
-                    to{" "}
+                    <span className={styles.flightContainerText}>to </span>
                     <span className={styles.arrivalText}>
                       {latestArrival.toLocaleDateString()}
                     </span>
@@ -181,27 +189,38 @@ const TripsPage = () => {
                 </div>
                 {openFlights.includes(flightRequest.id) && (
                   <div className={styles.tripContainer}>
-                    {sortedFlightLegs.length > 0 ? (
-                      sortedFlightLegs.map((flight: FlightLegData, index) => (
-                        <>
+                    {flightRequest.Status === "Booked" ? (
+                      sortedFlightLegs.length > 0 ? (
+                        sortedFlightLegs.map((flight: FlightLegData, index) => (
+                          <>
+                            <FlightTicket
+                              key={flight.id}
+                              flight={flight}
+                              index={index + 1}
+                              isDeparture={
+                                flight["Leg Type"] === "Departure" ||
+                                (flight["Leg Type"] === "Connecting" &&
+                                  sortedFlightLegs[index - 1]["Leg Type"] ===
+                                    "Departure")
+                              }
+                            />
+                          </>
+                        ))
+                      ) : (
+                        <div className={styles.noDataContainer}>
                           <Divider spacing={DividerSpacing.SMALL} />
-                          <FlightTicket
-                            key={flight.id}
-                            flight={flight}
-                            index={index + 1}
-                            isDeparture={
-                              flight["Leg Type"] === "Departure" ||
-                              (flight["Leg Type"] === "Connecting" &&
-                                sortedFlightLegs[index - 1]["Leg Type"] ===
-                                  "Departure")
-                            }
-                          />
-                        </>
-                      ))
+                          <h5 className={styles.noDataContainerText}>
+                            No flights legs yet this trip
+                          </h5>
+                        </div>
+                      )
                     ) : (
                       <div className={styles.noDataContainer}>
                         <Divider spacing={DividerSpacing.SMALL} />
-                        <h5>No flights legs yet this trip</h5>
+                        <h5 className={styles.noDataContainerText}>
+                          Your trip has been requested. You will be notified
+                          when your flight legs are booked.
+                        </h5>
                       </div>
                     )}
                   </div>
