@@ -1,15 +1,31 @@
-.title {
-  font-size: 2rem;
-  font-weight: 700px;
-  margin-bottom: 10px;
+.tripsMainTitle {
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin-bottom: 15px;
   color: var(--miracle-color-dark);
-  opacity: 0.8;
+  opacity: 1;
+}
+
+.tripsMainSubtitle {
+  font-size: 0.9375rem;
+  font-weight: 300px;
+  margin-bottom: 15px;
+  color: var(--miracle-color-dark);
+  opacity: 1;
+}
+
+.title {
+  font-size: 1.5625rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: var(--miracle-color-dark);
+  opacity: 1;
 }
 
 .timeFrame {
   color: var(--miracle-color-dark-500);
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 1.125rem;
+  font-weight: 400;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,8 +34,7 @@
 
 .pageContainer {
   width: 100%;
-  height: 100%;
-  max-height: 100vh;
+  height: 80vh;
   font-family: "Inter";
 }
 .flightsGroup {
@@ -46,15 +61,20 @@
   margin: 0px 10px;
 }
 
+.flightContainerText {
+  font-size: 1.125rem !important;
+  font-weight: 400;
+}
+
 .departureText {
-  font-size: 1.25rem !important;
-  font-weight: 800;
+  font-size: 1.125rem !important;
+  font-weight: 400;
   color: var(--miracle-color-blue);
 }
 
 .arrivalText {
-  font-size: 1.25rem !important;
-  font-weight: 800;
+  font-size: 1.125rem !important;
+  font-weight: 400;
   color: var(--miracle-color-red);
 }
 
@@ -69,6 +89,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
+  margin-left: 10px;
 }
 
 .requestContainer {
@@ -76,14 +97,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 100%-1rem;
   border: 1px solid var(--miracle-color-blue-light);
-  border-radius: 4px;
+  border-radius: 15px;
   background-color: var(--miracle-color-very-light);
   padding: 1rem;
   margin: 0;
   transition: all 0.3s;
   margin-bottom: 2rem;
+  user-select: none;
 }
 
 .requestContainer:hover {
@@ -95,14 +117,24 @@
 .chevron {
   color: var(--miracle-color-blue);
   font-size: 1rem !important;
+  height: 18px;
+  width: 18px;
+  margin-right: 15px;
 }
 
 .noDataContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   flex-direction: column;
   gap: 0.25rem;
   width: 100%;
   height: 100%;
+}
+
+.noDataContainerText {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

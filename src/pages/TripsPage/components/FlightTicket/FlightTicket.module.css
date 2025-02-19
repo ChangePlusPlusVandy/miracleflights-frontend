@@ -31,27 +31,92 @@
   font-size: 0.8125rem;
 }
 
+.flightInfoContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.flightTagContainer {
+  margin-right: auto;
+}
+
+.flightHeaderInfo {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .flightInfoRow {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  margin-right: auto;
+  width: 100%;
 }
 
 .departureInfo,
 .arrivalInfo {
-  flex-basis: 40%;
+  box-sizing: border-box;
   text-align: center;
   font-family: "Inter";
-  color: white;
-  background-color: black;
-  height: 10rem;
+  color: black;
+  background-color: white;
+  outline: 1.4px #7196d0;
+  box-shadow: 0px 0px 4px 0.4px #7196d0;
+  width: 280px;
+  height: 380px;
+  margin: 10px;
+  padding: 18px;
+  border-radius: 8px;
   position: relative;
   background-size: cover;
   background-position: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
+}
+
+.departureInfoFlight,
+.departureInfoTravel,
+.arrivalInfoFlight,
+.arrivalInfoTravel {
+  color: black;
+  width: 90%;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+
+.departureInfoFlightTitle,
+.departureInfoTravelTitle,
+.arrivalInfoFlightTitle,
+.arrivalInfoTravelTitle {
+  font-size: 0.8rem;
+  line-height: 1.1rem;
+  text-decoration: underline;
+}
+
+.departureInfoText,
+.arrivalInfoText {
+  font-size: 0.8rem;
+  line-height: 1.1rem;
+}
+.departurePassengerText,
+.arrivalPassengerText {
+  display: flex;
+  margin-top: auto;
+  font-size: 0.8rem;
+  line-height: 1.1rem;
+  text-align: start;
 }
 
 .backgroundOverlay {
@@ -60,26 +125,29 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0);
   z-index: 1;
 }
 
 .cityAndAirport {
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 700;
   z-index: 2;
   position: relative;
 }
 
 .flightNumAndTime {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   z-index: 2;
   position: relative;
 }
 
 .separator {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  max-width: 160px;
   text-align: center;
   position: relative;
 }
@@ -87,7 +155,7 @@
 .separator::before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 0;
   right: 0;
   border-top: 2px dashed #ccc;
