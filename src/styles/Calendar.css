@@ -38,10 +38,6 @@
   font-weight: 500;
 }
 
-.react-calendar button:enabled:hover {
-  background-color: var(--miracle-color-very-light);
-}
-
 .react-calendar__navigation {
   height: 60px;
   margin-bottom: 10px;
@@ -64,7 +60,6 @@
   font-family: "Inter", sans-serif;
   font-size: 18px;
   font-weight: 500;
-  transition: background-color 0.3s;
 }
 
 .react-calendar__navigation button[disabled] {
@@ -119,17 +114,17 @@
 
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
-  color: var(--miracle-color-white);
+  opacity: 0.8;
   border-radius: 5px;
 }
 
 .react-calendar__tile--now {
   background: var(--miracle-color-light);
+  border-radius: 5px;
 }
 
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
-  background-color: var(--miracle-color-medium-light) !important;
   border-radius: 5px;
 }
 
@@ -258,4 +253,32 @@
 }
 .arrival-calendar {
   margin-left: 80px;
+}
+
+.departure-calendar .react-calendar__tile--active,
+.departure-calendar .react-calendar__tile--active:enabled:hover,
+.departure-calendar .react-calendar__tile--active:enabled:focus {
+  background: #0067de !important;
+  color: var(--miracle-color-white) !important;
+  border-radius: 5px;
+}
+
+.arrival-calendar .react-calendar__tile--active,
+.arrival-calendar .react-calendar__tile--active:enabled:hover,
+.arrival-calendar .react-calendar__tile--active:enabled:focus {
+  background: #b22a2a !important;
+  color: var(--miracle-color-white) !important;
+  border-radius: 5px;
+}
+
+.react-calendar__tile--active:hover,
+.react-calendar__tile--active:focus {
+  background: inherit !important;
+  color: inherit !important;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: unset !important;
+  opacity: 1 !important;
 }
