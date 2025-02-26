@@ -65,7 +65,7 @@ const AirportSuggestions = ({
             <li
               key={airport.code}
               onMouseDown={() => {
-                setValue(`${airport.city} (${airport.code})`);
+                setValue(`${airport.code}`);
                 setShowDropdown(false);
               }}
             >
