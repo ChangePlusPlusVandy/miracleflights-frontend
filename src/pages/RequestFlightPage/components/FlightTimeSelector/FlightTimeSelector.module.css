@@ -99,6 +99,7 @@
   height: 80px;
   justify-content: space-between;
   gap: 12px;
+  overflow: visible;
 }
 
 .flightSelectorInputRed {
@@ -182,6 +183,7 @@
   font-size: 14px;
   border-radius: 10px;
   text-align: center;
+  cursor: default;
 }
 
 .flightSelectorInputLabelRed {
@@ -197,6 +199,7 @@
   font-size: 14px;
   border-radius: 10px;
   text-align: center;
+  cursor: default;
 }
 
 .airplaneIconContainer {
@@ -262,6 +265,7 @@
   font-weight: 600;
   font-size: 12px;
   color: black;
+  cursor: pointer;
 }
 
 .toggleItem.selected {
@@ -314,7 +318,7 @@
   color: black;
   text-align: left;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 24px;
 }
 
@@ -327,7 +331,7 @@
 
 .flightSelectorInput {
   width: 195px;
-  height: 40px;
+  height: 30px;
   border: 0.8px solid black;
   color: black;
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -337,4 +341,32 @@
   border-radius: 5px;
   padding: 8px;
   text-align: center;
+  overflow: visible;
+}
+
+.suggestionWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.suggestionsList {
+  position: absolute;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestionsList li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestionsList li:hover {
+  background-color: #f0f0f0;
 }
