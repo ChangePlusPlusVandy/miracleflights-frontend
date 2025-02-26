@@ -9,6 +9,7 @@ import type {
   DateValue,
   FlightTimeSelectorProps,
 } from "./FlightTimeSelector.definitions.ts";
+import AirportSuggestions from "./AirportSuggestions.tsx";
 
 const FlightTimeSelector = ({
   setStep,
@@ -106,36 +107,18 @@ const FlightTimeSelector = ({
                 </div>
               </div>
               <div className={styles.flightSelectorInputContainer}>
-                <input
-                  type="text"
+                <AirportSuggestions
                   placeholder="Primary Selection"
-                  className={styles.flightSelectorInput}
                   value={departureAirportPrimary}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setDepartureAirportPrimary(e.target.value);
-                    if (value !== departureAirportAlternate) {
-                      setErrorMessages((prevErrors) => ({
-                        ...prevErrors,
-                        departure: "",
-                      }));
-                    } else {
-                      setErrorMessages((prevErrors) => ({
-                        ...prevErrors,
-                        departure:
-                          "Primary and Alternate selections cannot be the same.",
-                      }));
-                    }
+                  setValue={(value) => {
+                    setDepartureAirportPrimary(value);
                   }}
                 />
-                <input
-                  type="text"
+                <AirportSuggestions
                   placeholder="Alternate Selection"
-                  className={styles.flightSelectorInput}
                   value={departureAirportAlternate}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setDepartureAirportAlternate(e.target.value);
+                  setValue={(value) => {
+                    setDepartureAirportAlternate(value);
                     if (value !== departureAirportPrimary) {
                       setErrorMessages((prevErrors) => ({
                         ...prevErrors,
@@ -150,6 +133,7 @@ const FlightTimeSelector = ({
                     }
                   }}
                 />
+
                 {errorMessages.departure && (
                   <p className={styles.flightSelectorErrorMessage}>
                     {errorMessages.departure}
@@ -169,45 +153,27 @@ const FlightTimeSelector = ({
                 </div>
               </div>
               <div className={styles.flightSelectorInputContainer}>
-                <input
-                  type="text"
+                <AirportSuggestions
                   placeholder="Primary Selection"
-                  className={styles.flightSelectorInput}
                   value={arrivalAirportPrimary}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setArrivalAirportPrimary(e.target.value);
-                    if (value !== arrivalAirportAlternate) {
-                      setErrorMessages((prevErrors) => ({
-                        ...prevErrors,
-                        arrival: "",
-                      }));
-                    } else {
-                      setErrorMessages((prevErrors) => ({
-                        ...prevErrors,
-                        arrival:
-                          "Primary and Alternate selections cannot be the same.",
-                      }));
-                    }
+                  setValue={(value) => {
+                    setArrivalAirportPrimary(value);
                   }}
                 />
-                <input
-                  type="text"
+                <AirportSuggestions
                   placeholder="Alternate Selection"
-                  className={styles.flightSelectorInput}
                   value={arrivalAirportAlternate}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setArrivalAirportAlternate(e.target.value);
+                  setValue={(value) => {
+                    setArrivalAirportAlternate(value);
                     if (value !== arrivalAirportPrimary) {
                       setErrorMessages((prevErrors) => ({
                         ...prevErrors,
-                        arrival: "",
+                        departure: "",
                       }));
                     } else {
                       setErrorMessages((prevErrors) => ({
                         ...prevErrors,
-                        arrival:
+                        departure:
                           "Primary and Alternate selections cannot be the same.",
                       }));
                     }
