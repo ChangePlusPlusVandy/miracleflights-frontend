@@ -56,5 +56,7 @@ export interface FlightRequestData {
   "Total # of Legs": number;
   "Request ID": string;
 
+  "Treatment Site Verification": string;
+
   "Flight Legs": FlightLegData[];
 }
