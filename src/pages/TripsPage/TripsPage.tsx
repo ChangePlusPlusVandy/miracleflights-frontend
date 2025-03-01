@@ -4,6 +4,7 @@ import { Tabs } from "../../layout/SideBar/SideBar.definitions";
 import { useNavigationContext } from "../../context/Navigation.context";
 import { useUserContext } from "../../context/User.context.tsx";
 import { getAllFlightsForUser } from "../../api/queries.ts";
+import { formatDate } from "../../util/date.util";
 import Tag from "../../components/Tag/Tag.tsx";
 import { TagColor, TagVariant } from "../../components/Tag/Tag.definitions.ts";
 import Divider from "../../components/Divider/Divider.tsx";
@@ -51,6 +52,8 @@ const TripsPage = () => {
   const { currentUser } = useUserContext();
   const { getToken } = useAuth();
   const [openFlights, setOpenFlights] = useState<string[]>([]);
+  const siteVerifyLink =
+    "https://miracleflights.org/treatment-site-verification/";
 
   useEffect(() => {
     setCurrentTab(Tabs.TRIPS);
@@ -104,7 +107,7 @@ const TripsPage = () => {
         Here, you can easily keep track all of your upcoming flights, manage
         your bookings, as well as acess completed trips
       </div>
-      <Divider spacing={DividerSpacing.MEDIUM} />
+      <Divider spacing={DividerSpacing.LARGE} />
       <div className={styles.title}>Upcoming Trips</div>
       <div className={styles.flightsGroup}>
         {sortedFlightRequests?.map(
@@ -143,6 +146,21 @@ const TripsPage = () => {
               },
             ) as FlightLegData[];
 
+            //copy treatmentsite verification form to clipboard so that user can share with site
+            const copySiteVerifyLink = async (
+              e: React.MouseEvent<HTMLButtonElement>,
+            ) => {
+              e.stopPropagation();
+              try {
+                await navigator.clipboard.writeText(siteVerifyLink);
+                alert(
+                  "The link to the vertificaiton form was copied to clipboard!",
+                );
+              } catch (err) {
+                console.error("Failed to copy text: ", err);
+              }
+            };
+
             return (
               <div
                 key={index}
@@ -171,56 +189,97 @@ const TripsPage = () => {
                       Trip requested from:{" "}
                     </span>
                     <span className={styles.departureText}>
-                      {earliestDeparture.toLocaleDateString()}
+                      {formatDate(earliestDeparture)}
                     </span>{" "}
                     <span className={styles.flightContainerText}>to </span>
                     <span className={styles.arrivalText}>
-                      {latestArrival.toLocaleDateString()}
+                      {formatDate(latestArrival)}
                     </span>
                   </h4>
                   <div className={styles.statusContainer}>
                     <h5 className={styles.statusText}>Status: </h5>
-                    <Tag
-                      color={getTagColor(flightRequest.Status as string)}
-                      text={getTagText(flightRequest.Status as string)}
-                      variant={TagVariant.LARGE}
-                    />
+                    {flightRequest["Treatment Site Verification"] ===
+                    "Submitted" ? (
+                      <Tag
+                        color={getTagColor(flightRequest.Status as string)}
+                        text={getTagText(flightRequest.Status as string)}
+                        variant={TagVariant.LARGE}
+                      />
+                    ) : (
+                      <Tag
+                        color={TagColor.RED}
+                        text="Action Required"
+                        variant={TagVariant.LARGE}
+                      />
+                    )}
                   </div>
                 </div>
                 {openFlights.includes(flightRequest.id) && (
                   <div className={styles.tripContainer}>
-                    {flightRequest.Status === "Booked" ? (
-                      sortedFlightLegs.length > 0 ? (
-                        sortedFlightLegs.map((flight: FlightLegData, index) => (
-                          <>
-                            <FlightTicket
-                              key={flight.id}
-                              flight={flight}
-                              index={index + 1}
-                              isDeparture={
-                                flight["Leg Type"] === "Departure" ||
-                                (flight["Leg Type"] === "Connecting" &&
-                                  sortedFlightLegs[index - 1]["Leg Type"] ===
-                                    "Departure")
-                              }
-                            />
-                          </>
-                        ))
+                    <Divider spacing={DividerSpacing.SMALL} />
+                    {flightRequest["Treatment Site Verification"] ===
+                    "Submitted" ? (
+                      flightRequest.Status === "Booked" ? (
+                        sortedFlightLegs.length > 0 ? (
+                          sortedFlightLegs.map(
+                            (flight: FlightLegData, index) => (
+                              <FlightTicket
+                                key={flight.id}
+                                flight={flight}
+                                index={index + 1}
+                                isDeparture={
+                                  flight["Leg Type"] === "Departure" ||
+                                  (flight["Leg Type"] === "Connecting" &&
+                                    sortedFlightLegs[index - 1]["Leg Type"] ===
+                                      "Departure")
+                                }
+                              />
+                            ),
+                          )
+                        ) : (
+                          <div className={styles.noDataContainer}>
+                            <h5 className={styles.noDataContainerText}>
+                              No flight legs yet for this trip
+                            </h5>
+                          </div>
+                        )
                       ) : (
                         <div className={styles.noDataContainer}>
-                          <Divider spacing={DividerSpacing.SMALL} />
                           <h5 className={styles.noDataContainerText}>
-                            No flights legs yet this trip
+                            Your trip has been requested. You will be notified
+                            when your flight legs are booked.
                           </h5>
                         </div>
                       )
                     ) : (
                       <div className={styles.noDataContainer}>
-                        <Divider spacing={DividerSpacing.SMALL} />
                         <h5 className={styles.noDataContainerText}>
-                          Your trip has been requested. You will be notified
-                          when your flight legs are booked.
+                          <span style={{ color: "red", fontWeight: "bold" }}>
+                            Action Required:
+                          </span>{" "}
+                          You must fill out the{" "}
+                          <span style={{ fontWeight: "bold" }}>
+                            Treatment Site Verification Form
+                          </span>{" "}
+                          in order for your request to be fully processed.
                         </h5>
+                        <div className={styles.copyLinkDiv}>
+                          <h5 className={styles.noDataContainerText}>
+                            To access the form, please click on the &apos;
+                            <span style={{ textDecoration: "underline" }}>
+                              Copy Link
+                            </span>
+                            &apos; button to access the external link containing the
+                            form and also to send it to a relevant doctor later
+                            on.
+                          </h5>
+                          <button
+                            className={styles.copyLinkButton}
+                            onClick={copySiteVerifyLink}
+                          >
+                            Copy Link
+                          </button>
+                        </div>
                       </div>
                     )}
                   </div>

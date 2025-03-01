@@ -7,6 +7,7 @@
 }
 
 .tripsMainSubtitle {
+  display: block;
   font-size: 0.9375rem;
   font-weight: 300px;
   margin-bottom: 15px;
@@ -33,10 +34,14 @@
 }
 
 .pageContainer {
-  width: 100%;
+  flex-direction: column;
+  width: calc(100% - 4rem);
   height: 80vh;
   font-family: "Inter";
+  padding: 2rem;
+  box-sizing: content-box;
 }
+
 .flightsGroup {
   width: 100%;
   flex-wrap: wrap;
@@ -68,13 +73,13 @@
 
 .departureText {
   font-size: 1.125rem !important;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--miracle-color-blue);
 }
 
 .arrivalText {
   font-size: 1.125rem !important;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--miracle-color-red);
 }
 
@@ -97,7 +102,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%-1rem;
+  width: calc(100% - 2rem);
   border: 1px solid var(--miracle-color-blue-light);
   border-radius: 15px;
   background-color: var(--miracle-color-very-light);
@@ -137,4 +142,43 @@
   font-weight: 400;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.copyLinkDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.copyLinkButton {
+  display: inline-block;
+  width: fit-content;
+  height: fit-content;
+  background-color: #6d8ec5;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 40px;
+  padding: 16px 26px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.copyLinkButton:hover {
+  background-color: #5b7bb3;
+  transform: scale(1.05);
+}
+
+.copyLinkButton:active {
+  transform: scale(0.95);
 }

@@ -40,8 +40,8 @@ export const getAge = (dateOfBirth: string) => {
  * @param date the date to format
  * @returns a string in the format MM/DD/YYYY
  */
-export const formatDate = (date: string) => {
-  return new Date(date).toLocaleDateString();
+export const formatDate = (date: string | Date) => {
+  return new Date(date).toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "numeric" });
 };
 
 /**
