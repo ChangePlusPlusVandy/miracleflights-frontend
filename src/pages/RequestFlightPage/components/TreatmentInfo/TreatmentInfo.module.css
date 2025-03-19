@@ -1,5 +1,8 @@
 .goBack {
   cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
 }
 
 .goBack:hover {
@@ -8,14 +11,68 @@
 }
 
 .treatmentInfoContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  height: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .continueContainer {
-  width: 100%;
   display: flex;
-  justify-content: flex-end;
+  margin-top: 24px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 2rem);
   gap: 1rem;
+}
+
+.treatmentSelectorBlockHeader {
+  margin-bottom: 24px;
+  font-size: 30px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  color: black;
+  margin-top: 10px;
+}
+
+.treatmentBlockSubtitle {
+  color: black;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.treatmentBlockContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 0 0 0;
+  align-items: center;
+}
+
+.subtitleDivider {
+  width: 100%;
+  height: 1px;
+  background-color: #a6a5a5;
+  border: none;
+  margin-bottom: 30px;
+  opacity: 0.48;
+}
+
+.requestsHeader {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  color: black;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

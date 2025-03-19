@@ -2,7 +2,7 @@ import styles from "./PassengerSelector.module.css";
 import { getAccompanyingPassengers } from "../../../../api/queries";
 import { useUserContext } from "../../../../context/User.context";
 import Button from "../../../../components/Button/Button";
-import Divider from "../../../../components/Divider/Divider";
+import { ButtonVariant } from "../../../../components/Button/Button.definitions";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@clerk/clerk-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -43,14 +43,20 @@ const PassengerSelector = ({
         onClick={() => setStep(1)}
         className={styles.goBack}
       >{`< Go back`}</span>
-      <div className={styles.titleAndError}>
-        <h4>
-          {`Select Passengers `}
-          <span className={styles.minText}>{`(min 1)`}</span>
-        </h4>
-        <p>{selectError && "(You can only select up to 2 passengers)"}</p>
+      <div className={styles.passengerSelectorBlockHeader}>Request a Trip</div>
+      <div className={styles.passengerBlockSubtitle}>
+        Select your top two airport preferences, trip dates, and accompanying
+        companions.
       </div>
-      <Divider />
+      <hr className={styles.subtitleDivider} />
+      <div className={styles.titleAndError}>
+        <div className={styles.requestsHeader}>Companion Requests</div>
+        {selectError && (
+          <p className={styles.errorText}>
+            (You can only select up to 2 passengers)
+          </p>
+        )}
+      </div>
       <div className={styles.passengerContainer}>
         {accompanyingPassengerData?.map((passenger) => (
           <div
@@ -59,10 +65,12 @@ const PassengerSelector = ({
             onClick={() => handleClickPassenger(passenger)}
           >
             <div>
-              <h4>
+              <div className={styles.passengerDetails}>
                 {passenger["First Name"]} {passenger["Last Name"]}
-              </h4>
-              <p>Date of birth: {passenger["Date of Birth"]}</p>
+              </div>
+              <div className={styles.passengerSubtitle}>
+                Date of Birth: {passenger["Date of Birth"]}
+              </div>
             </div>
             <div>
               {selectedPassengers.find(
@@ -86,7 +94,8 @@ const PassengerSelector = ({
       </div>
       <div className={styles.continueContainer}>
         <Button
-          text="Continue >"
+          variant={ButtonVariant.Continue}
+          text="Continue"
           onClick={() => setStep(3)}
           disabled={
             !(selectedPassengers.length > 0 && selectedPassengers.length < 3)
