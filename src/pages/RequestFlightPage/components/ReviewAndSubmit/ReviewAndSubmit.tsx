@@ -2,6 +2,7 @@ import styles from "./ReviewAndSubmit.module.css";
 import Divider from "../../../../components/Divider/Divider";
 import { useUserContext } from "../../../../context/User.context";
 import Button from "../../../../components/Button/Button";
+import { ButtonVariant } from "../../../../components/Button/Button.definitions";
 import Modal from "../../../../components/Modal/Modal";
 import { ButtonColor } from "../../../../components/Button/Button.definitions";
 import { DividerSpacing } from "../../../../components/Divider/Divider.definitions";
@@ -31,12 +32,11 @@ const ReviewAndSubmit = ({
         <Modal
           body={
             <div className={styles.confirmationModal}>
-              <h3>Submit Request.</h3>
+              <h3>Submit Request</h3>
               <p className={styles.areYouSure}>
                 Are you sure want to submit this request?
               </p>
               <p className={styles.cannotUndo}>This cannot be undone.</p>
-              <Divider spacing={DividerSpacing.SMALL} />
               <div className={styles.actionContainer}>
                 <Button
                   text="Go Back"
@@ -62,10 +62,10 @@ const ReviewAndSubmit = ({
           onClick={() => setStep(3)}
           className={styles.goBack}
         >{`< Go back`}</span>
-        <h4>Review your request</h4>
-        <Divider />
+        <div className={styles.reviewBlockHeader}>Review Your Request</div>
+        <hr className={styles.subtitleDivider} />
         <div className={styles.passengerContainer}>
-          <h4>Patient</h4>
+          <div className={styles.detailsHeader}>Patient Details</div>
           <div className={styles.passengerValue}>
             <span className={styles.passengerKey}>First Name: </span>
             {currentUser?.["First Name"]}
@@ -124,9 +124,9 @@ const ReviewAndSubmit = ({
 
         {passengers?.[0] && (
           <>
-            <Divider />
+            <hr className={styles.subtitleDivider} />
             <div className={styles.passengerContainer}>
-              <h4>Passenger 1</h4>
+              <div className={styles.detailsHeader}>Passenger 1</div>
               <div className={styles.passengerValue}>
                 <span className={styles.passengerKey}>First Name: </span>
                 {passengers[0]["First Name"]}
@@ -161,9 +161,9 @@ const ReviewAndSubmit = ({
 
         {passengers?.[1] && (
           <>
-            <Divider />
+            <hr className={styles.subtitleDivider} />
             <div className={styles.passengerContainer}>
-              <h4>Passenger 2</h4>
+              <div className={styles.detailsHeader}>Passenger 2</div>
               <div className={styles.passengerValue}>
                 <span className={styles.passengerKey}>First Name: </span>
                 {passengers[1]["First Name"]}
@@ -195,68 +195,71 @@ const ReviewAndSubmit = ({
             </div>
           </>
         )}
-        <Divider />
-        <div className={styles.flightInfoContainer}>
-          <h4>Flight Info</h4>
-          <div className={styles.flightInfoValue}>
-            <span className={styles.flightInfoKey}>Travel Type: </span>
+        <hr className={styles.subtitleDivider} />
+        <div className={styles.passengerContainer}>
+          <div className={styles.detailsHeader}>Flight Information</div>
+          <div className={styles.passengerValue}>
+            <span className={styles.passengerKey}>Travel Type: </span>
             {flightInfo?.oneWay}
           </div>
-          <div className={styles.flightInfoValue}>
-            <span className={styles.flightInfoKey}>Departure Date: </span>
+          <div className={styles.passengerValue}>
+            <span className={styles.passengerKey}>Departure Date: </span>
             {dayjs(flightInfo?.departDate as Date).format("YYYY-MM-DD")}
           </div>
-          <div className={styles.flightInfoValue}>
-            <span className={styles.flightInfoKey}>Airport of Origin: </span>
+          <div className={styles.passengerValue}>
+            <span className={styles.passengerKey}>Airport of Origin: </span>
             {flightInfo?.arrivalAirportPrimary}
           </div>
-          <div className={styles.flightInfoValue}>
-            <span className={styles.flightInfoKey}>
+          <div className={styles.passengerValue}>
+            <span className={styles.passengerKey}>
               Alternate Airport of Origin:{" "}
             </span>
             {flightInfo?.arrivalAirportAlternate}
           </div>
-          <div className={styles.flightInfoValue}>
-            <span className={styles.flightInfoKey}>Destination Airport: </span>
+          <div className={styles.passengerValue}>
+            <span className={styles.passengerKey}>Destination Airport: </span>
             {flightInfo?.arrivalAirportPrimary}
           </div>
-          <div className={styles.flightInfoValue}>
-            <span className={styles.flightInfoKey}>
+          <div className={styles.passengerValue}>
+            <span className={styles.passengerKey}>
               Alternate Destination Airport:{" "}
             </span>
             {flightInfo?.arrivalAirportAlternate}
           </div>
-          <div className={styles.flightInfoValue}>
-            <span className={styles.flightInfoKey}>Return Date: </span>
+          <div className={styles.passengerValue}>
+            <span className={styles.passengerKey}>Return Date: </span>
             {dayjs(flightInfo?.departDate as Date).format("YYYY-MM-DD")}
           </div>
         </div>
-        <Divider />
+        <hr className={styles.subtitleDivider} />
         <div className={styles.flightInfoContainer}>
-          <h4>Treatment Info</h4>
-          <div className={styles.flightInfoValue}>
-            <span className={styles.flightInfoKey}>
+          <div className={styles.detailsHeader}>Treatment Information</div>
+          <div className={styles.passengerValue}>
+            <span className={styles.passengerKey}>
               Scheduled Medical Appointment Date:{" "}
             </span>
             {treatmentInfo?.ScheduledMedicalAppointmentDate}
           </div>
 
-          <div className={styles.flightInfoValue}>
-            <span className={styles.flightInfoKey}>
+          <div className={styles.passengerValue}>
+            <span className={styles.passengerKey}>
               Full Name of Treatment Site:{" "}
             </span>
             {treatmentInfo?.FullNameOfTreatmentSite}
           </div>
-          <div className={styles.flightInfoValue}>
-            <span className={styles.flightInfoKey}>
+          <div className={styles.passengerValue}>
+            <span className={styles.passengerKey}>
               Full Name of Primary Treatment Site Doctor:{" "}
             </span>
             {treatmentInfo?.FullNameOfPrimaryTreatmentSiteDoctor}
           </div>
         </div>
-        <Divider />
         <div className={styles.submitContainer}>
-          <Button text="Submit Request" onClick={() => setOpenConfirm(true)} />
+          <Button
+            variant={ButtonVariant.Continue}
+            text="Submit Request"
+            onClick={() => setOpenConfirm(true)}
+          />
         </div>
       </div>
     </>

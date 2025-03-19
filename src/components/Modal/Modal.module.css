@@ -19,7 +19,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--miracle-color-white);
-  border-radius: var(--border-radius-medium);
+  border-radius: 20px;
   box-shadow: var(--box-shadow);
 }
 
@@ -43,8 +43,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center; /* Align items vertically */
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--miracle-color-medium-light); /* Light grey line at the bottom */
 }
 
 .ModalHeaderText {
