@@ -4,7 +4,7 @@ import { formatDate, getAge } from "../../../../util/date.util";
 import PatientDetailsModal from "../PatientDetailsModal/PatientDetailsModal";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChildReaching } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import type { PatientProps } from "./PatientCard.definitions";
 
 /**
@@ -30,16 +30,14 @@ const Patient = ({ patient }: PatientProps) => {
       <div className={styles.patientCard} onClick={() => setModal(true)}>
         <div className={styles.imgAndInfo}>
           <div className={styles.imgContainer}>
-            <FontAwesomeIcon
-              icon={faChildReaching}
-              className={styles.childIcon}
-            />
+            <FontAwesomeIcon icon={faUser} className={styles.childIcon} />
           </div>
           <div className={styles.info}>
             <div className={styles.name}>
               {patient["First Name"]} {patient["Last Name"]}
             </div>
             <div className={styles.dob}>
+              <span>{patient["Gender"]} | </span>
               <span>DOB: </span>
               <span>{formatDate(patient["Date of Birth"])}</span>
               <span className={styles.boldText}>
@@ -49,7 +47,7 @@ const Patient = ({ patient }: PatientProps) => {
               </span>
             </div>
             <div className={styles.medCondition}>
-              <span>Medical Condition: </span>
+              <span>Medical Condition: {patient["Diagnoses"]}</span>
             </div>
           </div>
         </div>
