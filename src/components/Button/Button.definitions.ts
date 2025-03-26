@@ -17,6 +17,7 @@ export enum ButtonVariant {
   Large = "Large",
   Login = "Login",
   Signup = "Signup",
+  Continue = "Continue",
 }
 
 export enum ButtonColor {

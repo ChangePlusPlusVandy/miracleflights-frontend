@@ -9,9 +9,10 @@
   width: 264px;
   height: 53px;
   padding: 0.625rem;
-  border: 0.8px solid var(--miracle-color-medium);
+  border: 0.8px solid black;
   transition: 0.2s ease-in-out;
   font-family: "Inter", sans-serif;
+  font-size: 14px;
   border-radius: 5px;
   box-sizing: border-box;
   padding-right: 2rem;
@@ -46,10 +47,10 @@
 
 .label {
   font-family: "Inter", sans-serif;
-  font-size: 0.75rem;
+  font-size: 14px;
   font-weight: 500;
-  margin: 0rem 0rem 0.125rem 0.3125rem;
-  color: var(--miracle-color-medium-dark);
+  margin-bottom: 10px;
+  color: black;
 }
 
 .error-text {
