@@ -3,6 +3,7 @@ import styles from "./FlightTimeSelector.module.css";
 import "../../../../styles/Calendar.css";
 import Icon from "../../../../components/CustomIcon/Icon.tsx";
 import Button from "../../../../components/Button/Button.tsx";
+import { ButtonVariant } from "../../../../components/Button/Button.definitions";
 import DatePicker from "react-calendar";
 import { useState } from "react";
 import type {
@@ -70,9 +71,10 @@ const FlightTimeSelector = ({
   return (
     <div>
       <div className={styles.flightSelectorContainer}>
-        <div className={styles.flightSelectorBlockHeader}>Request a Flight</div>
+        <div className={styles.flightSelectorBlockHeader}>Request a Trip</div>
         <div className={styles.flightSelectorBlockSubtitle}>
-          Choose your top two airport preferences as well as your trip dates.
+          Select your top two airport preferences, trip dates, and accompanying
+          companions.
         </div>
         <hr className={styles.subtitleDivider} />
         <form className={styles.flightSelectorBlockContent}>
@@ -226,9 +228,10 @@ const FlightTimeSelector = ({
             )}
           </div>
           <Button
+            variant={ButtonVariant.Continue}
             onClick={handleSubmit}
             disabled={submitDisabled()}
-            text={"Submit "}
+            text={"Submit"}
           />
           <div className={styles.submitErrorMessage}>
             {submitDisabled() && "Please fill out all required fields"}
