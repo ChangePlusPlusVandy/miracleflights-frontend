@@ -1,15 +1,17 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 15rem;
-  height: 15rem;
-  padding: 2rem;
-  border: 0.05rem solid var(--miracle-color-gray);
+  justify-content: space-evenly;
+  width: 20rem;
+  height: 10rem;
+  padding: 1rem;
+  border: 0.125rem solid var(--miracle-color-blue);
   border-radius: 1rem;
-  background: var(--passenger-card-gradient);
+  background: rgba(210, 221, 240, 0.26);
 }
 .container:hover {
-  background: var(--passenger-card-gradient-hover);
+  /* background: var(--passenger-card-gradient-hover); */
+  background: rgba(var(--miracle-color-blue), 0.7);
   cursor: pointer;
 }
 .line {
@@ -21,27 +23,27 @@
 
 .name {
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 600;
   color: var(--miracle-color-dark);
   margin-top: 1rem;
 }
 
 .relationship {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--miracle-color-medium);
+  font-size: 1rem;
+  font-weight: 600;
+  /* color: var(--miracle-color-medium); */
 }
 
 .birthContainer {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  margin-top: 3rem;
+  margin-top: 3rem; */
 }
 
 .title {
   font-size: 1rem;
   font-weight: 300;
-  color: var(--miracle-color-medium);
+  /* color: var(--miracle-color-medium); */
 }
 
 .birth {
