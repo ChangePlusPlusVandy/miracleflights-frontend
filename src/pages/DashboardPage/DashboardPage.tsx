@@ -5,29 +5,40 @@ import { Tabs } from "../../layout/SideBar/SideBar.definitions";
 import { getDashboardData } from "../../api/queries";
 import Divider from "../../components/Divider/Divider";
 import { DividerSpacing } from "../../components/Divider/Divider.definitions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth, useUser } from "@clerk/clerk-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
 import type { DashboardData } from "./DashboardPage.definitions";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const DashboardPage = () => {
   const { setCurrentTab } = useNavigationContext();
   const { getToken } = useAuth();
   const { user } = useUser();
-  const navigate = useNavigate();
 
   const images = [
-    "src/pages/DashboardPage/components/MF_1.jpeg",
+    "src/pages/DashboardPage/components/MF_5.jpeg",
     "src/pages/DashboardPage/components/MF_2.jpeg",
     "src/pages/DashboardPage/components/MF_3.jpeg",
     "src/pages/DashboardPage/components/MF_4.jpeg",
-    "src/pages/DashboardPage/components/MF_5.jpeg",
+    "src/pages/DashboardPage/components/MF_1.jpeg",
     "src/pages/DashboardPage/components/MF_7.png",
     "src/pages/DashboardPage/components/MF_8.webp",
   ];
+
+  const PrevArrow = (props: any) => (
+    <button onClick={props.onClick} className={styles.prevArrow}>
+      ◀
+    </button>
+  );
+
+  const NextArrow = (props: any) => (
+    <button onClick={props.onClick} className={styles.nextArrow}>
+      ▶
+    </button>
+  );
 
   const { data: dashboardData, isLoading: dashboardLoading } =
     useQuery<DashboardData>({
@@ -35,6 +46,8 @@ const DashboardPage = () => {
       queryFn: async () => getDashboardData(await getToken()),
       enabled: true,
     });
+
+  console.log("dashboardData:", dashboardData);
 
   useEffect(() => {
     setCurrentTab(Tabs.HOME);
@@ -50,62 +63,42 @@ const DashboardPage = () => {
         <div className={styles.dashboardTitle}>
           Welcome back, {user?.firstName}!
         </div>
-        <Divider spacing={DividerSpacing.LARGE} />
-        <div className={styles.CardsContainer}>
-          <div className={styles.cardStyle}>
-            <div className={styles.flightNumber}>
-              {dashboardData?.["Flights Today"]}
+        <div className={styles.contentContainer}>
+          <div className={styles.imageContainer}>
+            <Slider
+              dots={true}
+              infinite={true}
+              speed={500}
+              slidesToShow={1}
+              slidesToScroll={1}
+              arrows={true}
+              prevArrow={<PrevArrow />}
+              nextArrow={<NextArrow />}
+            >
+              {images.map((src, index) => (
+                <div key={index} className={styles.imageWrapper}>
+                  <img
+                    src={src}
+                    alt={`Slide ${index + 1}`}
+                    className={styles.image}
+                  />
+                </div>
+              ))}
+            </Slider>
+          </div>
+          <div className={styles.infoContainer}>
+            <div className={styles.upperCardContainer}>
+              <div className={styles.numberText}>
+                {dashboardData?.["All Total Flights"]}
+              </div>
+              <div className={styles.bottomText}>Total Flights</div>
             </div>
-            <div className={styles.flightsToday}>FLIGHTS TODAY</div>
-          </div>
-          <div className={styles.cardStyle}>
-            <div className={styles.flightNumber}>
-              {(Number(dashboardData?.["Flights This Week"]) || 0) +
-                (Number(dashboardData?.["Flights Today"]) || 0)}
+            <div className={styles.lowerCardContainer}>
+              <div className={styles.numberText}>
+                {dashboardData?.["Flights This Week"]}
+              </div>
+              <div className={styles.bottomText}>Flights This Week</div>
             </div>
-            <div className={styles.flightsWeek}>FLIGHTS THIS WEEK </div>
-          </div>
-          <div className={styles.cardStyle}>
-            <div className={styles.flightNumber}>
-              {dashboardData?.["All Total Flights"]}
-            </div>
-            <div className={styles.flightsEver}>FLIGHTS TOTAL</div>
-          </div>
-        </div>
-        <Divider spacing={DividerSpacing.LARGE} />
-        <h4>Take a look into Miracle Flights: </h4>
-        <Rotunda images={images} />
-        <Divider spacing={DividerSpacing.LARGE} />
-        <div className={styles.CardsContainer}>
-          <div
-            className={styles.quickLinkContainer}
-            onClick={() => navigate("/request")}
-          >
-            <div className={styles.quickLinkText}>REQUEST FLIGHT</div>
-            <FontAwesomeIcon
-              className={styles.quickLinkText}
-              icon={faArrowUpRightFromSquare}
-            />
-          </div>
-          <div
-            className={styles.quickLinkContainer}
-            onClick={() => navigate("/passengers")}
-          >
-            <div className={styles.quickLinkText}>PASSENGERS</div>
-            <FontAwesomeIcon
-              className={styles.quickLinkText}
-              icon={faArrowUpRightFromSquare}
-            />
-          </div>
-          <div
-            className={styles.quickLinkContainer}
-            onClick={() => navigate("/trips")}
-          >
-            <div className={styles.quickLinkText}>YOUR TRIPS</div>
-            <FontAwesomeIcon
-              className={styles.quickLinkText}
-              icon={faArrowUpRightFromSquare}
-            />
           </div>
         </div>
       </div>
