@@ -93,7 +93,7 @@
 
 .inputWrapper input:focus,
 .inputWrapper select:focus {
-  border-color: var(--miracle-color-blue-light);
+  border-color: var(--miracle-color-blue);
   outline: none;
 }
 
@@ -125,14 +125,13 @@
 /* Style for the Back button */
 .editActions button[type="button"] {
   background-color: white;
-  color: var(
-    --miracle-color-blue-light
-  ); /* Example blue color from the image */
-  border: 2px solid var(--miracle-color-blue-light); /* Matching border */
+  color: var(--miracle-color-blue); /* Example blue color from the image */
+  border: 2px solid var(--miracle-color-blue); /* Matching border */
   border-radius: 20px; /* Rounded corners */
   padding: 10px 20px; /* Adjust padding for size */
   font-size: 0.5rem; /* Adjust font size */
   cursor: pointer;
+  opacity: 1;
   transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
@@ -141,13 +140,14 @@
 
 /* Style for the Save button */
 .editActions button[type="submit"] {
-  background-color: var(--miracle-color-blue-light); /* Example blue color */
+  background-color: var(--miracle-color-blue); /* Example blue color */
   color: white;
   border: none;
   border-radius: 20px; /* Rounded corners */
   padding: 10px 20px; /* Adjust padding for size */
   font-size: 0.5rem; /* Adjust font size */
   cursor: pointer;
+  opacity: 1;
   transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
