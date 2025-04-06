@@ -4,8 +4,9 @@ import type { UploadPassengerPageModalProps } from "./UploadPassengerPageModal.d
 
 const UploadPassengerPageModal = ({
   isOpen,
-  documentType,
   passengersData,
+  onPassengerFileSubmit,
+  onBack,
 }: UploadPassengerPageModalProps) => {
   if (!isOpen) return null;
 
@@ -13,21 +14,33 @@ const UploadPassengerPageModal = ({
   //   onUploadSuccess();
   // };
 
+  const handleFileFromPassenger = (file: File, passengerId: string) => {
+    onPassengerFileSubmit(file, passengerId);
+  };
+
+  const handleBack = () => {
+    onBack();
+  };
+
   return (
     <div className={styles.documentsMainDiv}>
-      <h1 className={styles.uploadTitle}>
-        Upload Passenger Birth Certificate{documentType}
-      </h1>
+      <button className={styles.backButton} onClick={handleBack}>
+        ← Back
+      </button>
+      <h1 className={styles.uploadTitle}>Upload Passenger Birth Certificate</h1>
       <p className={styles.uploadData}>
         Please select the passenger under 18 for whom you are uploading a birth
         certificate.
       </p>
       <div className={styles.uploadMainDiv}>
         {passengersData
-          .filter((passenger) => passenger.Age < 18) // 👈 Only keep those under 18
+          .filter((passenger) => passenger.Age < 18)
           .map((passenger, index) => (
             <div className={styles.passengerCard} key={index}>
-              <UploadPassengerCard passenger={passenger} />
+              <UploadPassengerCard
+                passenger={passenger}
+                onSendFile={handleFileFromPassenger}
+              />
             </div>
           ))}
       </div>

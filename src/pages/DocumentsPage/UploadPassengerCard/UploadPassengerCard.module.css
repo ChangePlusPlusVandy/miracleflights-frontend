@@ -1,10 +1,10 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   box-sizing: border-box;
-  width: 16srem;
-  height: 16rem;
+  width: 20rem;
+  height: 20rem;
   padding: 1rem;
   border: 0.125rem solid var(--miracle-color-blue);
   border-radius: 1rem;
@@ -27,6 +27,7 @@
   font-weight: 600;
   color: var(--miracle-color-dark);
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .relationship {
@@ -39,6 +40,7 @@
   /* display: flex;
   flex-direction: column;
   margin-top: 3rem; */
+  margin-bottom: 2rem;
 }
 
 .title {
@@ -63,9 +65,28 @@
   margin-right: 10px;
 }
 
+.fileButton {
+  color: #4a4a4a;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid #c3c3c3;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.fileButton:hover {
+  background-color: #4a91e242;
+  border: 2px solid #4a90e2;
+  box-shadow: 0 6px 12px #4a91e242;
+}
+
 
 .cardButton {
-  width: 200px;
+  width: 100%;
   height: 50px;
   background-color: white;
   color: #4a4a4a;
@@ -76,10 +97,11 @@
   text-align: center;
   cursor: pointer;
   outline: none;
+  margin-top: 40px;
   transition: all 0.3s ease-in-out;
 }
 
-.container:hover .cardButton {
+.cardButton:hover {
   background-color: #4a91e242;
   border: 2px solid #4a90e2;
   box-shadow: 0 6px 12px #4a91e242;

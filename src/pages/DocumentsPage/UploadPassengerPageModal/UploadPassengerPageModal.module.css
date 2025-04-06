@@ -1,4 +1,5 @@
 .documentsMainDiv {
+  position: relative;
   box-sizing: border-box;
   padding: 4rem;
   height: 100%;
@@ -19,7 +20,7 @@
 .uploadMainDiv {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 3rem;
+  gap: 6rem;
   box-sizing: border-box;
   width: 100%;
   height: auto;
@@ -27,4 +28,26 @@
 
 .passengerCard {
   box-sizing: border-box;
+}
+
+.backButton {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  transform: translateY(10px) translateX(40px);
+  background: none;
+  border: none;
+  color: #0077cc;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+
+.backButton:hover {
+  color: #005fa3;
+  text-decoration: underline;
 }
