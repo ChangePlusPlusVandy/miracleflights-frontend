@@ -62,7 +62,6 @@ const SideBar = ({ isExpanded, onToggleSidebar }: SidebarProps) => {
     { title: Tabs.PASSENGERS, link: "passengers", icon: faPeopleGroup },
     { title: Tabs.DOCUMENTS, link: "documents", icon: faFileAlt },
     { title: Tabs.TRIPS, link: "trips", icon: faPlane },
-    { title: Tabs.NOTIFICATIONS, link: "notifications", icon: faBell },
   ];
 
   const handleClick = (tab: Tab) => {
@@ -80,9 +79,11 @@ const SideBar = ({ isExpanded, onToggleSidebar }: SidebarProps) => {
         >
           <FontAwesomeIcon icon={faBars} />
         </button>
-        {isExpanded && (
-          <img src={logo} alt="Miracle Flights" className={styles.logo} />
-        )}
+        <img
+          src={logo}
+          alt="Miracle Flights"
+          className={` ${!isExpanded ? styles.logoHidden : ""}`}
+        />
       </div>
 
       <div className={styles.profileInfoContainer}>

@@ -7,11 +7,11 @@
   padding: 1rem;
   border: 0.125rem solid var(--miracle-color-blue);
   border-radius: 1rem;
-  background: rgba(210, 221, 240, 0.26);
+  background: #f5f8ff;
 }
 .container:hover {
   /* background: var(--passenger-card-gradient-hover); */
-  background: rgba(var(--miracle-color-blue), 0.7);
+  background: #f6f8fc;
   cursor: pointer;
 }
 .line {

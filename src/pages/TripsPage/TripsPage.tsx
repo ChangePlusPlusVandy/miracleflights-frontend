@@ -105,7 +105,7 @@ const TripsPage = () => {
       <div className={styles.tripsMainTitle}>Trips</div>
       <div className={styles.tripsMainSubtitle}>
         Here, you can easily keep track all of your upcoming flights, manage
-        your bookings, as well as acess completed trips
+        your bookings, as well as access completed trips.
       </div>
       <Divider spacing={DividerSpacing.LARGE} />
       <div className={styles.title}>Upcoming Trips</div>
@@ -269,9 +269,9 @@ const TripsPage = () => {
                             <span style={{ textDecoration: "underline" }}>
                               Copy Link
                             </span>
-                            &apos; button to access the external link containing the
-                            form and also to send it to a relevant doctor later
-                            on.
+                            &apos; button to access the external link containing
+                            the form and also to send it to a relevant doctor
+                            later on.
                           </h5>
                           <button
                             className={styles.copyLinkButton}

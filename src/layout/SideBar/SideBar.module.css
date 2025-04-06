@@ -239,3 +239,8 @@
   gap: 1rem;
   width: 100%;
 }
+
+.logoHidden {
+  opacity: 0;
+  visibility: hidden;
+}
