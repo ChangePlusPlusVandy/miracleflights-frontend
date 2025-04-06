@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  width: 16srem;
+  height: 16rem;
+  padding: 1rem;
+  border: 0.125rem solid var(--miracle-color-blue);
+  border-radius: 1rem;
+  background: rgba(210, 221, 240, 0.26);
+  transition: 0.3s ease-in-out;
+}
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.line {
+  width: 25%;
+  height: 0.05rem;
+  background: var(--miracle-color-gray);
+  margin: 0.5rem 0;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--miracle-color-dark);
+  margin-top: 1rem;
+}
+
+.relationship {
+  font-size: 1rem;
+  font-weight: 600;
+  /* color: var(--miracle-color-medium); */
+}
+
+.birthContainer {
+  /* display: flex;
+  flex-direction: column;
+  margin-top: 3rem; */
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 300;
+  /* color: var(--miracle-color-medium); */
+}
+
+.birth {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.passengerSectionHeader {
+  display: inline-flex;
+  align-items: center; /* Align items vertically in the center */
+  justify-content: space-between; /* Spreads the items to fill the container */
+  flex-direction: column;
+}
+
+.subheader {
+  margin-right: 10px;
+}
+
+
+.cardButton {
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  color: #4a4a4a;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid #c3c3c3;
+  border-radius: 25px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.container:hover .cardButton {
+  background-color: #4a91e242;
+  border: 2px solid #4a90e2;
+  box-shadow: 0 6px 12px #4a91e242;
+}

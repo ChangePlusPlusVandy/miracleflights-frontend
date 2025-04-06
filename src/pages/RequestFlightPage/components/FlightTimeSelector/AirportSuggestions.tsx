@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import styles from "./FlightTimeSelector.module.css";
+import { useEffect, useState } from "react";
 
 interface AirportSuggestionsProps {
   placeholder: string;

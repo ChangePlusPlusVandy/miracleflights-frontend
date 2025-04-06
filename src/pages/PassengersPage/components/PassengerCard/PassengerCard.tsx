@@ -1,9 +1,9 @@
 import styles from "./PassengerCard.module.css";
 // import PassengerDetailsModal from "../PassengerDetailsModal/PassengerDetailsModal";
-import { useState } from "react";
-import type { PassengerCardProps } from "./PassengerCard.definitions";
 import PassengerDetailsModal from "../PassengerDetailsModal/PassengerDetailsModal";
 import { formatDate, getAge } from "../../../../util/date.util";
+import { useState } from "react";
+import type { PassengerCardProps } from "./PassengerCard.definitions";
 
 const PassengerCard = ({ passenger }: PassengerCardProps) => {
   const [modal, setModal] = useState(false);

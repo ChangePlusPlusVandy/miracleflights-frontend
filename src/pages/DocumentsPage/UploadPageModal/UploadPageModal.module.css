@@ -1,0 +1,123 @@
+.documentsMainDiv {
+  box-sizing: border-box;
+  padding: 4rem;
+  height: 100%;
+}
+
+.uploadTitle {
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+
+.uploadData {
+  font-size: 1.1rem;
+  font-weight: 300px;
+  margin-bottom: 40px;
+}
+
+.uploadMainDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+}
+
+.uploadMainImage{
+  width: 40%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.uploadMainImage img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.uploadChoiceContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  box-sizing: border-box;
+  width: 55%;
+  height: 95%;
+  background: rgba(210, 221, 240, 0.35);
+  border-radius: 15px;
+  text-align: center;
+  padding: 20px;
+}
+
+.optionTitleDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.uploadIcon{
+  display: block;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.optionTitle {
+  font-size: 1.625rem;
+  font-weight: 600;
+  margin: 20px;
+}
+
+.uploadChoices{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  height: 70%;
+  width: 100%;
+  padding: 20px;
+}
+
+.uploadChoice{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 45%;
+  width: 85%;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(166, 165, 165, 0.15);
+  text-align: center;
+  padding: 20px;
+  border: 2px dashed rgba(135, 135, 135, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.uploadChoice:hover {
+  transform: scale(103%);
+  background-color: #4a91e242;
+  border: 2px dashed #4a90e2;
+  box-shadow: 0 6px 12px #4a91e242;
+}
+
+.choiceTitle {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.choiceText{
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: rgb(135, 135, 135);
+}
