@@ -1,54 +1,173 @@
-.patientText {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--miracle-color-gray);
-}
-
-.buttonOptions {
+/* View Mode Styles */
+.infoContainer {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.patientLabel {
-  font-size: 0.8rem;
+.mainContent {
+  flex: 1;
+}
+
+.infoRow {
+  display: flex;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+}
+
+.infoLabel {
+  font-weight: 500;
+  width: 45%;
+  color: #333;
+}
+
+.infoValue {
+  flex: 1;
+  color: #000;
   font-weight: 700;
-  color: var(--miracle-color-medium);
-  margin-bottom: 0rem;
 }
 
-.patientGroup {
+/* Edit Mode Styles */
+.editContainer {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 1rem;
+  width: 100%;
+  position: relative;
+  padding-bottom: 20px;
 }
 
-.marginBottom {
-  margin-bottom: 1rem;
-}
-
-.patientRow {
+.editRow {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: 2rem; /* Adjust the value as needed */
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.editGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroupFull {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+}
+
+.formLabel {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.inputWrapper {
+  width: 100%;
+  position: relative;
+}
+
+/* Apply styles to the input and select elements */
+.inputWrapper input,
+.inputWrapper select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.inputWrapper input:focus,
+.inputWrapper select:focus {
+  border-color: var(--miracle-color-blue-light);
+  outline: none;
 }
 
 .footer {
   display: flex;
-  flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: center;
+  margin-top: 20px;
 }
 
 .editButton {
-  margin-left: auto;
-  color: var(--miracle-color-medium);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
 }
 
-.editButton:hover {
+.editActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+  justify-content: flex-end;
+}
+
+/* Style for the Back button */
+.editActions button[type="button"] {
+  background-color: white;
+  color: var(
+    --miracle-color-blue-light
+  ); /* Example blue color from the image */
+  border: 2px solid var(--miracle-color-blue-light); /* Matching border */
+  border-radius: 20px; /* Rounded corners */
+  padding: 10px 20px; /* Adjust padding for size */
+  font-size: 0.5rem; /* Adjust font size */
   cursor: pointer;
-  color: var(--miracle-color-yellow);
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* .editActions button[type="button"]:hover {
+  background-color: #e7f3ff; /* Light blue on hover */
+
+/* Style for the Save button */
+.editActions button[type="submit"] {
+  background-color: var(--miracle-color-blue-light); /* Example blue color */
+  color: white;
+  border: none;
+  border-radius: 20px; /* Rounded corners */
+  padding: 10px 20px; /* Adjust padding for size */
+  font-size: 0.5rem; /* Adjust font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.editActions button:hover {
+  opacity: 0.7;
+}
+
+.avatarContainerEdit {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .editGrid {
+    grid-template-columns: fr;
+  }
+
+  .formGroupFull {
+    grid-column: auto;
+  }
 }

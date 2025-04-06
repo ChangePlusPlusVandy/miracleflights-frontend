@@ -5,8 +5,8 @@ import Input from "../../../../components/Input/Input";
 import { ButtonColor } from "../../../../components/Button/Button.definitions";
 import Button from "../../../../components/Button/Button";
 import Select from "../../../../components/Select/Select";
-import { COUNTRIES } from "../../../../util/constants.util";
-import { updatePassenger } from "../../../../api/queries";
+import { formatDate, getAge } from "../../../../util/date.util";
+import { updatePatient } from "../../../../api/queries";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -23,45 +23,18 @@ const PatientDetailsModal = ({
   const queryClient = useQueryClient();
   const { getToken } = useAuth();
 
-  const { mutate: updatePassengerMutate } = useMutation({
-    mutationFn: async (data: PatientFormData) =>
-      updatePassenger(data, patient["AirTable Record ID"], await getToken()),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["passenger"],
-      });
-      queryClient.invalidateQueries({
-        queryKey: ["accompanyingPassengers"],
-      });
-    },
-  });
-
-  interface PatientFormData {
-    Street: string;
-    Country: string;
-    Email: string;
-    Gender: string;
-    DateOfBirth: string;
-    MilitaryService: string;
-    Notes?: string;
-  }
-
-  // Define the validation schema using Yup
   const schema = yup.object().shape({
+    Street: yup.string().required("Street is required"),
     Email: yup
       .string()
       .email("Invalid email format")
       .required("Email is required"),
-    Street: yup.string().required("Street is required"),
-    Country: yup.string().required("Country is required"),
     Gender: yup.string().required("Gender is required"),
     DateOfBirth: yup.string().required("Date of Birth is required"),
     MilitaryService: yup.string().required("Military status is required"),
-    Notes: yup.string(),
-    // Add other field validations as needed
+    CellPhone: yup.string().required("Phone number is required"),
   });
 
-  // Initialize the form with default values and Yup validation schema
   const {
     register,
     handleSubmit,
@@ -71,205 +44,243 @@ const PatientDetailsModal = ({
     resolver: yupResolver(schema),
     defaultValues: {
       Street: patient["Street"],
-      Country: patient["Country"],
       Email: patient["Email"],
       Gender: patient["Gender"],
       DateOfBirth: patient["Date of Birth"],
       MilitaryService: patient["Military Service"],
-      Notes: patient["Notes"],
-      // Add other fields as needed
+      CellPhone: patient["Cell Phone"],
     },
   });
 
-  // Handler for form submission
-  const onSubmit = (data: PatientFormData) => {
-    updatePassengerMutate(data);
-    setEditMode(false);
+  interface PatientFormData {
+    Street: string;
+    Relationship?: string;
+    Email: string;
+    Gender: string;
+    DateOfBirth: string;
+    MilitaryService: string;
+    CellPhone: string;
+  }
+
+  const { mutate } = useMutation({
+    mutationFn: async (data: PatientFormData) => {
+      const token = await getToken();
+      return updatePatient(
+        {
+          ...data,
+        },
+        patient["AirTable Record ID"],
+        token,
+      );
+    },
+    onSuccess: () => {
+      setEditMode(false);
+      onClose();
+      queryClient.invalidateQueries({
+        queryKey: ["passenger"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["accompanyingPassengers"],
+      });
+    },
+  });
+
+  const onSubmit = async (formData: PatientFormData) => {
+    const apiData = {
+      Street: formData.Street,
+      Relationship: formData.Relationship,
+      Email: formData.Email,
+      DateOfBirth: formData.DateOfBirth,
+      MilitaryService: formData.MilitaryService,
+      Gender: formData.Gender,
+      CellPhone: formData.CellPhone,
+    };
+
+    mutate(apiData);
   };
 
-  useEffect(() => {
-    reset({
-      Street: patient["Street"],
-      Country: patient["Country"],
-      Email: patient["Email"],
-      Gender: patient["Gender"],
-      DateOfBirth: patient["Date of Birth"],
-      MilitaryService: patient["Military Service"],
-      Notes: patient["Notes"],
-    });
-  }, [patient, reset]);
-
   return (
-    <>
-      <Modal
-        body={
-          <>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className={`${styles.patientRow} ${styles.marginBottom}`}>
-                <div>
-                  <span className={styles.patientLabel}>Gender</span>
-                  {!editMode ? (
-                    <div>
-                      <span className={styles.patientText}>
-                        {patient["Gender"]}
-                      </span>
-                    </div>
-                  ) : (
-                    <Select
-                      name="Gender"
-                      register={register}
-                      placeholder="Select Gender"
-                      options={["Male", "Female"]}
-                    />
-                  )}
+    <Modal
+      body={
+        <form
+          onSubmit={handleSubmit((data) => {
+            onSubmit(data);
+          })}
+        >
+          {!editMode ? (
+            // View Mode
+            <div className={styles.infoContainer}>
+              <div className={styles.mainContent}>
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Gender:</div>
+                  <div className={styles.infoValue}>{patient["Gender"]}</div>
                 </div>
-                <div>
-                  <span className={styles.patientLabel}>DOB</span>
-                  {!editMode ? (
-                    <div>
-                      <span className={styles.patientText}>
-                        {patient["Date of Birth"]}
-                      </span>
-                    </div>
-                  ) : (
-                    <Input
-                      name="DateOfBirth"
-                      register={register}
-                      placeholder="YYYY-MM-DD"
-                      type="date"
-                    />
-                  )}
-                </div>
-              </div>
-              {/* make another patient group for address where each line of the address is separated */}
 
-              <div className={styles.patientGroup}>
-                <span className={styles.patientLabel}>Street</span>{" "}
-                {!editMode && (
-                  <>
-                    <span className={styles.patientText}>
-                      {patient["Street"]}
-                    </span>
-                    <span className={styles.patientText}>
-                      {patient["Country"]}
-                    </span>
-                  </>
-                )}
-                {editMode && (
-                  <>
-                    <Input
-                      name="Street"
-                      register={register}
-                      type="text"
-                      placeholder="Street"
-                      defaultValue={patient["Street"]}
-                      error={errors.Street?.message} // Display the error message
-                    />
-                    <Select
-                      name="Country"
-                      register={register}
-                      label="Country"
-                      placeholder="Select Country"
-                      options={COUNTRIES}
-                    />
-                  </>
-                )}
-              </div>
-              <div className={styles.patientGroup}>
-                <span className={styles.patientLabel}>Email</span>{" "}
-                {!editMode && (
-                  <span className={styles.patientText}>{patient["Email"]}</span>
-                )}
-                {editMode && (
-                  <Input
-                    name="Email"
-                    register={register}
-                    type="text"
-                    placeholder="Email"
-                    defaultValue={patient["Email"]}
-                    error={errors.Email?.message} // Display the error message
-                  />
-                )}
-              </div>
-              <div className={styles.patientGroup}>
-                <span className={styles.patientLabel}>Military</span>
-                {!editMode ? (
-                  <span className={styles.patientText}>
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Age:</div>
+                  <div className={styles.infoValue}>
+                    {getAge(patient["Date of Birth"])}
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Date of Birth (DOB):</div>
+                  <div className={styles.infoValue}>
+                    {formatDate(patient["Date of Birth"])}
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Phone Number:</div>
+                  <div className={styles.infoValue}>
+                    {patient["Cell Phone"]}
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Email:</div>
+                  <div className={styles.infoValue}>{patient["Email"]}</div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Address:</div>
+                  <div className={styles.infoValue}>
+                    {`${patient["Street"]}, ${patient["Country"]}`}
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Military:</div>
+                  <div className={styles.infoValue}>
                     {patient["Military Service"]}
-                  </span>
-                ) : (
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Number of Flight Legs:</div>
+                  <div className={styles.infoValue}>
+                    {patient["# of Flight Legs"]}
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>
+                    Number of Booked Flight Requests:
+                  </div>
+                  <div className={styles.infoValue}>
+                    {patient["# of Booked Flight Requests"]}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            // Edit Mode
+            <div className={styles.editGrid}>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Phone Number</label>
+                <div className={styles.inputWrapper}>
+                  <Input
+                    name="CellPhone"
+                    register={register}
+                    defaultValue={patient["Cell Phone"]}
+                    type="tel"
+                    placeholder="Phone Number"
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Date of Birth (DOB):</label>
+                <div className={styles.inputWrapper}>
+                  <Input name="DateOfBirth" register={register} type="date" />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Gender:</label>
+                <div className={styles.inputWrapper}>
+                  <Select
+                    name="Gender"
+                    register={register}
+                    placeholder="Select Gender"
+                    options={["Male", "Female"]}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Military Status:</label>
+                <div className={styles.inputWrapper}>
                   <Select
                     name="MilitaryService"
                     register={register}
                     placeholder="Select Status"
-                    options={["Active", "Veteran", "Not applicable"]}
+                    options={["Active", "Veteran", "Not Applicable"]}
                   />
-                )}
-              </div>
-              <div className={styles.patientRow}>
-                <div className={styles.patientGroup}>
-                  <span className={styles.patientLabel}># of Flight Legs</span>{" "}
-                  <span className={styles.patientText}>
-                    {patient["# of Flight Legs"]}
-                  </span>
-                </div>
-                <div className={styles.patientGroup}>
-                  <span className={styles.patientLabel}>
-                    # of Booked Flight Requests
-                  </span>{" "}
-                  <span className={styles.patientText}>
-                    {patient["# of Booked Flight Requests"]}
-                  </span>
                 </div>
               </div>
-              <div className={styles.patientGroup}>
-                <span className={styles.patientLabel}>Notes</span>
-                {!editMode ? (
-                  <span className={styles.patientText}>
-                    {patient["Notes"] || "Notes go here"}
-                  </span>
-                ) : (
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Email:</label>
+                <div className={styles.inputWrapper}>
                   <Input
-                    name="Notes"
+                    name="Email"
                     register={register}
-                    type="text"
-                    placeholder="Notes go here"
-                    defaultValue={patient["Notes"]}
+                    defaultValue={patient["Email"]}
+                    type="email"
                   />
-                )}
+                </div>
               </div>
-              <div className={styles.footer}>
-                {!editMode && (
-                  <div
-                    className={styles.editButton}
-                    onClick={() => {
-                      setEditMode(!editMode);
-                    }}
-                  >
-                    <Icon glyph="edit" />
-                  </div>
-                )}
-                {editMode && (
-                  <div className={styles.buttonOptions}>
-                    <Button
-                      onClick={() => {
-                        reset(), setEditMode(false);
-                      }}
-                      text="Exit"
-                      color={ButtonColor.Red}
-                      type="button"
-                    />
-                    <Button text="Save" type="submit" />
-                  </div>
-                )}
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Address</label>
+                <div className={styles.inputWrapper}>
+                  <Input
+                    name="Street"
+                    register={register}
+                    defaultValue={patient["Street"]}
+                    type="text"
+                    placeholder="Street Address"
+                  />
+                </div>
               </div>
-            </form>
-          </>
-        }
-        header={patient["First Name"] + " " + patient["Last Name"]}
-        action={onClose}
-      />
-    </>
+            </div>
+          )}
+
+          <div className={styles.footer}>
+            {!editMode ? (
+              <div
+                className={styles.editButton}
+                onClick={() => {
+                  setEditMode(true);
+                }}
+              >
+                <Icon glyph="edit" />
+              </div>
+            ) : (
+              <div className={styles.editActions}>
+                <Button
+                  onClick={() => {
+                    reset();
+                    setEditMode(false);
+                  }}
+                  text="Back"
+                  color={ButtonColor.White}
+                  type="button"
+                />
+                <Button text="Save" type="submit" />
+              </div>
+            )}
+          </div>
+        </form>
+      }
+      header={
+        !editMode
+          ? patient["Full Name"]
+          : `Edit Information for ${patient["Full Name"]}`
+      }
+      action={onClose}
+    />
   );
 };
 

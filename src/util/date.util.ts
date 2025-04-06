@@ -40,12 +40,33 @@ export const getAge = (dateOfBirth: string) => {
  * @param date the date to format
  * @returns a string in the format MM/DD/YYYY
  */
-export const formatDate = (date: string | Date) => {
-  return new Date(date).toLocaleDateString("en-US", {
-    month: "2-digit",
-    day: "2-digit",
-    year: "numeric",
-  });
+export const formatDate = (
+  dateString: string | number | Date | null | undefined,
+): string => {
+  if (!dateString) {
+    return "";
+  }
+
+  // Important: Parsing non-ISO strings like "MM/DD/YYYY" is unreliable.
+  // Prefer ISO format "YYYY-MM-DD" for inputs if possible.
+  // new Date('2003-01-01') is generally interpreted as UTC midnight.
+  // new Date('01/01/2003') interpretation can vary more between environments.
+  const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    console.error("Invalid date string provided:", dateString);
+    return "";
+  }
+
+  // Use UTC methods to avoid local timezone shifts
+  const month = date.getUTCMonth() + 1; // getUTCMonth is 0-indexed
+  const day = date.getUTCDate(); // getUTCDate is 1-indexed
+  const year = date.getUTCFullYear();
+
+  const formattedMonth = String(month).padStart(2, "0");
+  const formattedDay = String(day).padStart(2, "0");
+
+  return `${formattedMonth}/${formattedDay}/${year}`;
 };
 
 /**
