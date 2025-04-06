@@ -57,14 +57,14 @@ const PassengersPage = () => {
       <p className={styles.description}>
         Here, you can access all related patient data and companion information.
       </p>
-
+      <hr className={styles.subtitleDivider} />
       <div className={styles.section}>
         <h3 className={styles.sectionHeader}>Patient Information</h3>
         <div className={styles.patientCard}>
           <PatientCard patient={patientData} />
         </div>
       </div>
-
+      <hr className={styles.subtitleDivider} />
       <div className={styles.companionHeader}>
         <h3 className={styles.sectionHeader}>Companion Information</h3>
         <button

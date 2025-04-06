@@ -1,18 +1,18 @@
 .tripsMainTitle {
-  font-size: 1.875rem;
+  margin-bottom: 24px;
+  font-size: 30px;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
-  margin-bottom: 15px;
-  color: var(--miracle-color-dark);
-  opacity: 1;
+  color: black;
 }
 
 .tripsMainSubtitle {
-  display: block;
-  font-size: 0.9375rem;
-  font-weight: 300px;
-  margin-bottom: 15px;
-  color: var(--miracle-color-dark);
-  opacity: 1;
+  color: black;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .title {
@@ -74,13 +74,13 @@
 .departureText {
   font-size: 1.125rem !important;
   font-weight: 600;
-  color: var(--miracle-color-blue);
+  color: #0067dd;
 }
 
 .arrivalText {
   font-size: 1.125rem !important;
   font-weight: 600;
-  color: var(--miracle-color-red);
+  color: #b22a2a;
 }
 
 .statusText {

@@ -80,9 +80,11 @@ const SideBar = ({ isExpanded, onToggleSidebar }: SidebarProps) => {
         >
           <FontAwesomeIcon icon={faBars} />
         </button>
-        {isExpanded && (
-          <img src={logo} alt="Miracle Flights" className={styles.logo} />
-        )}
+        <img
+          src={logo}
+          alt="Miracle Flights"
+          className={` ${!isExpanded ? styles.logoHidden : ""}`}
+        />
       </div>
 
       <div className={styles.profileInfoContainer}>

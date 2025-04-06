@@ -129,7 +129,7 @@ const TripsPage = () => {
       <div className={styles.tripsMainTitle}>Trips</div>
       <div className={styles.tripsMainSubtitle}>
         Here, you can easily keep track all of your upcoming flights, manage
-        your bookings, as well as acess completed trips
+        your bookings, as well as access completed trips.
       </div>
       <Divider spacing={DividerSpacing.LARGE} />
       <div className={styles.title}>Upcoming Trips</div>
