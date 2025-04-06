@@ -1,23 +1,122 @@
 import styles from "./DocumentsPage.module.css";
 import { Tabs } from "../../layout/SideBar/SideBar.definitions";
-import { getDocumentsData } from "../../api/queries";
+import {
+  getPassengers,
+  getAccompanyingPassengers,
+  createPatientFolder,
+  populateAccompanyingPassengersFolder,
+} from "../../api/queries";
 import { useNavigationContext } from "../../context/Navigation.context";
+import { useUserContext } from "../../context/User.context";
+import { formatDate } from "../../util/date.util";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query";
-import type { DocumentsData } from "./Documents.definitions";
+
+import type { PassengerData } from "../../interfaces/passenger.interface";
+import type {
+  AccompanyingPassengerFolderResponse,
+  PopulateFolderResponse,
+} from "../../interfaces/folder-response-interface";
 
 const DocumentsPage = () => {
-  const { setCurrentTab } = useNavigationContext();
   const { getToken } = useAuth();
+  const { currentUser } = useUserContext();
+  const { setCurrentTab } = useNavigationContext();
   const { user } = useUser();
 
-  const { data, isLoading } = useQuery<DocumentsData>({
-    queryKey: ["documents"],
-    queryFn: async () => getDocumentsData(await getToken()),
+  /**
+   * retrieves important information pertaining to patient
+   */
+  const { data: passengerData, isLoading: passengerLoading } =
+    useQuery<PassengerData>({
+      queryKey: ["passenger"],
+      queryFn: async () =>
+        getPassengers(
+          currentUser?.["AirTable Record ID"] || "",
+          await getToken(),
+        ),
+      enabled: true,
+    });
+
+  /**
+   * retrieves important information pertaining to patient's accompanying passengers
+   */
+  const {
+    data: accompanyingPassengerData,
+    isLoading: accompanyingPassengerLoading,
+  } = useQuery<PassengerData[]>({
+    queryKey: ["accompanyingPassengers"],
+    queryFn: async () =>
+      getAccompanyingPassengers(
+        currentUser?.["AirTable Record ID"] || "",
+        await getToken(),
+      ),
     enabled: true,
   });
+
+  /**
+   *
+   */
+  const { data: folderStatus, isLoading: folderStatusLoading } =
+    useQuery<PopulateFolderResponse>({
+      queryKey: [
+        "populate-folder",
+        passengerData?.["First Name"],
+        passengerData?.["Last Name"],
+      ],
+      queryFn: async () => {
+        if (!passengerData) throw new Error("Missing passenger data");
+
+        const patient_name = `${passengerData["First Name"]}_${passengerData["Last Name"]}`;
+        const token = await getToken();
+
+        return createPatientFolder({ patient_name }, token);
+      },
+      enabled: !!passengerData,
+    });
+
+  const {
+    data: accompanyingFolderStatus,
+    isLoading: accompanyingFolderStatusLoading,
+  } = useQuery<AccompanyingPassengerFolderResponse>({
+    queryKey: [
+      "populate-accompanying-folder",
+      passengerData?.["First Name"],
+      passengerData?.["Last Name"],
+      accompanyingPassengerData?.map((p) => p["Full Name"]).join(","),
+    ],
+    queryFn: async () => {
+      if (!passengerData || !accompanyingPassengerData)
+        throw new Error("Missing passenger data");
+
+      const patient_name = `${passengerData["First Name"]}_${passengerData["Last Name"]}`;
+      const accompanying_passengers = accompanyingPassengerData.map(
+        (passenger) => ({
+          fullName: passenger["Full Name"],
+          dob: formatDate(passenger["Date of Birth"]),
+          relationship: passenger["Relationship"],
+        }),
+      );
+      const token = await getToken();
+
+      return populateAccompanyingPassengersFolder(
+        { patient_name, accompanying_passengers },
+        token,
+      );
+    },
+    enabled:
+      !!passengerData &&
+      !!folderStatus &&
+      (accompanyingPassengerData?.length ?? 0) > 0,
+  });
+
+  // const { data, isLoading } = useQuery<DocumentsData>({
+  //   queryKey: ["documents"],
+  //   queryFn: async () => getDocumentsData(await getToken()),
+  //   enabled: true,
+  // });
 
   const [selectedFiles, setSelectedFiles] = useState<
     Record<string, File | null>
@@ -62,7 +161,24 @@ const DocumentsPage = () => {
     }
   };
 
-  if (isLoading || !data)
+  if (
+    passengerLoading ||
+    accompanyingPassengerLoading ||
+    accompanyingFolderStatusLoading ||
+    folderStatusLoading ||
+    !accompanyingPassengerData ||
+    !passengerData ||
+    !folderStatus ||
+    !accompanyingFolderStatus
+  ) {
+    return <div>Loading...</div>;
+  }
+
+  const under18Passengers = accompanyingFolderStatus.results.filter(
+    (passenger) => passenger.under18,
+  );
+
+  {
     return (
       <div>
         <h1 className={styles.flightNumber}>{user?.firstName}</h1>
@@ -78,6 +194,19 @@ const DocumentsPage = () => {
         </div>
 
         <h2>Waiting on you</h2>
+        <div>
+          Patient is {passengerData["First Name"]} {passengerData["Last Name"]}
+        </div>
+        <div>
+          {under18Passengers.map((passenger, index) => (
+            <div key={index}>
+              <p>{passenger.message}</p>
+              <p>{passenger.relationship}</p>
+              <p>{passenger.age}</p>
+              <p>{passenger.dob}</p>
+            </div>
+          ))}
+        </div>
         <div className={styles.cardContainer}>
           <div className={styles.card}>
             <h3>Birth Certificate</h3>
@@ -115,7 +244,10 @@ const DocumentsPage = () => {
         </div>
       </div>
     );
+  }
 
+  // Once all data is loaded, you can choose to render additional UI.
+  // For now, we return null.
   return null;
 };
 

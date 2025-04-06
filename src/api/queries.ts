@@ -1,4 +1,9 @@
 import axios from "axios";
+import type {
+  PopulateFolderResponse,
+  AccompanyingPassenger,
+  AccompanyingPassengerFolderResponse,
+} from "../interfaces/folder-response-interface";
 import type { FlightRequestData } from "../interfaces/flight-request-interface";
 import type { DashboardData } from "../pages/DashboardPage/DashboardPage.definitions";
 import type { PassengerData } from "../interfaces/passenger.interface";
@@ -305,6 +310,50 @@ export const getDocumentsData = (
 ): Promise<DocumentsData> =>
   axios
     .get(`${process.env.VITE_HOST}/documents`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const createPatientFolder = (
+  patientInfo: {
+    patient_name: string;
+  },
+  token?: string | null,
+): Promise<PopulateFolderResponse> =>
+  axios
+    .post(`${process.env.VITE_HOST}/test-populate`, patientInfo, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const populateAccompanyingPassengersFolder = (
+  patientInfo: {
+    patient_name: string;
+    accompanying_passengers: AccompanyingPassenger[]; // format will be fullName and dob
+  },
+  token?: string | null,
+): Promise<AccompanyingPassengerFolderResponse> =>
+  axios
+    .post(`${process.env.VITE_HOST}/test-populate-accompanying`, patientInfo, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const populateTripsFolder = (
+  patientInfo: {
+    patient_name: string;
+    trips: FlightRequestData[];
+  },
+  token?: string | null,
+): Promise<FlightRequestData[]> =>
+  axios
+    .post(`${process.env.VITE_HOST}/test-populate-trips`, patientInfo, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

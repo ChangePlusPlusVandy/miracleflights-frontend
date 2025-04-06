@@ -6,12 +6,12 @@
   width: 40rem;
   border: 0.125rem solid var(--miracle-color-blue);
   border-radius: 2.5rem;
-  background: rgba(210, 221, 240, 0.26);
+  background: #f5f8ff;
 }
 
 .patientCard:hover {
   /* background: var(--passenger-card-gradient-hover); */
-  background: rgba(var(--miracle-color-blue), 0.7);
+  background: #f6f8fc;
   cursor: pointer;
 }
 

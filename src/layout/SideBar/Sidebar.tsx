@@ -3,6 +3,10 @@ import { Tabs, type Tab } from "./SideBar.definitions";
 import { useNavigationContext } from "../../context/Navigation.context";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UserButton, useUser } from "@clerk/clerk-react";
+import logo from "../../public/0GAGNk.tif.png";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 import {
   faHome,
   faPeopleGroup,
@@ -13,6 +17,7 @@ import {
 
 interface SidebarProps {
   isExpanded: boolean;
+  onToggleSidebar: () => void;
 }
 
 const renderTab = (
@@ -47,7 +52,8 @@ const renderTab = (
   );
 };
 
-const SideBar = ({ isExpanded }: SidebarProps) => {
+const SideBar = ({ isExpanded, onToggleSidebar }: SidebarProps) => {
+  const { user } = useUser();
   const navigate = useNavigate();
   const { setCurrentTab } = useNavigationContext();
 
@@ -56,7 +62,7 @@ const SideBar = ({ isExpanded }: SidebarProps) => {
     { title: Tabs.PASSENGERS, link: "passengers", icon: faPeopleGroup },
     { title: Tabs.DOCUMENTS, link: "documents", icon: faFileAlt },
     { title: Tabs.TRIPS, link: "trips", icon: faPlane },
-    { title: Tabs.NOTIFICATIONS, link: "notifications", icon: faBell },
+    //{ title: Tabs.NOTIFICATIONS, link: "notifications", icon: faBell },
   ];
 
   const handleClick = (tab: Tab) => {
@@ -66,6 +72,44 @@ const SideBar = ({ isExpanded }: SidebarProps) => {
 
   return (
     <div className={isExpanded ? styles.SideBarOpen : styles.SideBarClosed}>
+      <div className={styles.toggleLogoContainer}>
+        <button
+          onClick={onToggleSidebar}
+          className={styles.sideBarToggleMenu}
+          aria-label="Toggle sidebar"
+        >
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+        <img
+          src={logo}
+          alt="Miracle Flights"
+          className={` ${!isExpanded ? styles.logoHidden : ""}`}
+        />
+      </div>
+
+      <div className={styles.profileInfoContainer}>
+        <UserButton
+          appearance={{
+            elements: {
+              userButtonAvatarBox: {
+                width: "45px",
+                height: "45px",
+              },
+            },
+          }}
+        />
+        {isExpanded && user && (
+          <div>
+            <p
+              className={styles.nameText}
+            >{`${user.firstName} ${user.lastName}`}</p>
+            <p className={styles.emailText}>
+              {user.primaryEmailAddress?.emailAddress}
+            </p>
+          </div>
+        )}
+      </div>
+
       <div className={styles.SideBarLinks}>
         <div className={styles.UpperSideBarLinks}>
           {UpperTabs.map((tab, index) =>

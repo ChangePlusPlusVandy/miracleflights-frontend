@@ -1,11 +1,13 @@
 import styles from "./ReviewAndSubmit.module.css";
-import Divider from "../../../../components/Divider/Divider";
+
 import { useUserContext } from "../../../../context/User.context";
 import Button from "../../../../components/Button/Button";
-import { ButtonVariant } from "../../../../components/Button/Button.definitions";
+import {
+  ButtonVariant,
+  ButtonColor,
+} from "../../../../components/Button/Button.definitions";
 import Modal from "../../../../components/Modal/Modal";
-import { ButtonColor } from "../../../../components/Button/Button.definitions";
-import { DividerSpacing } from "../../../../components/Divider/Divider.definitions";
+
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import type { ReviewAndSubmitProps } from "./ReviewAndSubmit.definitions";

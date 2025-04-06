@@ -43,12 +43,12 @@ const App = () => {
 
   return (
     <div className={styles.appContainer}>
-      <Navbar
-        onToggleSidebar={() => setIsSidebarExpanded(!isSidebarExpanded)}
-      />
       <div className={styles.mainWrapper}>
         <div className={styles.sideBarContainer}>
-          <SideBar isExpanded={isSidebarExpanded} />
+          <SideBar
+            isExpanded={isSidebarExpanded}
+            onToggleSidebar={() => setIsSidebarExpanded(!isSidebarExpanded)}
+          />
         </div>
         <div className={styles.contentWrapper}>
           <div className={styles.contentContainer}>
