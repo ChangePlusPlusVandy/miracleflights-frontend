@@ -1,8 +1,9 @@
 .logo {
-  align-self: flex-start; /* Align the logo to the top left */
+  position: fixed;
+  top: 24px;
+  left: 32px;
   height: 50px;
-  margin-left: 32px;
-  margin-top: 24px;
+  z-index: 10;
 }
 
 .onboardingPageContainer {
@@ -10,24 +11,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  min-height: 100vh;
+  background: #d2ddf0;
 }
 
 .onboardingBlock {
   background-color: var(--miracle-color-white);
   box-shadow: var(--box-shadow);
-  padding: 20px;
+  padding: 30px;
   width: 400px;
-  border-radius: 8px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
 }
 
 .onboardingBlockHeader {
-  font-size: 24px;
-  font-weight: 400;
-  margin-bottom: 8px;
-  color: #333;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  color: black;
+  text-align: left;
+  width: 100%;
 }
 
 .onboardingBlockContent {
@@ -45,9 +49,13 @@
 }
 
 .subtitleText {
-  font-size: 14px;
-  color: var(--miracle-color-medium-dark);
-  margin-top: 0.5rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  color: black;
+  margin-bottom: 16px;
+  line-height: 1.25;
+  margin-top: 8px;
 }
 
 .patientText {
@@ -86,4 +94,10 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+}
+
+.onboardingInputContainer :global(input),
+.signUpInputContainerLower :global(input) {
+  width: 100% !important;
+  box-sizing: border-box;
 }
