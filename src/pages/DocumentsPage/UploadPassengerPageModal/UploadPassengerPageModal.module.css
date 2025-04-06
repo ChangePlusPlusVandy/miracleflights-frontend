@@ -1,0 +1,30 @@
+.documentsMainDiv {
+  box-sizing: border-box;
+  padding: 4rem;
+  height: 100%;
+}
+
+.uploadTitle {
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+
+.uploadData {
+  font-size: 1.1rem;
+  font-weight: 300px;
+  margin-bottom: 40px;
+}
+
+.uploadMainDiv {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+}
+
+.passengerCard {
+  box-sizing: border-box;
+}
