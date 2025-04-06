@@ -79,3 +79,11 @@
   width: 100%;
   gap: 1rem;
 }
+
+.buttonBarContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
