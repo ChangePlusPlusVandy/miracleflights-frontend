@@ -41,7 +41,11 @@ export const getAge = (dateOfBirth: string) => {
  * @returns a string in the format MM/DD/YYYY
  */
 export const formatDate = (date: string | Date) => {
-  return new Date(date).toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "numeric" });
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  });
 };
 
 /**

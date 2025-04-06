@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from "./FlightTimeSelector.module.css";
 import "../../../../styles/Calendar.css";
+import AirportSuggestions from "./AirportSuggestions.tsx";
 import Icon from "../../../../components/CustomIcon/Icon.tsx";
 import Button from "../../../../components/Button/Button.tsx";
 import { ButtonVariant } from "../../../../components/Button/Button.definitions";
@@ -10,7 +11,6 @@ import type {
   DateValue,
   FlightTimeSelectorProps,
 } from "./FlightTimeSelector.definitions.ts";
-import AirportSuggestions from "./AirportSuggestions.tsx";
 
 const FlightTimeSelector = ({
   setStep,

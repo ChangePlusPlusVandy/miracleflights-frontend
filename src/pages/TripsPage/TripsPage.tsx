@@ -3,7 +3,10 @@ import FlightTicket from "./components/FlightTicket/FlightTicket";
 import { Tabs } from "../../layout/SideBar/SideBar.definitions";
 import { useNavigationContext } from "../../context/Navigation.context";
 import { useUserContext } from "../../context/User.context.tsx";
-import { getAllFlightsForUser } from "../../api/queries.ts";
+import {
+  getAllFlightsForUser,
+  populateTripsFolder,
+} from "../../api/queries.ts";
 import { formatDate } from "../../util/date.util";
 import Tag from "../../components/Tag/Tag.tsx";
 import { TagColor, TagVariant } from "../../components/Tag/Tag.definitions.ts";
@@ -68,6 +71,26 @@ const TripsPage = () => {
       ),
   });
 
+  const { data: tripsFolderStatus, isLoading: tripsFolderStatusLoading } =
+    useQuery<FlightRequestData[]>({
+      queryKey: [
+        "populate-trips-folder",
+        currentUser?.["AirTable Record ID"],
+        data,
+      ],
+      queryFn: async () => {
+        if (!currentUser) throw new Error("Missing patient data");
+        if (!data) throw new Error("No trips data available");
+
+        const patient_name = `${currentUser["First Name"]}_${currentUser["Last Name"]}`;
+        const trips = data;
+        const token = await getToken();
+
+        return populateTripsFolder({ patient_name, trips }, token);
+      },
+      enabled: !!currentUser && !!data,
+    });
+
   const getTagColor = (status: string): TagColor => {
     return (
       STATUS_OPTIONS_MAP[status as keyof typeof STATUS_OPTIONS_MAP]?.color ||
@@ -90,7 +113,8 @@ const TripsPage = () => {
     setOpenFlights(openFlights.filter((id) => id !== flightId));
   };
 
-  if (isLoading || !data) return <p>Loading....</p>;
+  if (isLoading || !data || tripsFolderStatusLoading || !tripsFolderStatus)
+    return <p>Loading....</p>;
 
   const sortedFlightRequests = data.sort(
     (a: FlightRequestData, b: FlightRequestData) => {
@@ -269,9 +293,9 @@ const TripsPage = () => {
                             <span style={{ textDecoration: "underline" }}>
                               Copy Link
                             </span>
-                            &apos; button to access the external link containing the
-                            form and also to send it to a relevant doctor later
-                            on.
+                            &apos; button to access the external link containing
+                            the form and also to send it to a relevant doctor
+                            later on.
                           </h5>
                           <button
                             className={styles.copyLinkButton}
