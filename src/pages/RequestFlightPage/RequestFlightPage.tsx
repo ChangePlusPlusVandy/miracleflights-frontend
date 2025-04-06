@@ -12,6 +12,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
+import { useAuth } from "@clerk/clerk-react";
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +21,7 @@ import type { FlightInfoType } from "./components/FlightTimeSelector/FlightTimeS
 import type { TreatmentInfoType } from "../../interfaces/flight-request-submission";
 
 const RequestFlightPage = () => {
+  const { getToken } = useAuth();
   const navigate = useNavigate();
   const { setCurrentTab } = useNavigationContext();
   const [step, setStep] = useState(1);
@@ -27,7 +29,8 @@ const RequestFlightPage = () => {
   const [selectedPassengers, setSelectedPassengers] = useState<PassengerData[]>(
     [],
   );
-  const [selectError, setSelectError] = useState(false);
+  const [selectError, setSelectError] = useState("");
+  const [busy, setBusy] = useState(false);
   const { currentUser } = useUserContext();
 
   const schema = yup.object().shape({
@@ -68,8 +71,8 @@ const RequestFlightPage = () => {
     setCurrentTab(Tabs.REQUEST);
   }, []);
 
-  const handleClickPassenger = (selectedPassenger: PassengerData) => {
-    setSelectError(false);
+  const handleClickPassenger = async (selectedPassenger: PassengerData) => {
+    setSelectError("");
     const passengerIndex = selectedPassengers.findIndex(
       (passenger) =>
         passenger["AirTable Record ID"] ===
@@ -77,10 +80,32 @@ const RequestFlightPage = () => {
     );
     if (passengerIndex === -1) {
       if (selectedPassengers.length >= 2) {
-        setSelectError(true);
+        setSelectError("You can only select up to 2 passengers.");
         return;
       }
-
+      
+      setBusy(true);
+      const token = await getToken();
+      const res = await axios.get(
+        `${process.env.VITE_HOST}/get-accompanying-document`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            patientName: currentUser?.["Full Name"],
+            passengerFullName: selectedPassenger["Full Name"],
+            passengerDob: selectedPassenger["Date of Birth"],
+          },
+        }
+      );
+      setBusy(false);
+      let dt = new Date();
+      dt.setFullYear(dt.getFullYear() - 18);
+      if (res.data.value.length === 0 && new Date(selectedPassenger["Date of Birth"]) > dt) {
+        setSelectError("This passenger is under 18 years old and does not have a valid birth certificate.");
+        return;
+      }
       setSelectedPassengers([...selectedPassengers, selectedPassenger]);
     } else {
       setSelectedPassengers(
@@ -162,6 +187,7 @@ const RequestFlightPage = () => {
           handleClickPassenger={handleClickPassenger}
           selectedPassengers={selectedPassengers}
           selectError={selectError}
+          busy={busy}
         />
       )}
       {step === 3 && (
