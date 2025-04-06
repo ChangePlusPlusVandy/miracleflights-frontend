@@ -1,17 +1,16 @@
 import styles from "./DashboardPage.module.css";
-import Rotunda from "./components/Rotunda/Rotunda";
+
 import { useNavigationContext } from "../../context/Navigation.context";
 import { Tabs } from "../../layout/SideBar/SideBar.definitions";
 import { getDashboardData } from "../../api/queries";
-import Divider from "../../components/Divider/Divider";
-import { DividerSpacing } from "../../components/Divider/Divider.definitions";
-import { useEffect, useState } from "react";
+
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth, useUser } from "@clerk/clerk-react";
+import Slider from "react-slick";
 import type { DashboardData } from "./DashboardPage.definitions";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 
 const DashboardPage = () => {
   const { setCurrentTab } = useNavigationContext();
