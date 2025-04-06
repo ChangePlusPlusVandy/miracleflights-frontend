@@ -22,7 +22,7 @@ const UploadPageModal = ({
         <div className={styles.uploadChoiceContainer}>
           <div className={styles.optionTitleDiv}>
             <div className={styles.uploadIcon}>
-              <img src="src/pages/DocumentsPage/components/uploadIcon.png"></img>
+              <img src="src/pages/DocumentsPage/components/uploadIcon.png" />
             </div>
             <p className={styles.optionTitle}>Choose an option</p>
           </div>
@@ -42,7 +42,7 @@ const UploadPageModal = ({
           </div>
         </div>
         <div className={styles.uploadMainImage}>
-          <img src="src/pages/DocumentsPage/components/uploadMain.png"></img>
+          <img src="src/pages/DocumentsPage/components/uploadMain.png" />
         </div>
       </div>
     </div>

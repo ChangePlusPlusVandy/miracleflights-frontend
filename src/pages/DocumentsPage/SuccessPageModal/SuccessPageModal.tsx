@@ -19,7 +19,7 @@ const SuccessPageModal = ({
       <img
         className={styles.successIcon}
         src="src/pages/DocumentsPage/components/successIcon.png"
-      ></img>
+       />
       <p className={styles.successTitle}>
         Hey {user?.firstName}, your upload was successful!
       </p>

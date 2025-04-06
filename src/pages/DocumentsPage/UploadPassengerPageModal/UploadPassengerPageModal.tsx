@@ -1,6 +1,6 @@
 import styles from "./UploadPassengerPageModal.module.css";
-import type { UploadPassengerPageModalProps } from "./UploadPassengerPageModal.definitions";
 import UploadPassengerCard from "../UploadPassengerCard/UploadPassengerCard.tsx";
+import type { UploadPassengerPageModalProps } from "./UploadPassengerPageModal.definitions";
 
 const UploadPassengerPageModal = ({
   isOpen,
