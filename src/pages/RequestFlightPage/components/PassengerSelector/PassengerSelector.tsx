@@ -16,6 +16,7 @@ const PassengerSelector = ({
   handleClickPassenger,
   selectedPassengers,
   selectError,
+  busy,
 }: PassengerSelectorProps) => {
   const { getToken } = useAuth();
   const { currentUser } = useUserContext();
@@ -38,7 +39,7 @@ const PassengerSelector = ({
   }
 
   return (
-    <div className={styles.pageContainer}>
+    <div className={`${styles.pageContainer} ${busy ? styles.busy : ''}`}>
       <span
         onClick={() => setStep(1)}
         className={styles.goBack}
@@ -52,9 +53,7 @@ const PassengerSelector = ({
       <div className={styles.titleAndError}>
         <div className={styles.requestsHeader}>Companion Requests</div>
         {selectError && (
-          <p className={styles.errorText}>
-            (You can only select up to 2 passengers)
-          </p>
+          <p className={styles.errorText}>{selectError}</p>
         )}
       </div>
       <div className={styles.passengerContainer}>
