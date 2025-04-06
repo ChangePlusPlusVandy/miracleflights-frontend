@@ -62,7 +62,7 @@ const SideBar = ({ isExpanded, onToggleSidebar }: SidebarProps) => {
     { title: Tabs.PASSENGERS, link: "passengers", icon: faPeopleGroup },
     { title: Tabs.DOCUMENTS, link: "documents", icon: faFileAlt },
     { title: Tabs.TRIPS, link: "trips", icon: faPlane },
-    { title: Tabs.NOTIFICATIONS, link: "notifications", icon: faBell },
+    //{ title: Tabs.NOTIFICATIONS, link: "notifications", icon: faBell },
   ];
 
   const handleClick = (tab: Tab) => {
