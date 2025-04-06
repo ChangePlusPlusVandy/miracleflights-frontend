@@ -17,7 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import { useAuth, useUser } from "@clerk/clerk-react";
+import { SignOutButton, useAuth, useUser } from "@clerk/clerk-react";
 import type { Resolver } from "react-hook-form";
 import type { OnboardingInput } from "./OnboardingPage.definitions";
 import type { PassengerData } from "../../interfaces/passenger.interface";
@@ -144,11 +144,16 @@ const OnboardingPage = () => {
                     placeholder="MM-DD-YYYY"
                   />
                 </div>
-                <Button
-                  type="submit"
-                  text="Submit"
-                  disabled={Object.keys(errors).length > 0}
-                />
+                <div className={styles.buttonBarContainer}>
+                  <SignOutButton>
+                    <a>Sign out</a>
+                  </SignOutButton>
+                  <Button
+                    type="submit"
+                    text="Submit"
+                    disabled={Object.keys(errors).length > 0}
+                  />
+                </div>
               </form>
             </>
           ) : exists === "yes" ? (
