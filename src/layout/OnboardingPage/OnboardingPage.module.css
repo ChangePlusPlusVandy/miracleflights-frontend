@@ -95,3 +95,9 @@
   align-items: center;
   flex-direction: row;
 }
+
+.onboardingInputContainer :global(input),
+.signUpInputContainerLower :global(input) {
+  width: 100% !important;
+  box-sizing: border-box;
+}
