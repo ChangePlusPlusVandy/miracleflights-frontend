@@ -70,7 +70,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  height: 85%;
+  height: 79%;
   width: 100%;
 }
 
@@ -211,16 +211,31 @@
 
 .profileInfoContainer {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  gap: 0.5rem;
 }
 
-.profileInfoContainer p {
-  font-size: 0.75rem;
+.nameText {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
   font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.emailText {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
 }
 
 #smallerText {
   font-size: 0.75rem;
+}
+
+.toggleLogoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 100%;
 }
