@@ -5,7 +5,7 @@ import Button from "../../../../components/Button/Button";
 import Icon from "../../../../components/CustomIcon/Icon";
 import Select from "../../../../components/Select/Select";
 import Input from "../../../../components/Input/Input";
-import { COUNTRIES } from "../../../../util/constants.util";
+import { getAge, formatDate } from "../../../../util/date.util";
 import { updatePassenger } from "../../../../api/queries";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -25,6 +25,7 @@ const PassengerDetailsModal = ({
 
   const schema = yup.object().shape({
     Street: yup.string().required("Street is required"),
+    Relationship: yup.string(),
     Country: yup.string().required("Country is required"),
     Email: yup
       .string()
@@ -33,8 +34,7 @@ const PassengerDetailsModal = ({
     Gender: yup.string().required("Gender is required"),
     DateOfBirth: yup.string().required("Date of Birth is required"),
     MilitaryService: yup.string().required("Military status is required"),
-    // Notes: yup.string(),
-    // Add other field validations as needed
+    CellPhone: yup.string().required("Phone number is required"),
   });
 
   const {
@@ -46,23 +46,25 @@ const PassengerDetailsModal = ({
     resolver: yupResolver(schema),
     defaultValues: {
       Street: passenger["Street"],
+      Relationship: passenger["Relationship"] || undefined,
       Country: passenger["Country"],
       Email: passenger["Email"],
       Gender: passenger["Gender"],
       DateOfBirth: passenger["Date of Birth"],
       MilitaryService: passenger["Military Service"],
-      // Notes: passenger["Notes"],
-      // Add other fields as needed
+      CellPhone: passenger["Cell Phone"],
     },
   });
 
   interface PassengerFormData {
     Street: string;
+    Relationship?: string;
     Country: string;
     Email: string;
     DateOfBirth: string;
     MilitaryService: string;
     Gender: string;
+    CellPhone: string;
     Notes?: string;
   }
 
@@ -92,172 +94,239 @@ const PassengerDetailsModal = ({
   const onSubmit = async (formData: PassengerFormData) => {
     const apiData = {
       Street: formData.Street,
+      Relationship: formData.Relationship,
       Country: formData.Country,
       Email: formData.Email,
       DateOfBirth: formData.DateOfBirth,
       MilitaryService: formData.MilitaryService,
       Gender: formData.Gender,
+      CellPhone: formData.CellPhone,
       Notes: formData.Notes,
     };
 
     mutate(apiData);
   };
 
+  function calculateAge(dateString: any) {
+    if (!dateString) return "";
+    const birthDate = new Date(dateString);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+    return age;
+  }
+
   return (
-    <>
-      <Modal
-        body={
-          <>
-            <form
-              onSubmit={handleSubmit((data) => {
-                onSubmit(data);
-              })}
-            >
-              <div className={`${styles.passengerRow} ${styles.marginBottom}`}>
-                <div>
-                  <span className={styles.passengerLabel}>Gender</span>{" "}
-                  {!editMode ? (
-                    <span className={styles.passengerText}>
-                      {passenger["Gender"]}
-                    </span>
-                  ) : (
-                    <Select
-                      name="Gender"
-                      register={register}
-                      placeholder="Select Gender"
-                      options={["Male", "Female"]}
-                    />
-                  )}
+    <Modal
+      body={
+        <form
+          onSubmit={handleSubmit((data) => {
+            onSubmit(data);
+          })}
+        >
+          {!editMode ? (
+            // View Mode
+            <div className={styles.infoContainer}>
+              <div className={styles.mainContent}>
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>
+                    Relationship to Patient:
+                  </div>
+                  <div className={styles.infoValue}>
+                    {passenger["Relationship"]}
+                  </div>
                 </div>
-                <div>
-                  <span className={styles.passengerLabel}>DOB</span>{" "}
-                  {!editMode ? (
-                    <span className={styles.passengerText}>
-                      {passenger["Date of Birth"].split("T")[0]}{" "}
-                    </span>
-                  ) : (
-                    <Input
-                      name="DateOfBirth"
-                      register={register}
-                      placeholder="YYYY-MM-DD"
-                      type="date"
-                    />
-                  )}
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Gender:</div>
+                  <div className={styles.infoValue}>{passenger["Gender"]}</div>
                 </div>
-              </div>
-              {/* make another passenger group for address where each line of the address is separated */}
-              <div className={styles.passengerGroup}>
-                <span className={styles.passengerLabel}>Address</span>{" "}
-                {!editMode ? (
-                  <>
-                    <span className={styles.passengerText}>
-                      {passenger["Street"]}
-                    </span>
-                    <span className={styles.passengerText}>
-                      {passenger["Country"]}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <Input
-                      name="Street"
-                      register={register}
-                      type="text"
-                      placeholder="Street"
-                      defaultValue={passenger["Street"]}
-                      error={errors.Street?.message} // Display the error message
-                    />
-                    <Select
-                      name="Country"
-                      register={register}
-                      label="Select Label"
-                      placeholder="Select Placeholder"
-                      options={COUNTRIES}
-                    />
-                  </>
-                )}
-              </div>
-              <div className={styles.passengerGroup}>
-                <span className={styles.passengerLabel}>Military</span>{" "}
-                {!editMode ? (
-                  <span className={styles.passengerText}>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Age:</div>
+                  <div className={styles.infoValue}>
+                    {getAge(passenger["Date of Birth"])}
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Date of Birth (DOB):</div>
+                  <div className={styles.infoValue}>
+                    {formatDate(passenger["Date of Birth"])}
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Phone Number:</div>
+                  <div className={styles.infoValue}>
+                    {passenger["Cell Phone"]}
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Email:</div>
+                  <div className={styles.infoValue}>{passenger["Email"]}</div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Address:</div>
+                  <div className={styles.infoValue}>
+                    {`${passenger["Street"]}, ${passenger["Country"]}`}
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Military:</div>
+                  <div className={styles.infoValue}>
                     {passenger["Military Service"]}
-                  </span>
-                ) : (
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>Number of Flight Legs:</div>
+                  <div className={styles.infoValue}>
+                    {passenger["# of Flight Legs"]}
+                  </div>
+                </div>
+
+                <div className={styles.infoRow}>
+                  <div className={styles.infoLabel}>
+                    Number of Booked Flight Requests:
+                  </div>
+                  <div className={styles.infoValue}>
+                    {passenger["# of Booked Flight Requests"]}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            // Edit Mode
+            <div className={styles.editGrid}>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>
+                  Relationship to Patient:
+                </label>
+                <div className={styles.inputWrapper}>
+                  <Input
+                    name="Relationship"
+                    register={register}
+                    defaultValue={passenger["Relationship"]}
+                    type="text"
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Phone Number</label>
+                <div className={styles.inputWrapper}>
+                  <Input
+                    name="CellPhone"
+                    register={register}
+                    defaultValue={passenger["Cell Phone"]}
+                    type="tel"
+                    placeholder="Phone Number"
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Gender:</label>
+                <div className={styles.inputWrapper}>
+                  <Select
+                    name="Gender"
+                    register={register}
+                    placeholder="Select Gender"
+                    options={["Male", "Female"]}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Military Status:</label>
+                <div className={styles.inputWrapper}>
                   <Select
                     name="MilitaryService"
                     register={register}
                     placeholder="Select Status"
-                    options={["Active", "Veteran", "Not applicable"]}
+                    options={["Active", "Veteran", "Not Applicable"]}
                   />
-                )}
-              </div>
-              <div className={styles.passengerRow}>
-                <div className={styles.passengerGroup}>
-                  <span className={styles.passengerLabel}>
-                    # of Flight Legs
-                  </span>{" "}
-                  <span className={styles.passengerText}>
-                    {passenger["# of Flight Legs"]}
-                  </span>
-                </div>
-                <div className={styles.passengerGroup}>
-                  <span className={styles.passengerLabel}>
-                    # of Booked Flight Requests
-                  </span>{" "}
-                  <span className={styles.passengerText}>
-                    {passenger["# of Booked Flight Requests"]}
-                  </span>
                 </div>
               </div>
-              {/* <div className={styles.passengerGroup}>
-                <span className={styles.passengerLabel}>Notes</span>
-                {!editMode ? (
-                  <span className={styles.passengerText}>
-                    {passenger["Notes"] || "Notes go here"}
-                  </span>
-                ) : (
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Date of Birth (DOB):</label>
+                <div className={styles.inputWrapper}>
+                  <Input name="DateOfBirth" register={register} type="date" />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Email:</label>
+                <div className={styles.inputWrapper}>
                   <Input
-                    name="Notes"
+                    name="Email"
                     register={register}
-                    type="text"
-                    placeholder="Notes go here"
-                    defaultValue={passenger["Notes"]}
+                    defaultValue={passenger["Email"]}
+                    type="email"
                   />
-                )}
-              </div> */}
-              <div className={styles.footer}>
-                {!editMode && (
-                  <div
-                    className={styles.editButton}
-                    onClick={() => {
-                      setEditMode(!editMode);
-                    }}
-                  >
-                    <Icon glyph="edit" />
-                  </div>
-                )}
-                {editMode && (
-                  <div className={styles.buttonOptions}>
-                    <Button
-                      onClick={() => {
-                        reset(), setEditMode(false);
-                      }}
-                      text="Exit"
-                      color={ButtonColor.Red}
-                      type="button"
-                    />
-                    <Button text="Save" type="submit" />
-                  </div>
-                )}
+                </div>
               </div>
-            </form>
-          </>
-        }
-        header={passenger["Full Name"]}
-        action={onClose}
-      />
-    </>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.formLabel}>Address</label>
+                <div className={styles.inputWrapper}>
+                  <Input
+                    name="Street"
+                    register={register}
+                    defaultValue={passenger["Street"]}
+                    type="text"
+                    placeholder="Street Address"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className={styles.footer}>
+            {!editMode ? (
+              <div
+                className={styles.editButton}
+                onClick={() => {
+                  setEditMode(true);
+                }}
+              >
+                <Icon glyph="edit" />
+              </div>
+            ) : (
+              <div className={styles.editActions}>
+                <Button
+                  onClick={() => {
+                    reset();
+                    setEditMode(false);
+                  }}
+                  text="Back"
+                  color={ButtonColor.White}
+                  type="button"
+                />
+                <Button text="Save" type="submit" />
+              </div>
+            )}
+          </div>
+        </form>
+      }
+      header={
+        !editMode
+          ? passenger["Full Name"]
+          : `Edit Information for ${passenger["Full Name"]}`
+      }
+      action={onClose}
+    />
   );
 };
 

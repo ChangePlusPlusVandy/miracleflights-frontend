@@ -5,6 +5,7 @@ export interface PassengerData {
   "First Name": string;
   "Last Name": string;
   "Date of Birth": string;
+  "Cell Phone": string;
   Gender: string;
   Street: string;
   Country: string;
@@ -26,5 +27,5 @@ export interface PassengerData {
   Age: number;
   "Latest Trip": string;
   Notes?: string;
-  Relationship: string[];
+  Relationship: string;
 }
