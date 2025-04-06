@@ -1,42 +1,54 @@
-import passengerSchema from "./passengerSchema";
 import styles from "./AddPassengerModal.module.css";
-import Button from "../../../../components/Button/Button";
-import { ButtonColor } from "../../../../components/Button/Button.definitions";
-import Input from "../../../../components/Input/Input";
 import Modal from "../../../../components/Modal/Modal";
+import Icon from "../../../../components/CustomIcon/Icon";
+import Input from "../../../../components/Input/Input";
+import { ButtonColor } from "../../../../components/Button/Button.definitions";
+import Button from "../../../../components/Button/Button";
 import Select from "../../../../components/Select/Select";
 import { useUserContext } from "../../../../context/User.context";
 import { createPassenger } from "../../../../api/queries";
-// eslint-disable-next-line import/no-duplicates
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "@clerk/clerk-react";
-// eslint-disable-next-line import/no-duplicates
-import { useMutation } from "@tanstack/react-query";
-// eslint-disable-next-line import/no-duplicates
-import { useQueryClient } from "@tanstack/react-query";
-// eslint-disable-next-line import/no-duplicates
-import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import passengerSchema from "./passengerSchema";
 import type {
   FormData,
   AddPassengerModalProps,
 } from "./AddPassengerModal.definitions";
 
 const AddPassengerModal: React.FC<AddPassengerModalProps> = ({ onClose }) => {
+  const [editMode, setEditMode] = useState(true); // Always start in edit mode for consistency
+  const queryClient = useQueryClient();
+  const { getToken } = useAuth();
+  const { currentUser } = useUserContext();
+  const [errorMessage, setErrorMessage] = useState("");
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: yupResolver<FormData>(passengerSchema),
     mode: "all",
+    defaultValues: {
+      "First Name": "",
+      "Last Name": "",
+      Relationship: undefined,
+      "Date of Birth": "",
+      Gender: undefined,
+      Street: "",
+      City: "",
+      State: "",
+      Zip: "",
+      Country: "United States", // Default value
+      "Cell Phone": "",
+      Email: "",
+      Waiver: "No", // Default value
+    },
   });
-
-  const { currentUser } = useUserContext();
-  const { getToken } = useAuth();
-  const queryClient = useQueryClient();
-  const [errorMessage, setErrorMessage] = useState("");
 
   const processDate = (date: string) => {
     const newDate =
@@ -55,22 +67,8 @@ const AddPassengerModal: React.FC<AddPassengerModalProps> = ({ onClose }) => {
     return `(${areaCode}) ${middleThree}-${lastThree}`;
   };
 
-  // mutation to create a new user
   const { mutate } = useMutation({
     mutationFn: async (data: FormData) => {
-      console.log(
-        JSON.stringify(
-          {
-            fields: {
-              ...data,
-              "Date of Birth": (data["Date of Birth"] as Date).toISOString(),
-              Waiver: data.Waiver === "Yes" ? true : false,
-            },
-          },
-          null,
-          2,
-        ),
-      );
       return createPassenger(
         {
           fields: {
@@ -87,7 +85,6 @@ const AddPassengerModal: React.FC<AddPassengerModalProps> = ({ onClose }) => {
       );
     },
     onSuccess: () => {
-      console.log("passenger created successfully");
       setErrorMessage("");
       onClose();
       queryClient.invalidateQueries({
@@ -95,7 +92,6 @@ const AddPassengerModal: React.FC<AddPassengerModalProps> = ({ onClose }) => {
       });
     },
     onError: () => {
-      console.log("passenger creation failed");
       setErrorMessage("Failed to add passenger. Please try again.");
     },
   });
@@ -109,218 +105,284 @@ const AddPassengerModal: React.FC<AddPassengerModalProps> = ({ onClose }) => {
       action={() => onClose()}
       header="Add Passenger"
       body={
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.inputList}>
-          <Input
-            name="First Name"
-            register={register}
-            error={errors["First Name"]?.message}
-            label="First Name"
-            placeholder="First Name"
-          />
-          <Input
-            name="Last Name"
-            register={register}
-            error={errors["Last Name"]?.message}
-            label="Last Name"
-            placeholder="Last Name"
-          />
-          <Select
-            name="Relationship"
-            register={register}
-            label="Relationship"
-            placeholder="Select Relationship"
-            options={[
-              "Mother",
-              "Father",
-              "Step-mother",
-              "Step-father",
-              "Legal Guardian",
-              "Spouse",
-              "Family Member",
-              "Other Caregiver",
-            ]}
-          />
-          <Input
-            name="Date of Birth"
-            register={register}
-            error={errors["Date of Birth"]?.message}
-            label="Date of Birth"
-            placeholder="YYYY-MM-DD"
-            type="date"
-          />
-          <Select
-            name="Gender"
-            register={register}
-            label="Gender"
-            placeholder="Select Gender"
-            options={["Male", "Female"]}
-          />
-          <Input
-            name="Street"
-            register={register}
-            error={errors.Street?.message}
-            label="Street"
-            placeholder="Street Address"
-          />
-          <Input
-            name="City"
-            register={register}
-            error={errors.City?.message}
-            label="City"
-            placeholder="City"
-          />
-          <Select
-            name="State"
-            register={register}
-            label="State"
-            placeholder="Select Option"
-            options={[
-              "AK",
-              "AL",
-              "AR",
-              "AZ",
-              "CA",
-              "CO",
-              "CT",
-              "DC",
-              "DE",
-              "FL",
-              "GA",
-              "HI",
-              "IA",
-              "ID",
-              "IL",
-              "IN",
-              "KS",
-              "KY",
-              "LA",
-              "MA",
-              "MD",
-              "ME",
-              "MI",
-              "MN",
-              "MO",
-              "MP",
-              "MS",
-              "MT",
-              "NC",
-              "ND",
-              "NE",
-              "NH",
-              "NJ",
-              "NL",
-              "NM",
-              "NV",
-              "NY",
-              "OH",
-              "OK",
-              "OR",
-              "PA",
-              "PR",
-              "RI",
-              "SC",
-              "SD",
-              "TN",
-              "TX",
-              "UT",
-              "VA",
-              "VI",
-              "VT",
-              "WA",
-              "WI",
-              "WV",
-              "WY",
-            ]}
-          />
+        <div>
+          <form onSubmit={handleSubmit(onSubmit)} className={styles.editGrid}>
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>First Name</label>
+              <div className={styles.inputWrapper}>
+                <Input
+                  name="First Name"
+                  register={register}
+                  error={errors["First Name"]?.message}
+                  placeholder="First Name"
+                />
+              </div>
+            </div>
 
-          <Input
-            name="Zip"
-            register={register}
-            error={errors.Zip?.message}
-            label="Zip Code"
-            placeholder="Zip Code"
-          />
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Last Name</label>
+              <div className={styles.inputWrapper}>
+                <Input
+                  name="Last Name"
+                  register={register}
+                  error={errors["Last Name"]?.message}
+                  placeholder="Last Name"
+                />
+              </div>
+            </div>
 
-          <Select
-            name="Country"
-            register={register}
-            label="Country"
-            placeholder="Country"
-            options={[
-              "Argentina",
-              "Australia",
-              "Azerbaijan",
-              "Bahamas",
-              "Belize",
-              "Brazil",
-              "Canada",
-              "Chile",
-              "China",
-              "Colombia",
-              "Croatia",
-              "Dominican Republic",
-              "Ecuador",
-              "El Salvador",
-              "Germany",
-              "Grenada",
-              "Guam",
-              "Guatemala",
-              "Guyana",
-              "Honduras",
-              "India",
-              "Israel",
-              "Jamaica",
-              "Kuwait",
-              "Mauritius",
-              "Mexico",
-              "Nicaragua",
-              "Paraguay",
-              "Peru",
-              "Philippines",
-              "Serbia",
-              "South Africa",
-              "Tajikistan",
-              "Trinidad and Tobago",
-              "Tunisia",
-              "Turkey",
-              "Uganda",
-              "Ukraine",
-              "United Kingdom",
-              "United States",
-            ]}
-          />
-          <Input
-            name="Cell Phone"
-            register={register}
-            error={errors["Cell Phone"]?.message}
-            label="Cell Phone"
-            placeholder="(123) 456-7890"
-          />
-          <Input
-            name="Email"
-            register={register}
-            error={errors.Email?.message}
-            label="Email"
-            placeholder="Email"
-            type="email"
-          />
-          <Select
-            name="Waiver"
-            register={register}
-            label="Waiver Agreement"
-            placeholder="Select Option"
-            options={["Yes", "No"]}
-          />
-          {errorMessage && (
-            <div className={styles.errorMessage}>{errorMessage}</div>
-          )}
-          <Button
-            color={ButtonColor.Blue}
-            type="submit"
-            text="submit"
-            disabled={!isValid}
-          />
-        </form>
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Relationship</label>
+              <div className={styles.inputWrapper}>
+                <Select
+                  name="Relationship"
+                  register={register}
+                  placeholder="Select Relationship"
+                  options={[
+                    "Mother",
+                    "Father",
+                    "Step-mother",
+                    "Step-father",
+                    "Legal Guardian",
+                    "Spouse",
+                    "Family Member",
+                    "Other Caregiver",
+                  ]}
+                />
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>
+                Date of Birth (YYYY-MM-DD)
+              </label>
+              <div className={styles.inputWrapper}>
+                <Input
+                  name="Date of Birth"
+                  register={register}
+                  error={errors["Date of Birth"]?.message}
+                  type="date"
+                  placeholder="YYYY-MM-DD"
+                />
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Gender</label>
+              <div className={styles.inputWrapper}>
+                <Select
+                  name="Gender"
+                  register={register}
+                  placeholder="Select Gender"
+                  options={["Male", "Female"]}
+                />
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Street Address</label>
+              <div className={styles.inputWrapper}>
+                <Input
+                  name="Street"
+                  register={register}
+                  error={errors.Street?.message}
+                  placeholder="Street Address"
+                />
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>City</label>
+              <div className={styles.inputWrapper}>
+                <Input
+                  name="City"
+                  register={register}
+                  error={errors.City?.message}
+                  placeholder="City"
+                />
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>State</label>
+              <div className={styles.inputWrapper}>
+                <Select
+                  name="State"
+                  register={register}
+                  placeholder="Select Option"
+                  options={[
+                    "AK",
+                    "AL",
+                    "AR",
+                    "AZ",
+                    "CA",
+                    "CO",
+                    "CT",
+                    "DC",
+                    "DE",
+                    "FL",
+                    "GA",
+                    "HI",
+                    "IA",
+                    "ID",
+                    "IL",
+                    "IN",
+                    "KS",
+                    "KY",
+                    "LA",
+                    "MA",
+                    "MD",
+                    "ME",
+                    "MI",
+                    "MN",
+                    "MO",
+                    "MP",
+                    "MS",
+                    "MT",
+                    "NC",
+                    "ND",
+                    "NE",
+                    "NH",
+                    "NJ",
+                    "NL",
+                    "NM",
+                    "NV",
+                    "NY",
+                    "OH",
+                    "OK",
+                    "OR",
+                    "PA",
+                    "PR",
+                    "RI",
+                    "SC",
+                    "SD",
+                    "TN",
+                    "TX",
+                    "UT",
+                    "VA",
+                    "VI",
+                    "VT",
+                    "WA",
+                    "WI",
+                    "WV",
+                    "WY",
+                  ]}
+                />
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Zip Code</label>
+              <div className={styles.inputWrapper}>
+                <Input
+                  name="Zip"
+                  register={register}
+                  error={errors.Zip?.message}
+                  placeholder="Zip Code"
+                />
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Country</label>
+              <div className={styles.inputWrapper}>
+                <Select
+                  name="Country"
+                  register={register}
+                  placeholder="Country"
+                  options={[
+                    "Argentina",
+                    "Australia",
+                    "Azerbaijan",
+                    "Bahamas",
+                    "Belize",
+                    "Brazil",
+                    "Canada",
+                    "Chile",
+                    "China",
+                    "Colombia",
+                    "Croatia",
+                    "Dominican Republic",
+                    "Ecuador",
+                    "El Salvador",
+                    "Germany",
+                    "Grenada",
+                    "Guam",
+                    "Guatemala",
+                    "Guyana",
+                    "Honduras",
+                    "India",
+                    "Israel",
+                    "Jamaica",
+                    "Kuwait",
+                    "Mauritius",
+                    "Mexico",
+                    "Nicaragua",
+                    "Paraguay",
+                    "Peru",
+                    "Philippines",
+                    "Serbia",
+                    "South Africa",
+                    "Tajikistan",
+                    "Trinidad and Tobago",
+                    "Tunisia",
+                    "Turkey",
+                    "Uganda",
+                    "Ukraine",
+                    "United Kingdom",
+                    "United States",
+                  ]}
+                />
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Cell Phone</label>
+              <div className={styles.inputWrapper}>
+                <Input
+                  name="Cell Phone"
+                  register={register}
+                  error={errors["Cell Phone"]?.message}
+                  placeholder="(123) 456-7890"
+                />
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Email</label>
+              <div className={styles.inputWrapper}>
+                <Input
+                  name="Email"
+                  register={register}
+                  error={errors.Email?.message}
+                  type="email"
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+
+            <div className={styles.formGroupFull}>
+              <label className={styles.formLabel}>Waiver Agreement</label>
+              <div className={styles.inputWrapper}>
+                <Select
+                  name="Waiver"
+                  register={register}
+                  placeholder="Select Option"
+                  options={["Yes", "No"]}
+                />
+              </div>
+            </div>
+
+            {errorMessage && (
+              <div className={`${styles.formGroupFull} ${styles.errorMessage}`}>
+                {errorMessage}
+              </div>
+            )}
+          </form>
+          <div className={styles.footer}>
+            <Button type="submit" text="Submit" disabled={!isValid} />
+          </div>
+        </div>
       }
     />
   );
