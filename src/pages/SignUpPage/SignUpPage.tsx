@@ -136,133 +136,143 @@ const SignUpPage = () => {
 
   return (
     <>
-      <img src={logo} alt="Description of the image" className={styles.logo} />
-      <div className={styles.signUpContainer}>
-        {!pendingVerification ? (
-          <div className={styles.signUpBlock}>
-            <div className={styles.signUpBlockHeader}>Sign Up</div>
-            <div className={styles.signUpRedirect}>
-              Have an account?
-              <div
-                onClick={() => navigate("/sign-in")}
-                className={styles.signUpBlockLink}
-              >
-                Sign in
-              </div>
-            </div>
-            <form
-              onSubmit={handleSignUpSubmit(handleSubmitSignUp)}
-              className={styles.signUpBlockContent}
-            >
-              <div className={styles.signUpInputContainerUpper}>
-                <Input
-                  name="email"
-                  register={signUpRegister}
-                  error={signUpErrors[SignUpInputName.EMAIL]?.message}
-                  label="Email"
-                  type="text"
-                  placeholder="Email"
-                />
-              </div>
-              <div className={styles.signUpInputContainerUpper}>
-                <Input
-                  name="firstName"
-                  register={signUpRegister}
-                  error={signUpErrors[SignUpInputName.FIRST_NAME]?.message}
-                  label="First name"
-                  type="text"
-                  placeholder="John"
-                />
-              </div>
-              <div className={styles.signUpInputContainerUpper}>
-                <Input
-                  name="lastName"
-                  register={signUpRegister}
-                  error={signUpErrors[SignUpInputName.LAST_NAME]?.message}
-                  label="Last name"
-                  type="text"
-                  placeholder="Doe"
-                />
-              </div>
-              <div className={styles.signUpInputContainerLower}>
-                <Input
-                  name="password"
-                  register={signUpRegister}
-                  error={signUpErrors[SignUpInputName.PASSWORD]?.message}
-                  label="Password"
-                  type={passwordVisible ? "text" : "password"}
-                  placeholder="Password"
-                />
-
+      <div className={styles.pageContainer}>
+        <img
+          src={logo}
+          alt="Description of the image"
+          className={styles.logo}
+        />
+        <div className={styles.signUpContainer}>
+          {!pendingVerification ? (
+            <div className={styles.signUpBlock}>
+              <div className={styles.signUpBlockHeader}>Sign Up</div>
+              <div className={styles.signUpRedirect}>
+                Have an account?
                 <div
-                  className={styles.passwordToggle}
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                >
-                  <div className={styles.Icon}>
-                    <Icon glyph={passwordVisible ? "eye-slash" : "eye"} />
-                  </div>
-                </div>
-              </div>
-              <div className={styles.signUpInputContainerLower}>
-                <Input
-                  name="confirmPassword"
-                  register={signUpRegister}
-                  error={
-                    signUpErrors[SignUpInputName.CONFIRM_PASSWORD]?.message
-                  }
-                  label="Confirm password"
-                  type={passwordVisible ? "text" : "password"}
-                  placeholder="Password"
-                />
-
-                <div
-                  className={styles.passwordToggle}
-                  onClick={() => setPasswordVisible(!passwordVisible)}
-                >
-                  <div className={styles.Icon}>
-                    <Icon glyph={passwordVisible ? "eye-slash" : "eye"} />
-                  </div>
-                </div>
-              </div>
-              <div className={styles.forgotPassword}>
-                <div
-                  onClick={() => navigate("/forgot-password")}
+                  onClick={() => navigate("/sign-in")}
                   className={styles.signUpBlockLink}
                 >
-                  Forgot password?
+                  Sign in
                 </div>
               </div>
-              <Button type="submit" text={"Sign Up"} disabled={disabled} />
-            </form>
-            <p className={styles.errorMsg}>{errorMsg}</p>
-          </div>
-        ) : (
-          <div className={styles.signUpBlock}>
-            <div className={styles.signUpBlockHeader}>
-              {"Let's see if you're real"}
-              <p
-                className={styles.sentEmailText}
-              >{`We've sent a 6-digit code to ${signUp?.emailAddress}.`}</p>
-            </div>
+              <form
+                onSubmit={handleSignUpSubmit(handleSubmitSignUp)}
+                className={styles.signUpBlockContent}
+              >
+                <div className={styles.signUpInputContainerUpper}>
+                  <Input
+                    name="email"
+                    register={signUpRegister}
+                    error={signUpErrors[SignUpInputName.EMAIL]?.message}
+                    label="Email"
+                    type="text"
+                    placeholder="Email"
+                  />
+                </div>
+                <div className={styles.signUpInputContainerUpper}>
+                  <Input
+                    name="firstName"
+                    register={signUpRegister}
+                    error={signUpErrors[SignUpInputName.FIRST_NAME]?.message}
+                    label="First name"
+                    type="text"
+                    placeholder="John"
+                  />
+                </div>
+                <div className={styles.signUpInputContainerUpper}>
+                  <Input
+                    name="lastName"
+                    register={signUpRegister}
+                    error={signUpErrors[SignUpInputName.LAST_NAME]?.message}
+                    label="Last name"
+                    type="text"
+                    placeholder="Doe"
+                  />
+                </div>
+                <div className={styles.signUpInputContainerLower}>
+                  <Input
+                    name="password"
+                    register={signUpRegister}
+                    error={signUpErrors[SignUpInputName.PASSWORD]?.message}
+                    label="Password"
+                    type={passwordVisible ? "text" : "password"}
+                    placeholder="Password"
+                  />
 
-            <form
-              onSubmit={handleCodeSubmit(onSubmitCode)}
-              className={styles.signUpBlockContent}
-            >
-              <div className={styles.signUpInputContainerUpper}>
-                <Input
-                  name="code"
-                  register={signUpCodeRegister}
-                  error={signUpCodeErrors[SignUpCodeName.CODE]?.message}
-                  label="Code"
-                  type="text"
-                  placeholder="Paste your 6-digit code here."
-                />
+                  <div
+                    className={styles.passwordToggle}
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  >
+                    <div className={styles.Icon}>
+                      <Icon glyph={passwordVisible ? "eye-slash" : "eye"} />
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.signUpInputContainerLower}>
+                  <Input
+                    name="confirmPassword"
+                    register={signUpRegister}
+                    error={
+                      signUpErrors[SignUpInputName.CONFIRM_PASSWORD]?.message
+                    }
+                    label="Confirm password"
+                    type={passwordVisible ? "text" : "password"}
+                    placeholder="Password"
+                  />
+
+                  <div
+                    className={styles.passwordToggle}
+                    onClick={() => setPasswordVisible(!passwordVisible)}
+                  >
+                    <div className={styles.Icon}>
+                      <Icon glyph={passwordVisible ? "eye-slash" : "eye"} />
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.forgotPassword}>
+                  <div
+                    onClick={() => navigate("/forgot-password")}
+                    className={styles.signUpBlockLink}
+                  >
+                    Forgot password?
+                  </div>
+                </div>
+                <Button type="submit" text={"Sign Up"} disabled={disabled} />
+              </form>
+              <p className={styles.errorMsg}>{errorMsg}</p>
+            </div>
+          ) : (
+            <div className={styles.signUpBlock}>
+              <div className={styles.signUpBlockHeader}>
+                {"Let's see if you're real"}
+                <p
+                  className={styles.sentEmailText}
+                >{`We've sent a 6-digit code to ${signUp?.emailAddress}.`}</p>
               </div>
-              <button type="submit">Submit Code</button>
-            </form>
-          </div>
-        )}
+
+              <form
+                onSubmit={handleCodeSubmit(onSubmitCode)}
+                className={styles.signUpBlockContent}
+              >
+                <div className={styles.signUpInputContainerUpper}>
+                  <Input
+                    name="code"
+                    register={signUpCodeRegister}
+                    error={signUpCodeErrors[SignUpCodeName.CODE]?.message}
+                    label="Code"
+                    type="text"
+                    placeholder="Paste your 6-digit code here."
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  text={"Submit Code"}
+                  disabled={disabled}
+                />
+              </form>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
