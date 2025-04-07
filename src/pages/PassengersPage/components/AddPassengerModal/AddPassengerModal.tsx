@@ -154,7 +154,7 @@ const AddPassengerModal: React.FC<AddPassengerModalProps> = ({ onClose }) => {
 
             <div className={styles.formGroup}>
               <label className={styles.formLabel}>
-                Date of Birth (YYYY-MM-DD)
+                Date of Birth (MM/DD/YYYY)
               </label>
               <div className={styles.inputWrapper}>
                 <Input
