@@ -2,13 +2,14 @@ import styles from "./DashboardPage.module.css";
 
 import { useNavigationContext } from "../../context/Navigation.context";
 import { Tabs } from "../../layout/SideBar/SideBar.definitions";
-import { getDashboardData } from "../../api/queries";
+import { getDashboardData, getPassengers } from "../../api/queries";
 
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth, useUser } from "@clerk/clerk-react";
+import { useUserContext } from "../../context/User.context";
+import type { PassengerData } from "../../interfaces/passenger.interface";
 import Slider from "react-slick";
-import type { DashboardData } from "./DashboardPage.definitions";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -16,6 +17,19 @@ const DashboardPage = () => {
   const { setCurrentTab } = useNavigationContext();
   const { getToken } = useAuth();
   const { user } = useUser();
+  const { currentUser } = useUserContext();
+
+  // ping the getUserByID endpoint to get the user's data
+  const { data: patientData, isLoading: patientLoading } =
+    useQuery<PassengerData>({
+      queryKey: ["passenger"],
+      queryFn: async () =>
+        getPassengers(
+          currentUser?.["AirTable Record ID"] || "",
+          await getToken(),
+        ),
+      enabled: true,
+    });
 
   const images = [
     "src/pages/DashboardPage/components/MF_5.jpeg",
@@ -39,20 +53,11 @@ const DashboardPage = () => {
     </button>
   );
 
-  const { data: dashboardData, isLoading: dashboardLoading } =
-    useQuery<DashboardData>({
-      queryKey: ["dashboard"],
-      queryFn: async () => getDashboardData(await getToken()),
-      enabled: true,
-    });
-
-  console.log("dashboardData:", dashboardData);
-
   useEffect(() => {
     setCurrentTab(Tabs.HOME);
   }, []);
 
-  if (dashboardLoading) {
+  if (patientLoading) {
     return <div>Loading...</div>;
   }
 
@@ -89,15 +94,17 @@ const DashboardPage = () => {
           <div className={styles.infoContainer}>
             <div className={styles.upperCardContainer}>
               <div className={styles.numberText}>
-                {dashboardData?.["All Total Flights"]}
+                {patientData?.["# of Flight Legs"]}
               </div>
-              <div className={styles.bottomText}>Total Flights</div>
+              <div className={styles.bottomText}># of Flight Legs</div>
             </div>
             <div className={styles.lowerCardContainer}>
               <div className={styles.numberText}>
-                {dashboardData?.["Flights This Week"]}
+                {patientData?.["# of Booked Flight Requests"]}
               </div>
-              <div className={styles.bottomText}>Flights This Week</div>
+              <div className={styles.bottomText}>
+                # of Booked Flight Requests
+              </div>
             </div>
           </div>
         </div>
