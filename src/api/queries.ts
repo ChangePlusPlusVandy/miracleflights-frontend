@@ -6,7 +6,7 @@ import type {
   CreateUploadSessionResponse,
   CreateUploadSessionBodyRequest,
   DeleteUploadSessionResponse,
-  DeleteUploadSessionRequest
+  DeleteUploadSessionRequest,
 } from "../interfaces/folder-response-interface";
 import type { FlightRequestData } from "../interfaces/flight-request-interface";
 import type { PassengerData } from "../interfaces/passenger.interface";
@@ -199,6 +199,84 @@ export const updatePatient = async (
   }
 };
 
+export const deletePassenger = async (
+  airtableRecordId: string,
+  token?: string | null,
+): Promise<void> => {
+  // Typically DELETE returns void or status
+
+  // Explicitly check for token before proceeding
+  if (!token) {
+    throw new Error("Authentication token not provided.");
+  }
+
+  try {
+    // Make the DELETE request - no request body is typically needed
+    await axios.delete(
+      `${process.env.VITE_HOST}/passenger/${airtableRecordId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        timeout: 5000, // Use a consistent timeout
+      },
+    );
+
+    // If the request succeeds (doesn't throw), the deletion was successful.
+    return;
+  } catch (error) {
+    // --- Consistent Error Handling (adapted for DELETE context) ---
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        // Server responded with an error status code (4xx, 5xx)
+        const status = error.response.status;
+        const message =
+          error.response.data?.message ||
+          "An unknown server error occurred during deletion.";
+        switch (status) {
+          case 400: // Less common for DELETE by ID, but possible
+            throw new Error(
+              `Invalid request: ${message}. Please check the passenger ID.`,
+            );
+          case 401:
+            throw new Error(
+              `Authentication failed: ${message}. Please log in again.`,
+            );
+          case 403:
+            throw new Error(
+              `Permission denied: ${message}. You cannot delete this passenger.`,
+            );
+          case 404:
+            throw new Error(`Passenger record ${airtableRecordId} not found.`);
+          case 429:
+            throw new Error(
+              `Too many requests: ${message}. Please try again later.`,
+            );
+          case 500:
+          default: // Catch 5xx errors and any other unexpected status codes
+            throw new Error(
+              `Server error (${status}): ${message}. Please try again later.`,
+            );
+        }
+      } else if (error.request) {
+        // Request was made, but no response received
+        if (error.code === "ECONNABORTED") {
+          throw new Error(
+            "The delete request timed out. Please check your connection and try again.",
+          );
+        }
+        throw new Error(
+          "Network error during deletion. Please check your connection.",
+        );
+      }
+    }
+    // Handle non-Axios errors or other unexpected issues
+    throw new Error(
+      `Unexpected error during deletion: ${error instanceof Error ? error.message : String(error)}`,
+    );
+  }
+};
+
 export const updatePassenger = async (
   passenger: {
     Street: string;
@@ -303,11 +381,14 @@ export const getDocumentsData = (
   token?: string | null,
 ): Promise<DocumentsData> =>
   axios
-    .get(`${process.env.VITE_HOST}/documents?patientName=${patient_name}&airtableID=${airtableID}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    .get(
+      `${process.env.VITE_HOST}/documents?patientName=${patient_name}&airtableID=${airtableID}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    })
+    )
     .then((res) => res.data);
 
 export const createPatientFolder = (
@@ -360,7 +441,7 @@ export const populateTripsFolder = (
 export const createUploadSession = (
   uploadBody: CreateUploadSessionBodyRequest, // body will also have patient_name and airtableID
   token?: string | null,
-): Promise<CreateUploadSessionResponse> => 
+): Promise<CreateUploadSessionResponse> =>
   axios
     .post(`${process.env.VITE_HOST}/upload-session`, uploadBody, {
       headers: {
@@ -372,7 +453,7 @@ export const createUploadSession = (
 export const deleteUploadSession = (
   deleteBody: DeleteUploadSessionRequest,
   token?: string | null,
-): Promise<DeleteUploadSessionResponse> => 
+): Promise<DeleteUploadSessionResponse> =>
   axios
     .post(`${process.env.VITE_HOST}/delete-session`, deleteBody, {
       headers: {
@@ -380,4 +461,3 @@ export const deleteUploadSession = (
       },
     })
     .then((res) => res.data);
-
