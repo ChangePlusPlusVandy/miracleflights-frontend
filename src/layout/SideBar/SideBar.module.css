@@ -244,3 +244,10 @@
   opacity: 0;
   visibility: hidden;
 }
+
+.errorText {
+  color: red;
+  font-size: 0.85rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}

@@ -3,9 +3,14 @@ import { Tabs, type Tab } from "./SideBar.definitions";
 import { useNavigationContext } from "../../context/Navigation.context";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { UserButton, useUser } from "@clerk/clerk-react";
+import { UserButton, useUser, useAuth } from "@clerk/clerk-react";
 import logo from "../../public/0GAGNk.tif.png";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { getDocumentsData } from "../../api/queries";
+import { DocumentsData } from "./SideBar.definitions";
+import { useQuery } from "@tanstack/react-query";
+import { useUserContext } from "../../context/User.context";
+import { useState } from "react";
 
 import {
   faHome,
@@ -53,9 +58,35 @@ const renderTab = (
 };
 
 const SideBar = ({ isExpanded, onToggleSidebar }: SidebarProps) => {
+  const [docError, setDocError] = useState<string | null>(null);
   const { user } = useUser();
   const navigate = useNavigate();
   const { setCurrentTab } = useNavigationContext();
+  const { currentUser } = useUserContext();
+  const { getToken } = useAuth();
+
+  const onFlightRequestClick = async () => {
+    if (!refetchDocuments) return;
+
+    const { data: updatedDocuments } = await refetchDocuments();
+
+    if (!updatedDocuments) return;
+
+    const { birthCertExists, financialCertExists } = updatedDocuments;
+
+    if (birthCertExists && financialCertExists) {
+      setDocError(null); // Clear any previous error
+      navigate("/request");
+    } else {
+      const missing: string[] = [];
+      if (!birthCertExists) missing.push("Birth Certificate");
+      if (!financialCertExists) missing.push("Financial Document");
+
+      setDocError(
+        `Please upload the following required document(s) before you can request a trip: ${missing.join(", ")}.`,
+      );
+    }
+  };
 
   const UpperTabs = [
     { title: Tabs.HOME, link: "dashboard", icon: faHome },
@@ -69,6 +100,24 @@ const SideBar = ({ isExpanded, onToggleSidebar }: SidebarProps) => {
     setCurrentTab(tab.title);
     navigate(tab.link);
   };
+
+  const {
+    data: documentsData,
+    isLoading: documentsLoading,
+    refetch: refetchDocuments,
+  } = useQuery<DocumentsData>({
+    queryKey: ["documents"],
+    queryFn: async () => {
+      if (!currentUser) throw new Error("Missing patient data");
+
+      const patient_name = `${currentUser["First Name"]}_${currentUser["Last Name"]}`;
+      const airtableID = currentUser?.["AirTable Record ID"];
+      const token = await getToken();
+
+      return getDocumentsData(patient_name, airtableID, token);
+    },
+    enabled: !!currentUser,
+  });
 
   return (
     <div className={isExpanded ? styles.SideBarOpen : styles.SideBarClosed}>
@@ -117,40 +166,17 @@ const SideBar = ({ isExpanded, onToggleSidebar }: SidebarProps) => {
           )}
         </div>
         <div className={styles.LowerSideBarLinks}>
-          {isExpanded ? (
-            <button
-              className={styles.requestTripButton}
-              onClick={() => navigate("/request")}
-            >
-              Request a Trip
-            </button>
-          ) : null}
-          {/* I'm not sure if we want to keep this or not */}
-          {/* <div className={styles.profileContainer}>
-            <UserButton />
-            {isExpanded && (
-              <div className={styles.profileInfoContainer}>
-                <p>{`${user?.firstName} ${user?.lastName}`}</p>
-                <p>{`${user?.primaryEmailAddress?.emailAddress}`}</p>
-              </div>
-            )}
-          </div>
-          <div className={styles.builtByContainer}>
-            <img src={heartLogo} className={styles.heartLogo} alt="Logo" />
-            {isExpanded && (
-              <p>
-                <span id={styles.smallerText}>&nbsp;&nbsp;Built by&nbsp;</span>
-                <a
-                  id={styles.smallerText}
-                  href="https://www.changeplusplus.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  ChangePlusPlus
-                </a>
-              </p>
-            )}
-          </div> */}
+          {isExpanded && (
+            <>
+              {docError && <div className={styles.errorText}>{docError}</div>}
+              <button
+                className={styles.requestTripButton}
+                onClick={onFlightRequestClick}
+              >
+                Request a Trip
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
