@@ -19,8 +19,9 @@
 .dateRow h5 {
   font-size: 0.75rem !important;
   font-weight: 500;
-  color: var(--miracle-color-medium);
+  color: var(--miracle-color-dark) !important;
 }
+
 
 .date {
   padding: 0.25rem 0.5rem;
