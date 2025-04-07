@@ -1,10 +1,5 @@
-import type { PassengerData } from "../../interfaces/passenger.interface";
-
-/**
- * Patient Props
- *
- * @property {PatientData} patient - Patient data
- */
-export interface PatientProps {
-  patient: PassengerData;
+export interface DashboardData {
+  "All Total Flights": number;
+  "Flights This Week": number;
+  "Flights Today": number;
 }

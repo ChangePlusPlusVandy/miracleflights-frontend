@@ -1,34 +1,57 @@
 import React, { useRef } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useAuth, useUser } from "@clerk/clerk-react";
 import styles from "./DocumentsPage.module.css";
 import { Tabs } from "../../layout/SideBar/SideBar.definitions";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import {
   getDocumentsData,
   getAccompanyingPassengers,
   createPatientFolder,
   populateAccompanyingPassengersFolder,
+  createUploadSession,
+  deleteUploadSession
 } from "../../api/queries";
 import { useNavigationContext } from "../../context/Navigation.context";
 import { useUserContext } from "../../context/User.context";
 import { formatDate } from "../../util/date.util";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useAuth, useUser } from "@clerk/clerk-react";
-import { useQuery } from "@tanstack/react-query";
+import { fileNameFormat, getDocumentDescription } from "../../util/documents.util.ts";
 import type { DocumentsData } from "./Documents.definitions.ts";
 import type { PassengerData } from "../../interfaces/passenger.interface";
 import type {
   AccompanyingPassengerFolderResponse,
   PopulateFolderResponse,
+  CreateUploadSessionResponse,
+  CreateUploadSessionBodyRequest,
+  DeleteUploadSessionResponse,
+  DeleteUploadSessionRequest
 } from "../../interfaces/folder-response-interface";
 
 import UploadPassengerPageModal from "./UploadPassengerPageModal/UploadPassengerPageModal.tsx";
 import SuccessPageModal from "./SuccessPageModal/SuccessPageModal.tsx";
+import Patient from "../PassengersPage/components/PatientCard/PatientCard.tsx";
 
 const DocumentsPage = () => {
   const { getToken } = useAuth();
   const { currentUser } = useUserContext();
   const { setCurrentTab } = useNavigationContext();
   const { user } = useUser();
+
+  // mutation for upload session querying and obtaining response of document upload
+  const uploadMutation = useMutation<CreateUploadSessionResponse, Error, CreateUploadSessionBodyRequest>({
+    mutationFn: async (uploadBody: CreateUploadSessionBodyRequest) => {
+      const token = await getToken();
+      return createUploadSession(uploadBody, token);
+    },
+  });
+
+  const deleteUploadMutation = useMutation<DeleteUploadSessionResponse, Error, DeleteUploadSessionRequest>({
+    mutationFn: async (deleteBody: DeleteUploadSessionRequest) => {
+      const token = await getToken();
+      return deleteUploadSession(deleteBody, token);
+    },
+  });
 
   const birthCertificationInputRef = useRef<HTMLInputElement | null>(null);
   const incomeCertificationInputRef = useRef<HTMLInputElement | null>(null);
@@ -86,15 +109,15 @@ const DocumentsPage = () => {
 
         return createPatientFolder({ patient_name, airtableID }, token);
       },
-      enabled: !!documentsData,
+      enabled: !!documentsData 
+      && !!currentUser?.["AirTable Record ID"]
     });
 
   const {
     data: accompanyingFolderStatus,
     isLoading: accompanyingFolderStatusLoading,
   } = useQuery<AccompanyingPassengerFolderResponse[]>({
-    queryKey: [
-      "populate-accompanying-folder"],
+    queryKey: ["populate-accompanying-folder"],
     queryFn: async () => {
       if (!currentUser || !accompanyingPassengerData)
         throw new Error("Missing patient/accompanying passenger data");
@@ -117,9 +140,11 @@ const DocumentsPage = () => {
     },
     enabled:
       !!documentsData &&
-      !!folderStatus
+      !!folderStatus && 
+      !!currentUser?.["AirTable Record ID"]
   });
 
+  
   const [selectedFiles, setSelectedFiles] = useState<
     Record<string, File | null>
   >({
@@ -132,6 +157,120 @@ const DocumentsPage = () => {
     setCurrentTab(Tabs.DOCUMENTS);
   }, []);
 
+  /**
+ * Uploads a file in chunks to the provided uploadUrl.
+ * Uses a fragment size that is a multiple of 320 KiB (327,680 bytes).
+ *
+ * @param uploadUrl - The URL to which the file chunks will be uploaded.
+ * @param file - The file to upload.
+ * @param chunkSize - The size of each chunk in bytes (default: 7.5 MiB).
+ * @returns The final response data from the upload session.
+ */
+const uploadDocument = async (uploadUrl: string, file: File, chunkSize = 5 * 1024 * 1024) => {
+  const totalSize = file.size;
+  let start = 0;
+
+  // continue uploading while there are bytes left
+  while (start < totalSize) {
+    const end = Math.min(start + chunkSize - 1, totalSize - 1);
+    const chunk = file.slice(start, end + 1);
+
+    try {
+      const response = await axios.put(uploadUrl, chunk, {
+        headers: {
+          'Content-Type': file.type,
+          'Content-Range': `bytes ${start}-${end}/${totalSize}`,
+        },
+      });
+    
+      if (response.status === 202) {
+        const { nextExpectedRanges } = response.data;
+        if (nextExpectedRanges && nextExpectedRanges.length > 0) {
+          console.log(`Server expects next range: ${nextExpectedRanges[0]}`);
+          // Update start to the next expected byte (e.g., "7864320-" means start = 7864320)
+          start = parseInt(nextExpectedRanges[0].split('-')[0], 10);
+        } else {
+          return response.status;
+        }
+      } else {
+        return response.status;
+      }
+    } catch (error) {
+      console.error("Error in OneDrive connection:", error);
+      throw error;
+    }
+  }
+};
+
+  /**
+   * 
+   * @param event 
+   * @param key 
+   * @returns 
+   */
+  const handleUpload = async (event: React.FormEvent, key: string) => {
+    event.preventDefault();
+  
+    const file = selectedFiles[key];
+    if (!file) {
+      console.error("No file selected for", key);
+      return;
+    }
+    const nameParts = file.name.split(".");
+    const extension = nameParts.pop()!.toLowerCase();
+    const patientName = `${currentUser?.["First Name"]}_${currentUser?.["Last Name"]}`;
+    const airtableID = currentUser?.["AirTable Record ID"] as string;
+  
+    const fileName = fileNameFormat(key, patientName, airtableID, extension) as string;
+    const description = getDocumentDescription(key) as string;
+    const createBody = {
+      patient_name: patientName,
+      airtableID: airtableID,
+      item: {
+        name: fileName,
+        description: description,
+        "@microsoft.graph.conflictBehavior": "replace",
+      },
+    } as CreateUploadSessionBodyRequest;
+  
+    uploadMutation.mutate(createBody, {
+      onSuccess: async (data) => {
+        try {
+          const url = data.uploadUrl as string;
+          const deleteBody = { uploadUrl: url } as DeleteUploadSessionRequest;
+  
+          const result = await uploadDocument(url, file);
+          if (result) {
+            deleteUploadMutation.mutate(deleteBody, {
+              onSuccess: () => {
+                handleUploadSuccess();
+              },
+              onError: (deleteError: any) => {
+                if (deleteError.response && deleteError.response.status === 404) {
+                  handleUploadSuccess();
+                } else {
+                  console.error("Error deleting upload session:", deleteError);
+                }
+              },
+            });
+            
+          }
+        } catch (error) {
+          console.error("Error during file upload:", error);
+        }
+      },
+      onError: (error) => {
+        console.error("Error uploading:", error);
+      },
+    });
+  };
+  
+
+  const handlePassengerUpload = async (file: File, key: string) => {
+    handleUploadSuccess();
+    //this will be passenger upload stuff
+  };
+
   const handleFileChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     key: string,
@@ -140,48 +279,17 @@ const DocumentsPage = () => {
     setSelectedFiles((prev) => ({ ...prev, [key]: file }));
   };
 
-  const handleUpload = async (event: React.FormEvent, key: string) => {
-    event.preventDefault();
-
-    const file = selectedFiles[key];
-    if (!file) {
-      alert("Please select a file before uploading.");
-      return;
-    }
-
-    
-
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("documentType", key);
-    handleUploadSuccess();
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_HOST}/documents`,
-        formData,
-      );
-      console.log("File uploaded successfully:", response.data);
-    } catch (error) {
-      console.error("Error uploading file:", error);
-    }
-  };
-
-  const handlePassengerUpload = async (file: File, key: string) => {
-    handleUploadSuccess();
-    //this will be passenger upload stuff
-  };
-
-  const { data: companionsData, isLoading: companionsLoading } = useQuery<
-    PassengerData[]
-  >({
-    queryKey: ["accompanyingPassengers"],
-    queryFn: async () =>
-      getAccompanyingPassengers(
-        currentUser?.["AirTable Record ID"] || "",
-        await getToken(),
-      ),
-    enabled: true,
-  });
+  // const { data: companionsData, isLoading: companionsLoading } = useQuery<
+  //   PassengerData[]
+  // >({
+  //   queryKey: ["accompanyingPassengers"],
+  //   queryFn: async () =>
+  //     getAccompanyingPassengers(
+  //       currentUser?.["AirTable Record ID"] || "",
+  //       await getToken(),
+  //     ),
+  //   enabled: true,
+  // });
 
   const hasSelectedFile = Object.values(selectedFiles).some(
     (file) => file !== null,
@@ -218,18 +326,16 @@ const DocumentsPage = () => {
     setUploadPassengerModalOpen(false);
     setSuccessModalOpen(true);
   };
-  
+
   if (
     documentsLoading ||
     accompanyingPassengerLoading ||
     accompanyingFolderStatusLoading ||
     folderStatusLoading ||
-    companionsLoading ||
     !documentsData ||
     !accompanyingPassengerData ||
     !folderStatus ||
-    !accompanyingFolderStatus ||
-    !companionsData
+    !accompanyingFolderStatus 
   ) 
   {
     return <div>Loading...</div>;
@@ -357,7 +463,7 @@ const DocumentsPage = () => {
         </div>
         <UploadPassengerPageModal
           isOpen={uploadPassengerModalOpen}
-          passengersData={companionsData}
+          passengersData={accompanyingPassengerData}
           onPassengerFileSubmit={(file, key) =>
             handlePassengerUpload(file, key)
           }
