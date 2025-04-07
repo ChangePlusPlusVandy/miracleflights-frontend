@@ -306,10 +306,12 @@ export const getDashboardData = (
     .then((res) => res.data);
 
 export const getDocumentsData = (
+  patient_name: string,
+  airtableID: string,
   token?: string | null,
 ): Promise<DocumentsData> =>
   axios
-    .get(`${process.env.VITE_HOST}/documents`, {
+    .get(`${process.env.VITE_HOST}/documents?patientName=${patient_name}&airtableID=${airtableID}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -319,6 +321,7 @@ export const getDocumentsData = (
 export const createPatientFolder = (
   patientInfo: {
     patient_name: string;
+    airtableID: string; // airtableID can also be substituted with userID in other calls
   },
   token?: string | null,
 ): Promise<PopulateFolderResponse> =>
@@ -333,10 +336,11 @@ export const createPatientFolder = (
 export const populateAccompanyingPassengersFolder = (
   patientInfo: {
     patient_name: string;
-    accompanying_passengers: AccompanyingPassenger[]; // format will be fullName and dob
+    airtableID: string;
+    accompanying_passengers?: AccompanyingPassenger[]; // format will be fullName and dob
   },
   token?: string | null,
-): Promise<AccompanyingPassengerFolderResponse> =>
+): Promise<AccompanyingPassengerFolderResponse[]> =>
   axios
     .post(`${process.env.VITE_HOST}/test-populate-accompanying`, patientInfo, {
       headers: {
@@ -348,6 +352,7 @@ export const populateAccompanyingPassengersFolder = (
 export const populateTripsFolder = (
   patientInfo: {
     patient_name: string;
+    airtableID: string;
     trips: FlightRequestData[];
   },
   token?: string | null,
