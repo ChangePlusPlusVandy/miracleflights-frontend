@@ -3,6 +3,10 @@ import type {
   PopulateFolderResponse,
   AccompanyingPassenger,
   AccompanyingPassengerFolderResponse,
+  CreateUploadSessionResponse,
+  CreateUploadSessionBodyRequest,
+  DeleteUploadSessionResponse,
+  DeleteUploadSessionRequest
 } from "../interfaces/folder-response-interface";
 import type { FlightRequestData } from "../interfaces/flight-request-interface";
 import type { DashboardData } from "../pages/DashboardPage/DashboardPage.definitions";
@@ -364,3 +368,28 @@ export const populateTripsFolder = (
       },
     })
     .then((res) => res.data);
+
+export const createUploadSession = (
+  uploadBody: CreateUploadSessionBodyRequest, // body will also have patient_name and airtableID
+  token?: string | null,
+): Promise<CreateUploadSessionResponse> => 
+  axios
+    .post(`${process.env.VITE_HOST}/upload-session`, uploadBody, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+
+export const deleteUploadSession = (
+  deleteBody: DeleteUploadSessionRequest,
+  token?: string | null,
+): Promise<DeleteUploadSessionResponse> => 
+  axios
+    .post(`${process.env.VITE_HOST}/delete-session`, deleteBody, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
+

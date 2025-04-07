@@ -95,7 +95,7 @@ const TripsPage = () => {
 
         return populateTripsFolder({ patient_name, airtableID, trips }, token);
       },
-      enabled: !!currentUser && !!data,
+      enabled: !!currentUser && !!data && !!currentUser?.["AirTable Record ID"]
     });
 
   const getTagColor = (status: string): TagColor => {

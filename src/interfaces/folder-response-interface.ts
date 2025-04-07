@@ -21,3 +21,28 @@ export interface AccompanyingPassengerFolderResponse {
     under18: boolean;
   }[];
 }
+
+export interface CreateUploadSessionBodyRequest {
+  patient_name: string;
+  airtableID: string;
+  item: {
+    name: string;
+    description: string;
+    "@microsoft.graph.conflictBehavior": "replace";
+  };
+}
+
+export interface CreateUploadSessionResponse {
+  uploadUrl: string;
+  expirationDateTime: string;
+}
+
+export interface DeleteUploadSessionRequest {
+  uploadUrl: string;
+}
+
+// should be an empty object if successfully deleted
+export interface DeleteUploadSessionResponse {}
+
+
+
