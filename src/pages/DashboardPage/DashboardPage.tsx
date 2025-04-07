@@ -62,6 +62,7 @@ const DashboardPage = () => {
         <div className={styles.dashboardTitle}>
           Welcome back, {user?.firstName}!
         </div>
+        <hr className={styles.subtitleDivider} />
         <div className={styles.contentContainer}>
           <div className={styles.imageContainer}>
             <Slider
