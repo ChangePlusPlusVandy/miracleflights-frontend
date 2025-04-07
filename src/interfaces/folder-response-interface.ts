@@ -7,7 +7,7 @@ export interface PopulateFolderResponse {
 export interface AccompanyingPassenger {
   fullName: string;
   dob: string;
-  relationship: string[];
+  relationship: string;
 }
 
 export interface AccompanyingPassengerFolderResponse {

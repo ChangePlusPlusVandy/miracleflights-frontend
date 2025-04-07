@@ -1,5 +1,12 @@
+export interface FileData {
+  id: string;
+  name: string;
+  downloadUrl: string;
+  createdDateTime: string;
+}
+
 export interface DocumentsData {
-  "All Total Flights": number;
-  "Flights This Week": number;
-  "Flights Today": number;
+  files: FileData[];
+  birthCertExists: boolean;
+  financialCertExists: boolean;
 }
