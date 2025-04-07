@@ -20,7 +20,7 @@
   height: fit-content;
   padding: 0rem 1.25rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background: none;
   border-radius: 0.25rem;

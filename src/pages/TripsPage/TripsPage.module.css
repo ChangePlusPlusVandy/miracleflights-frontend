@@ -156,7 +156,7 @@
   display: inline-block;
   width: fit-content;
   height: fit-content;
-  background-color: #6d8ec5;
+  background-color: #7196d0;
   color: white;
   font-size: 1rem;
   font-weight: 500;
@@ -175,8 +175,7 @@
 }
 
 .copyLinkButton:hover {
-  background-color: #5b7bb3;
-  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .copyLinkButton:active {

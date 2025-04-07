@@ -58,7 +58,7 @@
   border-radius: 40px;
   font-size: 1rem;
   font-weight: 600;
-  background-color: var(--miracle-color-blue);
+  color: #7196d0;
   color: white;
   display: flex;
   align-items: center;
@@ -66,16 +66,16 @@
 }
 
 .Login:hover {
-  background-color: var(--miracle-color-blue-dark);
+  opacity: 0.9;
 }
 
 .Blue {
-  background-color: var(--miracle-color-blue);
+  background-color: #7196d0;
   color: white;
 }
 
 .Blue:hover {
-  background-color: var(--miracle-color-blue-dark);
+  opacity: 0.9;
 }
 
 .Yellow {
@@ -159,5 +159,5 @@
 }
 
 .Continue:hover {
-  background-color: #567fbf;
+  opacity: 0.9;
 }
