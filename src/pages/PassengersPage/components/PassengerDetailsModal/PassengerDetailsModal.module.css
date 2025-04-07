@@ -93,7 +93,7 @@
 
 .inputWrapper input:focus,
 .inputWrapper select:focus {
-  border-color: var(--miracle-color-blue);
+  border-color: var(--miracle-color-blue-light);
   outline: none;
 }
 
@@ -115,18 +115,27 @@
   color: #333;
 }
 
+.footerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around; /* Align delete left, actions right */
+  align-items: center;
+}
+
 .editActions {
   display: flex;
   gap: 10px;
-  margin-top: 30px;
+  align-items: center;
   justify-content: flex-end;
 }
 
 /* Style for the Back button */
 .editActions button[type="button"] {
   background-color: white;
-  color: var(--miracle-color-blue); /* Example blue color from the image */
-  border: 2px solid var(--miracle-color-blue); /* Matching border */
+  color: var(
+    --miracle-color-blue-light
+  ); /* Example blue color from the image */
+  border: 2px solid var(--miracle-color-blue-light); /* Matching border */
   border-radius: 20px; /* Rounded corners */
   padding: 10px 20px; /* Adjust padding for size */
   font-size: 0.5rem; /* Adjust font size */
@@ -140,7 +149,7 @@
 
 /* Style for the Save button */
 .editActions button[type="submit"] {
-  background-color: var(--miracle-color-blue); /* Example blue color */
+  background-color: var(--miracle-color-blue-light); /* Example blue color */
   color: white;
   border: none;
   border-radius: 20px; /* Rounded corners */
@@ -170,4 +179,71 @@
   .formGroupFull {
     grid-column: auto;
   }
+}
+
+/* Wrapper for right-aligned buttons (Edit icon or Back/Save) */
+.footerActions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.deleteButton button {
+  /* Apply styles specifically within .editActions */
+  background-color: #dc3545; /* Example Red */
+  color: white;
+  border: none;
+  border-radius: 20px; /* Match other buttons */
+  padding: 10px 20px; /* Match other buttons */
+  font-size: 0.5rem; /* Adjust if needed */
+  cursor: pointer;
+  opacity: 1;
+  transition:
+    background-color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.footerContainer button:hover {
+  opacity: 0.7;
+}
+
+/* Styles for the Confirmation Modal's Footer */
+.confirmActions {
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; /* Space between Yes/No buttons */
+  margin-top: 20px; /* Space above buttons */
+}
+
+/* Ensure confirmation modal buttons inherit base button styles if needed, */
+/* or define specific styles here. Assuming Button component handles this. */
+.confirmActions button {
+  /* Adjust padding/font-size if needed */
+  padding: 8px 16px;
+  font-size: 0.5rem; /* Smaller font size for confirm modal */
+  border-radius: 15px;
+}
+
+/* Specific styling for the confirmation 'Yes' button if ButtonColor.Red isn't enough */
+.confirmActions button[color="red"] {
+  /* Adjust selector based on your Button */
+  background-color: #dc3545;
+  opacity: 1;
+}
+.confirmActions button[color="red"]:hover {
+  opacity: 0.7;
+}
+
+/* Specific styling for the confirmation 'No' button if ButtonColor.White isn't enough */
+.confirmActions button[color="white"] {
+  /* Adjust selector based on your Button */
+  background-color: white;
+  color: #6c757d; /* Example grey text */
+  border: 1px solid #ced4da; /* Example grey border */
+  /* ... other white button styles ... */
+}
+.confirmActions button[color="white"]:hover {
+  background-color: #f8f9fa; /* Light grey background on hover */
 }
