@@ -9,7 +9,6 @@ import type {
   DeleteUploadSessionRequest
 } from "../interfaces/folder-response-interface";
 import type { FlightRequestData } from "../interfaces/flight-request-interface";
-import type { DashboardData } from "../pages/DashboardPage/DashboardPage.definitions";
 import type { PassengerData } from "../interfaces/passenger.interface";
 import type { DocumentsData } from "../pages/DocumentsPage/Documents.definitions";
 
@@ -292,17 +291,6 @@ export const getAllFlightsForUser = (
 ): Promise<FlightRequestData[]> =>
   axios
     .get(`${process.env.VITE_HOST}/requests?userId=${userId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => res.data);
-
-export const getDashboardData = (
-  token?: string | null,
-): Promise<DashboardData> =>
-  axios
-    .get(`${process.env.VITE_HOST}/dashboard`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
