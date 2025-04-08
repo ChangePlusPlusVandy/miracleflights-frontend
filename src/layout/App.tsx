@@ -1,6 +1,5 @@
 import styles from "./App.module.css";
 import SideBar from "./SideBar/Sidebar";
-import Navbar from "./NavBar/Navbar";
 import { getUserByAirtableRecordId } from "../api/queries";
 import { useUserContext } from "../context/User.context";
 import { Outlet, useNavigate } from "react-router-dom";

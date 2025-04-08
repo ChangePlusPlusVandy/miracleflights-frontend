@@ -1,8 +1,6 @@
 import styles from "./AddPassengerModal.module.css";
 import Modal from "../../../../components/Modal/Modal";
-import Icon from "../../../../components/CustomIcon/Icon";
 import Input from "../../../../components/Input/Input";
-import { ButtonColor } from "../../../../components/Button/Button.definitions";
 import Button from "../../../../components/Button/Button";
 import Select from "../../../../components/Select/Select";
 import { useUserContext } from "../../../../context/User.context";
@@ -19,7 +17,6 @@ import type {
 } from "./AddPassengerModal.definitions";
 
 const AddPassengerModal: React.FC<AddPassengerModalProps> = ({ onClose }) => {
-  const [editMode, setEditMode] = useState(true); // Always start in edit mode for consistency
   const queryClient = useQueryClient();
   const { getToken } = useAuth();
   const { currentUser } = useUserContext();
@@ -28,7 +25,6 @@ const AddPassengerModal: React.FC<AddPassengerModalProps> = ({ onClose }) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: yupResolver<FormData>(passengerSchema),

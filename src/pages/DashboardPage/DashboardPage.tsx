@@ -2,7 +2,7 @@ import styles from "./DashboardPage.module.css";
 
 import { useNavigationContext } from "../../context/Navigation.context";
 import { Tabs } from "../../layout/SideBar/SideBar.definitions";
-import { getDashboardData, getPassengers } from "../../api/queries";
+import { getPassengers } from "../../api/queries";
 
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";

@@ -1,22 +1,22 @@
 import styles from "./SideBar.module.css";
 import { Tabs, type Tab } from "./SideBar.definitions";
 import { useNavigationContext } from "../../context/Navigation.context";
-import { useNavigate } from "react-router-dom";
+import logo from "../../public/0GAGNk.tif.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserButton, useUser, useAuth } from "@clerk/clerk-react";
-import logo from "../../public/0GAGNk.tif.png";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { getDocumentsData } from "../../api/queries";
 import { DocumentsData } from "./SideBar.definitions";
 import { useQuery } from "@tanstack/react-query";
 import { useUserContext } from "../../context/User.context";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   faHome,
   faPeopleGroup,
   faPlane,
-  faBell,
+  //faBell,
   faFileAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -102,8 +102,6 @@ const SideBar = ({ isExpanded, onToggleSidebar }: SidebarProps) => {
   };
 
   const {
-    data: documentsData,
-    isLoading: documentsLoading,
     refetch: refetchDocuments,
   } = useQuery<DocumentsData>({
     queryKey: ["documents"],

@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: column;
   padding: 2rem;
+  height: 80vh; /* Full viewport height */
+  overflow: hidden; /* Prevents scroll in this container */
 }
 
 .contentContainer {
   display: flex;
-  margin-top: 30px;
+  margin-top: 10px;
   justify-content: space-between;
   align-items: flex-start;
 }
@@ -43,7 +45,7 @@
   font-weight: 600;
   font-size: 43px;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .infoContainer {

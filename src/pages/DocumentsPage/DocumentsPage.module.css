@@ -126,7 +126,9 @@
   align-items: center;
   box-sizing: border-box;
   width: 55%;
-  height: 95%;
+  height: auto;
+  max-height: none;
+  overflow: visible;
   background: rgba(210, 221, 240, 0.35);
   border-radius: 15px;
   text-align: center;
@@ -161,7 +163,9 @@
   justify-content: space-around;
   align-items: center;
   box-sizing: border-box;
-  height: 100%;
+  height: auto;
+  max-height: 100%;
+  overflow-y: auto;
   width: 100%;
   padding: 20px;
 }
@@ -224,18 +228,17 @@
   .uploadMainImage {
     width: 30%;
   }
-  
+
   .uploadChoiceContainer {
     width: 65%;
   }
 }
 
-
 @media (max-width: 1200px) {
   .uploadMainImage {
     width: 0%;
   }
-  
+
   .uploadChoiceContainer {
     width: 100%;
   }

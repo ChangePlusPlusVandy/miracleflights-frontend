@@ -30,13 +30,11 @@ import type {
 
 import UploadPassengerPageModal from "./UploadPassengerPageModal/UploadPassengerPageModal.tsx";
 import SuccessPageModal from "./SuccessPageModal/SuccessPageModal.tsx";
-import Patient from "../PassengersPage/components/PatientCard/PatientCard.tsx";
 
 const DocumentsPage = () => {
   const { getToken } = useAuth();
   const { currentUser } = useUserContext();
   const { setCurrentTab } = useNavigationContext();
-  const { user } = useUser();
 
   // mutation for upload session querying and obtaining response of document upload
   const uploadMutation = useMutation<CreateUploadSessionResponse, Error, CreateUploadSessionBodyRequest>({
@@ -55,7 +53,6 @@ const DocumentsPage = () => {
 
   const birthCertificationInputRef = useRef<HTMLInputElement | null>(null);
   const incomeCertificationInputRef = useRef<HTMLInputElement | null>(null);
-  const passengerCertificationInputRef = useRef<HTMLInputElement | null>(null);
 
 
   /**
