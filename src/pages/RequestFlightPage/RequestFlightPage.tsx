@@ -139,7 +139,7 @@ const RequestFlightPage = () => {
         AlternateAirportOfOrigin: flightInfo?.departureAirportAlternate,
         DestinationAirport: flightInfo?.arrivalAirportPrimary,
         AlternateDestinationAirport: flightInfo?.arrivalAirportAlternate,
-        ReturnDate: flightInfo?.departDate,
+        ReturnDate: flightInfo?.arrivalDate,
         FullNameOfTreatmentSite: FullNameOfTreatmentSiteWatch,
         FullNameOfPrimaryTreatmentSiteDoctor:
           FullNameOfPrimaryTreatmentSiteDoctorWatch,
@@ -158,7 +158,7 @@ const RequestFlightPage = () => {
         AlternateAirportOfOrigin: flightInfo?.departureAirportAlternate,
         DestinationAirport: flightInfo?.arrivalAirportPrimary,
         AlternateDestinationAirport: flightInfo?.arrivalAirportAlternate,
-        ReturnDate: flightInfo?.departDate,
+        ReturnDate: flightInfo?.arrivalDate,
         FullNameOfTreatmentSite: FullNameOfTreatmentSiteWatch,
         FullNameOfPrimaryTreatmentSiteDoctor:
           FullNameOfPrimaryTreatmentSiteDoctorWatch,
