@@ -32,7 +32,7 @@ const passengerSchema = Yup.object<FormData>().shape({
     .required("Zip is required"),
   Country: Yup.string().required("Country is required"),
   "Cell Phone": Yup.string()
-    .matches(/^\d{10,11}$/, "Invalid Cell Phone number")
+    .matches(/^\d{10}$/, "Invalid Cell Phone number")
     .required("Cell Phone is required"),
   Email: Yup.string().email("Invalid Email").required("Email is required"),
   Waiver: Yup.string()

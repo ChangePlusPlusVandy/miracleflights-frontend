@@ -119,8 +119,9 @@
 
 .errorMsg {
   color: rgb(165, 56, 51);
-  margin-top: 16px;
+  margin-top: 10px;
   text-align: center;
+  margin-bottom: 8px;
 }
 
 .signUpInputContainerUpper :global(input),

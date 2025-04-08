@@ -92,3 +92,8 @@
     grid-column: auto; /* Take full width on smaller screens */
   }
 }
+
+.dropdown {
+  width: 264px;
+  height: 53px;
+}

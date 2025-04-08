@@ -83,7 +83,7 @@ const RequestFlightPage = () => {
         setSelectError("You can only select up to 2 passengers.");
         return;
       }
-      
+
       setBusy(true);
       const token = await getToken();
       const res = await axios.get(
@@ -93,17 +93,23 @@ const RequestFlightPage = () => {
             Authorization: `Bearer ${token}`,
           },
           params: {
-            patientName: currentUser?.["Full Name"],
-            passengerFullName: selectedPassenger["Full Name"],
+            patientName: `${currentUser?.["First Name"]}_${currentUser?.["Last Name"]}`,
+            passengerFullName: `${selectedPassenger["First Name"]}_${selectedPassenger["Last Name"]}`,
             passengerDob: selectedPassenger["Date of Birth"],
+            airtableID: currentUser?.["AirTable Record ID"],
           },
-        }
+        },
       );
       setBusy(false);
       let dt = new Date();
       dt.setFullYear(dt.getFullYear() - 18);
-      if (res.data.value.length === 0 && new Date(selectedPassenger["Date of Birth"]) > dt) {
-        setSelectError("This passenger is under 18 years old and does not have a valid birth certificate.");
+      if (
+        res.data.value.length === 0 &&
+        new Date(selectedPassenger["Date of Birth"]) > dt
+      ) {
+        setSelectError(
+          "This passenger is under 18 years old and does not have a valid birth certificate.",
+        );
         return;
       }
       setSelectedPassengers([...selectedPassengers, selectedPassenger]);
@@ -133,7 +139,7 @@ const RequestFlightPage = () => {
         AlternateAirportOfOrigin: flightInfo?.departureAirportAlternate,
         DestinationAirport: flightInfo?.arrivalAirportPrimary,
         AlternateDestinationAirport: flightInfo?.arrivalAirportAlternate,
-        ReturnDate: flightInfo?.departDate,
+        ReturnDate: flightInfo?.arrivalDate,
         FullNameOfTreatmentSite: FullNameOfTreatmentSiteWatch,
         FullNameOfPrimaryTreatmentSiteDoctor:
           FullNameOfPrimaryTreatmentSiteDoctorWatch,
@@ -152,7 +158,7 @@ const RequestFlightPage = () => {
         AlternateAirportOfOrigin: flightInfo?.departureAirportAlternate,
         DestinationAirport: flightInfo?.arrivalAirportPrimary,
         AlternateDestinationAirport: flightInfo?.arrivalAirportAlternate,
-        ReturnDate: flightInfo?.departDate,
+        ReturnDate: flightInfo?.arrivalDate,
         FullNameOfTreatmentSite: FullNameOfTreatmentSiteWatch,
         FullNameOfPrimaryTreatmentSiteDoctor:
           FullNameOfPrimaryTreatmentSiteDoctorWatch,

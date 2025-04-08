@@ -36,8 +36,8 @@ const UploadPassengerCard = ({
           <span className={styles.title}>
             DOB: {formatDate(passenger["Date of Birth"])}
           </span>
-          <span>
-            {" ("}
+          <span className={styles.title}>
+            {" (Age: "}
             {getAge(passenger["Date of Birth"])}
             {")"}
           </span>

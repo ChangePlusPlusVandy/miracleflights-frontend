@@ -25,14 +25,12 @@ const PassengerCard = ({ passenger }: PassengerCardProps) => {
         <div className={styles.name}>{name}</div>
         <div className={styles.relationship}>{relationship}</div>
         <div className={styles.birthContainer}>
-          <span className={styles.title}>
+          <div className={styles.title}>
             DOB: {formatDate(passenger["Date of Birth"])}
-          </span>
-          <span>
-            {" ("}
-            {getAge(passenger["Date of Birth"])}
-            {")"}
-          </span>
+          </div>
+          <div className={styles.title}>
+            Age: {getAge(passenger["Date of Birth"])}
+          </div>
           {/* <span className={styles.birth}>{birth}</span> */}
         </div>
       </div>

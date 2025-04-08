@@ -25,9 +25,10 @@ export interface AccompanyingPassengerFolderResponse {
 export interface CreateUploadSessionBodyRequest {
   patient_name: string;
   airtableID: string;
+  passenger_name?: string;
   item: {
     name: string;
-    description: string;
+    description?: string;
     "@microsoft.graph.conflictBehavior": "replace";
   };
 }

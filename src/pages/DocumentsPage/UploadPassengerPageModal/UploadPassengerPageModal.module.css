@@ -1,7 +1,7 @@
 .documentsMainDiv {
   position: relative;
   box-sizing: border-box;
-  padding: 4rem;
+  padding: 2rem;
   height: 100%;
 }
 
@@ -19,8 +19,8 @@
 
 .uploadMainDiv {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 6rem;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 2rem;
   box-sizing: border-box;
   width: 100%;
   height: auto;
@@ -34,7 +34,7 @@
   position: absolute;
   top: 24px;
   left: 24px;
-  transform: translateY(10px) translateX(40px);
+  transform: translateY(-15px) translateX(10px);
   background: none;
   border: none;
   color: #0077cc;
