@@ -240,7 +240,7 @@ const PassengerDetailsModal = ({
                     <div className={styles.infoLabel}>Address:</div>
                     <div
                       className={styles.infoValue}
-                    >{`${passenger["Street"]}, ${passenger["City"]}, ${passenger["Zip"]}, ${passenger["State"]}, ${passenger["Country"]}`}</div>
+                    >{`${passenger["Street"]}, ${passenger["City"]},  ${passenger["State"]} ${passenger["Zip"]}`}</div>
                   </div>
                   <div className={styles.infoRow}>
                     <div className={styles.infoLabel}>Military:</div>

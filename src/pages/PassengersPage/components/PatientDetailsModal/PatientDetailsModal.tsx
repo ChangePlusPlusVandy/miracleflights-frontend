@@ -174,7 +174,7 @@ const PatientDetailsModal = ({
                 <div className={styles.infoRow}>
                   <div className={styles.infoLabel}>Address:</div>
                   <div className={styles.infoValue}>
-                    {`${patient["Street"]}, ${patient["City"]}, ${patient["Zip"]}, ${patient["State"]}, ${patient["Country"]}`}
+                    {`${patient["Street"]}, ${patient["City"]}, ${patient["State"]} ${patient["Zip"]}`}
                   </div>
                 </div>
 
