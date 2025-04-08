@@ -1,4 +1,3 @@
-// export default PassengerDetailsModal;
 import styles from "./PassengerDetailsModal.module.css";
 import Modal from "../../../../components/Modal/Modal";
 import { ButtonColor } from "../../../../components/Button/Button.definitions";
@@ -18,6 +17,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import type { PassengerDetailsModalProps } from "./PassengerDetailsModal.definitions";
 
+// Define ButtonColor.Red if it doesn't exist in your Button definitions
+// Example: Add this to Button.definitions.ts or define locally if needed
+// enum ButtonColor { /* ..., */ Red = 'red' }
+
 const PassengerDetailsModal = ({
   passenger,
   onClose,
@@ -31,11 +34,8 @@ const PassengerDetailsModal = ({
   // --- Yup Schema and Form Hook (Unchanged) ---
   const schema = yup.object().shape({
     Street: yup.string().required("Street is required"),
-    City: yup.string().required("City is required"),
-    State: yup.string().required("State is required"),
-    Zip: yup.string().required("Zip code is required"),
-    Country: yup.string().required("Country is required"),
     Relationship: yup.string(),
+    Country: yup.string().required("Country is required"),
     Email: yup
       .string()
       .email("Invalid email format")
@@ -44,8 +44,6 @@ const PassengerDetailsModal = ({
     DateOfBirth: yup.string().required("Date of Birth is required"),
     MilitaryService: yup.string().required("Military status is required"),
     CellPhone: yup.string().required("Phone number is required"),
-    FirstName: yup.string().required("First name is required"),
-    LastName: yup.string().required("Last name is required"),
   });
 
   const {
@@ -57,9 +55,6 @@ const PassengerDetailsModal = ({
     resolver: yupResolver(schema),
     defaultValues: {
       Street: passenger["Street"],
-      City: passenger["City"],
-      State: passenger["State"],
-      Zip: passenger["Zip"],
       Relationship: passenger["Relationship"] || undefined,
       Country: passenger["Country"],
       Email: passenger["Email"],
@@ -67,16 +62,11 @@ const PassengerDetailsModal = ({
       DateOfBirth: passenger["Date of Birth"],
       MilitaryService: passenger["Military Service"],
       CellPhone: passenger["Cell Phone"],
-      FirstName: passenger["First Name"],
-      LastName: passenger["Last Name"],
     },
   });
 
   interface PassengerFormData {
     Street: string;
-    City: string;
-    State: string;
-    Zip: string;
     Relationship?: string;
     Country: string;
     Email: string;
@@ -85,8 +75,6 @@ const PassengerDetailsModal = ({
     Gender: string;
     CellPhone: string;
     Notes?: string; // Assuming Notes might be part of the form data
-    FirstName: string;
-    LastName: string;
   }
 
   // --- Update Mutation (Unchanged) ---
@@ -143,17 +131,12 @@ const PassengerDetailsModal = ({
     const apiData = {
       Street: formData.Street,
       Relationship: formData.Relationship,
-      City: formData.City,
-      State: formData.State,
-      Zip: formData.Zip,
       Country: formData.Country,
       Email: formData.Email,
       DateOfBirth: formData.DateOfBirth,
       MilitaryService: formData.MilitaryService,
       Gender: formData.Gender,
       CellPhone: formData.CellPhone,
-      FirstName: formData.FirstName,
-      LastName: formData.LastName,
       // Notes: formData.Notes, // Include if needed
     };
     mutateUpdate(apiData);
@@ -240,7 +223,7 @@ const PassengerDetailsModal = ({
                     <div className={styles.infoLabel}>Address:</div>
                     <div
                       className={styles.infoValue}
-                    >{`${passenger["Street"]}, ${passenger["City"]}, ${passenger["Zip"]}, ${passenger["State"]}, ${passenger["Country"]}`}</div>
+                    >{`${passenger["Street"]}, ${passenger["Country"]}`}</div>
                   </div>
                   <div className={styles.infoRow}>
                     <div className={styles.infoLabel}>Military:</div>
@@ -269,50 +252,17 @@ const PassengerDetailsModal = ({
             ) : (
               // --- Edit Mode (Content unchanged) ---
               <div className={styles.editGrid}>
-                <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>First Name</label>
-                  <div className={styles.inputWrapper}>
-                    <Input
-                      name="FirstName"
-                      register={register}
-                      defaultValue={passenger["First Name"]}
-                      type="text"
-                      placeholder="First Name"
-                    />
-                  </div>
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>Last Name</label>
-                  <div className={styles.inputWrapper}>
-                    <Input
-                      name="LastName"
-                      register={register}
-                      defaultValue={passenger["Last Name"]}
-                      type="text"
-                      placeholder="Last Name"
-                    />
-                  </div>
-                </div>
                 {/* ... (Keep all existing formGroup divs for editing) ... */}
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>
                     Relationship to Patient:
                   </label>
                   <div className={styles.inputWrapper}>
-                    <Select
+                    <Input
                       name="Relationship"
                       register={register}
-                      placeholder="Select Relationship"
-                      options={[
-                        "Mother",
-                        "Father",
-                        "Step-mother",
-                        "Step-father",
-                        "Legal Guardian",
-                        "Spouse",
-                        "Family Member",
-                        "Other Caregiver",
-                      ]}
+                      defaultValue={passenger["Relationship"]}
+                      type="text"
                     />
                   </div>
                 </div>
@@ -374,7 +324,7 @@ const PassengerDetailsModal = ({
                     />
                   </div>
                 </div>
-                <div className={styles.formGroup}>
+                <div className={styles.formGroupFull}>
                   <label className={styles.formLabel}>Address</label>
                   <div className={styles.inputWrapper}>
                     <Input
@@ -385,152 +335,7 @@ const PassengerDetailsModal = ({
                       placeholder="Street Address"
                     />
                   </div>
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>City</label>
-                  <div className={styles.inputWrapper}>
-                    <Input
-                      name="City"
-                      register={register}
-                      defaultValue={passenger["City"]}
-                      type="text"
-                      placeholder="City"
-                    />
-                  </div>
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>Zip</label>
-                  <div className={styles.inputWrapper}>
-                    <Input
-                      name="Zip"
-                      register={register}
-                      error={errors.Zip?.message}
-                      defaultValue={passenger["Zip"]}
-                      type="text"
-                      placeholder="Zip Code"
-                    />
-                  </div>
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>State</label>
-                  <div className={styles.inputWrapper}>
-                    <Select
-                      name="State"
-                      register={register}
-                      placeholder="State"
-                      options={[
-                        "AK",
-                        "AL",
-                        "AR",
-                        "AZ",
-                        "CA",
-                        "CO",
-                        "CT",
-                        "DC",
-                        "DE",
-                        "FL",
-                        "GA",
-                        "HI",
-                        "IA",
-                        "ID",
-                        "IL",
-                        "IN",
-                        "KS",
-                        "KY",
-                        "LA",
-                        "MA",
-                        "MD",
-                        "ME",
-                        "MI",
-                        "MN",
-                        "MO",
-                        "MP",
-                        "MS",
-                        "MT",
-                        "NC",
-                        "ND",
-                        "NE",
-                        "NH",
-                        "NJ",
-                        "NL",
-                        "NM",
-                        "NV",
-                        "NY",
-                        "OH",
-                        "OK",
-                        "OR",
-                        "PA",
-                        "PR",
-                        "RI",
-                        "SC",
-                        "SD",
-                        "TN",
-                        "TX",
-                        "UT",
-                        "VA",
-                        "VI",
-                        "VT",
-                        "WA",
-                        "WI",
-                        "WV",
-                        "WY",
-                      ]}
-                    />
-                  </div>
-                </div>
-
-                <div className={styles.formGroupFull}>
-                  <label className={styles.formLabel}>Country</label>
-                  <div className={styles.inputWrapper}>
-                    <Select
-                      name="Country"
-                      register={register}
-                      placeholder="Country"
-                      // defaultValue={patient["Country"]}
-                      options={[
-                        "Argentina",
-                        "Australia",
-                        "Azerbaijan",
-                        "Bahamas",
-                        "Belize",
-                        "Brazil",
-                        "Canada",
-                        "Chile",
-                        "China",
-                        "Colombia",
-                        "Croatia",
-                        "Dominican Republic",
-                        "Ecuador",
-                        "El Salvador",
-                        "Germany",
-                        "Grenada",
-                        "Guam",
-                        "Guatemala",
-                        "Guyana",
-                        "Honduras",
-                        "India",
-                        "Israel",
-                        "Jamaica",
-                        "Kuwait",
-                        "Mauritius",
-                        "Mexico",
-                        "Nicaragua",
-                        "Paraguay",
-                        "Peru",
-                        "Philippines",
-                        "Serbia",
-                        "South Africa",
-                        "Tajikistan",
-                        "Trinidad and Tobago",
-                        "Tunisia",
-                        "Turkey",
-                        "Uganda",
-                        "Ukraine",
-                        "United Kingdom",
-                        "United States",
-                      ]}
-                    />
-                  </div>
+                  {/* Consider adding Country input here if it should be editable */}
                 </div>
               </div>
             )}

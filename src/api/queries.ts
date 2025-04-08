@@ -131,6 +131,8 @@ export const updatePatient = async (
     Gender: string;
     CellPhone: string;
     Diagnoses: string;
+    FirstName: string;
+    LastName: string;
   },
   airtableRecordId: string,
   token?: string | null,
@@ -147,6 +149,8 @@ export const updatePatient = async (
     "Military Service": patient.MilitaryService,
     "Cell Phone": patient.CellPhone,
     Diagnoses: patient.Diagnoses.split(","),
+    "First Name": patient.FirstName,
+    "Last Name": patient.LastName,
   };
 
   const data = {
@@ -157,6 +161,8 @@ export const updatePatient = async (
       },
     ],
   };
+
+  console.log("Data to be sent:", data); // Debugging line
 
   try {
     const response = await axios.put(
@@ -301,6 +307,8 @@ export const updatePassenger = async (
     Gender: string;
     CellPhone: string;
     Notes?: string;
+    FirstName: string;
+    LastName: string;
   },
   airtableRecordId: string,
   token?: string | null,
@@ -317,6 +325,8 @@ export const updatePassenger = async (
     "Date of Birth": passenger.DateOfBirth, // Correct Airtable field name
     "Military Service": passenger.MilitaryService,
     "Cell Phone": passenger.CellPhone,
+    "First Name": passenger.FirstName,
+    "Last Name": passenger.LastName,
   };
 
   const data = {
