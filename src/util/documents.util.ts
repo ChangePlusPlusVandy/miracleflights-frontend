@@ -36,9 +36,10 @@ export const passengerFileNameFormat = (
 ) => {
   // Ensure the extension is in lowercase (in case it's provided in uppercase)
   const ext = extension.toLowerCase();
+  const formattedPassengerName = passengerName.trim().split(/\s+/).join('_');
   let suffix = "";
   suffix = `_birth_certificate.${ext}`;
-  return `${passengerName}_${passengerAirtableID}${suffix}`
+  return `${formattedPassengerName}_${passengerAirtableID}${suffix}`
 };
 
 
