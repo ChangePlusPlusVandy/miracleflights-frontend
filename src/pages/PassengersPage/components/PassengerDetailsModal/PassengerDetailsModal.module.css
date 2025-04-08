@@ -120,7 +120,7 @@
 .footerContainer {
   width: 100%;
   display: flex;
-  justify-content: space-around; /* Align delete left, actions right */
+  justify-content: space-between; /* Align delete left, actions right */
   align-items: center;
 }
 

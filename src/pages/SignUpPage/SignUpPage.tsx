@@ -20,6 +20,7 @@ const SignUpPage = () => {
   const { isLoaded, signUp, setActive } = useSignUp();
   const [pendingVerification, setPendingVerification] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [codeErrorMsg, setCodeErrorMsg] = useState<string | null>(null);
 
   const signUpSchema = yup.object().shape({
     email: yup.string().email().required("Required"),
@@ -109,28 +110,26 @@ const SignUpPage = () => {
     }
   };
 
-  // This verifies the user using email code that is delivered.
   const onSubmitCode = async (inputData: SignUpCodeInput) => {
-    if (!isLoaded) {
-      return;
-    }
+    if (!isLoaded) return;
 
     try {
       const completeSignUp = await signUp.attemptEmailAddressVerification({
         code: inputData.code,
       });
+
       if (completeSignUp.status !== "complete") {
-        /*  investigate the response, to see if there was an error
-                                         or if the user needs to complete more steps.*/
         console.log(JSON.stringify(completeSignUp, null, 2));
+        return;
       }
-      if (completeSignUp.status === "complete") {
-        await setActive({ session: completeSignUp.createdSessionId });
-        navigate("/onboard");
-      }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+      await setActive({ session: completeSignUp.createdSessionId });
+      navigate("/onboard");
     } catch (err: any) {
       console.error(JSON.stringify(err, null, 2));
+      setCodeErrorMsg(
+        err.errors?.[0]?.longMessage ?? "Invalid code, please try again.",
+      );
     }
   };
 
@@ -229,14 +228,6 @@ const SignUpPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className={styles.forgotPassword}>
-                  <div
-                    onClick={() => navigate("/forgot-password")}
-                    className={styles.signUpBlockLink}
-                  >
-                    Forgot password?
-                  </div>
-                </div>
                 <Button type="submit" text={"Sign Up"} disabled={disabled} />
               </form>
               <p className={styles.errorMsg}>{errorMsg}</p>
@@ -264,6 +255,7 @@ const SignUpPage = () => {
                     placeholder="Paste your 6-digit code here."
                   />
                 </div>
+                <p className={styles.errorMsg}>{codeErrorMsg}</p>
                 <Button
                   type="submit"
                   text={"Submit Code"}
