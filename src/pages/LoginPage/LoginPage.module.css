@@ -134,6 +134,7 @@
   align-items: center;
   text-align: center;
   color: white;
+  justify-content: center;
   padding-right: 4rem;
   padding-left: 1rem;
 }

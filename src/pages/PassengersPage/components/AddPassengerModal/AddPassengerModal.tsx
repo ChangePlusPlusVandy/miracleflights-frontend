@@ -378,10 +378,11 @@ const AddPassengerModal: React.FC<AddPassengerModalProps> = ({ onClose }) => {
                 {errorMessage}
               </div>
             )}
+            <div></div>
+            <div className={styles.footer}>
+              <Button type="submit" text="Submit" disabled={!isValid} />
+            </div>
           </form>
-          <div className={styles.footer}>
-            <Button type="submit" text="Submit" disabled={!isValid} />
-          </div>
         </div>
       }
     />

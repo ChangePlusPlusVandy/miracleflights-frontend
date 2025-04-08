@@ -16,7 +16,7 @@ import {
 import { useNavigationContext } from "../../context/Navigation.context";
 import { useUserContext } from "../../context/User.context";
 import { formatDate } from "../../util/date.util";
-import { fileNameFormat, getDocumentDescription } from "../../util/documents.util.ts";
+import { fileNameFormat, getDocumentDescription, passengerFileNameFormat } from "../../util/documents.util.ts";
 import type { DocumentsData } from "./Documents.definitions.ts";
 import type { PassengerData } from "../../interfaces/passenger.interface";
 import type {
@@ -203,6 +203,7 @@ const uploadDocument = async (uploadUrl: string, file: File, chunkSize = 5 * 102
 };
 
   /**
+   * handles upload for patient documents
    * 
    * @param event 
    * @param key 
@@ -265,10 +266,67 @@ const uploadDocument = async (uploadUrl: string, file: File, chunkSize = 5 * 102
     });
   };
   
-
+  /**
+   * handles uploads for accompanying passengers
+   * 
+   * key is the unique airtable record ID for accompanying passengers that are under 18 for the patient
+   * cross validate that airtable record ID with all available accompanying passengers
+   * 
+   * @param file 
+   * @param key the unique airtable record ID 
+   */
   const handlePassengerUpload = async (file: File, key: string) => {
-    handleUploadSuccess();
-    //this will be passenger upload stuff
+    // obtain the file information
+    const nameParts = file.name.split(".");
+    const extension = nameParts.pop()!.toLowerCase();
+    const patientName = `${currentUser?.["First Name"]}_${currentUser?.["Last Name"]}`;
+    const airtableID = currentUser?.["AirTable Record ID"] as string;
+
+    const matchingPassenger: PassengerData | undefined = accompanyingPassengerData?.find(
+      (passenger: PassengerData) => passenger["AirTable Record ID"] === key
+    );
+
+    const passengerName = matchingPassenger?.["Full Name"] as string;
+    const fileName = passengerFileNameFormat(passengerName, key, extension);
+    const createBody = {
+      patient_name: patientName,
+      airtableID: airtableID,
+      passenger_name: passengerName,
+      item: {
+        name: fileName,
+        "@microsoft.graph.conflictBehavior": "replace",
+      },
+    } as CreateUploadSessionBodyRequest;
+    uploadMutation.mutate(createBody, {
+      onSuccess: async (data) => {
+        try {
+          const url = data.uploadUrl as string;
+          const deleteBody = { uploadUrl: url } as DeleteUploadSessionRequest;
+  
+          const result = await uploadDocument(url, file);
+          if (result) {
+            deleteUploadMutation.mutate(deleteBody, {
+              onSuccess: () => {
+                handleUploadSuccess();
+              },
+              onError: (deleteError: any) => {
+                if (deleteError.response && deleteError.response.status === 404) {
+                  handleUploadSuccess();
+                } else {
+                  console.error("Error deleting upload session:", deleteError);
+                }
+              },
+            });
+            
+          }
+        } catch (error) {
+          console.error("Error during file upload:", error);
+        }
+      },
+      onError: (error) => {
+        console.error("Error uploading:", error);
+      },
+    });
   };
 
   const handleFileChange = (

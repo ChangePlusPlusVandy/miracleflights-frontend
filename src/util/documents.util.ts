@@ -17,7 +17,7 @@ export const fileNameFormat = (
       suffix = `_birth_certificate.${ext}`;
       break;
     case "incomeCertification":
-      suffix = `_financial_document.${ext}`;
+      suffix = `_financial_certificate.${ext}`;
       break;
     case "passengerCertification":
       suffix = `_passenger_certificate.${ext}`;
@@ -27,6 +27,19 @@ export const fileNameFormat = (
   }
 
   return `${patient_name}_${airtableID}${suffix}`;
+};
+
+export const passengerFileNameFormat = (
+  passengerName: string,
+  passengerAirtableID: string,
+  extension: string// default extension is pdf if none is provided
+) => {
+  // Ensure the extension is in lowercase (in case it's provided in uppercase)
+  const ext = extension.toLowerCase();
+  const formattedPassengerName = passengerName.trim().split(/\s+/).join('_');
+  let suffix = "";
+  suffix = `_birth_certificate.${ext}`;
+  return `${formattedPassengerName}_${passengerAirtableID}${suffix}`
 };
 
 

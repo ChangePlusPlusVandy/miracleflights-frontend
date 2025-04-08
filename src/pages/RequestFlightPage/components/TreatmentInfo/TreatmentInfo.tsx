@@ -3,6 +3,7 @@ import Input from "../../../../components/Input/Input";
 import Button from "../../../../components/Button/Button";
 import { ButtonVariant } from "../../../../components/Button/Button.definitions";
 import type { TreatmentInfoProps } from "./TreatmentInfo.definitions";
+import { useEffect } from "react";
 
 const TreatmentInfo = ({
   setStep,
@@ -17,6 +18,21 @@ const TreatmentInfo = ({
   const ScheduledMedicalAppointmentDateWatch = watch(
     "ScheduledMedicalAppointmentDate",
   );
+
+  useEffect(() => {
+    register("ScheduledMedicalAppointmentDate", {
+      validate: (value) => {
+        if (!value) return "This field is required.";
+        const today = new Date();
+        const selectedDate = new Date(value);
+        today.setHours(0, 0, 0, 0);
+        selectedDate.setHours(0, 0, 0, 0);
+        return (
+          selectedDate > today || "Appointment date must be in the future."
+        );
+      },
+    });
+  }, [register]);
 
   return (
     <div className={styles.treatmentInfoContainer}>
