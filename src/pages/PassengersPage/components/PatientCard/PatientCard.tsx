@@ -40,11 +40,9 @@ const Patient = ({ patient }: PatientProps) => {
               <span>{patient["Gender"]} | </span>
               <span>DOB: </span>
               <span>{formatDate(patient["Date of Birth"])}</span>
-              <span className={styles.boldText}>
-                {" ("}
-                {getAge(patient["Date of Birth"])}
-                {")"}
-              </span>
+              <div className={styles.title}>
+                Age: {getAge(patient["Date of Birth"])}
+              </div>
             </div>
             <div className={styles.medCondition}>
               <span>Medical Condition: {patient["Diagnoses"]}</span>
