@@ -264,7 +264,7 @@ const PassengerDetailsModal = ({
                   </div>
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>Phone Number</label>
+                  <label className={styles.formLabel}>Phone Number:</label>
                   <div className={styles.inputWrapper}>
                     <Input
                       name="CellPhone"
@@ -322,7 +322,7 @@ const PassengerDetailsModal = ({
                   </div>
                 </div>
                 <div className={styles.formGroupFull}>
-                  <label className={styles.formLabel}>Address</label>
+                  <label className={styles.formLabel}>Address:</label>
                   <div className={styles.inputWrapper}>
                     <Input
                       name="Street"
