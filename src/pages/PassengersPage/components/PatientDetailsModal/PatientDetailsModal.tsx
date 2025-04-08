@@ -38,6 +38,8 @@ const PatientDetailsModal = ({
     MilitaryService: yup.string().required("Military status is required"),
     CellPhone: yup.string().required("Phone number is required"),
     Diagnoses: yup.string().required("Medical condition is required"),
+    FirstName: yup.string().required("First name is required"),
+    LastName: yup.string().required("Last name is required"),
   });
 
   const {
@@ -59,6 +61,8 @@ const PatientDetailsModal = ({
       MilitaryService: patient["Military Service"],
       CellPhone: patient["Cell Phone"],
       Diagnoses: patient["Diagnoses"].join(", "),
+      FirstName: patient["First Name"],
+      LastName: patient["Last Name"],
     },
   });
 
@@ -75,6 +79,8 @@ const PatientDetailsModal = ({
     MilitaryService: string;
     CellPhone: string;
     Diagnoses: string;
+    FirstName: string;
+    LastName: string;
   }
 
   const { mutate } = useMutation({
@@ -114,7 +120,11 @@ const PatientDetailsModal = ({
       Gender: formData.Gender,
       CellPhone: formData.CellPhone,
       Diagnoses: formData.Diagnoses,
+      FirstName: formData.FirstName,
+      LastName: formData.LastName,
     };
+    // console.log("Diagnoses", formData.Diagnoses);
+
     mutate(apiData);
   };
 
@@ -194,6 +204,30 @@ const PatientDetailsModal = ({
             </div>
           ) : (
             <div className={styles.editGrid}>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>First Name</label>
+                <div className={styles.inputWrapper}>
+                  <Input
+                    name="FirstName"
+                    register={register}
+                    defaultValue={patient["First Name"]}
+                    type="text"
+                    placeholder="First Name"
+                  />
+                </div>
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Last Name</label>
+                <div className={styles.inputWrapper}>
+                  <Input
+                    name="LastName"
+                    register={register}
+                    defaultValue={patient["Last Name"]}
+                    type="text"
+                    placeholder="Last Name"
+                  />
+                </div>
+              </div>
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>Phone Number</label>
                 <div className={styles.inputWrapper}>
@@ -413,7 +447,7 @@ const PatientDetailsModal = ({
                 <label className={styles.formLabel}>Medical Condition</label>
                 <div className={styles.inputWrapper}>
                   <Input
-                    name="Medical Condition"
+                    name="Diagnoses"
                     register={register}
                     defaultValue={patient["Diagnoses"].join(", ")}
                     type="text"

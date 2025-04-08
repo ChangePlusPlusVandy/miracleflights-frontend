@@ -44,6 +44,8 @@ const PassengerDetailsModal = ({
     DateOfBirth: yup.string().required("Date of Birth is required"),
     MilitaryService: yup.string().required("Military status is required"),
     CellPhone: yup.string().required("Phone number is required"),
+    FirstName: yup.string().required("First name is required"),
+    LastName: yup.string().required("Last name is required"),
   });
 
   const {
@@ -65,6 +67,8 @@ const PassengerDetailsModal = ({
       DateOfBirth: passenger["Date of Birth"],
       MilitaryService: passenger["Military Service"],
       CellPhone: passenger["Cell Phone"],
+      FirstName: passenger["First Name"],
+      LastName: passenger["Last Name"],
     },
   });
 
@@ -81,6 +85,8 @@ const PassengerDetailsModal = ({
     Gender: string;
     CellPhone: string;
     Notes?: string; // Assuming Notes might be part of the form data
+    FirstName: string;
+    LastName: string;
   }
 
   // --- Update Mutation (Unchanged) ---
@@ -146,6 +152,8 @@ const PassengerDetailsModal = ({
       MilitaryService: formData.MilitaryService,
       Gender: formData.Gender,
       CellPhone: formData.CellPhone,
+      FirstName: formData.FirstName,
+      LastName: formData.LastName,
       // Notes: formData.Notes, // Include if needed
     };
     mutateUpdate(apiData);
@@ -261,6 +269,30 @@ const PassengerDetailsModal = ({
             ) : (
               // --- Edit Mode (Content unchanged) ---
               <div className={styles.editGrid}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>First Name</label>
+                  <div className={styles.inputWrapper}>
+                    <Input
+                      name="FirstName"
+                      register={register}
+                      defaultValue={passenger["First Name"]}
+                      type="text"
+                      placeholder="First Name"
+                    />
+                  </div>
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Last Name</label>
+                  <div className={styles.inputWrapper}>
+                    <Input
+                      name="LastName"
+                      register={register}
+                      defaultValue={passenger["Last Name"]}
+                      type="text"
+                      placeholder="Last Name"
+                    />
+                  </div>
+                </div>
                 {/* ... (Keep all existing formGroup divs for editing) ... */}
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>
