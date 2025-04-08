@@ -31,8 +31,11 @@ const PassengerDetailsModal = ({
   // --- Yup Schema and Form Hook (Unchanged) ---
   const schema = yup.object().shape({
     Street: yup.string().required("Street is required"),
-    Relationship: yup.string(),
+    City: yup.string().required("City is required"),
+    State: yup.string().required("State is required"),
+    Zip: yup.string().required("Zip code is required"),
     Country: yup.string().required("Country is required"),
+    Relationship: yup.string(),
     Email: yup
       .string()
       .email("Invalid email format")
@@ -52,6 +55,9 @@ const PassengerDetailsModal = ({
     resolver: yupResolver(schema),
     defaultValues: {
       Street: passenger["Street"],
+      City: passenger["City"],
+      State: passenger["State"],
+      Zip: passenger["Zip"],
       Relationship: passenger["Relationship"] || undefined,
       Country: passenger["Country"],
       Email: passenger["Email"],
@@ -64,6 +70,9 @@ const PassengerDetailsModal = ({
 
   interface PassengerFormData {
     Street: string;
+    City: string;
+    State: string;
+    Zip: string;
     Relationship?: string;
     Country: string;
     Email: string;
@@ -128,6 +137,9 @@ const PassengerDetailsModal = ({
     const apiData = {
       Street: formData.Street,
       Relationship: formData.Relationship,
+      City: formData.City,
+      State: formData.State,
+      Zip: formData.Zip,
       Country: formData.Country,
       Email: formData.Email,
       DateOfBirth: formData.DateOfBirth,
@@ -220,7 +232,7 @@ const PassengerDetailsModal = ({
                     <div className={styles.infoLabel}>Address:</div>
                     <div
                       className={styles.infoValue}
-                    >{`${passenger["Street"]}, ${passenger["Country"]}`}</div>
+                    >{`${passenger["Street"]}, ${passenger["City"]}, ${passenger["Zip"]}, ${passenger["State"]}, ${passenger["Country"]}`}</div>
                   </div>
                   <div className={styles.infoRow}>
                     <div className={styles.infoLabel}>Military:</div>
@@ -255,11 +267,20 @@ const PassengerDetailsModal = ({
                     Relationship to Patient:
                   </label>
                   <div className={styles.inputWrapper}>
-                    <Input
+                    <Select
                       name="Relationship"
                       register={register}
-                      defaultValue={passenger["Relationship"]}
-                      type="text"
+                      placeholder="Select Relationship"
+                      options={[
+                        "Mother",
+                        "Father",
+                        "Step-mother",
+                        "Step-father",
+                        "Legal Guardian",
+                        "Spouse",
+                        "Family Member",
+                        "Other Caregiver",
+                      ]}
                     />
                   </div>
                 </div>
@@ -321,7 +342,7 @@ const PassengerDetailsModal = ({
                     />
                   </div>
                 </div>
-                <div className={styles.formGroupFull}>
+                <div className={styles.formGroup}>
                   <label className={styles.formLabel}>Address</label>
                   <div className={styles.inputWrapper}>
                     <Input
@@ -332,7 +353,152 @@ const PassengerDetailsModal = ({
                       placeholder="Street Address"
                     />
                   </div>
-                  {/* Consider adding Country input here if it should be editable */}
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>City</label>
+                  <div className={styles.inputWrapper}>
+                    <Input
+                      name="City"
+                      register={register}
+                      defaultValue={passenger["City"]}
+                      type="text"
+                      placeholder="City"
+                    />
+                  </div>
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Zip</label>
+                  <div className={styles.inputWrapper}>
+                    <Input
+                      name="Zip"
+                      register={register}
+                      error={errors.Zip?.message}
+                      defaultValue={passenger["Zip"]}
+                      type="text"
+                      placeholder="Zip Code"
+                    />
+                  </div>
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>State</label>
+                  <div className={styles.inputWrapper}>
+                    <Select
+                      name="State"
+                      register={register}
+                      placeholder="State"
+                      options={[
+                        "AK",
+                        "AL",
+                        "AR",
+                        "AZ",
+                        "CA",
+                        "CO",
+                        "CT",
+                        "DC",
+                        "DE",
+                        "FL",
+                        "GA",
+                        "HI",
+                        "IA",
+                        "ID",
+                        "IL",
+                        "IN",
+                        "KS",
+                        "KY",
+                        "LA",
+                        "MA",
+                        "MD",
+                        "ME",
+                        "MI",
+                        "MN",
+                        "MO",
+                        "MP",
+                        "MS",
+                        "MT",
+                        "NC",
+                        "ND",
+                        "NE",
+                        "NH",
+                        "NJ",
+                        "NL",
+                        "NM",
+                        "NV",
+                        "NY",
+                        "OH",
+                        "OK",
+                        "OR",
+                        "PA",
+                        "PR",
+                        "RI",
+                        "SC",
+                        "SD",
+                        "TN",
+                        "TX",
+                        "UT",
+                        "VA",
+                        "VI",
+                        "VT",
+                        "WA",
+                        "WI",
+                        "WV",
+                        "WY",
+                      ]}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.formGroupFull}>
+                  <label className={styles.formLabel}>Country</label>
+                  <div className={styles.inputWrapper}>
+                    <Select
+                      name="Country"
+                      register={register}
+                      placeholder="Country"
+                      // defaultValue={patient["Country"]}
+                      options={[
+                        "Argentina",
+                        "Australia",
+                        "Azerbaijan",
+                        "Bahamas",
+                        "Belize",
+                        "Brazil",
+                        "Canada",
+                        "Chile",
+                        "China",
+                        "Colombia",
+                        "Croatia",
+                        "Dominican Republic",
+                        "Ecuador",
+                        "El Salvador",
+                        "Germany",
+                        "Grenada",
+                        "Guam",
+                        "Guatemala",
+                        "Guyana",
+                        "Honduras",
+                        "India",
+                        "Israel",
+                        "Jamaica",
+                        "Kuwait",
+                        "Mauritius",
+                        "Mexico",
+                        "Nicaragua",
+                        "Paraguay",
+                        "Peru",
+                        "Philippines",
+                        "Serbia",
+                        "South Africa",
+                        "Tajikistan",
+                        "Trinidad and Tobago",
+                        "Tunisia",
+                        "Turkey",
+                        "Uganda",
+                        "Ukraine",
+                        "United Kingdom",
+                        "United States",
+                      ]}
+                    />
+                  </div>
                 </div>
               </div>
             )}

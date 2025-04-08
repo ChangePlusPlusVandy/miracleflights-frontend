@@ -121,22 +121,32 @@ export const getUserByAirtableRecordId = (
 export const updatePatient = async (
   patient: {
     Street: string;
+    City: string;
+    State: string;
+    Zip: string;
+    Country: string;
     Email: string;
     DateOfBirth: string;
     MilitaryService: string;
     Gender: string;
     CellPhone: string;
+    Diagnoses: string;
   },
   airtableRecordId: string,
   token?: string | null,
 ): Promise<PassengerData> => {
   const airtableFields: { [key: string]: string | number | unknown } = {
     Street: patient.Street,
+    City: patient.City,
+    State: patient.State,
+    Zip: patient.Zip,
+    Country: patient.Country,
     Email: patient.Email,
     Gender: patient.Gender,
     "Date of Birth": patient.DateOfBirth, // Correct Airtable field name
     "Military Service": patient.MilitaryService,
     "Cell Phone": patient.CellPhone,
+    Diagnoses: patient.Diagnoses.split(","),
   };
 
   const data = {
@@ -281,6 +291,9 @@ export const updatePassenger = async (
   passenger: {
     Street: string;
     Relationship?: string;
+    City: string;
+    State: string;
+    Zip: string;
     Country: string;
     Email: string;
     DateOfBirth: string;
@@ -295,6 +308,9 @@ export const updatePassenger = async (
   const airtableFields: { [key: string]: string | number | unknown } = {
     Street: passenger.Street,
     Relationship: passenger.Relationship,
+    City: passenger.City,
+    State: passenger.State,
+    Zip: passenger.Zip,
     Country: passenger.Country,
     Email: passenger.Email,
     Gender: passenger.Gender,

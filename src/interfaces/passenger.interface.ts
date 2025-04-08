@@ -8,6 +8,9 @@ export interface PassengerData {
   "Cell Phone": string;
   Gender: string;
   Street: string;
+  City: string;
+  State: string;
+  Zip: string;
   Country: string;
   Email: string;
   "Household Income": number;
