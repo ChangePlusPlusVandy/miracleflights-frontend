@@ -3,13 +3,12 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  margin: 0.625rem 0rem;
 }
 
 .selectWrapper label {
   font-family: "Inter", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
   margin: 0rem 0rem 0.125rem 0.3125rem;
   color: var(--miracle-color-medium-dark);
 }
@@ -19,12 +18,12 @@
   max-width: 100%;
   padding: 0.5rem;
   border: 0.0625rem solid var(--miracle-color-medium);
-  font-size: 1rem;
+  font-size: 14px;
   transition: var(--transition-duration-short) ease-in-out;
   color: var(--miracle-color-dark);
   font-weight: 400;
   outline: none;
-  height: fit-content;
+  height: 53px;
   width: 100%;
 }
 

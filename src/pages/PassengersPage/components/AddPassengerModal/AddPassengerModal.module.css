@@ -50,7 +50,7 @@
 .footer {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   /* margin-top: 20px;
   gap: 10px; Space between buttons */
@@ -91,4 +91,9 @@
   .formGroupFull {
     grid-column: auto; /* Take full width on smaller screens */
   }
+}
+
+.dropdown {
+  width: 264px;
+  height: 53px;
 }

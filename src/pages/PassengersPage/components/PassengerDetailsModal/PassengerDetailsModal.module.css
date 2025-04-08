@@ -18,6 +18,7 @@
 
 .infoLabel {
   font-weight: 500;
+  font-family: "Inter", sans-serif;
   width: 45%;
   color: #333;
 }
@@ -74,6 +75,7 @@
   font-weight: 500;
   margin-bottom: 8px;
   color: #333;
+  font-family: "Inter", sans-serif;
 }
 
 .inputWrapper {
@@ -132,16 +134,15 @@
 /* Style for the Back button */
 .editActions button[type="button"] {
   background-color: white;
-  color: var(
-    --miracle-color-blue-light
-  ); /* Example blue color from the image */
-  border: 2px solid var(--miracle-color-blue-light); /* Matching border */
+  color: var(--miracle-color-blue); /* Example blue color from the image */
+  border: 2px solid var(--miracle-color-blue); /* Matching border */
   border-radius: 20px; /* Rounded corners */
   padding: 10px 20px; /* Adjust padding for size */
-  font-size: 0.5rem; /* Adjust font size */
+  font-size: 14px; /* Adjust font size */
   cursor: pointer;
   opacity: 1;
   transition: background-color 0.3s ease; /* Smooth hover effect */
+  height: 42px;
 }
 
 /* .editActions button[type="button"]:hover {
@@ -149,19 +150,19 @@
 
 /* Style for the Save button */
 .editActions button[type="submit"] {
-  background-color: var(--miracle-color-blue-light); /* Example blue color */
+  background-color: var(--miracle-color-blue); /* Example blue color */
   color: white;
   border: none;
   border-radius: 20px; /* Rounded corners */
   padding: 10px 20px; /* Adjust padding for size */
-  font-size: 0.5rem; /* Adjust font size */
+  font-size: 14px; /* Adjust font size */
   cursor: pointer;
   opacity: 1;
   transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 .editActions button:hover {
-  opacity: 0.7;
+  background-color: var(--miracle-color-blue-light);
 }
 
 .avatarContainerEdit {
@@ -191,7 +192,7 @@
 
 .deleteButton button {
   /* Apply styles specifically within .editActions */
-  background-color: #dc3545; /* Example Red */
+  background-color: #b22a2a; /* Example Red */
   color: white;
   border: none;
   border-radius: 20px; /* Match other buttons */
