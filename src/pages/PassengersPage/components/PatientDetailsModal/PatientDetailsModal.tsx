@@ -25,6 +25,10 @@ const PatientDetailsModal = ({
 
   const schema = yup.object().shape({
     Street: yup.string().required("Street is required"),
+    City: yup.string().required("City is required"),
+    State: yup.string().required("State is required"),
+    Zip: yup.string().required("Zip code is required"),
+    Country: yup.string().required("Country is required"),
     Email: yup
       .string()
       .email("Invalid email format")
@@ -33,6 +37,7 @@ const PatientDetailsModal = ({
     DateOfBirth: yup.string().required("Date of Birth is required"),
     MilitaryService: yup.string().required("Military status is required"),
     CellPhone: yup.string().required("Phone number is required"),
+    Diagnoses: yup.string().required("Medical condition is required"),
   });
 
   const {
@@ -44,22 +49,32 @@ const PatientDetailsModal = ({
     resolver: yupResolver(schema),
     defaultValues: {
       Street: patient["Street"],
+      City: patient["City"],
+      State: patient["State"],
+      Zip: patient["Zip"],
+      Country: patient["Country"],
       Email: patient["Email"],
       Gender: patient["Gender"],
       DateOfBirth: patient["Date of Birth"],
       MilitaryService: patient["Military Service"],
       CellPhone: patient["Cell Phone"],
+      Diagnoses: patient["Diagnoses"].join(", "),
     },
   });
 
   interface PatientFormData {
     Street: string;
+    City: string;
+    State: string;
+    Zip: string;
+    Country: string;
     Relationship?: string;
     Email: string;
     Gender: string;
     DateOfBirth: string;
     MilitaryService: string;
     CellPhone: string;
+    Diagnoses: string;
   }
 
   const { mutate } = useMutation({
@@ -88,14 +103,18 @@ const PatientDetailsModal = ({
   const onSubmit = async (formData: PatientFormData) => {
     const apiData = {
       Street: formData.Street,
+      City: formData.City,
+      State: formData.State,
+      Zip: formData.Zip,
+      Country: formData.Country,
       Relationship: formData.Relationship,
       Email: formData.Email,
       DateOfBirth: formData.DateOfBirth,
       MilitaryService: formData.MilitaryService,
       Gender: formData.Gender,
       CellPhone: formData.CellPhone,
+      Diagnoses: formData.Diagnoses,
     };
-
     mutate(apiData);
   };
 
@@ -145,7 +164,7 @@ const PatientDetailsModal = ({
                 <div className={styles.infoRow}>
                   <div className={styles.infoLabel}>Address:</div>
                   <div className={styles.infoValue}>
-                    {`${patient["Street"]}, ${patient["Country"]}`}
+                    {`${patient["Street"]}, ${patient["City"]}, ${patient["Zip"]}, ${patient["State"]}, ${patient["Country"]}`}
                   </div>
                 </div>
 
@@ -174,7 +193,6 @@ const PatientDetailsModal = ({
               </div>
             </div>
           ) : (
-            // Edit Mode
             <div className={styles.editGrid}>
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>Phone Number</label>
@@ -226,6 +244,7 @@ const PatientDetailsModal = ({
                   <Input
                     name="Email"
                     register={register}
+                    error={errors.Email?.message}
                     defaultValue={patient["Email"]}
                     type="email"
                   />
@@ -241,6 +260,165 @@ const PatientDetailsModal = ({
                     defaultValue={patient["Street"]}
                     type="text"
                     placeholder="Street Address"
+                  />
+                </div>
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>City</label>
+                <div className={styles.inputWrapper}>
+                  <Input
+                    name="City"
+                    register={register}
+                    defaultValue={patient["City"]}
+                    type="text"
+                    placeholder="City"
+                  />
+                </div>
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Zip</label>
+                <div className={styles.inputWrapper}>
+                  <Input
+                    name="Zip"
+                    register={register}
+                    error={errors.Zip?.message}
+                    defaultValue={patient["Zip"]}
+                    type="text"
+                    placeholder="Zip Code"
+                  />
+                </div>
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>State</label>
+                <div className={styles.inputWrapper}>
+                  <Select
+                    name="State"
+                    register={register}
+                    placeholder="State"
+                    options={[
+                      "AK",
+                      "AL",
+                      "AR",
+                      "AZ",
+                      "CA",
+                      "CO",
+                      "CT",
+                      "DC",
+                      "DE",
+                      "FL",
+                      "GA",
+                      "HI",
+                      "IA",
+                      "ID",
+                      "IL",
+                      "IN",
+                      "KS",
+                      "KY",
+                      "LA",
+                      "MA",
+                      "MD",
+                      "ME",
+                      "MI",
+                      "MN",
+                      "MO",
+                      "MP",
+                      "MS",
+                      "MT",
+                      "NC",
+                      "ND",
+                      "NE",
+                      "NH",
+                      "NJ",
+                      "NL",
+                      "NM",
+                      "NV",
+                      "NY",
+                      "OH",
+                      "OK",
+                      "OR",
+                      "PA",
+                      "PR",
+                      "RI",
+                      "SC",
+                      "SD",
+                      "TN",
+                      "TX",
+                      "UT",
+                      "VA",
+                      "VI",
+                      "VT",
+                      "WA",
+                      "WI",
+                      "WV",
+                      "WY",
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Country</label>
+                <div className={styles.inputWrapper}>
+                  <Select
+                    name="Country"
+                    register={register}
+                    placeholder="Country"
+                    // defaultValue={patient["Country"]}
+                    options={[
+                      "Argentina",
+                      "Australia",
+                      "Azerbaijan",
+                      "Bahamas",
+                      "Belize",
+                      "Brazil",
+                      "Canada",
+                      "Chile",
+                      "China",
+                      "Colombia",
+                      "Croatia",
+                      "Dominican Republic",
+                      "Ecuador",
+                      "El Salvador",
+                      "Germany",
+                      "Grenada",
+                      "Guam",
+                      "Guatemala",
+                      "Guyana",
+                      "Honduras",
+                      "India",
+                      "Israel",
+                      "Jamaica",
+                      "Kuwait",
+                      "Mauritius",
+                      "Mexico",
+                      "Nicaragua",
+                      "Paraguay",
+                      "Peru",
+                      "Philippines",
+                      "Serbia",
+                      "South Africa",
+                      "Tajikistan",
+                      "Trinidad and Tobago",
+                      "Tunisia",
+                      "Turkey",
+                      "Uganda",
+                      "Ukraine",
+                      "United Kingdom",
+                      "United States",
+                    ]}
+                  />
+                </div>
+              </div>
+              <div className={styles.formGroupFull}>
+                <label className={styles.formLabel}>Medical Condition</label>
+                <div className={styles.inputWrapper}>
+                  <Input
+                    name="Medical Condition"
+                    register={register}
+                    defaultValue={patient["Diagnoses"].join(", ")}
+                    type="text"
+                    placeholder="Medical Condition"
+                    // onInputChange={onMedicalConditionChange} // Add the custom onChange handler
                   />
                 </div>
               </div>
